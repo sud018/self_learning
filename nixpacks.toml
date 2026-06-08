@@ -1,0 +1,12 @@
+[phases.setup]
+nixPkgs = ["nodejs_20", "maven", "jdk21"]
+
+[phases.build]
+cmds = [
+  "cd frontend && npm ci && npm run build",
+  "rm -rf backend/src/main/resources/static && mkdir -p backend/src/main/resources/static && cp -R frontend/dist/interview-prep-frontend/browser/. backend/src/main/resources/static/",
+  "cd backend && mvn -DskipTests package"
+]
+
+[start]
+cmd = "APP_DATA_DIR=${APP_DATA_DIR:-/app/storage} APP_SEED_DATA_DIR=${APP_SEED_DATA_DIR:-backend/data} java -jar backend/target/interview-prep-backend-0.0.1-SNAPSHOT.jar"

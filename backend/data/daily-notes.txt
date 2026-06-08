@@ -1,0 +1,3 @@
+Day 1: Java OOP foundations
+
+Class vs object, encapsulation, inheritance, polymorphism, and interview examples.
