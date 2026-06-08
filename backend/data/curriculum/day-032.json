@@ -254,67 +254,84 @@
       "id": "d32c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Generics",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Implement core Generics logic",
+      "statement": "Write a Java method demonstrating the core concept of Generics. Create a working example with at least two test scenarios.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "Basic usage of Generics",
+        "Edge case handling"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Handle null and empty inputs",
+        "Follow Java naming conventions"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "Happy path passes",
+        "Edge case handled without exception"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 20,
+      "starterCode": "// Demonstrate: Generics\npublic void demonstrate() {\n    // Your implementation here\n}"
     },
     {
       "id": "d32c2",
       "category": "Java",
-      "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "difficulty": "Medium",
+      "title": "Business scenario using Generics",
+      "statement": "Apply Generics in an order/customer domain. Write a method that solves a realistic business problem using this concept.",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "Order processing example",
+        "Customer validation example"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Use meaningful variable names",
+        "Validate inputs"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "Valid input produces correct output",
+        "Invalid input throws exception"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 25,
+      "starterCode": "// Business use of Generics\npublic Object processBusinessScenario(Object input) {\n    // Apply the concept to a real scenario\n    return null;\n}"
     },
     {
       "id": "d32c3",
-      "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "category": "SQL",
+      "difficulty": "Easy",
+      "title": "SQL practice: subquery or join",
+      "statement": "Write a SQL query using a subquery to find all customers whose total order amount is above the average. Hint: SELECT customer_id FROM orders GROUP BY customer_id HAVING SUM(total_amount) > (SELECT AVG(total_amount) FROM orders)",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "Returns customer IDs of high-value customers"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "Use subquery in HAVING clause",
+        "Alias your aggregations"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "Result only includes customers above average",
+        "Empty table returns empty result"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "-- Find customers with above-average total spend\nSELECT c.customer_id, c.first_name, SUM(o.total_amount) as total\nFROM customers c\nJOIN orders o ON c.customer_id = o.customer_id\nGROUP BY c.customer_id, c.first_name\nHAVING SUM(o.total_amount) > (\n    -- subquery for average\n);"
+    },
+    {
+      "id": "d32dsa",
+      "category": "DSA",
+      "difficulty": "Medium",
+      "title": "Daily Temperatures",
+      "statement": "Given an array temperatures, return an array answer such that answer[i] is the number of days you have to wait after day i to get a warmer temperature. If there is no future day with warmer temperature, answer[i] = 0.",
+      "examples": [
+        "[73,74,75,71,69,72,76,73] -> [1,1,4,2,1,1,0,0]",
+        "[30,40,50,60] -> [1,1,1,0]"
+      ],
+      "constraints": [
+        "1 <= temperatures.length <= 10^5",
+        "30 <= temperatures[i] <= 100"
+      ],
+      "testCases": [
+        "[30,60,90] -> [1,1,0]",
+        "[89,62,70,58,47,47,46,76,100,70] -> [8,1,5,4,3,2,1,1,0,0]"
+      ],
+      "targetMinutes": 20,
+      "starterCode": "public int[] dailyTemperatures(int[] temperatures) {\n    // Monotonic decreasing stack storing indices\n    // When we find a warmer day, pop and set answer[idx] = i - idx\n    return new int[]{};\n}"
     }
   ],
   "sqlPractice": [

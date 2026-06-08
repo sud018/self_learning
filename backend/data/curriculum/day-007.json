@@ -254,67 +254,89 @@
       "id": "d07c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Input, Output, and Debugging",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Parse and validate user input",
+      "statement": "Write parseAge(String input) that parses a String to int age. If null, blank, or not a number, throw IllegalArgumentException. If age < 0 or > 150, throw IllegalArgumentException.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "'25' -> 25",
+        "'abc' -> throws",
+        "'-1' -> throws",
+        "null -> throws"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Use Integer.parseInt with try-catch",
+        "Validate range after parsing"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "'0' -> 0",
+        "'150' -> 150",
+        "'151' -> throws"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public int parseAge(String input) {\n    if (input == null || input.isBlank()) throw new IllegalArgumentException(\"empty\");\n    // parse, catch NumberFormatException, validate range\n    return 0;\n}"
     },
     {
       "id": "d07c2",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "title": "Debug: find the off-by-one",
+      "statement": "The following method should sum array elements from index start to end (inclusive) but has an off-by-one bug. Fix it: for(int i=start; i<end; i++) sum+=arr[i];",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "arr=[1,2,3,4], start=0, end=3 -> should be 10, buggy returns 6"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Fix the loop condition",
+        "Write a corrected version"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "[1,2,3], 0, 2 -> 6",
+        "[5], 0, 0 -> 5"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 10,
+      "starterCode": "public int sumRange(int[] arr, int start, int end) {\n    int sum = 0;\n    for (int i = start; i < end; i++) { // BUG: should be <=\n        sum += arr[i];\n    }\n    return sum;\n}"
     },
     {
       "id": "d07c3",
       "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "difficulty": "Easy",
+      "title": "Print multiplication table",
+      "statement": "Write printTable(int n) that prints the multiplication table for n from 1 to 10 in the format 'n x i = result' on each line.",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "n=3: 3 x 1 = 3, 3 x 2 = 6, ..., 3 x 10 = 30"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "1 <= n <= 20",
+        "10 lines of output"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "n=1: 1 x 1=1 .. 1 x 10=10",
+        "n=5: 5 x 5=25 appears"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 10,
+      "starterCode": "public void printTable(int n) {\n    for (int i = 1; i <= 10; i++) {\n        // print: n + \" x \" + i + \" = \" + (n*i)\n    }\n}"
+    },
+    {
+      "id": "d07dsa",
+      "category": "DSA",
+      "difficulty": "Medium",
+      "title": "Find Minimum in Rotated Sorted Array",
+      "statement": "Given a sorted array rotated between 1 and n times, find the minimum element. You must write an O(log n) algorithm.",
+      "examples": [
+        "[3,4,5,1,2] -> 1",
+        "[4,5,6,7,0,1,2] -> 0",
+        "[11,13,15,17] -> 11"
+      ],
+      "constraints": [
+        "n == nums.length",
+        "1 <= n <= 5000",
+        "All values are unique"
+      ],
+      "testCases": [
+        "[1] -> 1",
+        "[2,1] -> 1",
+        "[5,1,2,3,4] -> 1"
+      ],
+      "targetMinutes": 20,
+      "starterCode": "public int findMin(int[] nums) {\n    // Binary search: if nums[mid] > nums[right], min is in right half\n    // else min is in left half (including mid)\n    return 0;\n}"
     }
   ],
   "sqlPractice": [

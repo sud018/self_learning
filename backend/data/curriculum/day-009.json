@@ -254,67 +254,83 @@
       "id": "d09c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Foundation Mini Project Thinking",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Order total calculator",
+      "statement": "Write calculateTotal(List<double[]> items) where each item is [quantity, unitPrice]. Return the total cost. Return 0.0 for null or empty list.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "[[2, 10.0], [3, 5.0]] -> 35.0",
+        "[] -> 0.0"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Null-safe",
+        "Handle 0 quantity items"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "[[1,100.0]] -> 100.0",
+        "[[0,50.0]] -> 0.0"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 15,
+      "starterCode": "public double calculateTotal(List<double[]> items) {\n    if (items == null || items.isEmpty()) return 0.0;\n    // sum up quantity * unitPrice for each item\n    return 0.0;\n}"
     },
     {
       "id": "d09c2",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "title": "String word frequency counter",
+      "statement": "Write wordFrequency(String text) returning a Map<String,Integer> of word frequencies. Split by spaces, case-insensitive, ignore punctuation (strip non-alphanumeric from each word).",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "'Hello hello world' -> {hello=2, world=1}"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Case-insensitive",
+        "Strip punctuation from words"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "'' -> empty map",
+        "'a a a' -> {a=3}"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public Map<String, Integer> wordFrequency(String text) {\n    Map<String, Integer> freq = new LinkedHashMap<>();\n    if (text == null || text.isBlank()) return freq;\n    // split, clean each word, count\n    return freq;\n}"
     },
     {
       "id": "d09c3",
       "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "difficulty": "Easy",
+      "title": "Stack using two queues",
+      "statement": "Implement a stack (push, pop, peek, isEmpty) using two Queue<Integer> instances. The push operation should be O(1), but pop should rotate queues to get LIFO order.",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "push(1),push(2),pop() -> 2",
+        "push(1),peek() -> 1"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "Only Queue operations: offer, poll, peek, isEmpty"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "push(1),push(2),push(3),pop() -> 3"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 25,
+      "starterCode": "class MyStack {\n    Queue<Integer> q1 = new LinkedList<>(), q2 = new LinkedList<>();\n    public void push(int val) { }\n    public int pop() { return 0; }\n    public int peek() { return 0; }\n    public boolean isEmpty() { return true; }\n}"
+    },
+    {
+      "id": "d09dsa",
+      "category": "DSA",
+      "difficulty": "Medium",
+      "title": "3Sum",
+      "statement": "Given an integer array nums, return all triplets [nums[i], nums[j], nums[k]] such that i != j != k and nums[i] + nums[j] + nums[k] == 0. The solution set must not contain duplicate triplets.",
+      "examples": [
+        "[-1,0,1,2,-1,-4] -> [[-1,-1,2],[-1,0,1]]",
+        "[0,1,1] -> []",
+        "[0,0,0] -> [[0,0,0]]"
+      ],
+      "constraints": [
+        "3 <= nums.length <= 3000",
+        "-10^5 <= nums[i] <= 10^5"
+      ],
+      "testCases": [
+        "[0,0,0,0] -> [[0,0,0]]",
+        "[-2,0,1,1,2] -> [[-2,0,2],[-2,1,1]]"
+      ],
+      "targetMinutes": 30,
+      "starterCode": "public List<List<Integer>> threeSum(int[] nums) {\n    // Sort array. For each i, use two pointers l=i+1, r=end\n    // Skip duplicates for i, l, r\n    return new ArrayList<>();\n}"
     }
   ],
   "sqlPractice": [

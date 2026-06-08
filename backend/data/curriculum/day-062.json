@@ -252,69 +252,93 @@
   "codingTasks": [
     {
       "id": "d62c1",
-      "category": "Java",
+      "category": "Angular",
       "difficulty": "Easy",
-      "title": "Validate input for Templates",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Angular: implement Templates",
+      "statement": "Write TypeScript/Angular code demonstrating Templates. Create a component or service snippet showing the key Angular pattern for this topic.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "Component using Templates",
+        "Template binding or service example"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Use standalone component pattern",
+        "Type all variables with TypeScript types"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "Component renders without errors",
+        "Service method returns expected type"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 20,
+      "starterCode": "// Angular: Templates\n@Component({\n  selector: 'app-example',\n  standalone: true,\n  template: `<div>implement here</div>`\n})\nexport class ExampleComponent {\n  // implement Templates\n}"
     },
     {
       "id": "d62c2",
-      "category": "Java",
-      "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "category": "Angular",
+      "difficulty": "Medium",
+      "title": "Order list with error handling",
+      "statement": "Write an Angular service method getOrders() that calls GET /api/orders, handles loading state, handles HTTP errors (show user-friendly message), and returns Observable<Order[]>. The component should show a spinner during load and an error div on failure.",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "Loading: show spinner",
+        "Success: show table",
+        "Error: show 'Failed to load orders. Try again.'"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Use HttpClient",
+        "catchError returns empty array with console.error",
+        "Expose loading: boolean signal or property"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "Loading=true before response",
+        "Loading=false after response",
+        "Error message shown on HTTP 500"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 25,
+      "starterCode": "@Injectable({ providedIn: 'root' })\nexport class OrderService {\n  constructor(private http: HttpClient) {}\n  getOrders(): Observable<Order[]> {\n    return this.http.get<Order[]>('/api/orders').pipe(\n      catchError(err => {\n        console.error(err);\n        return of([]);\n      })\n    );\n  }\n}"
     },
     {
       "id": "d62c3",
       "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "difficulty": "Medium",
+      "title": "Java utility: pagination helper",
+      "statement": "Write a generic paginate(List<T> items, int page, int size) method that returns a sublist for the given page (0-indexed). Return empty list if page is out of range. Add a PageResult<T> wrapper with items, totalItems, totalPages, currentPage.",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "paginate([1..10], 0, 3) -> [1,2,3]",
+        "paginate([1..10], 3, 3) -> [10]",
+        "paginate([1..10], 4, 3) -> []"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "0-indexed pages",
+        "Handle edge cases: empty list, oversized page"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "page=0,size=5 -> first 5",
+        "page out of range -> empty"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public <T> List<T> paginate(List<T> items, int page, int size) {\n    if (items == null || items.isEmpty()) return Collections.emptyList();\n    int start = page * size;\n    if (start >= items.size()) return Collections.emptyList();\n    int end = Math.min(start + size, items.size());\n    return items.subList(start, end);\n}"
+    },
+    {
+      "id": "d62dsa",
+      "category": "DSA",
+      "difficulty": "Medium",
+      "title": "Rotting Oranges",
+      "statement": "In a grid, 0=empty, 1=fresh orange, 2=rotten orange. Each minute, any fresh orange adjacent to a rotten orange becomes rotten. Return the minimum minutes until no fresh orange remains. If impossible, return -1.",
+      "examples": [
+        "[[2,1,1],[1,1,0],[0,1,1]] -> 4",
+        "[[2,1,1],[0,1,1],[1,0,1]] -> -1",
+        "[[0,2]] -> 0"
+      ],
+      "constraints": [
+        "1 <= m, n <= 10",
+        "grid[i][j] is 0, 1, or 2"
+      ],
+      "testCases": [
+        "[[2]] -> 0",
+        "[[1]] -> -1",
+        "[[0,1]] -> -1"
+      ],
+      "targetMinutes": 25,
+      "starterCode": "public int orangesRotting(int[][] grid) {\n    // Multi-source BFS from all rotten oranges\n    // Count fresh oranges. Each BFS level = 1 minute\n    // Return -1 if fresh > 0 after BFS\n    return 0;\n}"
     }
   ],
   "sqlPractice": [

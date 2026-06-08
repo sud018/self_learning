@@ -254,67 +254,82 @@
       "id": "d01c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Java Introduction, JDK, JRE, JVM, Compilation Process, First Program",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Hello World and JVM path",
+      "statement": "Write a Java program that prints 'Hello, World!' and then prints the Java version using System.getProperty(\"java.version\"). What does JVM do with your .java file before running it?",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "Output: Hello, World!\\nJava version: 21.x"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Use System.out.println",
+        "Use System.getProperty"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "Hello, World! is first line",
+        "Version string is not null"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 10,
+      "starterCode": "public class Main {\n    public static void main(String[] args) {\n        // Print Hello World\n        // Print Java version\n    }\n}"
     },
     {
       "id": "d01c2",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "title": "JVM memory areas quiz program",
+      "statement": "Write a method that creates a local int variable (stack), a String literal (string pool), and an object with new (heap). Print each value. This demonstrates the three main JVM memory areas.",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "stack=42, pool=hello, heap=java.lang.Object@..."
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Must use new keyword for heap allocation"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "All three values printed without exception"
       ],
       "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "starterCode": "public void showJvmMemory() {\n    int stackVar = 42;        // stack\n    String poolStr = \"hello\"; // string pool\n    Object heapObj = new Object(); // heap\n    // print all three\n}"
     },
     {
       "id": "d01c3",
       "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "difficulty": "Easy",
+      "title": "Basic arithmetic calculator",
+      "statement": "Write a method calculate(int a, int b, String op) that returns the result of a+b, a-b, a*b, or a/b based on op. Handle division by zero by returning Integer.MIN_VALUE.",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "calculate(10,3,\"+\") -> 13",
+        "calculate(10,0,\"/\") -> Integer.MIN_VALUE"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "op is one of +, -, *, /",
+        "Handle division by zero"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "calculate(6,2,\"*\") -> 12",
+        "calculate(5,0,\"/\") -> Integer.MIN_VALUE"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 15,
+      "starterCode": "public int calculate(int a, int b, String op) {\n    // use switch or if-else on op\n    return 0;\n}"
+    },
+    {
+      "id": "d01dsa",
+      "category": "DSA",
+      "difficulty": "Easy",
+      "title": "Two Sum",
+      "statement": "Given an array of integers nums and a target integer, return the indices of the two numbers that add up to target. Each input has exactly one solution. You may not use the same element twice.",
+      "examples": [
+        "nums=[2,7,11,15], target=9 -> [0,1]",
+        "nums=[3,2,4], target=6 -> [1,2]"
+      ],
+      "constraints": [
+        "2 <= nums.length <= 10^4",
+        "-10^9 <= nums[i] <= 10^9",
+        "Only one valid answer exists"
+      ],
+      "testCases": [
+        "[3,3], target=6 -> [0,1]",
+        "[1,2,3,4], target=7 -> [2,3]"
+      ],
+      "targetMinutes": 20,
+      "starterCode": "public int[] twoSum(int[] nums, int target) {\n    // Use a HashMap: store value->index\n    // For each num, check if (target - num) exists in map\n    return new int[]{};\n}"
     }
   ],
   "sqlPractice": [

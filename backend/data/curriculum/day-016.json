@@ -254,67 +254,83 @@
       "id": "d16c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Abstraction",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Abstract class template method",
+      "statement": "Create abstract ReportGenerator with abstract methods getData() and formatHeader(). Implement generateReport() = formatHeader() + getData() + footer. Subclass SalesReport implements both.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "SalesReport.generateReport() -> formatted header + data + footer"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public abstract class ReportGenerator {\n    public String generateReport() {\n        return formatHeader() + \"\\n\" + getData() + \"\\nEnd of Report\";\n    }\n    protected abstract String formatHeader();\n    protected abstract String getData();\n}"
     },
     {
       "id": "d16c2",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "title": "Interface for abstraction",
+      "statement": "Define Printable interface with print(). Define Saveable with save(String path). Create Document implementing both. Show how accepting Printable in a method hides implementation details.",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "method(Printable p) { p.print(); } accepts any Printable without knowing concrete type"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public interface Printable { void print(); }\npublic interface Saveable { void save(String path); }\npublic class Document implements Printable, Saveable { ... }"
     },
     {
       "id": "d16c3",
-      "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "category": "SQL",
+      "difficulty": "Medium",
+      "title": "SELECT with DISTINCT and ORDER",
+      "statement": "Write SQL to get distinct departments from employees, ordered alphabetically. Also write a query to count employees per department.",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "SELECT DISTINCT dept FROM employees ORDER BY dept; | SELECT dept, COUNT(*) as total FROM employees GROUP BY dept;"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "-- Distinct departments\nSELECT DISTINCT dept FROM employees ORDER BY dept;\n-- Count per department\nSELECT ..."
+    },
+    {
+      "id": "d16dsa",
+      "category": "DSA",
+      "difficulty": "Easy",
+      "title": "Valid Anagram",
+      "statement": "Given two strings s and t, return true if t is an anagram of s, and false otherwise. An anagram uses the same characters the same number of times.",
+      "examples": [
+        "s=anagram, t=nagaram -> true",
+        "s=rat, t=car -> false"
+      ],
+      "constraints": [
+        "1 <= s.length, t.length <= 5*10^4",
+        "s and t consist of lowercase English letters"
+      ],
+      "testCases": [
+        "s=a, t=a -> true",
+        "s=ab, t=ba -> true",
+        "s=aa, t=ab -> false"
+      ],
+      "targetMinutes": 15,
+      "starterCode": "public boolean isAnagram(String s, String t) {\n    // Option 1: sort both strings, compare\n    // Option 2: int[26] freq array for s, subtract for t\n    return false;\n}"
     }
   ],
   "sqlPractice": [

@@ -253,68 +253,90 @@
     {
       "id": "d82c1",
       "category": "Java",
-      "difficulty": "Easy",
-      "title": "Validate input for Spring Boot Mock Interviews",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "difficulty": "Medium",
+      "title": "Interview: explain and implement",
+      "statement": "For the topic of the day, write a clear verbal explanation (as a comment block) and then implement a relevant Java method. Format: 1) What is it? 2) Why is it needed? 3) How does it work internally? 4) Implement an example.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "See day topic for specific implementation"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Start with comment explaining the concept",
+        "Implementation must compile"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "Explanation is clear",
+        "Implementation is correct"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 30,
+      "starterCode": "/*\n * 1. What: ...\n * 2. Why: ...\n * 3. How internally: ...\n */\npublic void implementExample() {\n    // Your implementation\n}"
     },
     {
       "id": "d82c2",
-      "category": "Java",
-      "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "category": "Spring Boot",
+      "difficulty": "Medium",
+      "title": "System design: REST endpoint",
+      "statement": "Design and implement a complete REST endpoint for a feature related to the day's topic. Include: Controller with proper HTTP method/status codes, Request/Response DTOs, Service with business logic, and GlobalExceptionHandler entry for custom exception.",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "GET /api/resource -> 200 with list",
+        "POST /api/resource -> 201 with created",
+        "404 if not found"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Proper HTTP status codes",
+        "DTO separation from entity",
+        "@ExceptionHandler for custom exceptions"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "Valid GET returns 200",
+        "Non-existent resource returns 404"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 35,
+      "starterCode": "@RestController @RequestMapping(\"/api/resource\")\npublic class ResourceController {\n    @GetMapping public ResponseEntity<List<ResourceResponse>> getAll() { return null; }\n    @PostMapping public ResponseEntity<ResourceResponse> create(@Valid @RequestBody CreateResourceRequest req) { return null; }\n}"
     },
     {
       "id": "d82c3",
-      "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "category": "SQL",
+      "difficulty": "Medium",
+      "title": "SQL: complex reporting query",
+      "statement": "Write a SQL query that uses at least: one JOIN, one aggregate function (SUM/COUNT/AVG), GROUP BY, HAVING, and ORDER BY. The query should answer a realistic business question like 'Top 5 customers by order count this year'.",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "SELECT c.name, COUNT(o.id) as orders FROM customers c JOIN orders o ON c.id=o.cid WHERE YEAR(o.date)=2024 GROUP BY c.id, c.name ORDER BY orders DESC LIMIT 5"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "Must include JOIN, GROUP BY, HAVING, ORDER BY",
+        "Use meaningful aliases",
+        "LIMIT 5 for top N"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "Returns max 5 rows",
+        "Results in descending order"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 25,
+      "starterCode": "-- Top 5 customers by order count this year\nSELECT \n    c.customer_id,\n    c.first_name,\n    COUNT(o.order_id) as order_count\nFROM customers c\nJOIN orders o ON c.customer_id = o.customer_id\nWHERE YEAR(o.order_date) = 2024\nGROUP BY c.customer_id, c.first_name\nHAVING COUNT(o.order_id) >= 1\nORDER BY order_count DESC\nLIMIT 5;"
+    },
+    {
+      "id": "d82dsa",
+      "category": "DSA",
+      "difficulty": "Medium",
+      "title": "Decode Ways",
+      "statement": "A message containing letters A-Z is encoded as '1'-'26'. Given a string s containing only digits, return the number of ways to decode it. '0' cannot stand alone.",
+      "examples": [
+        "s=12 -> 2 (AB or L)",
+        "s=226 -> 3 (BZ, VF, BBF)",
+        "s=06 -> 0"
+      ],
+      "constraints": [
+        "1 <= s.length <= 100",
+        "s contains only digits"
+      ],
+      "testCases": [
+        "s=1 -> 1",
+        "s=10 -> 1",
+        "s=0 -> 0",
+        "s=11 -> 2"
+      ],
+      "targetMinutes": 25,
+      "starterCode": "public int numDecodings(String s) {\n    // dp[i] = ways to decode s[0..i-1]\n    // Single digit: dp[i] += dp[i-1] if s[i-1] != '0'\n    // Two digits: dp[i] += dp[i-2] if s[i-2..i-1] in [10..26]\n    return 0;\n}"
     }
   ],
   "sqlPractice": [

@@ -254,67 +254,83 @@
       "id": "d12c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Objects",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Objects and references",
+      "statement": "Write a method copyOrder(Order src) that creates a new Order with same customerId, items list copy (not reference), and totalAmount. Demonstrate why shallow copy is dangerous.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "modify copy's items -> src.items unchanged"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public Order copyOrder(Order src) {\n    // new ArrayList<>(src.items) for deep copy\n    return null;\n}"
     },
     {
       "id": "d12c2",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "title": "equals and hashCode for Order",
+      "statement": "Implement equals() and hashCode() for an Order class where two orders are equal if they have the same orderId. Use Objects.equals() and Objects.hash().",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "order1.equals(order2) -> true if same orderId"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "@Override\npublic boolean equals(Object o) {\n    if (this == o) return true;\n    if (!(o instanceof Order)) return false;\n    Order other = (Order) o;\n    return Objects.equals(this.orderId, other.orderId);\n}"
     },
     {
       "id": "d12c3",
-      "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "category": "SQL",
+      "difficulty": "Easy",
+      "title": "WHERE with multiple conditions",
+      "statement": "Write SQL to find all orders where status='PENDING' AND total_amount > 100. Sort by order_date descending.",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "SELECT * FROM orders WHERE status='PENDING' AND total_amount > 100 ORDER BY order_date DESC;"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "-- Select pending orders over 100, newest first\nSELECT ..."
+    },
+    {
+      "id": "d12dsa",
+      "category": "DSA",
+      "difficulty": "Medium",
+      "title": "Search a 2D Matrix",
+      "statement": "Write an efficient algorithm that searches for a value in an m x n matrix. Integers in each row are sorted left to right, and the first integer of each row is greater than the last of the previous row.",
+      "examples": [
+        "matrix=[[1,3,5,7],[10,11,16,20],[23,30,34,60]], target=3 -> true",
+        "same matrix, target=13 -> false"
+      ],
+      "constraints": [
+        "m == matrix.length",
+        "n == matrix[i].length",
+        "1 <= m, n <= 100"
+      ],
+      "testCases": [
+        "[[1]], target=1 -> true",
+        "[[1]], target=2 -> false"
+      ],
+      "targetMinutes": 20,
+      "starterCode": "public boolean searchMatrix(int[][] matrix, int target) {\n    // Treat 2D as 1D: mid = m*n/2\n    // row = mid/n, col = mid%n\n    return false;\n}"
     }
   ],
   "sqlPractice": [

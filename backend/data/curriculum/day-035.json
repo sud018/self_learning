@@ -254,67 +254,84 @@
       "id": "d35c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Functional Interfaces",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Implement core Functional Interfaces logic",
+      "statement": "Write a Java method demonstrating the core concept of Functional Interfaces. Create a working example with at least two test scenarios.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "Basic usage of Functional Interfaces",
+        "Edge case handling"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Handle null and empty inputs",
+        "Follow Java naming conventions"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "Happy path passes",
+        "Edge case handled without exception"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 20,
+      "starterCode": "// Demonstrate: Functional Interfaces\npublic void demonstrate() {\n    // Your implementation here\n}"
     },
     {
       "id": "d35c2",
       "category": "Java",
-      "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "difficulty": "Medium",
+      "title": "Business scenario using Functional Interfaces",
+      "statement": "Apply Functional Interfaces in an order/customer domain. Write a method that solves a realistic business problem using this concept.",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "Order processing example",
+        "Customer validation example"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Use meaningful variable names",
+        "Validate inputs"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "Valid input produces correct output",
+        "Invalid input throws exception"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 25,
+      "starterCode": "// Business use of Functional Interfaces\npublic Object processBusinessScenario(Object input) {\n    // Apply the concept to a real scenario\n    return null;\n}"
     },
     {
       "id": "d35c3",
-      "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "category": "SQL",
+      "difficulty": "Easy",
+      "title": "SQL practice: subquery or join",
+      "statement": "Write a SQL query using a subquery to find all customers whose total order amount is above the average. Hint: SELECT customer_id FROM orders GROUP BY customer_id HAVING SUM(total_amount) > (SELECT AVG(total_amount) FROM orders)",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "Returns customer IDs of high-value customers"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "Use subquery in HAVING clause",
+        "Alias your aggregations"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "Result only includes customers above average",
+        "Empty table returns empty result"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "-- Find customers with above-average total spend\nSELECT c.customer_id, c.first_name, SUM(o.total_amount) as total\nFROM customers c\nJOIN orders o ON c.customer_id = o.customer_id\nGROUP BY c.customer_id, c.first_name\nHAVING SUM(o.total_amount) > (\n    -- subquery for average\n);"
+    },
+    {
+      "id": "d35dsa",
+      "category": "DSA",
+      "difficulty": "Medium",
+      "title": "Car Fleet",
+      "statement": "N cars go to the same destination. Given their positions and speeds, find the number of car fleets that arrive at the destination. A fleet forms when a faster car catches up to a slower car.",
+      "examples": [
+        "target=12, position=[10,8,0,5,3], speed=[2,4,1,1,3] -> 3"
+      ],
+      "constraints": [
+        "n == position.length == speed.length",
+        "1 <= n <= 10^5",
+        "0 < target <= 10^6"
+      ],
+      "testCases": [
+        "target=10, position=[3], speed=[3] -> 1",
+        "target=100, position=[0,2,4], speed=[4,2,1] -> 1"
+      ],
+      "targetMinutes": 25,
+      "starterCode": "public int carFleet(int target, int[] position, int[] speed) {\n    // Sort by position descending\n    // Compute time to reach target for each car\n    // Use stack: if current time <= stack top, they fleet (pop)\n    return 0;\n}"
     }
   ],
   "sqlPractice": [

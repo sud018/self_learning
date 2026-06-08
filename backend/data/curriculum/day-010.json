@@ -254,67 +254,91 @@
       "id": "d10c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Revision and Assessment",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Fibonacci sequence",
+      "statement": "Write fib(int n) returning the nth Fibonacci number (0-indexed: fib(0)=0, fib(1)=1). Use iterative approach. Also write a memoized recursive version.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "fib(0)=0",
+        "fib(1)=1",
+        "fib(6)=8",
+        "fib(10)=55"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "0 <= n <= 50",
+        "Iterative version should be O(n) time O(1) space"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "fib(0)->0",
+        "fib(1)->1",
+        "fib(7)->13"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 15,
+      "starterCode": "public long fib(int n) {\n    // iterative: track prev, curr\n    return 0;\n}"
     },
     {
       "id": "d10c2",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "title": "Check anagram",
+      "statement": "Write isAnagram(String s, String t) returning true if t is an anagram of s. Same length, same characters with same frequencies. Case-sensitive.",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "'anagram','nagaram' -> true",
+        "'rat','car' -> false",
+        "'','\\0' -> false"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Case-sensitive",
+        "Handle null and different lengths"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "same string -> true",
+        "'ab','ba' -> true",
+        "'ab','ac' -> false"
       ],
       "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "starterCode": "public boolean isAnagram(String s, String t) {\n    if (s == null || t == null || s.length() != t.length()) return false;\n    int[] freq = new int[256];\n    // increment for s, decrement for t\n    // check all zeros\n    return false;\n}"
     },
     {
       "id": "d10c3",
       "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "difficulty": "Easy",
+      "title": "Find missing number 1..N",
+      "statement": "Given an array containing n-1 numbers from 1 to n (no duplicates), find the missing number using the formula sum = n*(n+1)/2.",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "[1,2,4,5] -> 3",
+        "[2] (n=2) -> 1"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "O(n) time, O(1) space",
+        "1 <= n <= 10000"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "[1] -> 2 (n=2)",
+        "[2,3,4,5] -> 1"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 10,
+      "starterCode": "public int findMissing(int[] nums) {\n    int n = nums.length + 1;\n    int expected = n * (n + 1) / 2;\n    int actual = 0;\n    for (int num : nums) actual += num;\n    return expected - actual;\n}"
+    },
+    {
+      "id": "d10dsa",
+      "category": "DSA",
+      "difficulty": "Medium",
+      "title": "Container With Most Water",
+      "statement": "Given n non-negative integers representing heights of lines, find two lines that together with the x-axis form a container that holds the most water. Return the maximum amount of water.",
+      "examples": [
+        "[1,8,6,2,5,4,8,3,7] -> 49",
+        "[1,1] -> 1"
+      ],
+      "constraints": [
+        "n == height.length",
+        "2 <= n <= 10^5",
+        "0 <= height[i] <= 10^4"
+      ],
+      "testCases": [
+        "[4,3,2,1,4] -> 16",
+        "[1,2,1] -> 2"
+      ],
+      "targetMinutes": 20,
+      "starterCode": "public int maxArea(int[] height) {\n    // Two pointers: l=0, r=end\n    // area = min(height[l],height[r]) * (r-l)\n    // Move the pointer with smaller height inward\n    return 0;\n}"
     }
   ],
   "sqlPractice": [

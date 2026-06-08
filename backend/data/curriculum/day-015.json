@@ -254,67 +254,83 @@
       "id": "d15c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Polymorphism",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Runtime polymorphism",
+      "statement": "Create Shape (abstract getArea()), Circle(radius), Rectangle(width,height), Triangle(base,height). Store all in List<Shape>. Print area of each using polymorphism.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "[new Circle(5), new Rectangle(3,4)] -> [78.5, 12.0]"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 20,
+      "starterCode": "List<Shape> shapes = List.of(new Circle(5), new Rectangle(3,4));\nfor (Shape s : shapes) System.out.println(s.getArea());"
     },
     {
       "id": "d15c2",
       "category": "Java",
-      "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "difficulty": "Medium",
+      "title": "instanceof and casting",
+      "statement": "Write processPayment(Payment p) that checks if p is CreditCardPayment or CashPayment using instanceof, casts, and calls type-specific methods. Also show pattern matching (Java 16+): if (p instanceof CreditCardPayment cc) cc.getCardNumber()",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "CreditCard -> print last 4 digits, Cash -> print amount"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public void processPayment(Payment p) {\n    if (p instanceof CreditCardPayment cc) {\n        System.out.println(cc.getCardNumber().substring(12));\n    } else if (p instanceof CashPayment cash) {\n        System.out.println(cash.getAmount());\n    }\n}"
     },
     {
       "id": "d15c3",
-      "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "category": "SQL",
+      "difficulty": "Easy",
+      "title": "DELETE with WHERE",
+      "statement": "Write SQL to delete all orders where status='CANCELLED' AND order_date < '2023-01-01'. Always use WHERE with DELETE to avoid deleting all rows.",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "DELETE FROM orders WHERE status='CANCELLED' AND order_date < '2023-01-01';"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "-- Delete old cancelled orders\nDELETE FROM orders WHERE ..."
+    },
+    {
+      "id": "d15dsa",
+      "category": "DSA",
+      "difficulty": "Hard",
+      "title": "Median of Two Sorted Arrays",
+      "statement": "Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays. The overall run time complexity must be O(log(m+n)).",
+      "examples": [
+        "nums1=[1,3], nums2=[2] -> 2.0",
+        "nums1=[1,2], nums2=[3,4] -> 2.5"
+      ],
+      "constraints": [
+        "0 <= m, n <= 1000",
+        "1 <= m+n",
+        "-10^6 <= nums1[i], nums2[i] <= 10^6"
+      ],
+      "testCases": [
+        "[0,0],[0,0] -> 0.0",
+        "[], [1] -> 1.0"
+      ],
+      "targetMinutes": 40,
+      "starterCode": "public double findMedianSortedArrays(int[] nums1, int[] nums2) {\n    // Ensure nums1 is smaller. Binary search partition on nums1\n    // Partition such that left halves combined = right halves combined\n    return 0.0;\n}"
     }
   ],
   "sqlPractice": [

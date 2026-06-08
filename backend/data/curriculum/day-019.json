@@ -254,67 +254,82 @@
       "id": "d19c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Abstract Classes",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Abstract vs Interface decision",
+      "statement": "Create abstract class Vehicle with fuel (String), startEngine() abstract. Create Electric extends Vehicle overriding startEngine() printing 'Silent start'. Compare with making Vehicle an interface.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "Electric.startEngine() -> 'Silent electric start'"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public abstract class Vehicle {\n    protected String fuel;\n    public abstract void startEngine();\n    public void refuel() { System.out.println(\"Refueling with \" + fuel); }\n}\npublic class Electric extends Vehicle {\n    public Electric() { fuel = \"electricity\"; }\n    @Override public void startEngine() { System.out.println(\"Silent electric start\"); }\n}"
     },
     {
       "id": "d19c2",
       "category": "Java",
-      "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "difficulty": "Medium",
+      "title": "Template method with hook",
+      "statement": "Extend Vehicle with an abstract class TaxiService: template method takeTripCost() = baseFare + surcharge(). Implement surcharge() as a hook (empty default). UberTaxi overrides surcharge() to add 20%.",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "UberTaxi.takeTripCost(10.0) -> 12.0 (10 + 20%)"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public abstract class TaxiService {\n    public double takeTripCost(double distance) {\n        return baseFare(distance) + surcharge(distance);\n    }\n    protected abstract double baseFare(double distance);\n    protected double surcharge(double distance) { return 0; } // hook\n}"
     },
     {
       "id": "d19c3",
-      "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "category": "SQL",
+      "difficulty": "Medium",
+      "title": "LEFT JOIN",
+      "statement": "Write SQL to find all customers and their orders (include customers with no orders). Show customer_id, name, and order_id (null if no orders).",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "SELECT c.customer_id, c.first_name, o.order_id FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id;"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "SELECT c.customer_id, c.first_name, o.order_id\nFROM customers c\nLEFT JOIN orders o ON ..."
+    },
+    {
+      "id": "d19dsa",
+      "category": "DSA",
+      "difficulty": "Medium",
+      "title": "Group Anagrams",
+      "statement": "Given an array of strings strs, group the anagrams together. You can return the answer in any order.",
+      "examples": [
+        "[eat,tea,tan,ate,nat,bat] -> [[bat],[nat,tan],[ate,eat,tea]]"
+      ],
+      "constraints": [
+        "1 <= strs.length <= 10^4",
+        "0 <= strs[i].length <= 100",
+        "strs[i] consists of lowercase letters"
+      ],
+      "testCases": [
+        "[\"\"] -> [[\"\"]]",
+        "[\"a\"] -> [[\"a\"]]"
+      ],
+      "targetMinutes": 20,
+      "starterCode": "public List<List<String>> groupAnagrams(String[] strs) {\n    // Key = sorted string (or freq count array as string)\n    // HashMap<String, List<String>> groups\n    return new ArrayList<>();\n}"
     }
   ],
   "sqlPractice": [

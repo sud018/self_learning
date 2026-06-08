@@ -254,67 +254,91 @@
       "id": "d05c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Strings Basics",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Reverse a string",
+      "statement": "Write reverseString(String s) without using StringBuilder.reverse(). Use a char array or two-pointer approach. Return the reversed string.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "hello -> olleh",
+        "Java -> avaJ",
+        "'' -> ''"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "No StringBuilder.reverse()",
+        "O(n) time, O(n) space"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "a -> a",
+        "ab -> ba",
+        "abcde -> edcba"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 10,
+      "starterCode": "public String reverseString(String s) {\n    char[] chars = s.toCharArray();\n    // two pointer swap: l=0, r=end\n    return new String(chars);\n}"
     },
     {
       "id": "d05c2",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "title": "Count vowels and consonants",
+      "statement": "Write a method that returns an int[2] where [0]=vowel count, [1]=consonant count. Ignore non-letter characters. Case-insensitive.",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "Hello World -> [3, 7]",
+        "aeiou -> [5, 0]"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Case-insensitive",
+        "Ignore spaces and special chars"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "'' -> [0,0]",
+        "a -> [1,0]",
+        "b -> [0,1]"
       ],
       "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "starterCode": "public int[] countVowelsConsonants(String s) {\n    int vowels = 0, consonants = 0;\n    String lower = s.toLowerCase();\n    // for each char: check if it's a letter, then vowel or consonant\n    return new int[]{vowels, consonants};\n}"
     },
     {
       "id": "d05c3",
       "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "difficulty": "Easy",
+      "title": "First non-repeating character",
+      "statement": "Write firstNonRepeating(String s) that returns the first character that does not repeat in the string. Return '\\0' if all characters repeat.",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "leetcode -> l",
+        "aabb -> \\0",
+        "swiss -> w"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "O(n) time",
+        "Lowercase letters only"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "a -> a",
+        "aab -> b",
+        "aabb -> \\0"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 15,
+      "starterCode": "public char firstNonRepeating(String s) {\n    // LinkedHashMap preserves insertion order\n    // Count freq, then iterate to find first with freq=1\n    return '\\0';\n}"
+    },
+    {
+      "id": "d05dsa",
+      "category": "DSA",
+      "difficulty": "Medium",
+      "title": "Product of Array Except Self",
+      "statement": "Given an integer array nums, return an array answer such that answer[i] equals the product of all elements of nums except nums[i]. Solve it without using division and in O(n) time.",
+      "examples": [
+        "[1,2,3,4] -> [24,12,8,6]",
+        "[-1,1,0,-3,3] -> [0,0,9,0,0]"
+      ],
+      "constraints": [
+        "2 <= nums.length <= 10^5",
+        "-30 <= nums[i] <= 30",
+        "Guaranteed product fits in 32-bit integer"
+      ],
+      "testCases": [
+        "[2,3] -> [3,2]",
+        "[1,1,1,1] -> [1,1,1,1]"
+      ],
+      "targetMinutes": 25,
+      "starterCode": "public int[] productExceptSelf(int[] nums) {\n    // Pass 1 (left to right): prefix products\n    // Pass 2 (right to left): multiply by suffix products\n    return new int[]{};\n}"
     }
   ],
   "sqlPractice": [

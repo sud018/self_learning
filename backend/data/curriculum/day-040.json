@@ -254,67 +254,86 @@
       "id": "d40c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Comparator",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Implement core Comparator logic",
+      "statement": "Write a Java method demonstrating the core concept of Comparator. Create a working example with at least two test scenarios.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "Basic usage of Comparator",
+        "Edge case handling"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Handle null and empty inputs",
+        "Follow Java naming conventions"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "Happy path passes",
+        "Edge case handled without exception"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 20,
+      "starterCode": "// Demonstrate: Comparator\npublic void demonstrate() {\n    // Your implementation here\n}"
     },
     {
       "id": "d40c2",
       "category": "Java",
-      "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "difficulty": "Medium",
+      "title": "Business scenario using Comparator",
+      "statement": "Apply Comparator in an order/customer domain. Write a method that solves a realistic business problem using this concept.",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "Order processing example",
+        "Customer validation example"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Use meaningful variable names",
+        "Validate inputs"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "Valid input produces correct output",
+        "Invalid input throws exception"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 25,
+      "starterCode": "// Business use of Comparator\npublic Object processBusinessScenario(Object input) {\n    // Apply the concept to a real scenario\n    return null;\n}"
     },
     {
       "id": "d40c3",
-      "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "category": "SQL",
+      "difficulty": "Easy",
+      "title": "SQL practice: subquery or join",
+      "statement": "Write a SQL query using a subquery to find all customers whose total order amount is above the average. Hint: SELECT customer_id FROM orders GROUP BY customer_id HAVING SUM(total_amount) > (SELECT AVG(total_amount) FROM orders)",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "Returns customer IDs of high-value customers"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "Use subquery in HAVING clause",
+        "Alias your aggregations"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "Result only includes customers above average",
+        "Empty table returns empty result"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "-- Find customers with above-average total spend\nSELECT c.customer_id, c.first_name, SUM(o.total_amount) as total\nFROM customers c\nJOIN orders o ON c.customer_id = o.customer_id\nGROUP BY c.customer_id, c.first_name\nHAVING SUM(o.total_amount) > (\n    -- subquery for average\n);"
+    },
+    {
+      "id": "d40dsa",
+      "category": "DSA",
+      "difficulty": "Medium",
+      "title": "Task Scheduler",
+      "statement": "Given a char array tasks of CPU tasks and a non-negative integer n (cooldown period), return the minimum number of intervals needed to finish all tasks. Same task must be n intervals apart.",
+      "examples": [
+        "tasks=[A,A,A,B,B,B], n=2 -> 8",
+        "tasks=[A,A,A,B,B,B], n=0 -> 6",
+        "tasks=[A,A,A,A,A,A,B,C,D,E,F,G], n=2 -> 16"
+      ],
+      "constraints": [
+        "1 <= tasks.length <= 10^4",
+        "tasks[i] is uppercase English letter",
+        "0 <= n <= 100"
+      ],
+      "testCases": [
+        "[A,B,C], n=2 -> 3",
+        "[A,A,A], n=2 -> 7"
+      ],
+      "targetMinutes": 30,
+      "starterCode": "public int leastInterval(char[] tasks, int n) {\n    // Count frequencies. maxFreq = highest frequency\n    // maxCount = number of tasks with maxFreq\n    // result = max(tasks.length, (maxFreq-1)*(n+1) + maxCount)\n    return 0;\n}"
     }
   ],
   "sqlPractice": [

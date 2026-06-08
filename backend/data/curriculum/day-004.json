@@ -254,67 +254,92 @@
       "id": "d04c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Methods and Parameters",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Sum of digits",
+      "statement": "Write sumOfDigits(int n) that returns the sum of all digits in n. Handle negative numbers by taking absolute value.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "n=1234 -> 10",
+        "n=-456 -> 15"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Handle negative input",
+        "Work for n=0"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "0 -> 0",
+        "99 -> 18",
+        "1000 -> 1"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 15,
+      "starterCode": "public int sumOfDigits(int n) {\n    n = Math.abs(n);\n    int sum = 0;\n    // while n > 0: sum += n%10; n /= 10\n    return sum;\n}"
     },
     {
       "id": "d04c2",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "title": "Is palindrome (number)",
+      "statement": "Write isPalindrome(int x) that returns true if x is a palindrome (reads the same forward and backward). Negative numbers are not palindromes.",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "121 -> true",
+        "123 -> false",
+        "-121 -> false",
+        "10 -> false"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Don't convert to String",
+        "Work for single digits"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "0 -> true",
+        "11 -> true",
+        "10 -> false"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public boolean isPalindrome(int x) {\n    // Reverse the second half of the number\n    // Compare reversed half with first half\n    return false;\n}"
     },
     {
       "id": "d04c3",
       "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "difficulty": "Medium",
+      "title": "Power function",
+      "statement": "Write myPow(double x, int n) that calculates x raised to the power n. Handle negative exponents. Use fast power (exponentiation by squaring) for O(log n).",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "myPow(2.0, 10) -> 1024.0",
+        "myPow(2.1, 3) -> 9.261",
+        "myPow(2.0, -2) -> 0.25"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "Use exponentiation by squaring",
+        "Handle n < 0"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "1.0, any -> 1.0",
+        "2.0, 0 -> 1.0",
+        "2.0, -1 -> 0.5"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public double myPow(double x, int n) {\n    // If n < 0: x = 1/x, n = -n\n    // Fast power: if n%2==0 return pow(x*x, n/2)\n    return 0;\n}"
+    },
+    {
+      "id": "d04dsa",
+      "category": "DSA",
+      "difficulty": "Medium",
+      "title": "Maximum Subarray (Kadane's Algorithm)",
+      "statement": "Given an integer array nums, find the contiguous subarray which has the largest sum and return its sum. This is the classic Kadane's algorithm problem.",
+      "examples": [
+        "[-2,1,-3,4,-1,2,1,-5,4] -> 6  (subarray [4,-1,2,1])",
+        "[1] -> 1",
+        "[5,4,-1,7,8] -> 23"
+      ],
+      "constraints": [
+        "1 <= nums.length <= 10^5",
+        "-10^4 <= nums[i] <= 10^4"
+      ],
+      "testCases": [
+        "[-1,-2,-3] -> -1",
+        "[0,-1,0] -> 0"
+      ],
+      "targetMinutes": 20,
+      "starterCode": "public int maxSubArray(int[] nums) {\n    // currentSum = max(nums[i], currentSum + nums[i])\n    // maxSum = max(maxSum, currentSum)\n    return 0;\n}"
     }
   ],
   "sqlPractice": [

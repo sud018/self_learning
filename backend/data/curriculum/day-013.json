@@ -254,67 +254,82 @@
       "id": "d13c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Constructors",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Constructor chaining",
+      "statement": "Create an Employee class with overloaded constructors: Employee(String name), Employee(String name, String dept), Employee(String name, String dept, double salary). Use this() chaining.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "Employee('Alice') -> dept='General', salary=0"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public class Employee {\n    public Employee(String name) { this(name, \"General\"); }\n    public Employee(String name, String dept) { this(name, dept, 0); }\n    public Employee(String name, String dept, double salary) { /* set fields */ }\n}"
     },
     {
       "id": "d13c2",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "title": "Static factory with builder pattern",
+      "statement": "Add a static builder to Employee: Employee.builder().name(\"Alice\").dept(\"Engineering\").salary(85000).build(). Implement the minimal Builder inner class.",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "Employee e = Employee.builder().name(\"Bob\").build()"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public static Builder builder() { return new Builder(); }\npublic static class Builder {\n    private String name;\n    // add setters returning Builder for chaining\n    public Employee build() { return new Employee(name, dept, salary); }\n}"
     },
     {
       "id": "d13c3",
-      "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "category": "SQL",
+      "difficulty": "Easy",
+      "title": "INSERT and SELECT",
+      "statement": "Write SQL to insert a new employee (id=1, name='Alice', dept='Engineering', salary=85000) into employees table. Then write a SELECT to verify the insert.",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "INSERT INTO employees VALUES (1,'Alice','Engineering',85000); SELECT * FROM employees WHERE id=1;"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "-- INSERT then SELECT\nINSERT INTO employees (id, name, dept, salary) ..."
+    },
+    {
+      "id": "d13dsa",
+      "category": "DSA",
+      "difficulty": "Medium",
+      "title": "Find Peak Element",
+      "statement": "A peak element is an element strictly greater than its neighbors. Given an integer array nums, find a peak element and return its index. If multiple peaks exist, return any.",
+      "examples": [
+        "[1,2,3,1] -> 2",
+        "[1,2,1,3,5,6,4] -> 1 or 5"
+      ],
+      "constraints": [
+        "1 <= nums.length <= 1000",
+        "nums[-1] = nums[n] = -infinity"
+      ],
+      "testCases": [
+        "[1] -> 0",
+        "[1,2] -> 1"
+      ],
+      "targetMinutes": 20,
+      "starterCode": "public int findPeakElement(int[] nums) {\n    // Binary search: if nums[mid] < nums[mid+1], peak is to the right\n    // else peak is at mid or to the left\n    return 0;\n}"
     }
   ],
   "sqlPractice": [

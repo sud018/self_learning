@@ -254,67 +254,82 @@
       "id": "d02c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Variables, Data Types, Memory, Operators",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Type conversion chain",
+      "statement": "Write a method that takes a double salary, converts it to int (truncation), then to String, then parses it back to int. Return the final int. This shows implicit vs explicit casting.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "salary=1234.99 -> 1234"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Use (int) cast, String.valueOf, Integer.parseInt"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "1234.99 -> 1234",
+        "0.9 -> 0"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 15,
+      "starterCode": "public int convertSalary(double salary) {\n    // cast to int, then String, then back\n    return 0;\n}"
     },
     {
       "id": "d02c2",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "title": "Swap without temp variable",
+      "statement": "Write a method swap(int[] arr, int i, int j) that swaps two elements in-place using XOR (no temporary variable). Then write a second version using arithmetic.",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "arr=[3,7], i=0, j=1 -> arr=[7,3]"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "No extra variable allowed in XOR version",
+        "Must modify array in place"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "[1,2] -> [2,1]",
+        "[5,5] -> [5,5]"
       ],
       "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "starterCode": "public void swap(int[] arr, int i, int j) {\n    // XOR trick: a^=b; b^=a; a^=b;\n}"
     },
     {
       "id": "d02c3",
       "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "difficulty": "Easy",
+      "title": "Temperature converter",
+      "statement": "Write methods celsiusToFahrenheit(double c) and fahrenheitToCelsius(double f). Formula: F = C*9/5 + 32. Round to 2 decimal places using Math.round.",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "celsiusToFahrenheit(100) -> 212.0",
+        "fahrenheitToCelsius(32) -> 0.0"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "Use double arithmetic",
+        "Round result to 2 decimal places"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "c=0 -> f=32.0",
+        "f=212 -> c=100.0"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 15,
+      "starterCode": "public double celsiusToFahrenheit(double c) {\n    return 0;\n}\npublic double fahrenheitToCelsius(double f) {\n    return 0;\n}"
+    },
+    {
+      "id": "d02dsa",
+      "category": "DSA",
+      "difficulty": "Easy",
+      "title": "Best Time to Buy and Sell Stock",
+      "statement": "Given an array prices where prices[i] is the price of a stock on day i, return the maximum profit you can achieve. You may only buy once and sell once. If no profit is possible, return 0.",
+      "examples": [
+        "prices=[7,1,5,3,6,4] -> 5",
+        "prices=[7,6,4,3,1] -> 0"
+      ],
+      "constraints": [
+        "1 <= prices.length <= 10^5",
+        "0 <= prices[i] <= 10^4"
+      ],
+      "testCases": [
+        "[1,2] -> 1",
+        "[2,1,2,1] -> 1"
+      ],
+      "targetMinutes": 15,
+      "starterCode": "public int maxProfit(int[] prices) {\n    // Track minPrice seen so far\n    // At each step: profit = price - minPrice, update maxProfit\n    return 0;\n}"
     }
   ],
   "sqlPractice": [

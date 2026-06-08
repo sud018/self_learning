@@ -254,67 +254,83 @@
       "id": "d14c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Inheritance",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Inheritance chain",
+      "statement": "Create Animal (name, sound) -> Dog (breed) -> GoldenRetriever (certifiedService). Each adds its constructor using super(). Override toString() at each level adding its unique field.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "new GoldenRetriever('Buddy','Woof','Labrador',true).toString()"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public class Dog extends Animal {\n    private String breed;\n    public Dog(String name, String sound, String breed) {\n        super(name, sound);\n        this.breed = breed;\n    }\n}"
     },
     {
       "id": "d14c2",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "title": "Method overriding and super",
+      "statement": "In the above hierarchy, add calculateReward() in Animal (returns 10), override in Dog (returns super()*2), override in GoldenRetriever if certifiedService (returns super()*3 else super()).",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "GoldenRetriever certified -> 60, uncertified -> 20"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "// Animal.calculateReward() -> 10\n// Dog.calculateReward() -> super()*2 = 20\n// GoldenRetriever.calculateReward() -> service?60:20"
     },
     {
       "id": "d14c3",
-      "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "category": "SQL",
+      "difficulty": "Easy",
+      "title": "UPDATE statement",
+      "statement": "Write SQL to update all employees in dept='Engineering' to get a 10% salary raise. Use: UPDATE employees SET salary = salary * 1.10 WHERE dept='Engineering'",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "UPDATE employees SET salary = salary * 1.10 WHERE dept = 'Engineering';"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "-- Give 10% raise to Engineering\nUPDATE employees SET salary = ..."
+    },
+    {
+      "id": "d14dsa",
+      "category": "DSA",
+      "difficulty": "Medium",
+      "title": "Koko Eating Bananas",
+      "statement": "Koko has n piles of bananas. In h hours she must eat all bananas. She eats at most k bananas per hour from one pile. Find the minimum integer k such that she can eat all bananas within h hours.",
+      "examples": [
+        "piles=[3,6,7,11], h=8 -> 4",
+        "piles=[30,11,23,4,20], h=5 -> 30"
+      ],
+      "constraints": [
+        "1 <= piles.length <= 10^4",
+        "piles.length <= h <= 10^9",
+        "1 <= piles[i] <= 10^9"
+      ],
+      "testCases": [
+        "[2,2], h=2 -> 2",
+        "[1,1,1,1], h=4 -> 1"
+      ],
+      "targetMinutes": 25,
+      "starterCode": "public int minEatingSpeed(int[] piles, int h) {\n    // Binary search on k from 1 to max(piles)\n    // For each k, check total hours = sum(ceil(pile/k))\n    return 0;\n}"
     }
   ],
   "sqlPractice": [

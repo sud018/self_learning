@@ -254,67 +254,84 @@
       "id": "d08c1",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Validate input for Basic Object Thinking",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Simple BankAccount class",
+      "statement": "Create a BankAccount class with fields accountId (String), owner (String), balance (double). Add methods deposit(double) and withdraw(double). Withdrawal should fail with exception if insufficient funds.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "deposit(100), withdraw(50) -> balance=50",
+        "withdraw(200) on balance=100 -> throws"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Balance cannot go negative",
+        "Use private fields with getters"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "new account balance=0",
+        "deposit(50).getBalance() -> 50"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public class BankAccount {\n    private String accountId;\n    private String owner;\n    private double balance;\n    // constructor, deposit, withdraw, getBalance\n}"
     },
     {
       "id": "d08c2",
       "category": "Java",
       "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "title": "Student grade model",
+      "statement": "Create a Student class with name, id, and a Map<String,Integer> of subject scores. Add method getAverage() returning average score, and getGrade() returning letter grade based on average.",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "scores: Math=85, Java=90, SQL=80 -> average=85.0 -> grade=B"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Return 0.0 for empty scores",
+        "Reuse getGrade logic from Day 3"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "empty scores -> average=0.0",
+        "one subject=100 -> A"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public class Student {\n    private String name;\n    private String id;\n    private Map<String, Integer> scores = new HashMap<>();\n    public double getAverage() { return 0; }\n    public char getGrade() { return 'F'; }\n}"
     },
     {
       "id": "d08c3",
       "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "difficulty": "Easy",
+      "title": "Product catalog item",
+      "statement": "Create a Product class with id, name, price (double), category, inStock (boolean). Add toString() for display, equals() based on id, and a static factory method of(String id, String name, double price).",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "Product.of(\"P1\",\"Laptop\",999.99).toString() -> Product{id=P1, name=Laptop, price=999.99}"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "equals/hashCode based on id only",
+        "Static factory method pattern"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "same id -> equals",
+        "different id -> not equals"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public class Product {\n    private String id, name, category;\n    private double price;\n    private boolean inStock;\n    public static Product of(String id, String name, double price) { return null; }\n    @Override public String toString() { return \"\"; }\n    @Override public boolean equals(Object o) { return false; }\n}"
+    },
+    {
+      "id": "d08dsa",
+      "category": "DSA",
+      "difficulty": "Medium",
+      "title": "Search in Rotated Sorted Array",
+      "statement": "Given a rotated sorted array and a target, return the index of target or -1 if not found. You must write an O(log n) algorithm.",
+      "examples": [
+        "nums=[4,5,6,7,0,1,2], target=0 -> 4",
+        "nums=[4,5,6,7,0,1,2], target=3 -> -1"
+      ],
+      "constraints": [
+        "1 <= nums.length <= 5000",
+        "All values are unique",
+        "-10^4 <= nums[i], target <= 10^4"
+      ],
+      "testCases": [
+        "[1], target=0 -> -1",
+        "[1], target=1 -> 0"
+      ],
+      "targetMinutes": 25,
+      "starterCode": "public int search(int[] nums, int target) {\n    // Modified binary search: determine which half is sorted\n    // Check if target is in the sorted half, adjust pointers accordingly\n    return -1;\n}"
     }
   ],
   "sqlPractice": [

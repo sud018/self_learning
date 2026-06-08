@@ -252,69 +252,90 @@
   "codingTasks": [
     {
       "id": "d59c1",
-      "category": "Java",
+      "category": "Spring Boot",
       "difficulty": "Easy",
-      "title": "Validate input for Kafka Basics",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "title": "Implement Kafka Basics in Spring Boot",
+      "statement": "Write the Spring Boot code for Kafka Basics. Show the key annotation, class structure, and a sample method with proper request/response handling.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "@RestController or @Service pattern for Kafka Basics",
+        "Request DTO and Response DTO example"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Use proper Spring annotations",
+        "Follow layered architecture: Controller -> Service -> Repository"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "Valid request returns 200 with data",
+        "Invalid request returns 400 with error message"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 25,
+      "starterCode": "// Spring Boot: Kafka Basics\n@RestController\n@RequestMapping(\"/api/orders\")\npublic class OrderController {\n    // Inject service, write endpoint\n}"
     },
     {
       "id": "d59c2",
-      "category": "Java",
-      "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "category": "Spring Boot",
+      "difficulty": "Medium",
+      "title": "Service layer with validation",
+      "statement": "Write a service method createOrder(CreateOrderRequest req) that: validates the request (non-null items, positive amounts), checks stock availability, saves the order, and returns an OrderResponse DTO. Throw custom exceptions for validation failures.",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "Valid request -> OrderResponse with NEW status",
+        "Null items -> throws ValidationException"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Use @Valid or manual validation",
+        "Return DTO, not entity",
+        "Throw specific exceptions"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "null items -> ValidationException",
+        "valid input -> OrderResponse with correct fields"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 30,
+      "starterCode": "@Service\npublic class OrderService {\n    public OrderResponse createOrder(CreateOrderRequest req) {\n        // 1. validate\n        // 2. build entity\n        // 3. save\n        // 4. map to response DTO\n        return null;\n    }\n}"
     },
     {
       "id": "d59c3",
-      "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "category": "SQL",
+      "difficulty": "Medium",
+      "title": "Complex SQL for business reporting",
+      "statement": "Write a SQL query to generate a monthly sales report: sum of total_amount by month and year, number of orders, and average order value. Show only months with more than 10 orders.",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "2024-01: orders=45, total=4500.00, avg=100.00"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "Use DATE_FORMAT or EXTRACT for month/year",
+        "HAVING COUNT(*) > 10"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "Months with <= 10 orders excluded",
+        "Results ordered by year, month"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 25,
+      "starterCode": "-- Monthly sales report\nSELECT \n    YEAR(order_date) as year,\n    MONTH(order_date) as month,\n    COUNT(*) as order_count,\n    SUM(total_amount) as total_sales,\n    AVG(total_amount) as avg_order\nFROM orders\nGROUP BY YEAR(order_date), MONTH(order_date)\nHAVING COUNT(*) > 10\nORDER BY year, month;"
+    },
+    {
+      "id": "d59dsa",
+      "category": "DSA",
+      "difficulty": "Medium",
+      "title": "Max Area of Island",
+      "statement": "Given a binary matrix grid, return the maximum area of an island. An island is a group of 1s connected 4-directionally. If no island exists, return 0.",
+      "examples": [
+        "various grid -> max connected region size",
+        "all zeros -> 0"
+      ],
+      "constraints": [
+        "m == grid.length",
+        "n == grid[i].length",
+        "1 <= m, n <= 50",
+        "grid[i][j] is 0 or 1"
+      ],
+      "testCases": [
+        "[[1]] -> 1",
+        "[[0]] -> 0",
+        "[[1,1],[1,0]] -> 3"
+      ],
+      "targetMinutes": 20,
+      "starterCode": "public int maxAreaOfIsland(int[][] grid) {\n    // DFS from each '1': return 1 + area(4 directions)\n    // Mark visited by setting to 0\n    return 0;\n}"
     }
   ],
   "sqlPractice": [

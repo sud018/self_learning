@@ -253,68 +253,83 @@
     {
       "id": "d20c1",
       "category": "Java",
-      "difficulty": "Easy",
-      "title": "Validate input for OOP Mock Interview",
-      "statement": "Write Java logic that returns true when input is non-null and contains at least two non-space characters.",
+      "difficulty": "Medium",
+      "title": "OOP design: e-commerce domain",
+      "statement": "Design classes for an Order system: Order(orderId, customerId, List<OrderItem>, OrderStatus), OrderItem(productId, qty, unitPrice), OrderStatus enum (PENDING,CONFIRMED,SHIPPED,DELIVERED,CANCELLED). Add subtotal() to Order.",
       "examples": [
-        "Input: Java -> true",
-        "Input: blank string -> false"
+        "Order with 2 items: qty=2,price=10; qty=1,price=50 -> subtotal=70"
       ],
       "constraints": [
-        "Language: Java",
-        "Handle null",
-        "Explain O(n) time"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "null -> false",
-        "\" A \" -> false",
-        "\"API\" -> true"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 12,
-      "starterCode": "public boolean isValid(String input) {\n  // write Java solution\n  return false;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public class Order {\n    private String orderId;\n    private String customerId;\n    private List<OrderItem> items;\n    private OrderStatus status;\n    public double subtotal() {\n        return items.stream().mapToDouble(i -> i.getQty() * i.getUnitPrice()).sum();\n    }\n}"
     },
     {
       "id": "d20c2",
       "category": "Java",
-      "difficulty": "Easy",
-      "title": "Count active records",
-      "statement": "Given an int array where 1 means active and 0 means inactive, return the number of active records.",
+      "difficulty": "Medium",
+      "title": "Enum with behavior",
+      "statement": "Make OrderStatus a rich enum: each status has a description and isTerminal() method. DELIVERED and CANCELLED are terminal (no further state changes allowed).",
       "examples": [
-        "[1,0,1,1] -> 3",
-        "[0,0] -> 0"
+        "DELIVERED.isTerminal() -> true, PENDING.isTerminal() -> false"
       ],
       "constraints": [
-        "0 <= records.length <= 100000",
-        "records[i] is 0 or 1"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "[] -> 0",
-        "[1] -> 1",
-        "[1,1,0] -> 2"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 15,
-      "starterCode": "public int countActive(int[] records) {\n  // traverse the array\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "public enum OrderStatus {\n    PENDING(\"Awaiting confirmation\", false),\n    DELIVERED(\"Order delivered\", true),\n    CANCELLED(\"Order cancelled\", true);\n    private final String desc;\n    private final boolean terminal;\n    public boolean isTerminal() { return terminal; }\n}"
     },
     {
       "id": "d20c3",
-      "category": "Java",
-      "difficulty": "Easy-Medium",
-      "title": "Find maximum value",
-      "statement": "Given an int array, return the maximum value. If the array is empty, return Integer.MIN_VALUE.",
+      "category": "SQL",
+      "difficulty": "Medium",
+      "title": "Aggregate with JOIN",
+      "statement": "Write SQL to find total sales per customer (sum of total_amount from orders), showing customer name and total. Sort by total descending.",
       "examples": [
-        "[3,7,2] -> 7",
-        "[] -> Integer.MIN_VALUE"
+        "SELECT c.first_name, c.last_name, SUM(o.total_amount) as total_sales FROM customers c JOIN orders o ON c.customer_id=o.customer_id GROUP BY c.customer_id, c.first_name, c.last_name ORDER BY total_sales DESC;"
       ],
       "constraints": [
-        "0 <= nums.length <= 100000",
-        "Values can be negative"
+        "Handle null and edge cases",
+        "Follow naming conventions"
       ],
       "testCases": [
-        "[-3,-1] -> -1",
-        "[5] -> 5"
+        "Happy path works",
+        "Edge case handled"
       ],
-      "targetMinutes": 18,
-      "starterCode": "public int maxValue(int[] nums) {\n  // handle empty input\n  return 0;\n}"
+      "targetMinutes": 20,
+      "starterCode": "SELECT c.first_name, c.last_name, SUM(o.total_amount) as total_sales\nFROM customers c\nJOIN orders o ON c.customer_id = o.customer_id\nGROUP BY ...\nORDER BY total_sales DESC;"
+    },
+    {
+      "id": "d20dsa",
+      "category": "DSA",
+      "difficulty": "Hard",
+      "title": "Minimum Window Substring",
+      "statement": "Given strings s and t, return the minimum window substring of s such that every character in t (including duplicates) is included in the window. If no valid window exists, return empty string.",
+      "examples": [
+        "s=ADOBECODEBANC, t=ABC -> BANC",
+        "s=a, t=a -> a",
+        "s=a, t=aa -> ''"
+      ],
+      "constraints": [
+        "1 <= s.length, t.length <= 10^5"
+      ],
+      "testCases": [
+        "s=aa, t=aa -> aa",
+        "s=ab, t=b -> b"
+      ],
+      "targetMinutes": 40,
+      "starterCode": "public String minWindow(String s, String t) {\n    // Sliding window: expand right until all t chars found\n    // Then contract left to minimize window\n    // Track with need[] and window[] frequency arrays\n    return \"\";\n}"
     }
   ],
   "sqlPractice": [
