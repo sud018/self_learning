@@ -41,6 +41,8 @@ p { color: var(--muted); line-height: 1.6; }
 .primary, .ghost { border-radius: 8px; padding: 11px 14px; font-weight: 700; }
 .primary { background: var(--accent); color: white; }
 .ghost { background: #edf3f4; color: var(--ink); }
+.danger-btn { background: #fff0ee; color: #c92a2a; border: 1px solid #f5c6c6; }
+.danger-btn:hover { background: #ffe5e0; }
 .danger { color: var(--bad); }
 .success { color: var(--good); }
 .field { display: grid; gap: 7px; margin-bottom: 14px; }

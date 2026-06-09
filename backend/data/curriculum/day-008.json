@@ -347,5 +347,22 @@
     "Angular: Explain Conditional Rendering in simple words.",
     "Angular: Design UI states for loading, success, empty data, and backend error.",
     "Angular: What TypeScript model/interface would you create for today's API response?"
+  ],
+  "writtenModelAnswers": [
+    "Object-oriented thinking means modeling the real world as objects that have state (fields) and behavior (methods). A Customer object has name, email, address (state) and placeOrder(), cancelOrder() (behavior). Classes are the blueprints; objects are the instances. OOP promotes reusability, clarity, and separation of concerns.",
+    "In a Spring Boot project, every entity (@Entity) is an object, every service (@Service) is an object with business behavior, and every DTO is an object that carries data. Object thinking determines how you design your class hierarchy, relationships, and which class owns which responsibility.",
+    "Putting logic in the wrong class (e.g., calculating order totals in the controller) makes code hard to reuse and test. Creating too many fine-grained objects increases complexity. Not thinking about relationships between objects leads to redundant data and inconsistent state across the system.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
+    "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
+    "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
+    "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
+  ],
+  "businessModelAnswers": [
+    "Ask: What are the main entities in this feature? What state does each entity hold? What actions (methods) can each entity perform? How do the entities relate to each other? Who is responsible for each business rule \u2014 which class owns the logic? What changes might happen in the future that this design should accommodate?",
+    "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
+    "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]
 }

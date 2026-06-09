@@ -348,5 +348,22 @@
     "Angular: Explain Secure API Integration in simple words.",
     "Angular: Design UI states for loading, success, empty data, and backend error.",
     "Angular: What TypeScript model/interface would you create for today's API response?"
+  ],
+  "writtenModelAnswers": [
+    "Hibernate is the most popular JPA implementation. It translates @Entity annotations to SQL DDL and Java operations to SQL DML (INSERT, UPDATE, DELETE, SELECT). Hibernate manages the EntityManager, first-level cache (session cache), and second-level cache. Spring Boot auto-configures Hibernate via spring.jpa properties.",
+    "In Spring Boot, Hibernate runs behind the scenes for every JPA operation. Understanding Hibernate helps you debug generated SQL (spring.jpa.show-sql=true), configure the DDL strategy (create, validate, update), and understand when Hibernate flushes changes to the database within a transaction.",
+    "The LazyInitializationException occurs when accessing a LAZY-loaded relationship outside a transaction \u2014 the Hibernate session is already closed. Not understanding Hibernate's flush behavior causes changes to be lost or double-saved. The N+1 problem from lazy loading in loops is a top performance issue in production Spring Boot apps.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
+    "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
+    "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
+    "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
+  ],
+  "businessModelAnswers": [
+    "Ask: Should Hibernate generate the schema (ddl-auto=update) or use Flyway/Liquibase migrations? Is lazy loading needed for this relationship? Where in the application lifecycle are Hibernate sessions open? Is spring.jpa.show-sql enabled in dev to verify the generated SQL? Are there any N+1 query patterns in this feature?",
+    "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
+    "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]
 }

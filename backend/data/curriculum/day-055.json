@@ -348,5 +348,22 @@
     "Angular: Explain Secure API Integration in simple words.",
     "Angular: Design UI states for loading, success, empty data, and backend error.",
     "Angular: What TypeScript model/interface would you create for today's API response?"
+  ],
+  "writtenModelAnswers": [
+    "Spring Security provides authentication (who are you?) and authorization (what can you do?) for Spring Boot applications. It works through a filter chain that intercepts every HTTP request. Configure it with a SecurityFilterChain bean that defines which URLs require authentication and which roles can access which endpoints.",
+    "Spring Security is added to every production Spring Boot API to protect endpoints. A typical configuration requires authentication for all /api/** endpoints, permits public access to /api/auth/login, and uses a JWT filter to validate tokens on each request. Role-based access control (@PreAuthorize) restricts actions by user role.",
+    "Permitting all requests (httpSecurity.permitAll()) accidentally removes all security. Not disabling CSRF for stateless REST APIs causes all POST requests to fail with 403 (CSRF token not found). Storing passwords in plaintext instead of using BCryptPasswordEncoder is a critical security vulnerability.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
+    "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
+    "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
+    "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
+  ],
+  "businessModelAnswers": [
+    "Ask: Which endpoints should be public (login, registration) and which require authentication? What roles exist, and which endpoints are restricted to which roles? Is the API stateless (JWT) or session-based? Should CSRF protection be enabled? How will the security configuration change between dev and production environments?",
+    "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
+    "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]
 }

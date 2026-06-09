@@ -350,5 +350,22 @@
     "Angular: Explain Interview Angular in simple words.",
     "Angular: Design UI states for loading, success, empty data, and backend error.",
     "Angular: What TypeScript model/interface would you create for today's API response?"
+  ],
+  "writtenModelAnswers": [
+    "Day 90 Final Assessment covers all 90 days: Java fundamentals, OOP, Collections, Java 8 (Streams, Lambda, Optional), Spring Boot (REST, JPA, Security, Testing), Angular (Components, Services, RxJS, Forms, Routing), SQL (SELECT, JOINs, GROUP BY), and DSA (key patterns). Treat it as a complete mock interview \u2014 no notes, structured answers, real-time explanation.",
+    "The final assessment demonstrates readiness for a Java full-stack developer role. Strong performance means you can explain the full request lifecycle (Angular \u2192 Spring Boot \u2192 JPA \u2192 DB \u2192 response \u2192 Angular), design a complete feature from scratch, solve a DSA problem with explanation, and handle behavioral questions with specific STAR stories.",
+    "Gaps identified in the final assessment point to which days to revisit. Not connecting concepts across layers (showing Java knowledge without connecting to Spring Boot, or Angular knowledge without connecting to REST APIs) suggests studying in silos rather than as a full-stack developer. Nervousness is normal \u2014 practice explaining aloud consistently builds confidence.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
+    "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
+    "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
+    "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
+  ],
+  "businessModelAnswers": [
+    "Ask: Can I explain the complete request flow in a full-stack Java application without notes? Can I design a feature end-to-end (entity \u2192 API \u2192 Angular component)? Can I solve a medium DSA problem in 20 minutes while explaining my approach? Can I answer 3 behavioral questions with specific stories? Am I ready to apply for Java full-stack developer roles?",
+    "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
+    "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]
 }

@@ -346,5 +346,22 @@
     "Angular: Explain Angular Component Thinking in simple words.",
     "Angular: Design UI states for loading, success, empty data, and backend error.",
     "Angular: What TypeScript model/interface would you create for today's API response?"
+  ],
+  "writtenModelAnswers": [
+    "Polymorphism means 'many forms' \u2014 the same method call behaves differently depending on the actual object type at runtime. A parent-type variable can hold a child object (upcasting), and calling an overridden method dispatches to the child's implementation. This enables writing flexible code that works with any subtype.",
+    "In Spring Boot, service interfaces (OrderService) allow multiple implementations (OrderServiceImpl, CachedOrderServiceImpl) that can be swapped without changing controllers. In Angular, dependency injection provides polymorphism \u2014 inject a service interface and swap implementations in tests.",
+    "Casting to the wrong subtype without instanceof check throws ClassCastException at runtime. Overriding a method with a different signature creates overloading, not overriding \u2014 the parent version is called unexpectedly. Not using @Override means a typo in the method name creates a new method silently.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
+    "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
+    "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
+    "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
+  ],
+  "businessModelAnswers": [
+    "Ask: Does this behavior need to change based on the type of object? Are there multiple implementations that share the same interface? Can I define a common contract (method signature) that all implementations must follow? Will I need to add new implementations in the future without changing existing code?",
+    "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
+    "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]
 }

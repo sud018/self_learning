@@ -353,5 +353,22 @@
     "Angular: Explain Angular Core in simple words.",
     "Angular: Design UI states for loading, success, empty data, and backend error.",
     "Angular: What TypeScript model/interface would you create for today's API response?"
+  ],
+  "writtenModelAnswers": [
+    "Angular's HttpClient sends HTTP requests to the Spring Boot backend and returns Observables. Inject it into a service: constructor(private http: HttpClient). Make requests: http.get<T>(url), http.post<T>(url, body), http.put<T>(url, body), http.delete<T>(url). Use .pipe(map(), catchError()) to transform responses and handle errors.",
+    "HttpClient is the connector between Angular and Spring Boot in a full-stack application. Every API call (load orders, submit form, delete record) goes through HttpClient. The response Observable is either subscribed to in the service or returned to the component that subscribes with the async pipe.",
+    "Not including HttpClientModule (or provideHttpClient()) in the app config causes a NullInjectorError. Not handling errors with catchError causes unhandled Observable errors that crash the subscription silently. Not unsubscribing from HTTP Observables (though they complete automatically, open subscriptions from retry or interval operators can leak).",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
+    "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
+    "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
+    "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
+  ],
+  "businessModelAnswers": [
+    "Ask: What is the base URL for the backend API? Should the service handle error mapping or return the raw error? Should HTTP headers (auth token, Content-Type) be added in the service or an interceptor? How should the loading state be managed \u2014 in the service or the component? Should responses be cached (shareReplay)?",
+    "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
+    "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]
 }

@@ -348,5 +348,22 @@
     "Angular: Explain HTTP Integration in simple words.",
     "Angular: Design UI states for loading, success, empty data, and backend error.",
     "Angular: What TypeScript model/interface would you create for today's API response?"
+  ],
+  "writtenModelAnswers": [
+    "Spring Boot Validation uses javax.validation annotations on DTO fields: @NotNull (not null), @NotBlank (not null, not whitespace), @Size(min, max), @Email, @Min, @Max, @Pattern. Add @Valid to the @RequestBody parameter in the controller to trigger validation. On failure, Spring throws MethodArgumentNotValidException.",
+    "Validation is the first line of defense in the API layer. In a Spring Boot order service, the CreateOrderRequest is validated (@NotNull orderId, @Min(1) quantity) before reaching the service. A @ControllerAdvice handles MethodArgumentNotValidException and returns a 400 Bad Request with field-level error messages.",
+    "Skipping input validation lets invalid data reach the service and database, causing constraint violations, data corruption, or security issues. Validating inside the service instead of in the DTO couples validation logic to business logic and makes it hard to test. Not returning field-level error messages in the 400 response makes debugging difficult for the frontend.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
+    "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
+    "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
+    "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
+  ],
+  "businessModelAnswers": [
+    "Ask: What fields are required vs optional? What are the size or format constraints for each field? What should the error message say for each validation failure? Should custom validation logic be added with a @Constraint annotation? How will the frontend display the field-level errors?",
+    "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
+    "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]
 }

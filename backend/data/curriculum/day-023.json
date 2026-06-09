@@ -348,5 +348,22 @@
     "Angular: Explain Rendering Lists in simple words.",
     "Angular: Design UI states for loading, success, empty data, and backend error.",
     "Angular: What TypeScript model/interface would you create for today's API response?"
+  ],
+  "writtenModelAnswers": [
+    "ArrayList is a resizable array backed by a dynamic array internally. It provides O(1) amortized add at the end, O(1) get by index, and O(n) add/remove in the middle (elements must shift). It is the default List choice for most situations where you read more often than you insert or delete in the middle.",
+    "ArrayList is the most common return type for Spring Data JPA queries, service method results, and controller response lists. In Angular, component properties typed as arrays (or typed as Observable<Item[]>) are rendered with @for in templates.",
+    "Using ArrayList in performance-critical code with frequent middle insertions/deletions causes O(n) performance \u2014 use LinkedList instead. Not initializing with an expected capacity for large lists causes multiple costly array copies as it grows. Calling remove(int index) on an ArrayList modifies indices of subsequent elements.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
+    "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
+    "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
+    "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
+  ],
+  "businessModelAnswers": [
+    "Ask: How many elements are expected? Will the list be mostly read (ArrayList) or frequently restructured (LinkedList)? Should the initial capacity be set for efficiency? Should elements be sorted? Will this list be passed to the frontend \u2014 what DTO format is needed? Is thread safety needed (use Collections.synchronizedList)?",
+    "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
+    "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]
 }

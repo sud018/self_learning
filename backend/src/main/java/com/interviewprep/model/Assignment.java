@@ -13,7 +13,9 @@ public record Assignment(
     List<CodingTask> codingTasks,
     List<String> sqlPractice,
     List<String> springBootScenarios,
-    List<String> angularQuestions
+    List<String> angularQuestions,
+    List<String> writtenModelAnswers,
+    List<String> businessModelAnswers
 ) {
   public record Question(String id, String prompt, List<String> options, String correctAnswer, String explanation) {}
   public record DsaProblem(

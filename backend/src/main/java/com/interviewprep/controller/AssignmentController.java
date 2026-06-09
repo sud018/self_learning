@@ -73,6 +73,11 @@ public class AssignmentController {
     return assignmentService.submit(request.email(), request.assignmentId(), request.notesCompleted(), request.answers(), request.codingSolved(), request.sqlSolved());
   }
 
+  @PostMapping("/reset-progress")
+  void resetProgress(@RequestParam String email) {
+    progressService.resetProgress(email);
+  }
+
   @PostMapping("/missed-day")
   MissedDayResponse missedDay(@RequestBody MissedDayRequest request) {
     String assignmentId = request.assignmentId();

@@ -164,6 +164,12 @@ public class ProgressService {
     return new MissedDayResult(excused, penalty, state.totalPoints);
   }
 
+  public void resetProgress(String email) {
+    List<ProgressState> states = new ArrayList<>(all());
+    states.removeIf(existing -> existing.email.equalsIgnoreCase(email));
+    fileStore.writeList(PROGRESS_FILE, states);
+  }
+
   private boolean isValidReason(String reason) {
     String normalized = reason == null ? "" : reason.toLowerCase();
     return VALID_REASONS.stream().anyMatch(normalized::contains);

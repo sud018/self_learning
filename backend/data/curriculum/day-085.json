@@ -351,5 +351,22 @@
     "Angular: Explain Interview Angular in simple words.",
     "Angular: Design UI states for loading, success, empty data, and backend error.",
     "Angular: What TypeScript model/interface would you create for today's API response?"
+  ],
+  "writtenModelAnswers": [
+    "DSA Mock Interviews test core patterns: Two Pointers (two-sum, container with most water), Sliding Window (max sum subarray, longest substring), HashMap for fast lookups, Stack/Queue (valid parentheses, BFS), Binary Search (search in sorted array), Recursion/DFS (tree traversal, backtracking), and Dynamic Programming (climb stairs, coin change).",
+    "DSA questions are live-coding problems under time pressure. The interview assesses how you think, not just whether you get the answer: state the approach before coding, mention time and space complexity, handle edge cases aloud, and write clean readable code. Practice Striver 75 problems until each pattern feels automatic.",
+    "Jumping straight to code without stating the approach first signals poor problem-solving habits. Not stating time and space complexity is an automatic negative signal. Writing correct but O(n\u00b2) solutions when O(n) with a HashMap is possible shows pattern blindness. Not handling edge cases (empty input, single element, all duplicates) misses points even when the main logic is correct.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
+    "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
+    "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
+    "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
+  ],
+  "businessModelAnswers": [
+    "Ask: Can I solve Two Sum in O(n) with a HashMap and explain why? Can I identify that 'maximum sum subarray' is a sliding window problem? Can I implement BFS for a tree level-order traversal? Can I explain the difference between recursion and dynamic programming? Have I timed myself solving Striver 75 problems and reviewed solutions I couldn't complete?",
+    "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
+    "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]
 }

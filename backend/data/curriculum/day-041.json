@@ -348,5 +348,22 @@
     "Angular: Explain HTTP Integration in simple words.",
     "Angular: Design UI states for loading, success, empty data, and backend error.",
     "Angular: What TypeScript model/interface would you create for today's API response?"
+  ],
+  "writtenModelAnswers": [
+    "Dependency Injection (DI) is a design pattern where an object receives its dependencies from an external source instead of creating them itself. Instead of new OrderRepository() inside a service, Spring injects the repository via the constructor. This makes classes loosely coupled, easily testable, and replaceable.",
+    "DI is the foundation of Spring Boot \u2014 every @Service, @Repository, and @Controller bean is injected where needed. Constructor injection (preferred) makes dependencies explicit and immutable. In Angular, services are injected into components via the constructor, following the same pattern.",
+    "Circular dependencies (A depends on B, B depends on A) cause Spring to fail on startup. Field injection (@Autowired on a field) makes testing harder because dependencies can't be injected without the Spring context. Creating a new service instance with new instead of injecting it bypasses Spring's management entirely.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
+    "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
+    "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
+    "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
+  ],
+  "businessModelAnswers": [
+    "Ask: What dependencies does this class need to do its job? Should those dependencies be injected (Spring manages) or created locally (short-lived objects)? Is constructor injection preferred over field injection for testability? Does this create a circular dependency? Will I need to mock this dependency in tests?",
+    "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
+    "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]
 }

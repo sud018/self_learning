@@ -352,5 +352,22 @@
     "Angular: Explain Angular Advanced in simple words.",
     "Angular: Design UI states for loading, success, empty data, and backend error.",
     "Angular: What TypeScript model/interface would you create for today's API response?"
+  ],
+  "writtenModelAnswers": [
+    "Angular performance optimizations: OnPush change detection (component only re-checks when @Input references change, not on every app-wide tick), trackBy in @for (prevents DOM re-creation when list data changes), lazy loading (load feature modules only when needed), avoid heavy computations in templates (move to pure pipes or component methods), and preloading strategies.",
+    "Performance matters when Angular apps grow. A dashboard fetching large lists from Spring Boot APIs needs virtual scrolling for long lists, OnPush to prevent unnecessary re-renders, and lazy loading so the initial bundle doesn't include all modules. Poor performance directly impacts user experience and perceived API speed.",
+    "Not using trackBy in @for loops causes Angular to destroy and recreate all DOM nodes when the list data reference changes (even if items are the same). Using ChangeDetectionStrategy.OnPush without properly triggering change detection (using ChangeDetectorRef.markForCheck()) causes the view to not update when state changes. Large bundles from eager-loading all modules slow the initial page load.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
+    "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
+    "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
+    "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
+  ],
+  "businessModelAnswers": [
+    "Ask: Is the app experiencing slow rendering? Are large lists being rendered without virtual scrolling? Is the initial bundle too large (check with ng build --stats-json)? Are there unnecessary API calls due to missing debouncing? Which components would benefit from OnPush? Where can pure pipes replace method calls in templates?",
+    "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
+    "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]
 }

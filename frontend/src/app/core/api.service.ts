@@ -64,6 +64,19 @@ export class ApiService {
     return this.get<any>('/review', { email, dayId });
   }
 
+  resetProgress(email: string) {
+    const url = `${environment.apiUrl}/assignments/reset-progress?email=${encodeURIComponent(email)}`;
+    return new Observable<void>((subscriber) => {
+      fetch(url, { method: 'POST' })
+        .then((res) => {
+          if (!res.ok) throw new Error(`Reset failed: ${res.status}`);
+          subscriber.next();
+          subscriber.complete();
+        })
+        .catch((err) => subscriber.error(err));
+    });
+  }
+
   getAllReviews(email: string) {
     return this.get<any[]>('/review/all', { email });
   }

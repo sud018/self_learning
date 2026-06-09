@@ -353,5 +353,22 @@
     "Angular: Explain Angular Advanced in simple words.",
     "Angular: Design UI states for loading, success, empty data, and backend error.",
     "Angular: What TypeScript model/interface would you create for today's API response?"
+  ],
+  "writtenModelAnswers": [
+    "Route Guards in Angular control navigation. CanActivate prevents navigating to a route if the user doesn't meet conditions (not logged in). CanDeactivate prevents navigating away from a route (unsaved form changes). Guards are classes or functions that return boolean, UrlTree, or Observable<boolean>. Register them in the route definition.",
+    "Guards are essential for security in Angular applications. An AuthGuard checks if a JWT token is present and valid before allowing access to /dashboard. An UnsavedChangesGuard prevents users from accidentally losing form data. Guards work together with Spring Boot's JWT validation \u2014 Angular guards prevent the user from even reaching the page.",
+    "Angular guards are client-side only and can be bypassed \u2014 always validate authorization on the Spring Boot backend too. Not redirecting to the login page (returning UrlTree to /login) when a guard fails leaves the user on a blank route. Guards that make HTTP calls must return an Observable<boolean> and handle errors \u2014 returning false is not enough.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
+    "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
+    "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
+    "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
+  ],
+  "businessModelAnswers": [
+    "Ask: Which routes require the user to be authenticated? Which routes require specific roles? Is there a guard for preventing navigation away from unsaved changes? Does the guard need to make an HTTP call to verify permissions? What should happen when the guard fails \u2014 redirect to login or show an unauthorized page? Is the check also enforced on the backend?",
+    "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
+    "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]
 }

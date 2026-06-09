@@ -347,5 +347,22 @@
     "Angular: Explain Typed Frontend Models in simple words.",
     "Angular: Design UI states for loading, success, empty data, and backend error.",
     "Angular: What TypeScript model/interface would you create for today's API response?"
+  ],
+  "writtenModelAnswers": [
+    "Exception handling lets Java programs respond to errors gracefully instead of crashing. A try block contains code that might fail; catch blocks handle specific exception types; finally runs cleanup code regardless. throw signals an error; throws declares checked exceptions. Custom exceptions add business context.",
+    "In Spring Boot, exception handling is implemented globally with @ControllerAdvice + @ExceptionHandler to catch exceptions from any controller and return structured JSON error responses. Service methods throw custom exceptions (OrderNotFoundException), and the global handler maps them to HTTP 404, 400, or 500 status codes.",
+    "Catching Exception (the base class) and doing nothing (empty catch block) silently swallows errors and makes debugging nearly impossible. Re-throwing a checked exception as a RuntimeException without logging it loses the original context. Not providing a response body for error responses leaves the frontend with no information to display.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
+    "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
+    "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
+    "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
+  ],
+  "businessModelAnswers": [
+    "Ask: What can go wrong in this method? Should the error be recoverable (catch and handle) or unrecoverable (let it propagate)? What HTTP status code should this error return? What information should the error response include? Should the error be logged? Will the frontend need to display a specific message?",
+    "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
+    "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]
 }

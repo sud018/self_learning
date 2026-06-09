@@ -43,6 +43,9 @@ interface McqResult {
     .written-q { font-weight: 700; margin-bottom: 8px; color: #182026; }
     .written-a { white-space: pre-wrap; color: #444; background: #f5f7f8; border-radius: 6px; padding: 10px; font-size: 14px; line-height: 1.6; }
     .written-a.empty { color: #999; font-style: italic; }
+    .model-answer-box { margin-top: 10px; border-top: 1px dashed #c3e6cb; padding-top: 10px; }
+    .model-answer-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: #1a6b29; margin-bottom: 6px; }
+    .model-answer-text { white-space: pre-wrap; color: #1a3a1a; background: #f0fbf2; border-radius: 6px; padding: 10px; font-size: 13px; line-height: 1.65; border-left: 3px solid #2f9e44; }
     .section-result-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
     .tag { display: inline-block; border-radius: 999px; padding: 4px 12px; font-size: 12px; font-weight: 800; }
     .tag-green  { background: #d3f9d8; color: #1a6b29; }
@@ -242,24 +245,36 @@ interface McqResult {
 
             @if (assignment.writtenConceptQuestions?.length) {
               <h3 style="margin-top:16px;">Conceptual Questions</h3>
-              @for (q of assignment.writtenConceptQuestions; track q) {
+              @for (q of assignment.writtenConceptQuestions; track q; let qi = $index) {
                 <div class="written-review">
                   <div class="written-q">{{ q }}</div>
                   <div class="written-a" [class.empty]="!writtenAnswers[q]?.trim()">
                     {{ writtenAnswers[q]?.trim() || '(not answered — go back and fill this in)' }}
                   </div>
+                  @if (assignment.writtenModelAnswers?.[qi]) {
+                    <div class="model-answer-box">
+                      <div class="model-answer-label">✦ Model Answer</div>
+                      <div class="model-answer-text">{{ assignment.writtenModelAnswers[qi] }}</div>
+                    </div>
+                  }
                 </div>
               }
             }
 
             @if (assignment.businessScenarios?.length) {
               <h3 style="margin-top:16px;">Business Scenarios</h3>
-              @for (s of assignment.businessScenarios; track s) {
+              @for (s of assignment.businessScenarios; track s; let si = $index) {
                 <div class="written-review">
                   <div class="written-q">{{ s }}</div>
                   <div class="written-a" [class.empty]="!writtenAnswers[s]?.trim()">
                     {{ writtenAnswers[s]?.trim() || '(not answered — go back and fill this in)' }}
                   </div>
+                  @if (assignment.businessModelAnswers?.[si]) {
+                    <div class="model-answer-box">
+                      <div class="model-answer-label">✦ Model Answer</div>
+                      <div class="model-answer-text">{{ assignment.businessModelAnswers[si] }}</div>
+                    </div>
+                  }
                 </div>
               }
             }
@@ -360,20 +375,32 @@ interface McqResult {
               <!-- Written answers recap -->
               @if (answeredWrittenCount > 0) {
                 <div class="step-divider"></div>
-                <h3>Written Answers (saved ✓)</h3>
-                @for (q of assignment.writtenConceptQuestions; track q) {
+                <h3>Written Answers — Compare with Model Answers</h3>
+                @for (q of assignment.writtenConceptQuestions; track q; let qi = $index) {
                   @if (writtenAnswers[q]?.trim()) {
                     <div class="written-review">
                       <div class="written-q">{{ q }}</div>
                       <div class="written-a">{{ writtenAnswers[q] }}</div>
+                      @if (assignment.writtenModelAnswers?.[qi]) {
+                        <div class="model-answer-box">
+                          <div class="model-answer-label">✦ Model Answer</div>
+                          <div class="model-answer-text">{{ assignment.writtenModelAnswers[qi] }}</div>
+                        </div>
+                      }
                     </div>
                   }
                 }
-                @for (s of assignment.businessScenarios; track s) {
+                @for (s of assignment.businessScenarios; track s; let si = $index) {
                   @if (writtenAnswers[s]?.trim()) {
                     <div class="written-review">
                       <div class="written-q">{{ s }}</div>
                       <div class="written-a">{{ writtenAnswers[s] }}</div>
+                      @if (assignment.businessModelAnswers?.[si]) {
+                        <div class="model-answer-box">
+                          <div class="model-answer-label">✦ Model Answer</div>
+                          <div class="model-answer-text">{{ assignment.businessModelAnswers[si] }}</div>
+                        </div>
+                      }
                     </div>
                   }
                 }

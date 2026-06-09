@@ -353,5 +353,22 @@
     "Angular: Explain Angular Advanced in simple words.",
     "Angular: Design UI states for loading, success, empty data, and backend error.",
     "Angular: What TypeScript model/interface would you create for today's API response?"
+  ],
+  "writtenModelAnswers": [
+    "State management organizes shared application state so multiple Angular components can read and update it consistently. Simple: a service with BehaviorSubject. Moderate: NgRx with Store (single source of truth), Actions (events), Reducers (pure state transitions), Selectors (computed views), and Effects (async side effects like HTTP). Choose complexity based on app scale.",
+    "State management becomes essential in large Angular applications with Spring Boot backends: a shopping cart shared across many components, user authentication state needed everywhere, or loading states that multiple components must react to. Without state management, duplicated local state causes UI inconsistency.",
+    "Over-engineering small apps with NgRx adds boilerplate without benefit \u2014 use a service with BehaviorSubject for simple shared state. Mutating NgRx state directly in a component (instead of dispatching actions) breaks the Redux pattern and makes time-travel debugging and state history useless. Storing everything in global state (including UI-only state) makes the store a mess.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
+    "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
+    "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
+    "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
+  ],
+  "businessModelAnswers": [
+    "Ask: Is this state shared across many components or just within a feature (local state is fine)? How complex are the state transitions \u2014 simple set/clear, or complex conditional logic? Does async data fetching need to be coordinated with state changes (NgRx Effects)? Does the team have NgRx experience? Is time-travel debugging or state history needed?",
+    "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
+    "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]
 }

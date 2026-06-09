@@ -33,6 +33,10 @@ import { UserContextService } from '../../core/user-context.service';
       }
 
       @if (dashboard) {
+        <div style="margin-bottom:16px; text-align:right;">
+          <button type="button" class="ghost danger-btn" (click)="confirmReset()">Reset Progress</button>
+          @if (resetMsg) { <span style="margin-left:12px; font-size:13px; color:#999;">{{ resetMsg }}</span> }
+        </div>
         <div class="grid metrics">
           <article class="card metric"><span>Today target</span><strong>{{ dashboard.todaysTargetPoints }}</strong></article>
           <article class="card metric celebrate"><span>Total points</span><strong>{{ dashboard.totalPoints }}</strong></article>
@@ -66,8 +70,27 @@ export class DashboardComponent implements OnInit {
   progressItems: Array<{ name: string; value: number }> = [];
   loading = true;
   error = '';
+  resetMsg = '';
 
   constructor(private api: ApiService, private userContext: UserContextService, private cd: ChangeDetectorRef) {}
+
+  confirmReset() {
+    const confirmed = window.confirm(
+      'Reset all progress to 0%?\n\nThis clears your completed days, points, streak, and skill progress. This cannot be undone.'
+    );
+    if (!confirmed) return;
+    this.api.resetProgress(this.userContext.email()).subscribe({
+      next: () => {
+        this.resetMsg = 'Progress reset. Reloading…';
+        this.cd.detectChanges();
+        setTimeout(() => window.location.reload(), 800);
+      },
+      error: () => {
+        this.resetMsg = 'Reset failed — is the backend running?';
+        this.cd.detectChanges();
+      }
+    });
+  }
 
   ngOnInit() {
     this.api.dashboard(this.userContext.email()).subscribe({
