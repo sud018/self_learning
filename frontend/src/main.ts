@@ -7,10 +7,12 @@ import { DailyAssignmentComponent } from './app/pages/daily-assignment/daily-ass
 import { RoadmapComponent } from './app/pages/roadmap/roadmap.component';
 import { CodingPracticeComponent } from './app/pages/coding-practice/coding-practice.component';
 import { MissedDayComponent } from './app/pages/missed-day/missed-day.component';
+import { TrackerComponent } from './app/pages/tracker/tracker.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'tracker', component: TrackerComponent },
   { path: 'daily', component: DailyAssignmentComponent },
   { path: 'roadmap', component: RoadmapComponent },
   { path: 'coding', component: CodingPracticeComponent },

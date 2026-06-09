@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../core/api.service';
 import { UserContextService } from '../../core/user-context.service';
 
@@ -53,6 +54,14 @@ interface McqResult {
     <section class="page">
       <div class="page-header">
         <div>
+          <div class="daily-back-row">
+            <button type="button" class="ghost daily-back-btn" (click)="goToTracker()">← Tracker</button>
+            @if (fromTracker) {
+              <span class="daily-tracker-badge">
+                @if (isAlreadyCompleted) { ✓ Previously completed } @else { Direct access }
+              </span>
+            }
+          </div>
           <h1>Daily Assignment</h1>
           <p>Notes → MCQs → Concepts → Practice → Score with full evaluation after every section.</p>
         </div>
@@ -375,9 +384,13 @@ interface McqResult {
                 ✅ Full review saved to <strong>reviews/{{ assignment.id }}.json</strong> on the server — accessible from any machine via the app URL.
               </p>
               @for (line of result.feedback; track line) { <p>{{ line }}</p> }
-              @if (result.nextAssignmentAvailable) {
-                <button class="primary" type="button" (click)="loadNextDay()">Load Next Day →</button>
-              } @else {
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
+                <button class="ghost" type="button" (click)="goToTracker()">← Back to Tracker</button>
+                @if (result.nextAssignmentAvailable) {
+                  <button class="primary" type="button" (click)="loadNextDay()">Next Day →</button>
+                }
+              </div>
+              @if (!result.nextAssignmentAvailable) {
                 <p>You have finished all available days. Check back tomorrow!</p>
               }
             </div>
@@ -414,10 +427,16 @@ export class DailyAssignmentComponent implements OnInit {
   error = '';
   submitError = '';
 
+  fromTracker = false;
+  isAlreadyCompleted = false;
+  private requestedDayId: string | null = null;
+
   constructor(
     private api: ApiService,
     private userContext: UserContextService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   // ── Computed ───────────────────────────────────────────────────────────────
@@ -539,7 +558,45 @@ export class DailyAssignmentComponent implements OnInit {
   // ── Lifecycle ──────────────────────────────────────────────────────────────
 
   ngOnInit() {
-    this.loadNextDay();
+    const dayId = this.route.snapshot.queryParamMap.get('dayId');
+    if (dayId) {
+      this.fromTracker = true;
+      this.requestedDayId = dayId;
+      this.loadSpecificDay(dayId);
+    } else {
+      this.loadNextDay();
+    }
+  }
+
+  goToTracker() {
+    this.router.navigate(['/tracker']);
+  }
+
+  loadSpecificDay(dayId: string) {
+    this.loading = true;
+    this.error = '';
+    this.api.loadAssignment(this.userContext.email(), dayId).subscribe({
+      next: (assignment) => {
+        this.assignment = assignment;
+        this.resetState();
+        this.api.dayStatus(this.userContext.email()).subscribe({
+          next: (statuses) => {
+            const found = statuses.find((s: any) => s.assignmentId === dayId);
+            this.isAlreadyCompleted = found?.status === 'done';
+            this.cd.detectChanges();
+          },
+          error: () => {}
+        });
+        this.loading = false;
+        this.cd.detectChanges();
+      },
+      error: () => {
+        this.assignment = null;
+        this.loading = false;
+        this.error = 'Could not load that day. Try again or return to the tracker.';
+        this.cd.detectChanges();
+      }
+    });
   }
 
   loadNextDay() {
@@ -548,16 +605,7 @@ export class DailyAssignmentComponent implements OnInit {
     this.api.todayAssignment(this.userContext.email()).subscribe({
       next: (assignment) => {
         this.assignment = assignment;
-        this.step = 0;
-        this.notesCompleted = false;
-        this.answers = {};
-        this.writtenAnswers = {};
-        this.sqlSolved = 0;
-        this.mcqResults = [];
-        this.showMcqResults = false;
-        this.showWrittenResults = false;
-        this.result = null;
-        this.submitError = '';
+        this.resetState();
         this.loading = false;
         this.cd.detectChanges();
       },
@@ -568,5 +616,18 @@ export class DailyAssignmentComponent implements OnInit {
         this.cd.detectChanges();
       }
     });
+  }
+
+  private resetState() {
+    this.step = 0;
+    this.notesCompleted = false;
+    this.answers = {};
+    this.writtenAnswers = {};
+    this.sqlSolved = 0;
+    this.mcqResults = [];
+    this.showMcqResults = false;
+    this.showWrittenResults = false;
+    this.result = null;
+    this.submitError = '';
   }
 }

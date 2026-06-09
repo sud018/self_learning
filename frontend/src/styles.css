@@ -124,6 +124,96 @@ p { color: var(--muted); line-height: 1.6; }
 .missed-reason-form textarea { min-height: 110px; }
 .missed-result { margin-top: 16px; }
 
+/* ============================================================
+   90-Day Tracker
+   ============================================================ */
+
+.trk-summary { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.trk-sum-item { font-size: 14px; font-weight: 700; padding: 7px 13px; border-radius: 8px; background: var(--soft); }
+.trk-sum-done   { color: var(--good); }
+.trk-sum-missed { color: var(--bad); }
+.trk-sum-rem    { color: var(--accent); }
+
+.trk-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.trk-leg-item { font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
+.trk-leg-done     { background: #e7f7ea; color: #2b8a3e; }
+.trk-leg-current  { background: #e4f4f4; color: var(--accent); }
+.trk-leg-upcoming { background: #edf3f4; color: #52636b; }
+.trk-leg-missed   { background: #fff4e6; color: var(--bad); }
+.trk-leg-locked   { background: var(--soft); color: #aaa; }
+
+.trk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.trk-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 13px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .15s, box-shadow .15s, transform .1s;
+  min-height: 118px;
+}
+.trk-card:hover:not(:disabled) { border-color: var(--accent); box-shadow: 0 4px 16px rgba(15,139,141,.13); transform: translateY(-2px); }
+.trk-card:disabled { opacity: .42; cursor: not-allowed; transform: none !important; }
+
+.trk-done    { border-color: #b2e4bc; background: #f4fbf5; }
+.trk-current { border-color: var(--accent); background: #f0fafb; box-shadow: 0 0 0 3px rgba(15,139,141,.13); }
+.trk-missed  { border-color: #ffc9ae; background: #fff8f5; }
+.trk-locked  { border-color: #e8e8e8; background: #f9f9f9; }
+
+.trk-card-top { display: flex; justify-content: space-between; align-items: center; }
+.trk-day-num  { font-size: 12px; font-weight: 900; color: var(--ink); }
+.trk-date     { font-size: 11px; color: var(--muted); font-weight: 600; }
+.trk-current .trk-date { color: var(--accent); font-weight: 800; }
+
+.trk-status-row   { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
+.trk-status-icon  { font-size: 11px; line-height: 1; }
+.trk-status-label { }
+.trk-icon-done    { color: var(--good); }
+.trk-icon-current { color: var(--accent); }
+.trk-icon-upcoming{ color: var(--muted); }
+.trk-icon-missed  { color: var(--bad); }
+.trk-done    .trk-status-row { color: var(--good); }
+.trk-current .trk-status-row { color: var(--accent); }
+.trk-upcoming .trk-status-row { color: var(--muted); }
+.trk-missed  .trk-status-row { color: var(--bad); }
+.trk-locked  .trk-status-row { color: #bbb; }
+.trk-cta { font-size: 12px; font-weight: 900; }
+
+.trk-topic  { font-size: 12px; color: var(--ink); line-height: 1.4; flex: 1; }
+.trk-reason { font-size: 11px; color: var(--bad); font-style: italic; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.trk-card-cta { font-size: 11px; font-weight: 700; color: var(--muted); margin-top: auto; padding-top: 4px; }
+.trk-done .trk-card-cta    { color: var(--good); }
+.trk-current .trk-card-cta { color: var(--accent); }
+.trk-upcoming .trk-card-cta { color: var(--accent); }
+.trk-missed .trk-card-cta  { color: var(--bad); }
+.trk-cta-strong { font-size: 12px; font-weight: 900; color: var(--accent); }
+
+.trk-coming-soon {
+  background: #f0fafb;
+  border: 1px dashed var(--accent);
+  border-radius: 10px;
+  padding: 16px 20px;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ---- Daily Assignment: back button ---- */
+.daily-back-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.daily-back-btn { padding: 6px 12px; font-size: 13px; font-weight: 700; }
+.daily-tracker-badge { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #e4f4f4; color: var(--accent); }
+
 @keyframes enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes countPop { 0% { transform: scale(.94); } 60% { transform: scale(1.06); } 100% { transform: scale(1); } }
 @keyframes grow { from { width: 0; } }

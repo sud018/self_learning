@@ -12,6 +12,10 @@ export class ApiService {
     return this.get<any>('/assignments/today', { email });
   }
 
+  loadAssignment(email: string, assignmentId: string) {
+    return this.get<any>('/assignments/load', { email, assignmentId });
+  }
+
   submitAssignment(payload: any) {
     return this.post<any>('/assignments/submit', payload);
   }

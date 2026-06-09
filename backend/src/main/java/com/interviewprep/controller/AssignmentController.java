@@ -36,6 +36,14 @@ public class AssignmentController {
     return assignmentService.nextForUser(email);
   }
 
+  @GetMapping("/load")
+  Assignment load(@RequestParam String email, @RequestParam String assignmentId) {
+    return assignmentService.assignments().stream()
+        .filter(a -> a.id().equals(assignmentId))
+        .findFirst()
+        .orElseThrow(() -> new IllegalArgumentException("Unknown assignment: " + assignmentId));
+  }
+
   @GetMapping("/day-status")
   List<DayStatusResponse> dayStatus(@RequestParam String email) {
     List<Assignment> assignments = assignmentService.assignments();
