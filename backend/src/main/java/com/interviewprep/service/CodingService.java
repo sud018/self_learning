@@ -95,12 +95,28 @@ public class CodingService {
     ), "public int solve(int[] nums) {\n  // default DSA practice: return the sum of nums\n  return 0;\n}");
   }
 
+  private static final String PROGRAM_MODE = "__program__";
+
+  /** Returns PROGRAM_MODE for full-class code, otherwise the callable method name. */
   private String methodName(Assignment.CodingTask task) {
-    Matcher matcher = Pattern.compile("public\\s+\\w+\\s+(\\w+)\\s*\\(").matcher(task.starterCode());
-    if (matcher.find()) {
-      return matcher.group(1);
+    if (isProgramMode(task.starterCode())) {
+      return PROGRAM_MODE;
     }
-    throw new IllegalArgumentException("Could not detect Java method name for " + task.id());
+    // Match: public [static] [final] ReturnType methodName(
+    Matcher m = Pattern.compile(
+        "public\\s+(?:static\\s+)?(?:final\\s+)?[\\w<>\\[\\]]+\\s+(\\w+)\\s*\\(")
+        .matcher(task.starterCode());
+    while (m.find()) {
+      String name = m.group(1);
+      if (!name.matches("class|interface|enum|record|main")) return name;
+    }
+    throw new IllegalArgumentException(
+        "Could not detect Java method name for " + task.id()
+        + ". Starter code should have a method like: public int solve(int[] nums)");
+  }
+
+  private boolean isProgramMode(String code) {
+    return code.contains("public class") && code.contains("main(");
   }
 
   private List<TestCase> parseTests(List<String> rawTests) {
@@ -114,6 +130,11 @@ public class CodingService {
   private RunCodeResponse evaluate(ProblemSpec problem, String code, List<TestCase> tests) {
     if (ToolProvider.getSystemJavaCompiler() == null) {
       return new RunCodeResponse(false, List.of(), "Java compiler is not available. Run the backend with a JDK, not a JRE.");
+    }
+
+    // Program mode: full class with main() — compile and run directly, check stdout
+    if (PROGRAM_MODE.equals(problem.methodName()) || isProgramMode(code)) {
+      return evaluateProgramMode(code, tests);
     }
 
     Path workDir = null;
@@ -134,9 +155,9 @@ public class CodingService {
 
       String[] outputs = execution.output().split("\\R", -1);
       if (outputs.length > 0 && outputs[outputs.length - 1].isEmpty()) {
-        String[] withoutTrailingLine = new String[outputs.length - 1];
-        System.arraycopy(outputs, 0, withoutTrailingLine, 0, withoutTrailingLine.length);
-        outputs = withoutTrailingLine;
+        String[] trimmed = new String[outputs.length - 1];
+        System.arraycopy(outputs, 0, trimmed, 0, trimmed.length);
+        outputs = trimmed;
       }
       List<TestResult> results = new ArrayList<>();
       for (int index = 0; index < tests.size(); index++) {
@@ -155,6 +176,67 @@ public class CodingService {
       if (workDir != null) {
         deleteQuietly(workDir);
       }
+    }
+  }
+
+  /**
+   * Program mode: user wrote a full public class with main().
+   * Compile and run it directly; test cases use "-> expected" format
+   * where the right-hand side must appear somewhere in stdout.
+   */
+  private RunCodeResponse evaluateProgramMode(String code, List<TestCase> tests) {
+    Path workDir = null;
+    try {
+      workDir = Files.createTempDirectory("interview-prep-program-");
+
+      // Extract class name from code, default to Main
+      Matcher classMatcher = Pattern.compile("public\\s+class\\s+(\\w+)").matcher(code);
+      String className = classMatcher.find() ? classMatcher.group(1) : "Main";
+
+      Files.writeString(workDir.resolve(className + ".java"), code, StandardCharsets.UTF_8);
+
+      ProcessResult compile = runProcess(workDir, javaTool("javac"), className + ".java");
+      if (compile.exitCode() != 0) {
+        return new RunCodeResponse(false, List.of(), "Compilation failed:\n" + compile.output());
+      }
+
+      ProcessResult execution = runProcess(workDir, javaTool("java"), className);
+      if (execution.exitCode() != 0) {
+        return new RunCodeResponse(false, List.of(), "Runtime error:\n" + execution.output());
+      }
+
+      String stdout = execution.output().trim();
+
+      // If no test cases, just verify the program ran without error
+      if (tests.isEmpty()) {
+        return new RunCodeResponse(true, List.of(),
+            "Program ran successfully.\nOutput:\n" + stdout);
+      }
+
+      // Check each test case: format "-> expected_substring"
+      List<TestResult> results = new ArrayList<>();
+      for (TestCase test : tests) {
+        // expected is the string after "-> " (or the whole test case if no "->")
+        String expected = test.expectedOutput().startsWith("->")
+            ? test.expectedOutput().substring(2).trim()
+            : test.expectedOutput().trim();
+        boolean passed = stdout.contains(expected);
+        results.add(new TestResult("(stdout check)", expected, stdout, passed));
+      }
+
+      boolean allPassed = results.stream().allMatch(TestResult::passed);
+      String msg = allPassed
+          ? "All checks passed.\nProgram output:\n" + stdout
+          : "Some output checks failed.\nActual output:\n" + stdout;
+      return new RunCodeResponse(allPassed, results, msg);
+
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      return new RunCodeResponse(false, List.of(), "Could not run program: " + e.getMessage());
+    } catch (IOException e) {
+      return new RunCodeResponse(false, List.of(), "Could not run program: " + e.getMessage());
+    } finally {
+      if (workDir != null) deleteQuietly(workDir);
     }
   }
 

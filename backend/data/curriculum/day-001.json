@@ -264,8 +264,8 @@
         "Use System.getProperty"
       ],
       "testCases": [
-        "Hello, World! is first line",
-        "Version string is not null"
+        "-> Hello, World!",
+        "-> Java Version:"
       ],
       "targetMinutes": 10,
       "starterCode": "public class Main {\n    public static void main(String[] args) {\n        // Print Hello World\n        // Print Java version\n    }\n}"

@@ -136,7 +136,7 @@ import { MonacoEditorComponent } from '../../shared/monaco-editor/monaco-editor.
       <div class="lc-handle" (mousedown)="startDrag($event, 'right')"><div class="lc-handle-bar"></div></div>
 
       <!-- RIGHT: editor + console + actions -->
-      <div class="lc-editor-pane">
+      <div #editorPane class="lc-editor-pane">
 
         <!-- editor topbar -->
         <div class="lc-editor-topbar">
@@ -156,8 +156,13 @@ import { MonacoEditorComponent } from '../../shared/monaco-editor/monaco-editor.
           </app-monaco-editor>
         </div>
 
+        <!-- Console drag handle -->
+        <div class="lc-console-handle" (mousedown)="startConsoleDrag($event)">
+          <div class="lc-console-handle-bar"></div>
+        </div>
+
         <!-- Console panel -->
-        <div class="lc-console">
+        <div class="lc-console" [style.height.px]="consoleHeight">
           <div class="lc-console-tabs">
             <button type="button" [class.active]="consoleTab === 'cases'" (click)="consoleTab = 'cases'">Test Cases</button>
             <button type="button" [class.active]="consoleTab === 'result'" (click)="consoleTab = 'result'">
@@ -251,7 +256,13 @@ export class CodingPracticeComponent implements OnInit, OnDestroy {
   descPaneWidth = 460;
   dragPane: 'left' | 'right' | null = null;
 
+  consoleHeight = 220;
+  consoleDragging = false;
+  private consoleDragStartY = 0;
+  private consoleDragStartHeight = 0;
+
   @ViewChild('workspace') workspace?: ElementRef<HTMLElement>;
+  @ViewChild('editorPane') editorPane?: ElementRef<HTMLElement>;
   private timerId: number | null = null;
 
   constructor(
@@ -402,8 +413,23 @@ export class CodingPracticeComponent implements OnInit, OnDestroy {
     event.preventDefault();
   }
 
+  startConsoleDrag(event: MouseEvent) {
+    this.consoleDragging = true;
+    this.consoleDragStartY = event.clientY;
+    this.consoleDragStartHeight = this.consoleHeight;
+    event.preventDefault();
+  }
+
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
+    if (this.consoleDragging && this.editorPane) {
+      const paneHeight = this.editorPane.nativeElement.getBoundingClientRect().height;
+      const maxHeight = Math.floor(paneHeight * 0.8);
+      const delta = this.consoleDragStartY - event.clientY;
+      this.consoleHeight = this.clamp(this.consoleDragStartHeight + delta, 100, maxHeight);
+      this.cd.detectChanges();
+      return;
+    }
     if (!this.dragPane || !this.workspace) return;
     const rect = this.workspace.nativeElement.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -416,7 +442,10 @@ export class CodingPracticeComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('document:mouseup')
-  onMouseUp() { this.dragPane = null; }
+  onMouseUp() {
+    this.dragPane = null;
+    this.consoleDragging = false;
+  }
 
   startTimer(id: string) {
     this.stopTimer();

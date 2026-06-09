@@ -504,15 +504,37 @@ p { color: var(--muted); line-height: 1.6; }
 
 .lc-editor-area { flex: 1; min-height: 320px; overflow: hidden; }
 
+/* ---- Console drag handle ---- */
+.lc-console-handle {
+  height: 6px;
+  cursor: ns-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1e1e1e;
+  border-top: 1px solid #3a3a3a;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.lc-console-handle-bar {
+  width: 36px;
+  height: 3px;
+  border-radius: 2px;
+  background: #444;
+  transition: background .14s, width .14s;
+}
+
+.lc-console-handle:hover .lc-console-handle-bar { background: var(--accent); width: 56px; }
+
 /* ---- Console ---- */
 .lc-console {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid #3a3a3a;
   flex-shrink: 0;
-  min-height: 140px;
-  max-height: 220px;
+  min-height: 100px;
   background: #1e1e1e;
+  overflow: hidden;
 }
 
 .lc-console-tabs {
@@ -641,7 +663,8 @@ p { color: var(--muted); line-height: 1.6; }
   .lc-workspace { grid-template-columns: 1fr !important; height: auto; overflow: visible; }
   .lc-handle { display: none; }
   .lc-editor-area { min-height: 360px; }
-  .lc-console { max-height: 200px; }
+  .lc-console { height: 200px !important; }
+  .lc-console-handle { display: none; }
   .lc-header { flex-wrap: wrap; }
   .lc-cat-tabs { flex-wrap: wrap; }
 }
