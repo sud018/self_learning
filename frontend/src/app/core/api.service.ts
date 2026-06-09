@@ -48,6 +48,22 @@ export class ApiService {
     return this.post<any>('/coding/submit', payload);
   }
 
+  saveDayReview(payload: {
+    email: string; dayId: string; topic: string;
+    mcqScore: number; mcqTotal: number;
+    mcqResults: any[]; writtenAnswers: Record<string, string>;
+  }) {
+    return this.post<any>('/review', payload);
+  }
+
+  getDayReview(email: string, dayId: string) {
+    return this.get<any>('/review', { email, dayId });
+  }
+
+  getAllReviews(email: string) {
+    return this.get<any[]>('/review/all', { email });
+  }
+
   private get<T>(path: string, params: Record<string, string> = {}) {
     const query = new URLSearchParams(params).toString();
     const url = `${environment.apiUrl}${path}${query ? `?${query}` : ''}`;
