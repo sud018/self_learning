@@ -1,0 +1,16 @@
+.git
+.gitignore
+.DS_Store
+
+frontend/node_modules
+frontend/dist
+frontend/out-tsc
+frontend/.angular
+
+backend/target
+backend/src/main/resources/static
+backend/data/progress.txt
+backend/data/attempts.txt
+backend/data/coding-progress.txt
+
+scripts/__pycache__

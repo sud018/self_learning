@@ -61,7 +61,7 @@ This is suitable for one local user. For real deployment or multiple people, rep
 
 ## Deploy On Railway As One Service
 
-This repo includes `nixpacks.toml` so Railway can deploy the whole app as one service:
+This repo includes a root `Dockerfile` and `railway.json` so Railway can deploy the whole app as one service without guessing the monorepo build.
 
 1. Push this repository to GitHub.
 2. Create a Railway project from the GitHub repo.
@@ -72,7 +72,7 @@ This repo includes `nixpacks.toml` so Railway can deploy the whole app as one se
 /app/storage
 ```
 
-5. Railway will run the Nixpacks build:
+5. Railway will run the Docker build:
    - build Angular
    - copy Angular files into Spring Boot static resources
    - package Spring Boot
