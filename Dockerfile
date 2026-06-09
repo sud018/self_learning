@@ -15,7 +15,7 @@ COPY backend/ backend/
 COPY --from=frontend-build /app/frontend/dist/interview-prep-frontend/browser/ backend/src/main/resources/static/
 RUN cd backend && mvn -DskipTests package
 
-FROM eclipse-temurin:21-jre
+FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
 COPY --from=backend-build /app/backend/target/interview-prep-backend-0.0.1-SNAPSHOT.jar app.jar

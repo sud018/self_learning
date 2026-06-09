@@ -136,7 +136,7 @@ import { MonacoEditorComponent } from '../../shared/monaco-editor/monaco-editor.
       <div class="lc-handle" (mousedown)="startDrag($event, 'right')"><div class="lc-handle-bar"></div></div>
 
       <!-- RIGHT: editor + console + actions -->
-      <div #editorPane class="lc-editor-pane">
+      <div #editorPane class="lc-editor-pane" [class.console-dragging]="consoleDragging">
 
         <!-- editor topbar -->
         <div class="lc-editor-topbar">
