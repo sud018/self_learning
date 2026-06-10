@@ -164,6 +164,14 @@ public class ProgressService {
     return new MissedDayResult(excused, penalty, state.totalPoints);
   }
 
+  public void markComplete(String email, String assignmentId) {
+    ProgressState state = ensureProgress(email);
+    if (state.completedAssignmentIds.contains(assignmentId)) return;
+    state.completedAssignmentIds.add(assignmentId);
+    state.completedDays++;
+    save(state);
+  }
+
   public void resetProgress(String email) {
     List<ProgressState> states = new ArrayList<>(all());
     states.removeIf(existing -> existing.email.equalsIgnoreCase(email));

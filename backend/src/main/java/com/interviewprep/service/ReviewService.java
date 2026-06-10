@@ -3,7 +3,9 @@ package com.interviewprep.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.interviewprep.model.ReviewModels.DayReview;
+import com.interviewprep.model.ReviewModels.DraftAnswers;
 import com.interviewprep.model.ReviewModels.SaveDayReviewRequest;
+import com.interviewprep.model.ReviewModels.SaveDraftRequest;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -73,8 +75,35 @@ public class ReviewService {
     return results;
   }
 
+  public synchronized void saveDraft(SaveDraftRequest req) {
+    DraftAnswers draft = new DraftAnswers(
+        req.email(), req.dayId(),
+        LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
+        req.writtenAnswers(), req.mcqAnswers(), req.notesCompleted(), req.sqlSolved()
+    );
+    try {
+      mapper.writeValue(draftFileFor(req.email(), req.dayId()).toFile(), draft);
+    } catch (IOException e) {
+      throw new IllegalStateException("Could not save draft for " + req.dayId(), e);
+    }
+  }
+
+  public DraftAnswers loadDraft(String email, String dayId) {
+    Path file = draftFileFor(email, dayId);
+    if (!Files.exists(file)) return null;
+    try {
+      return mapper.readValue(file.toFile(), DraftAnswers.class);
+    } catch (IOException e) {
+      return null;
+    }
+  }
+
   private Path fileFor(String email, String dayId) {
     return reviewsDir.resolve(sanitize(email) + "_" + sanitize(dayId) + ".json");
+  }
+
+  private Path draftFileFor(String email, String dayId) {
+    return reviewsDir.resolve("draft_" + sanitize(email) + "_" + sanitize(dayId) + ".json");
   }
 
   private String sanitize(String s) {

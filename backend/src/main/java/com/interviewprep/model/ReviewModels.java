@@ -34,4 +34,23 @@ public class ReviewModels {
       List<McqResult> mcqResults,
       Map<String, String> writtenAnswers
   ) {}
+
+  public record DraftAnswers(
+      String email,
+      String dayId,
+      String savedAt,
+      Map<String, String> writtenAnswers,
+      Map<String, String> mcqAnswers,
+      boolean notesCompleted,
+      int sqlSolved
+  ) {}
+
+  public record SaveDraftRequest(
+      String email,
+      String dayId,
+      Map<String, String> writtenAnswers,
+      Map<String, String> mcqAnswers,
+      boolean notesCompleted,
+      int sqlSolved
+  ) {}
 }

@@ -200,6 +200,14 @@ p { color: var(--muted); line-height: 1.6; }
 .trk-upcoming .trk-card-cta { color: var(--accent); }
 .trk-missed .trk-card-cta  { color: var(--bad); }
 .trk-cta-strong { font-size: 12px; font-weight: 900; color: var(--accent); }
+.trk-mark-done-row { margin-top: 6px; }
+.trk-mark-done-btn {
+  width: 100%; font-size: 11px; font-weight: 700; padding: 5px 0;
+  background: #f0faf2; color: #1a6b29; border: 1px solid #b2dfbc;
+  border-radius: 6px; cursor: pointer; letter-spacing: .2px;
+}
+.trk-mark-done-btn:hover { background: #d3f9d8; }
+.trk-mark-done-btn:disabled { opacity: .6; cursor: default; }
 
 .trk-coming-soon {
   background: #f0fafb;

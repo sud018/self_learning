@@ -67,6 +67,9 @@ interface McqResult {
           </div>
           <h1>Daily Assignment</h1>
           <p>Notes → MCQs → Concepts → Practice → Score with full evaluation after every section.</p>
+          @if (draftSaved) {
+            <p style="margin:4px 0 0; font-size:12px; color:#1a6b29;">💾 Answers auto-saved — picks up where you left off</p>
+          }
         </div>
       </div>
 
@@ -453,6 +456,7 @@ export class DailyAssignmentComponent implements OnInit {
   loading = true;
   error = '';
   submitError = '';
+  draftSaved = false;
 
   fromTracker = false;
   isAlreadyCompleted = false;
@@ -533,6 +537,7 @@ export class DailyAssignmentComponent implements OnInit {
       correct: (this.answers[q.id] || '') === q.correctAnswer
     }));
     this.showMcqResults = true;
+    this.saveDraft();
     this.cd.detectChanges();
   }
 
@@ -544,7 +549,38 @@ export class DailyAssignmentComponent implements OnInit {
 
   submitWritten() {
     this.showWrittenResults = true;
+    this.saveDraft();
     this.cd.detectChanges();
+  }
+
+  saveDraft() {
+    if (!this.assignment) return;
+    this.api.saveDraft({
+      email: this.userContext.email(),
+      dayId: this.assignment.id,
+      writtenAnswers: this.writtenAnswers,
+      mcqAnswers: this.answers,
+      notesCompleted: this.notesCompleted,
+      sqlSolved: this.sqlSolved
+    }).subscribe({
+      next: () => { this.draftSaved = true; this.cd.detectChanges(); },
+      error: () => {}
+    });
+  }
+
+  private loadDraftInto(dayId: string) {
+    this.api.loadDraft(this.userContext.email(), dayId).subscribe({
+      next: (draft: any) => {
+        if (!draft) return;
+        if (draft.writtenAnswers) this.writtenAnswers = { ...draft.writtenAnswers };
+        if (draft.mcqAnswers) this.answers = { ...draft.mcqAnswers };
+        if (draft.notesCompleted) this.notesCompleted = draft.notesCompleted;
+        if (draft.sqlSolved) this.sqlSolved = draft.sqlSolved;
+        this.draftSaved = true;
+        this.cd.detectChanges();
+      },
+      error: () => {}
+    });
   }
 
   submitDay() {
@@ -606,6 +642,7 @@ export class DailyAssignmentComponent implements OnInit {
       next: (assignment) => {
         this.assignment = assignment;
         this.resetState();
+        this.loadDraftInto(assignment.id);
         this.api.dayStatus(this.userContext.email()).subscribe({
           next: (statuses) => {
             const found = statuses.find((s: any) => s.assignmentId === dayId);
@@ -633,6 +670,7 @@ export class DailyAssignmentComponent implements OnInit {
       next: (assignment) => {
         this.assignment = assignment;
         this.resetState();
+        this.loadDraftInto(assignment.id);
         this.loading = false;
         this.cd.detectChanges();
       },

@@ -73,6 +73,11 @@ public class AssignmentController {
     return assignmentService.submit(request.email(), request.assignmentId(), request.notesCompleted(), request.answers(), request.codingSolved(), request.sqlSolved());
   }
 
+  @PostMapping("/mark-complete")
+  void markComplete(@RequestParam String email, @RequestParam String assignmentId) {
+    progressService.markComplete(email, assignmentId);
+  }
+
   @PostMapping("/reset-progress")
   void resetProgress(@RequestParam String email) {
     progressService.resetProgress(email);

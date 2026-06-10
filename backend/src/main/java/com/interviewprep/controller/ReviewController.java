@@ -1,7 +1,9 @@
 package com.interviewprep.controller;
 
 import com.interviewprep.model.ReviewModels.DayReview;
+import com.interviewprep.model.ReviewModels.DraftAnswers;
 import com.interviewprep.model.ReviewModels.SaveDayReviewRequest;
+import com.interviewprep.model.ReviewModels.SaveDraftRequest;
 import com.interviewprep.service.ReviewService;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
@@ -36,5 +38,16 @@ public class ReviewController {
   @GetMapping("/all")
   List<DayReview> all(@RequestParam String email) {
     return reviewService.findAllByEmail(email);
+  }
+
+  @PostMapping("/draft")
+  void saveDraft(@RequestBody SaveDraftRequest request) {
+    reviewService.saveDraft(request);
+  }
+
+  @GetMapping("/draft")
+  ResponseEntity<DraftAnswers> getDraft(@RequestParam String email, @RequestParam String dayId) {
+    DraftAnswers draft = reviewService.loadDraft(email, dayId);
+    return draft != null ? ResponseEntity.ok(draft) : ResponseEntity.notFound().build();
   }
 }

@@ -104,6 +104,15 @@ interface DayCard {
                   }
                 </div>
               }
+              @if (day.status !== 'done' && day.status !== 'locked') {
+                <div class="trk-mark-done-row" (click)="$event.stopPropagation()">
+                  <button type="button" class="trk-mark-done-btn"
+                    [disabled]="markingDone === day.assignmentId"
+                    (click)="markDone($event, day)">
+                    {{ markingDone === day.assignmentId ? '…' : '✓ Mark as Done' }}
+                  </button>
+                </div>
+              }
             </button>
           }
         </div>
@@ -123,6 +132,7 @@ export class TrackerComponent implements OnInit {
   days: DayCard[] = [];
   loading = true;
   error = '';
+  markingDone: string | null = null;
 
   constructor(
     private api: ApiService,
@@ -203,6 +213,27 @@ export class TrackerComponent implements OnInit {
   openDay(day: DayCard) {
     if (day.status === 'locked' || !day.assignmentId) return;
     this.router.navigate(['/daily'], { queryParams: { dayId: day.assignmentId } });
+  }
+
+  markDone(event: Event, day: DayCard) {
+    event.stopPropagation();
+    if (!day.assignmentId || this.markingDone) return;
+    const confirmed = window.confirm(`Mark Day ${day.dayNumber} as completed?\n\nThis records it as done without going through the full assignment flow.`);
+    if (!confirmed) return;
+    this.markingDone = day.assignmentId;
+    this.cd.detectChanges();
+    this.api.markDayComplete(this.userContext.email(), day.assignmentId).subscribe({
+      next: () => {
+        this.markingDone = null;
+        this.loading = true;
+        this.cd.detectChanges();
+        this.api.dayStatus(this.userContext.email()).subscribe({
+          next: (statuses) => { this.buildDays(statuses); this.loading = false; this.cd.detectChanges(); },
+          error: () => { this.loading = false; this.cd.detectChanges(); }
+        });
+      },
+      error: () => { this.markingDone = null; this.cd.detectChanges(); }
+    });
   }
 
   formatDate(date: Date): string {

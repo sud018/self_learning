@@ -64,6 +64,23 @@ export class ApiService {
     return this.get<any>('/review', { email, dayId });
   }
 
+  markDayComplete(email: string, assignmentId: string) {
+    const url = `${environment.apiUrl}/assignments/mark-complete?email=${encodeURIComponent(email)}&assignmentId=${encodeURIComponent(assignmentId)}`;
+    return new Observable<void>((subscriber) => {
+      fetch(url, { method: 'POST' })
+        .then((res) => { if (!res.ok) throw new Error(`${res.status}`); subscriber.next(); subscriber.complete(); })
+        .catch((err) => subscriber.error(err));
+    });
+  }
+
+  saveDraft(payload: { email: string; dayId: string; writtenAnswers: Record<string, string>; mcqAnswers: Record<string, string>; notesCompleted: boolean; sqlSolved: number }) {
+    return this.post<void>('/review/draft', payload);
+  }
+
+  loadDraft(email: string, dayId: string) {
+    return this.get<any>('/review/draft', { email, dayId });
+  }
+
   resetProgress(email: string) {
     const url = `${environment.apiUrl}/assignments/reset-progress?email=${encodeURIComponent(email)}`;
     return new Observable<void>((subscriber) => {
@@ -111,6 +128,8 @@ export class ApiService {
             }
             throw new Error(message);
           }
+          const ct = response.headers.get('content-type') || '';
+          if (!ct.includes('json') || response.status === 204) return Promise.resolve(null as T);
           return response.json() as Promise<T>;
         })
         .then((data) => {
