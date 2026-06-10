@@ -304,11 +304,12 @@
         "Round result to 2 decimal places"
       ],
       "testCases": [
-        "c=0 -> f=32.0",
-        "f=212 -> c=100.0"
+        "0.0 -> 32.0",
+        "100.0 -> 212.0",
+        "-40.0 -> -40.0"
       ],
       "targetMinutes": 15,
-      "starterCode": "public double celsiusToFahrenheit(double c) {\n    return 0;\n}\npublic double fahrenheitToCelsius(double f) {\n    return 0;\n}"
+      "starterCode": "public double celsiusToFahrenheit(double c) {\n    return 0;\n}"
     },
     {
       "id": "d02dsa",

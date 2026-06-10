@@ -286,7 +286,46 @@ public class CodingService {
       String target = parts.length > 1 ? parts[1].trim() : "0";
       return intArray(array) + ", " + target;
     }
-    return intArray(input);
+    // Infer argument format from the method's first parameter type in the starter code
+    List<String> paramTypes = extractParamTypes(problem.starterCode());
+    if (!paramTypes.isEmpty()) {
+      return formatArgByType(paramTypes.get(0), input);
+    }
+    return inferArgument(input);
+  }
+
+  private List<String> extractParamTypes(String starterCode) {
+    Matcher m = Pattern.compile("public\\s+[\\w<>\\[\\]]+\\s+\\w+\\s*\\(([^)]*)\\)").matcher(starterCode);
+    if (!m.find()) return List.of();
+    String params = m.group(1).trim();
+    if (params.isEmpty()) return List.of();
+    List<String> types = new ArrayList<>();
+    for (String param : params.split(",")) {
+      String[] parts = param.trim().split("\\s+");
+      if (parts.length >= 2) types.add(parts[0].trim());
+    }
+    return types;
+  }
+
+  private String formatArgByType(String type, String input) {
+    return switch (type.toLowerCase(Locale.ROOT)) {
+      case "double" -> input.trim();
+      case "float"  -> input.trim() + "f";
+      case "long"   -> input.trim() + "L";
+      case "int"    -> input.trim();
+      case "boolean" -> input.trim();
+      case "string" -> javaString(input);
+      case "int[]"  -> intArray(input);
+      default       -> inferArgument(input);
+    };
+  }
+
+  private String inferArgument(String input) {
+    String trimmed = input.trim();
+    if (trimmed.startsWith("[")) return intArray(trimmed);
+    if (trimmed.matches("-?\\d+\\.\\d+(?:[eE][+-]?\\d+)?")) return trimmed;
+    if (trimmed.matches("-?\\d+")) return trimmed;
+    return intArray(trimmed);
   }
 
   private String javaString(String input) {
