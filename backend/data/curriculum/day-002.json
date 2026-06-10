@@ -283,8 +283,9 @@
         "Must modify array in place"
       ],
       "testCases": [
-        "[1,2] -> [2,1]",
-        "[5,5] -> [5,5]"
+        "[3,7], 0, 1 -> [7,3]",
+        "[5,5], 0, 1 -> [5,5]",
+        "[1,2,3], 0, 2 -> [3,2,1]"
       ],
       "targetMinutes": 15,
       "starterCode": "public void swap(int[] arr, int i, int j) {\n    // XOR trick: a^=b; b^=a; a^=b;\n}"

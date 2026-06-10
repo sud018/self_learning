@@ -325,8 +325,8 @@
         "strs[i] consists of lowercase letters"
       ],
       "testCases": [
-        "[\"\"] -> [[\"\"]]",
-        "[\"a\"] -> [[\"a\"]]"
+        "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"] -> [[\"bat\"],[\"nat\",\"tan\"],[\"ate\",\"eat\",\"tea\"]]",
+        "[\"\"] -> [[\"\"]]"
       ],
       "targetMinutes": 20,
       "starterCode": "public List<List<String>> groupAnagrams(String[] strs) {\n    // Key = sorted string (or freq count array as string)\n    // HashMap<String, List<String>> groups\n    return new ArrayList<>();\n}"

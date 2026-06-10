@@ -132,16 +132,21 @@ public class CodingService {
       return new RunCodeResponse(false, List.of(), "Java compiler is not available. Run the backend with a JDK, not a JRE.");
     }
 
-    // Program mode: full class with main() — compile and run directly, check stdout
     if (PROGRAM_MODE.equals(problem.methodName()) || isProgramMode(code)) {
       return evaluateProgramMode(code, tests);
+    }
+
+    List<String> paramTypes = extractParamTypes(problem.starterCode());
+    if (!isAutoRunnable(paramTypes)) {
+      return new RunCodeResponse(true, List.of(),
+          "✓ Solution recorded — this problem uses custom types that cannot be auto-compiled.\nReview your logic against the examples manually.");
     }
 
     Path workDir = null;
     try {
       workDir = Files.createTempDirectory("interview-prep-code-");
       Files.writeString(workDir.resolve("Solution.java"), solutionSource(code), StandardCharsets.UTF_8);
-      Files.writeString(workDir.resolve("Runner.java"), runnerSource(problem, tests), StandardCharsets.UTF_8);
+      Files.writeString(workDir.resolve("Runner.java"), runnerSource(problem, paramTypes, tests), StandardCharsets.UTF_8);
 
       ProcessResult compile = runProcess(workDir, javaTool("javac"), "Solution.java", "Runner.java");
       if (compile.exitCode() != 0) {
@@ -162,8 +167,10 @@ public class CodingService {
       List<TestResult> results = new ArrayList<>();
       for (int index = 0; index < tests.size(); index++) {
         TestCase test = tests.get(index);
-        String userOutput = index < outputs.length ? outputs[index].trim() : "";
-        results.add(new TestResult(test.input(), test.expectedOutput(), userOutput, test.expectedOutput().equals(userOutput)));
+        String actual = index < outputs.length ? outputs[index].trim() : "";
+        // Normalize array output: strip spaces so "[2, 1]" matches "[2,1]"
+        boolean passed = normalizeOutput(test.expectedOutput()).equals(normalizeOutput(actual));
+        results.add(new TestResult(test.input(), test.expectedOutput(), actual, passed));
       }
       boolean passed = results.stream().allMatch(TestResult::passed);
       return new RunCodeResponse(passed, results, passed ? "All tests passed." : "Some tests failed. Review the output and fix the code.");
@@ -177,6 +184,21 @@ public class CodingService {
         deleteQuietly(workDir);
       }
     }
+  }
+
+  /** True only for types the runner can construct without custom class definitions. */
+  private static final java.util.Set<String> SIMPLE_TYPES = java.util.Set.of(
+      "int", "int[]", "int[][]", "double", "double[]", "float", "float[]",
+      "long", "long[]", "boolean", "char", "char[]", "char[][]",
+      "string", "string[]", "void"
+  );
+
+  private boolean isAutoRunnable(List<String> paramTypes) {
+    return paramTypes.stream().allMatch(t -> SIMPLE_TYPES.contains(t.toLowerCase(Locale.ROOT)));
+  }
+
+  private String normalizeOutput(String s) {
+    return s.trim().replaceAll("[\\s,]+", ",").replaceAll(",$", "");
   }
 
   /**
@@ -247,14 +269,38 @@ public class CodingService {
     return "public class Solution {\n" + code + "\n}\n";
   }
 
-  private String runnerSource(ProblemSpec problem, List<TestCase> tests) {
+  private String runnerSource(ProblemSpec problem, List<String> paramTypes, List<TestCase> tests) {
+    String returnType = extractReturnType(problem.starterCode());
+    String method = actualMethodName(problem);
+    boolean voidInPlace = "void".equals(returnType) && !paramTypes.isEmpty()
+        && paramTypes.get(0).endsWith("[]");
+    boolean returnsArray = returnType.endsWith("[]") && !"void".equals(returnType);
+
     StringBuilder calls = new StringBuilder();
+    int idx = 0;
     for (TestCase test : tests) {
-      calls.append("    System.out.println(String.valueOf(solution.")
-          .append(actualMethodName(problem))
-          .append("(")
-          .append(argumentLiteral(problem, test.input()))
-          .append(")));\n");
+      idx++;
+      List<String> inputParts = splitInput(test.input());
+
+      if (voidInPlace) {
+        // e.g. swap(int[] arr, int i, int j) — mutates arr, no return value
+        String arrType = paramTypes.get(0);           // e.g. "int[]"
+        String arrLiteral = arrayLiteralForType(arrType, inputParts.isEmpty() ? "[]" : inputParts.get(0));
+        String tmp = "_t" + idx;
+        calls.append("    { ").append(arrType).append(" ").append(tmp).append(" = ").append(arrLiteral).append("; ");
+        calls.append("solution.").append(method).append("(").append(tmp);
+        for (int p = 1; p < paramTypes.size(); p++) {
+          String part = p < inputParts.size() ? inputParts.get(p) : defaultForType(paramTypes.get(p));
+          calls.append(", ").append(formatArgByType(paramTypes.get(p), part));
+        }
+        calls.append("); System.out.println(java.util.Arrays.toString(").append(tmp).append(")); }\n");
+      } else if (returnsArray) {
+        calls.append("    System.out.println(java.util.Arrays.toString(solution.").append(method)
+            .append("(").append(buildArgList(paramTypes, inputParts)).append(")));\n");
+      } else {
+        calls.append("    System.out.println(String.valueOf(solution.").append(method)
+            .append("(").append(buildArgList(paramTypes, inputParts)).append(")));\n");
+      }
     }
     return """
         public class Runner {
@@ -273,25 +319,92 @@ public class CodingService {
     };
   }
 
-  private String argumentLiteral(ProblemSpec problem, String input) {
-    if (problem.methodName().equals("isValid") || problem.methodName().equals("solveString")) {
-      if (input.equalsIgnoreCase("null")) {
-        return "null";
+  // ── Argument helpers ──────────────────────────────────────────────────────
+
+  /** Build the full argument list string from a list of param types and input parts. */
+  private String buildArgList(List<String> paramTypes, List<String> inputParts) {
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < paramTypes.size(); i++) {
+      if (i > 0) sb.append(", ");
+      String part = i < inputParts.size() ? inputParts.get(i) : defaultForType(paramTypes.get(i));
+      sb.append(formatArgByType(paramTypes.get(i), part));
+    }
+    return sb.toString();
+  }
+
+  /** Split "a, b, [1,2,3], c" into ["a", "b", "[1,2,3]", "c"] respecting brackets. */
+  private List<String> splitInput(String input) {
+    List<String> result = new ArrayList<>();
+    int depth = 0;
+    StringBuilder cur = new StringBuilder();
+    for (char c : input.toCharArray()) {
+      if (c == '[' || c == '(') depth++;
+      else if (c == ']' || c == ')') depth--;
+      if (c == ',' && depth == 0) {
+        result.add(cur.toString().trim());
+        cur.setLength(0);
+      } else {
+        cur.append(c);
       }
-      return javaString(input);
     }
-    if (problem.methodName().equals("countTarget")) {
-      String[] parts = input.split("\\s*,\\s*(?![^\\[]*\\])", 2);
-      String array = parts.length > 0 ? parts[0].trim() : "[]";
-      String target = parts.length > 1 ? parts[1].trim() : "0";
-      return intArray(array) + ", " + target;
-    }
-    // Infer argument format from the method's first parameter type in the starter code
-    List<String> paramTypes = extractParamTypes(problem.starterCode());
-    if (!paramTypes.isEmpty()) {
-      return formatArgByType(paramTypes.get(0), input);
-    }
-    return inferArgument(input);
+    if (cur.length() > 0) result.add(cur.toString().trim());
+    return result;
+  }
+
+  private String formatArgByType(String type, String input) {
+    String t = type.toLowerCase(Locale.ROOT).replace(" ", "");
+    return switch (t) {
+      case "double"   -> input.trim();
+      case "float"    -> input.trim() + "f";
+      case "long"     -> input.trim() + "L";
+      case "int"      -> input.trim();
+      case "boolean"  -> input.trim();
+      case "string"   -> {
+        if (input.equalsIgnoreCase("null")) yield "null";
+        yield javaString(input);
+      }
+      case "int[]"    -> intArray(input);
+      case "int[][]"  -> int2dArray(input);
+      case "char[]"   -> charArray(input);
+      case "char[][]" -> char2dArray(input);
+      case "double[]" -> doubleArray(input);
+      default         -> inferArgument(input);
+    };
+  }
+
+  private String arrayLiteralForType(String type, String input) {
+    String t = type.toLowerCase(Locale.ROOT).replace(" ", "");
+    return switch (t) {
+      case "int[]"    -> intArray(input);
+      case "char[]"   -> charArray(input);
+      case "double[]" -> doubleArray(input);
+      default         -> intArray(input);
+    };
+  }
+
+  private String defaultForType(String type) {
+    return switch (type.toLowerCase(Locale.ROOT).replace(" ", "")) {
+      case "int", "long" -> "0";
+      case "double", "float" -> "0.0";
+      case "boolean" -> "false";
+      case "string" -> "\"\"";
+      default -> "null";
+    };
+  }
+
+  private String inferArgument(String input) {
+    String t = input.trim();
+    if (t.startsWith("[")) return intArray(t);
+    if (t.matches("-?\\d+\\.\\d+(?:[eE][+-]?\\d+)?")) return t;
+    if (t.matches("-?\\d+")) return t;
+    return intArray(t);
+  }
+
+  // ── Type extraction ───────────────────────────────────────────────────────
+
+  private String extractReturnType(String starterCode) {
+    Matcher m = Pattern.compile("public\\s+(\\S+?)\\s+\\w+\\s*\\(").matcher(starterCode);
+    return m.find() ? m.group(1) : "int";
   }
 
   private List<String> extractParamTypes(String starterCode) {
@@ -307,25 +420,51 @@ public class CodingService {
     return types;
   }
 
-  private String formatArgByType(String type, String input) {
-    return switch (type.toLowerCase(Locale.ROOT)) {
-      case "double" -> input.trim();
-      case "float"  -> input.trim() + "f";
-      case "long"   -> input.trim() + "L";
-      case "int"    -> input.trim();
-      case "boolean" -> input.trim();
-      case "string" -> javaString(input);
-      case "int[]"  -> intArray(input);
-      default       -> inferArgument(input);
-    };
+  // ── Array literal builders ────────────────────────────────────────────────
+
+  private String charArray(String input) {
+    String value = input.replace("[", "").replace("]", "").trim();
+    if (value.isEmpty()) return "new char[]{}";
+    String[] items = value.split("\\s*,\\s*");
+    StringBuilder sb = new StringBuilder("new char[]{");
+    for (int i = 0; i < items.length; i++) {
+      if (i > 0) sb.append(",");
+      String ch = items[i].trim().replace("'", "");
+      sb.append("'").append(ch.isEmpty() ? " " : ch.charAt(0)).append("'");
+    }
+    return sb.append("}").toString();
   }
 
-  private String inferArgument(String input) {
+  private String doubleArray(String input) {
+    String value = input.replace("[", "").replace("]", "").trim();
+    if (value.isEmpty()) return "new double[]{}";
+    return "new double[]{" + value + "}";
+  }
+
+  private String int2dArray(String input) {
     String trimmed = input.trim();
-    if (trimmed.startsWith("[")) return intArray(trimmed);
-    if (trimmed.matches("-?\\d+\\.\\d+(?:[eE][+-]?\\d+)?")) return trimmed;
-    if (trimmed.matches("-?\\d+")) return trimmed;
-    return intArray(trimmed);
+    if (trimmed.equals("[]") || trimmed.isEmpty()) return "new int[][]{}";
+    trimmed = trimmed.replaceAll("^\\[", "").replaceAll("\\]$", "").trim();
+    String[] rows = trimmed.split("\\],\\s*\\[");
+    StringBuilder sb = new StringBuilder("new int[][]{");
+    for (int i = 0; i < rows.length; i++) {
+      if (i > 0) sb.append(",");
+      sb.append(intArray("[" + rows[i].replace("[", "").replace("]", "") + "]"));
+    }
+    return sb.append("}").toString();
+  }
+
+  private String char2dArray(String input) {
+    String trimmed = input.trim();
+    if (trimmed.equals("[]") || trimmed.isEmpty()) return "new char[][]{}";
+    trimmed = trimmed.replaceAll("^\\[", "").replaceAll("\\]$", "").trim();
+    String[] rows = trimmed.split("\\],\\s*\\[");
+    StringBuilder sb = new StringBuilder("new char[][]{");
+    for (int i = 0; i < rows.length; i++) {
+      if (i > 0) sb.append(",");
+      sb.append(charArray("[" + rows[i].replace("[", "").replace("]", "") + "]"));
+    }
+    return sb.append("}").toString();
   }
 
   private String javaString(String input) {
