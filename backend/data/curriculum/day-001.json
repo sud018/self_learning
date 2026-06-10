@@ -268,7 +268,16 @@
         "-> Java Version:"
       ],
       "targetMinutes": 10,
-      "starterCode": "public class Main {\n    public static void main(String[] args) {\n        // Print Hello World\n        // Print Java version\n    }\n}"
+      "starterCode": "public class Main {\n    public static void main(String[] args) {\n        // Print Hello World\n        // Print Java version\n    }\n}",
+      "modelAnswer": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n        System.out.println(\"Java version: \" + System.getProperty(\"java.version\"));\n        // What JVM does with your .java file:\n        // 1. javac compiles Main.java → Main.class (bytecode)\n        // 2. JVM loads Main.class via the ClassLoader\n        // 3. JVM verifies the bytecode (security check)\n        // 4. JIT compiler converts hot bytecode paths to machine code\n        // 5. main() is called and executes\n    }\n}",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d01c2",
@@ -286,7 +295,16 @@
         "All three values printed without exception"
       ],
       "targetMinutes": 15,
-      "starterCode": "public void showJvmMemory() {\n    int stackVar = 42;        // stack\n    String poolStr = \"hello\"; // string pool\n    Object heapObj = new Object(); // heap\n    // print all three\n}"
+      "starterCode": "public void showJvmMemory() {\n    int stackVar = 42;        // stack\n    String poolStr = \"hello\"; // string pool\n    Object heapObj = new Object(); // heap\n    // print all three\n}",
+      "modelAnswer": "public void showJvmMemory() {\n    int stackVar = 42;             // STACK: local variables, method frames\n    String poolStr = \"hello\";      // STRING POOL: string literals are interned\n    Object heapObj = new Object(); // HEAP: all new objects live here\n\n    System.out.println(\"stack=\" + stackVar);\n    System.out.println(\"pool=\" + poolStr);\n    System.out.println(\"heap=\" + heapObj);\n    // Output: heap=java.lang.Object@<hashcode>\n\n    // Key insight:\n    // Stack: fast, limited, auto-cleaned when method returns\n    // Heap: large, managed by GC, all objects go here\n    // String pool: saves memory by reusing identical literals\n}",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d01c3",
@@ -307,7 +325,16 @@
         "calculate(5,0,\"/\") -> Integer.MIN_VALUE"
       ],
       "targetMinutes": 15,
-      "starterCode": "public int calculate(int a, int b, String op) {\n    // use switch or if-else on op\n    return 0;\n}"
+      "starterCode": "public int calculate(int a, int b, String op) {\n    // use switch or if-else on op\n    return 0;\n}",
+      "modelAnswer": "public int calculate(int a, int b, String op) {\n    // Use a switch expression (Java 14+ style) — clean and readable\n    return switch (op) {\n        case \"+\" -> a + b;\n        case \"-\" -> a - b;\n        case \"*\" -> a * b;\n        case \"/\" -> {\n            if (b == 0) yield Integer.MIN_VALUE; // edge case: division by zero\n            yield a / b;\n        }\n        default -> throw new IllegalArgumentException(\"Unknown operator: \" + op);\n    };\n}\n\n// Alternative (traditional switch for older Java):\n// switch (op) {\n//   case \"+\": return a + b;\n//   case \"-\": return a - b;\n//   case \"*\": return a * b;\n//   case \"/\": return b == 0 ? Integer.MIN_VALUE : a / b;\n// }",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d01dsa",
@@ -329,7 +356,16 @@
         "[1,2,3,4], target=7 -> [2,3]"
       ],
       "targetMinutes": 20,
-      "starterCode": "public int[] twoSum(int[] nums, int target) {\n    // Use a HashMap: store value->index\n    // For each num, check if (target - num) exists in map\n    return new int[]{};\n}"
+      "starterCode": "public int[] twoSum(int[] nums, int target) {\n    // Use a HashMap: store value->index\n    // For each num, check if (target - num) exists in map\n    return new int[]{};\n}",
+      "modelAnswer": "public int[] twoSum(int[] nums, int target) {\n    // APPROACH: HashMap stores value → index for O(1) lookup\n    // For each number, check if (target - num) was already seen\n    // Time: O(n)  Space: O(n)\n\n    Map<Integer, Integer> seen = new HashMap<>();  // value -> index\n\n    for (int i = 0; i < nums.length; i++) {\n        int complement = target - nums[i];         // what we need\n        if (seen.containsKey(complement)) {\n            return new int[]{ seen.get(complement), i };\n        }\n        seen.put(nums[i], i);                      // store AFTER check (no self-use)\n    }\n\n    return new int[]{};  // problem guarantees exactly one answer, so never reached\n\n    // WHY HashMap and not brute force?\n    // Brute force: two nested loops, O(n²) — too slow for 10^4 elements\n    // HashMap: one pass, O(n) — fast enough for any constraint\n}",
+      "approach": [
+        "State the problem clearly: what is the input, what is the output?",
+        "Brute force first — even O(n²) is fine as a starting point",
+        "Ask: what data structure reduces the work? HashMap for O(1) lookup, Set to track seen values",
+        "Handle edge cases: empty array, single element, all same values, negative numbers",
+        "Trace through one example step by step with your chosen algorithm",
+        "State time complexity (O(n), O(n log n)) and space complexity (O(1), O(n))"
+      ]
     }
   ],
   "sqlPractice": [
@@ -350,9 +386,9 @@
     "Java source code is compiled by javac into bytecode (.class files), which the JVM then interprets or JIT-compiles into machine code. JDK is the development kit containing javac and tools; JRE is the runtime with the JVM; JVM is the engine that runs bytecode on any OS. This is why Java is 'write once, run anywhere'.",
     "In a Spring Boot project, the JVM runs the entire backend server. javac compiles your classes during the build, and the JVM manages memory, garbage collection, and thread execution at runtime. Knowing JDK vs JRE matters when configuring CI/CD pipelines and Docker images.",
     "Using JRE-only in a Docker image (no javac) breaks the Java code compiler in the application. Misunderstanding heap vs stack causes memory leaks or StackOverflowError. Not knowing the classpath leads to ClassNotFoundException that is hard to debug.",
-    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records — directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
     "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
-    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen — always communicate the state.",
     "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
     "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
     "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",

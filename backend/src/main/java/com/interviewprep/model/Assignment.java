@@ -39,6 +39,8 @@ public record Assignment(
       List<String> constraints,
       List<String> testCases,
       int targetMinutes,
-      String starterCode
+      String starterCode,
+      String modelAnswer,
+      List<String> approach
   ) {}
 }

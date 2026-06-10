@@ -272,7 +272,16 @@
         "fib(7)->13"
       ],
       "targetMinutes": 15,
-      "starterCode": "public long fib(int n) {\n    // iterative: track prev, curr\n    return 0;\n}"
+      "starterCode": "public long fib(int n) {\n    // iterative: track prev, curr\n    return 0;\n}",
+      "modelAnswer": "public long fib(int n) {\n    // iterative: track prev, curr\n    return 0;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// Model implementation (iterative — O(n) time, O(1) space):\n// if (n <= 1) return n;\n// int prev = 0, curr = 1;\n// for (int i = 2; i <= n; i++) {\n//     int next = prev + curr;\n//     prev = curr;\n//     curr = next;\n// }\n// return curr;\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d10c2",
@@ -295,7 +304,16 @@
         "'ab','ac' -> false"
       ],
       "targetMinutes": 15,
-      "starterCode": "public boolean isAnagram(String s, String t) {\n    if (s == null || t == null || s.length() != t.length()) return false;\n    int[] freq = new int[256];\n    // increment for s, decrement for t\n    // check all zeros\n    return false;\n}"
+      "starterCode": "public boolean isAnagram(String s, String t) {\n    if (s == null || t == null || s.length() != t.length()) return false;\n    int[] freq = new int[256];\n    // increment for s, decrement for t\n    // check all zeros\n    return false;\n}",
+      "modelAnswer": "public boolean isAnagram(String s, String t) {\n    if (s == null || t == null || s.length() != t.length()) return false;\n    int[] freq = new int[256];\n    // increment for s, decrement for t\n    // check all zeros\n    return false;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// Pattern for boolean methods:\n// - Start with the false / guard conditions\n// - if (condition_that_makes_it_false) return false;\n// - All other paths return true\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d10c3",
@@ -316,7 +334,16 @@
         "[2,3,4,5] -> 1"
       ],
       "targetMinutes": 10,
-      "starterCode": "public int findMissing(int[] nums) {\n    int n = nums.length + 1;\n    int expected = n * (n + 1) / 2;\n    int actual = 0;\n    for (int num : nums) actual += num;\n    return expected - actual;\n}"
+      "starterCode": "public int findMissing(int[] nums) {\n    int n = nums.length + 1;\n    int expected = n * (n + 1) / 2;\n    int actual = 0;\n    for (int num : nums) actual += num;\n    return expected - actual;\n}",
+      "modelAnswer": "public int findMissing(int[] nums) {\n    int n = nums.length + 1;\n    int expected = n * (n + 1) / 2;\n    int actual = 0;\n    for (int num : nums) actual += num;\n    return expected - actual;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// Model implementation:\n// int sum = 0;\n// for (int num : nums) sum += num;\n// return sum;\n// Edge case: empty array → returns 0 (correct — sum of nothing is 0)\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d10dsa",
@@ -338,7 +365,16 @@
         "[1,2,1] -> 2"
       ],
       "targetMinutes": 20,
-      "starterCode": "public int maxArea(int[] height) {\n    // Two pointers: l=0, r=end\n    // area = min(height[l],height[r]) * (r-l)\n    // Move the pointer with smaller height inward\n    return 0;\n}"
+      "starterCode": "public int maxArea(int[] height) {\n    // Two pointers: l=0, r=end\n    // area = min(height[l],height[r]) * (r-l)\n    // Move the pointer with smaller height inward\n    return 0;\n}",
+      "modelAnswer": "public int maxArea(int[] height) {\n    // Two pointers: l=0, r=end\n    // area = min(height[l],height[r]) * (r-l)\n    // Move the pointer with smaller height inward\n    return 0;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Identify input/output from the signature\n// 2. Brute force: iterate and check/accumulate\n// 3. Optimise if needed: HashMap for O(1) lookup, sorting for ordered data\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "State the problem clearly: what is the input, what is the output?",
+        "Brute force first — even O(n²) is fine as a starting point",
+        "Ask: what data structure reduces the work? HashMap for O(1) lookup, Set to track seen values",
+        "Handle edge cases: empty array, single element, all same values, negative numbers",
+        "Trace through one example step by step with your chosen algorithm",
+        "State time complexity (O(n), O(n log n)) and space complexity (O(1), O(n))"
+      ]
     }
   ],
   "sqlPractice": [
@@ -359,9 +395,9 @@
     "Day 10 is a self-assessment covering all Phase 1 Java foundations: JDK/JRE/JVM, variables and data types, control flow, methods, strings, arrays, I/O, and basic OOP. The goal is to identify which concepts feel confident and which need reinforcement before moving to OOP in Phase 2.",
     "All Phase 1 foundations underpin every part of a Java full-stack project. JVM knowledge helps with deployment, variables and types appear in every class, control flow is in every service method, and OOP thinking structures the entire codebase.",
     "Skipping Phase 1 revision leads to OOP learning on a shaky foundation, causing confusion when inheritance and polymorphism build on concepts like methods and objects that are not fully internalized yet.",
-    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records — directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
     "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
-    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen — always communicate the state.",
     "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
     "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
     "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",

@@ -269,7 +269,16 @@
         "Service method returns expected type"
       ],
       "targetMinutes": 20,
-      "starterCode": "// Angular: RxJS\n@Component({\n  selector: 'app-example',\n  standalone: true,\n  template: `<div>implement here</div>`\n})\nexport class ExampleComponent {\n  // implement RxJS\n}"
+      "starterCode": "// Angular: RxJS\n@Component({\n  selector: 'app-example',\n  standalone: true,\n  template: `<div>implement here</div>`\n})\nexport class ExampleComponent {\n  // implement RxJS\n}",
+      "modelAnswer": "// ─── HOW TO SOLVE: angular: implement rxjs ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: write typescript/angular code demonstrating rxjs. create a component or service snippet showing the key angular pattern for this topic.\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d71c2",
@@ -293,7 +302,16 @@
         "Error message shown on HTTP 500"
       ],
       "targetMinutes": 25,
-      "starterCode": "@Injectable({ providedIn: 'root' })\nexport class OrderService {\n  constructor(private http: HttpClient) {}\n  getOrders(): Observable<Order[]> {\n    return this.http.get<Order[]>('/api/orders').pipe(\n      catchError(err => {\n        console.error(err);\n        return of([]);\n      })\n    );\n  }\n}"
+      "starterCode": "@Injectable({ providedIn: 'root' })\nexport class OrderService {\n  constructor(private http: HttpClient) {}\n  getOrders(): Observable<Order[]> {\n    return this.http.get<Order[]>('/api/orders').pipe(\n      catchError(err => {\n        console.error(err);\n        return of([]);\n      })\n    );\n  }\n}",
+      "modelAnswer": "// ─── HOW TO SOLVE: order list with error handling ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: write an angular service method getorders() that calls get /api/orders, handles loading state, handles http errors (show user-friendly message), and returns observable<order[]>. the component should s\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d71c3",
@@ -315,7 +333,16 @@
         "page out of range -> empty"
       ],
       "targetMinutes": 20,
-      "starterCode": "public <T> List<T> paginate(List<T> items, int page, int size) {\n    if (items == null || items.isEmpty()) return Collections.emptyList();\n    int start = page * size;\n    if (start >= items.size()) return Collections.emptyList();\n    int end = Math.min(start + size, items.size());\n    return items.subList(start, end);\n}"
+      "starterCode": "public <T> List<T> paginate(List<T> items, int page, int size) {\n    if (items == null || items.isEmpty()) return Collections.emptyList();\n    int start = page * size;\n    if (start >= items.size()) return Collections.emptyList();\n    int end = Math.min(start + size, items.size());\n    return items.subList(start, end);\n}",
+      "modelAnswer": "// ─── HOW TO SOLVE: java utility: pagination helper ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: write a generic paginate(list<t> items, int page, int size) method that returns a sublist for the given page (0-indexed). return empty list if page is out of range. add a pageresult<t> wrapper with it\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d71dsa",
@@ -337,7 +364,16 @@
         "coins=[1,2,5], amount=11 -> 3 (5+5+1)"
       ],
       "targetMinutes": 25,
-      "starterCode": "public int coinChange(int[] coins, int amount) {\n    // dp[i] = min coins to make amount i\n    // dp[0]=0, dp[i]=min over all coins: dp[i-coin]+1\n    // Init dp with amount+1 (infinity)\n    return 0;\n}"
+      "starterCode": "public int coinChange(int[] coins, int amount) {\n    // dp[i] = min coins to make amount i\n    // dp[0]=0, dp[i]=min over all coins: dp[i-coin]+1\n    // Init dp with amount+1 (infinity)\n    return 0;\n}",
+      "modelAnswer": "public int coinChange(int[] coins, int amount) {\n    // dp[i] = min coins to make amount i\n    // dp[0]=0, dp[i]=min over all coins: dp[i-coin]+1\n    // Init dp with amount+1 (infinity)\n    return 0;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Identify input/output from the signature\n// 2. Brute force: iterate and check/accumulate\n// 3. Optimise if needed: HashMap for O(1) lookup, sorting for ordered data\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "State the problem clearly: what is the input, what is the output?",
+        "Brute force first — even O(n²) is fine as a starting point",
+        "Ask: what data structure reduces the work? HashMap for O(1) lookup, Set to track seen values",
+        "Handle edge cases: empty array, single element, all same values, negative numbers",
+        "Trace through one example step by step with your chosen algorithm",
+        "State time complexity (O(n), O(n log n)) and space complexity (O(1), O(n))"
+      ]
     }
   ],
   "sqlPractice": [
@@ -357,10 +393,10 @@
   "writtenModelAnswers": [
     "RxJS (Reactive Extensions for JavaScript) is a library for async and event-based programming using Observables. Key operators: map (transform), filter (select), switchMap (cancel previous, use latest), mergeMap (handle all), debounceTime (delay), distinctUntilChanged (skip duplicates), combineLatest (join multiple streams), and catchError (handle errors).",
     "RxJS operators are used throughout Angular: switchMap for HTTP calls that should cancel previous (search box), combineLatest to combine route params with service data, debounceTime on search input to avoid calling the API on every keystroke, and share to multicast a single HTTP call to multiple subscribers.",
-    "Using switchMap when you should use mergeMap (or vice versa) causes either dropped requests or race conditions. Not catching errors in the pipe with catchError causes the Observable to terminate on the first error, leaving the UI in a broken loading state. Deep nesting of operators (callback hell) defeats the purpose of RxJS \u2014 use the pipe() pattern.",
-    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Using switchMap when you should use mergeMap (or vice versa) causes either dropped requests or race conditions. Not catching errors in the pipe with catchError causes the Observable to terminate on the first error, leaving the UI in a broken loading state. Deep nesting of operators (callback hell) defeats the purpose of RxJS — use the pipe() pattern.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records — directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
     "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
-    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen — always communicate the state.",
     "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
     "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
     "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",

@@ -269,7 +269,16 @@
         "deposit(50).getBalance() -> 50"
       ],
       "targetMinutes": 20,
-      "starterCode": "public class BankAccount {\n    private String accountId;\n    private String owner;\n    private double balance;\n    // constructor, deposit, withdraw, getBalance\n}"
+      "starterCode": "public class BankAccount {\n    private String accountId;\n    private String owner;\n    private double balance;\n    // constructor, deposit, withdraw, getBalance\n}",
+      "modelAnswer": "// ─── HOW TO SOLVE: simple bankaccount class ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: create a bankaccount class with fields accountid (string), owner (string), balance (double). add methods deposit(double) and withdraw(double). withdrawal should fail with exception if insufficient fun\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d08c2",
@@ -289,7 +298,16 @@
         "one subject=100 -> A"
       ],
       "targetMinutes": 20,
-      "starterCode": "public class Student {\n    private String name;\n    private String id;\n    private Map<String, Integer> scores = new HashMap<>();\n    public double getAverage() { return 0; }\n    public char getGrade() { return 'F'; }\n}"
+      "starterCode": "public class Student {\n    private String name;\n    private String id;\n    private Map<String, Integer> scores = new HashMap<>();\n    public double getAverage() { return 0; }\n    public char getGrade() { return 'F'; }\n}",
+      "modelAnswer": "public class Student {\n    private String name;\n    private String id;\n    private Map<String, Integer> scores = new HashMap<>();\n    public double getAverage() { return 0; }\n    public char getGrade() { return 'F'; }\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// Model implementation:\n// if (nums.length == 0) return 0.0;\n// double sum = 0;\n// for (int num : nums) sum += num;\n// return sum / nums.length;\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d08c3",
@@ -309,7 +327,16 @@
         "different id -> not equals"
       ],
       "targetMinutes": 20,
-      "starterCode": "public class Product {\n    private String id, name, category;\n    private double price;\n    private boolean inStock;\n    public static Product of(String id, String name, double price) { return null; }\n    @Override public String toString() { return \"\"; }\n    @Override public boolean equals(Object o) { return false; }\n}"
+      "starterCode": "public class Product {\n    private String id, name, category;\n    private double price;\n    private boolean inStock;\n    public static Product of(String id, String name, double price) { return null; }\n    @Override public String toString() { return \"\"; }\n    @Override public boolean equals(Object o) { return false; }\n}",
+      "modelAnswer": "public class Product {\n    private String id, name, category;\n    private double price;\n    private boolean inStock;\n    public static Product of(String id, String name, double price) { return null; }\n    @Override public String toString() { return \"\"; }\n    @Override public boolean equals(Object o) { return false; }\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d08dsa",
@@ -331,7 +358,16 @@
         "[1], target=1 -> 0"
       ],
       "targetMinutes": 25,
-      "starterCode": "public int search(int[] nums, int target) {\n    // Modified binary search: determine which half is sorted\n    // Check if target is in the sorted half, adjust pointers accordingly\n    return -1;\n}"
+      "starterCode": "public int search(int[] nums, int target) {\n    // Modified binary search: determine which half is sorted\n    // Check if target is in the sorted half, adjust pointers accordingly\n    return -1;\n}",
+      "modelAnswer": "public int search(int[] nums, int target) {\n    // Modified binary search: determine which half is sorted\n    // Check if target is in the sorted half, adjust pointers accordingly\n    return -1;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Identify input/output from the signature\n// 2. Brute force: iterate and check/accumulate\n// 3. Optimise if needed: HashMap for O(1) lookup, sorting for ordered data\n\n// Model implementation:\n// Arrays.sort(arr);         // O(n log n) — modifies in place\n// Collections.sort(list);   // for ArrayList\n// Arrays.sort(arr, (a,b) -> b - a);  // reverse order comparator\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "State the problem clearly: what is the input, what is the output?",
+        "Brute force first — even O(n²) is fine as a starting point",
+        "Ask: what data structure reduces the work? HashMap for O(1) lookup, Set to track seen values",
+        "Handle edge cases: empty array, single element, all same values, negative numbers",
+        "Trace through one example step by step with your chosen algorithm",
+        "State time complexity (O(n), O(n log n)) and space complexity (O(1), O(n))"
+      ]
     }
   ],
   "sqlPractice": [
@@ -352,16 +388,16 @@
     "Object-oriented thinking means modeling the real world as objects that have state (fields) and behavior (methods). A Customer object has name, email, address (state) and placeOrder(), cancelOrder() (behavior). Classes are the blueprints; objects are the instances. OOP promotes reusability, clarity, and separation of concerns.",
     "In a Spring Boot project, every entity (@Entity) is an object, every service (@Service) is an object with business behavior, and every DTO is an object that carries data. Object thinking determines how you design your class hierarchy, relationships, and which class owns which responsibility.",
     "Putting logic in the wrong class (e.g., calculating order totals in the controller) makes code hard to reuse and test. Creating too many fine-grained objects increases complexity. Not thinking about relationships between objects leads to redundant data and inconsistent state across the system.",
-    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records — directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
     "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
-    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen — always communicate the state.",
     "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
     "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
     "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
     "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
   ],
   "businessModelAnswers": [
-    "Ask: What are the main entities in this feature? What state does each entity hold? What actions (methods) can each entity perform? How do the entities relate to each other? Who is responsible for each business rule \u2014 which class owns the logic? What changes might happen in the future that this design should accommodate?",
+    "Ask: What are the main entities in this feature? What state does each entity hold? What actions (methods) can each entity perform? How do the entities relate to each other? Who is responsible for each business rule — which class owns the logic? What changes might happen in the future that this design should accommodate?",
     "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
     "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]

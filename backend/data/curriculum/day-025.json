@@ -269,7 +269,16 @@
         "Edge case handled without exception"
       ],
       "targetMinutes": 20,
-      "starterCode": "// Demonstrate: Set\npublic void demonstrate() {\n    // Your implementation here\n}"
+      "starterCode": "// Demonstrate: Set\npublic void demonstrate() {\n    // Your implementation here\n}",
+      "modelAnswer": "// Demonstrate: Set\npublic void demonstrate() {\n    // Your implementation here\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d25c2",
@@ -290,7 +299,16 @@
         "Invalid input throws exception"
       ],
       "targetMinutes": 25,
-      "starterCode": "// Business use of Set\npublic Object processBusinessScenario(Object input) {\n    // Apply the concept to a real scenario\n    return null;\n}"
+      "starterCode": "// Business use of Set\npublic Object processBusinessScenario(Object input) {\n    // Apply the concept to a real scenario\n    return null;\n}",
+      "modelAnswer": "// Business use of Set\npublic Object processBusinessScenario(Object input) {\n    // Apply the concept to a real scenario\n    return null;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d25c3",
@@ -310,7 +328,16 @@
         "Empty table returns empty result"
       ],
       "targetMinutes": 20,
-      "starterCode": "-- Find customers with above-average total spend\nSELECT c.customer_id, c.first_name, SUM(o.total_amount) as total\nFROM customers c\nJOIN orders o ON c.customer_id = o.customer_id\nGROUP BY c.customer_id, c.first_name\nHAVING SUM(o.total_amount) > (\n    -- subquery for average\n);"
+      "starterCode": "-- Find customers with above-average total spend\nSELECT c.customer_id, c.first_name, SUM(o.total_amount) as total\nFROM customers c\nJOIN orders o ON c.customer_id = o.customer_id\nGROUP BY c.customer_id, c.first_name\nHAVING SUM(o.total_amount) > (\n    -- subquery for average\n);",
+      "modelAnswer": "// ─── HOW TO SOLVE: sql practice: subquery or join ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: write a sql query using a subquery to find all customers whose total order amount is above the average. hint: select customer_id from orders group by customer_id having sum(total_amount) > (select avg\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d25dsa",
@@ -331,7 +358,16 @@
         "[],[1] -> [1]"
       ],
       "targetMinutes": 20,
-      "starterCode": "public ListNode mergeTwoLists(ListNode l1, ListNode l2) {\n    // Use dummy head node\n    // Compare l1.val and l2.val, attach smaller, advance that pointer\n    return null;\n}"
+      "starterCode": "public ListNode mergeTwoLists(ListNode l1, ListNode l2) {\n    // Use dummy head node\n    // Compare l1.val and l2.val, attach smaller, advance that pointer\n    return null;\n}",
+      "modelAnswer": "public ListNode mergeTwoLists(ListNode l1, ListNode l2) {\n    // Use dummy head node\n    // Compare l1.val and l2.val, attach smaller, advance that pointer\n    return null;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Identify input/output from the signature\n// 2. Brute force: iterate and check/accumulate\n// 3. Optimise if needed: HashMap for O(1) lookup, sorting for ordered data\n\n// Model implementation:\n// Arrays.sort(arr);         // O(n log n) — modifies in place\n// Collections.sort(list);   // for ArrayList\n// Arrays.sort(arr, (a,b) -> b - a);  // reverse order comparator\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "State the problem clearly: what is the input, what is the output?",
+        "Brute force first — even O(n²) is fine as a starting point",
+        "Ask: what data structure reduces the work? HashMap for O(1) lookup, Set to track seen values",
+        "Handle edge cases: empty array, single element, all same values, negative numbers",
+        "Trace through one example step by step with your chosen algorithm",
+        "State time complexity (O(n), O(n log n)) and space complexity (O(1), O(n))"
+      ]
     }
   ],
   "sqlPractice": [
@@ -349,12 +385,12 @@
     "Angular: What TypeScript model/interface would you create for today's API response?"
   ],
   "writtenModelAnswers": [
-    "Set is a Collection that does not allow duplicate elements \u2014 adding an existing element is silently ignored. It uses equals() and hashCode() to check uniqueness. Main implementations: HashSet (unordered, O(1)), LinkedHashSet (insertion-ordered), and TreeSet (sorted, O(log n)).",
+    "Set is a Collection that does not allow duplicate elements — adding an existing element is silently ignored. It uses equals() and hashCode() to check uniqueness. Main implementations: HashSet (unordered, O(1)), LinkedHashSet (insertion-ordered), and TreeSet (sorted, O(log n)).",
     "Set is used in Spring Boot to enforce uniqueness: storing unique role names for a user, unique product category IDs in a request, or tracking which assignments a user has already completed. It prevents accidental duplicates without requiring explicit duplicate checking.",
-    "A class used as a Set element must correctly implement hashCode() and equals() \u2014 if they are inconsistent, the Set will contain 'duplicates' that are logically equal but hash differently. Iterating a HashSet in a specific order is unreliable \u2014 use LinkedHashSet or TreeSet if order matters.",
-    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "A class used as a Set element must correctly implement hashCode() and equals() — if they are inconsistent, the Set will contain 'duplicates' that are logically equal but hash differently. Iterating a HashSet in a specific order is unreliable — use LinkedHashSet or TreeSet if order matters.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records — directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
     "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
-    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen — always communicate the state.",
     "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
     "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
     "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",

@@ -269,7 +269,16 @@
         "[1,2,3], k=0 -> [1,2,3]"
       ],
       "targetMinutes": 20,
-      "starterCode": "public void rotate(int[] nums, int k) {\n    // Normalize k: k = k % nums.length\n    // Three reverse trick: reverse all, reverse [0..k-1], reverse [k..n-1]\n}"
+      "starterCode": "public void rotate(int[] nums, int k) {\n    // Normalize k: k = k % nums.length\n    // Three reverse trick: reverse all, reverse [0..k-1], reverse [k..n-1]\n}",
+      "modelAnswer": "public void rotate(int[] nums, int k) {\n    // Normalize k: k = k % nums.length\n    // Three reverse trick: reverse all, reverse [0..k-1], reverse [k..n-1]\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d06c2",
@@ -290,7 +299,16 @@
         "[2,2] -> [2]"
       ],
       "targetMinutes": 20,
-      "starterCode": "public List<Integer> findDuplicates(int[] nums) {\n    // For each num, go to index abs(num)-1 and negate\n    // If already negative, it's a duplicate\n    return new ArrayList<>();\n}"
+      "starterCode": "public List<Integer> findDuplicates(int[] nums) {\n    // For each num, go to index abs(num)-1 and negate\n    // If already negative, it's a duplicate\n    return new ArrayList<>();\n}",
+      "modelAnswer": "public List<Integer> findDuplicates(int[] nums) {\n    // For each num, go to index abs(num)-1 and negate\n    // If already negative, it's a duplicate\n    return new ArrayList<>();\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d06c3",
@@ -311,7 +329,16 @@
         "[0,0,1] -> [1,0,0]"
       ],
       "targetMinutes": 15,
-      "starterCode": "public void moveZeroes(int[] nums) {\n    // Two pointers: slow tracks insert position\n    // Fast scans; when nums[fast]!=0, place at slow position\n}"
+      "starterCode": "public void moveZeroes(int[] nums) {\n    // Two pointers: slow tracks insert position\n    // Fast scans; when nums[fast]!=0, place at slow position\n}",
+      "modelAnswer": "public void moveZeroes(int[] nums) {\n    // Two pointers: slow tracks insert position\n    // Fast scans; when nums[fast]!=0, place at slow position\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d06dsa",
@@ -333,7 +360,16 @@
         "[-2,3,-4] -> 24"
       ],
       "targetMinutes": 25,
-      "starterCode": "public int maxProduct(int[] nums) {\n    // Track both maxProd and minProd at each position\n    // At negative number, swap max and min\n    return 0;\n}"
+      "starterCode": "public int maxProduct(int[] nums) {\n    // Track both maxProd and minProd at each position\n    // At negative number, swap max and min\n    return 0;\n}",
+      "modelAnswer": "public int maxProduct(int[] nums) {\n    // Track both maxProd and minProd at each position\n    // At negative number, swap max and min\n    return 0;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Identify input/output from the signature\n// 2. Brute force: iterate and check/accumulate\n// 3. Optimise if needed: HashMap for O(1) lookup, sorting for ordered data\n\n// Model implementation:\n// if (nums.length == 0) return Integer.MIN_VALUE;\n// int max = nums[0];\n// for (int i = 1; i < nums.length; i++) {\n//     if (nums[i] > max) max = nums[i];\n// }\n// return max;\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "State the problem clearly: what is the input, what is the output?",
+        "Brute force first — even O(n²) is fine as a starting point",
+        "Ask: what data structure reduces the work? HashMap for O(1) lookup, Set to track seen values",
+        "Handle edge cases: empty array, single element, all same values, negative numbers",
+        "Trace through one example step by step with your chosen algorithm",
+        "State time complexity (O(n), O(n log n)) and space complexity (O(1), O(n))"
+      ]
     }
   ],
   "sqlPractice": [
@@ -353,17 +389,17 @@
   "writtenModelAnswers": [
     "An array is a fixed-size, contiguous block of memory holding elements of the same type. Declare with int[] nums = new int[5] or String[] names = {\"Alice\", \"Bob\"}. Access by zero-based index (nums[0]). Arrays are fast for random access (O(1)) but cannot change size after creation.",
     "Arrays appear in Java when processing fixed-size data sets, in DSA algorithm solutions, and as return types for multi-value methods. Spring Boot typically uses List instead of raw arrays in API responses, but arrays are common in coding challenges and algorithm implementations.",
-    "Accessing an index outside the array bounds throws ArrayIndexOutOfBoundsException \u2014 the most common array bug. Not initializing array elements (they default to 0/null) causes unexpected null results. Using array length instead of array.length - 1 in loops causes off-by-one errors.",
-    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Accessing an index outside the array bounds throws ArrayIndexOutOfBoundsException — the most common array bug. Not initializing array elements (they default to 0/null) causes unexpected null results. Using array length instead of array.length - 1 in loops causes off-by-one errors.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records — directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
     "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
-    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen — always communicate the state.",
     "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
     "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
     "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
     "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
   ],
   "businessModelAnswers": [
-    "Ask: Is the size fixed at compile time or does it grow dynamically (if dynamic, prefer ArrayList)? What type of elements does it store? Should duplicates be allowed? Does the order matter? Should elements be sorted? What happens when the array is empty \u2014 return null, empty array, or throw an exception?",
+    "Ask: Is the size fixed at compile time or does it grow dynamically (if dynamic, prefer ArrayList)? What type of elements does it store? Should duplicates be allowed? Does the order matter? Should elements be sorted? What happens when the array is empty — return null, empty array, or throw an exception?",
     "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
     "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]

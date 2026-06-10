@@ -268,7 +268,16 @@
         "Edge case handled"
       ],
       "targetMinutes": 20,
-      "starterCode": "public class Dog extends Animal {\n    private String breed;\n    public Dog(String name, String sound, String breed) {\n        super(name, sound);\n        this.breed = breed;\n    }\n}"
+      "starterCode": "public class Dog extends Animal {\n    private String breed;\n    public Dog(String name, String sound, String breed) {\n        super(name, sound);\n        this.breed = breed;\n    }\n}",
+      "modelAnswer": "// ─── HOW TO SOLVE: inheritance chain ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: create animal (name, sound) -> dog (breed) -> goldenretriever (certifiedservice). each adds its constructor using super(). override tostring() at each level adding its unique field.\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d14c2",
@@ -288,7 +297,16 @@
         "Edge case handled"
       ],
       "targetMinutes": 20,
-      "starterCode": "// Animal.calculateReward() -> 10\n// Dog.calculateReward() -> super()*2 = 20\n// GoldenRetriever.calculateReward() -> service?60:20"
+      "starterCode": "// Animal.calculateReward() -> 10\n// Dog.calculateReward() -> super()*2 = 20\n// GoldenRetriever.calculateReward() -> service?60:20",
+      "modelAnswer": "// ─── HOW TO SOLVE: method overriding and super ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: in the above hierarchy, add calculatereward() in animal (returns 10), override in dog (returns super()*2), override in goldenretriever if certifiedservice (returns super()*3 else super()).\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d14c3",
@@ -308,7 +326,16 @@
         "Edge case handled"
       ],
       "targetMinutes": 20,
-      "starterCode": "-- Give 10% raise to Engineering\nUPDATE employees SET salary = ..."
+      "starterCode": "-- Give 10% raise to Engineering\nUPDATE employees SET salary = ...",
+      "modelAnswer": "// ─── HOW TO SOLVE: update statement ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: write sql to update all employees in dept='engineering' to get a 10% salary raise. use: update employees set salary = salary * 1.10 where dept='engineering'\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d14dsa",
@@ -330,7 +357,16 @@
         "[1,1,1,1], h=4 -> 1"
       ],
       "targetMinutes": 25,
-      "starterCode": "public int minEatingSpeed(int[] piles, int h) {\n    // Binary search on k from 1 to max(piles)\n    // For each k, check total hours = sum(ceil(pile/k))\n    return 0;\n}"
+      "starterCode": "public int minEatingSpeed(int[] piles, int h) {\n    // Binary search on k from 1 to max(piles)\n    // For each k, check total hours = sum(ceil(pile/k))\n    return 0;\n}",
+      "modelAnswer": "public int minEatingSpeed(int[] piles, int h) {\n    // Binary search on k from 1 to max(piles)\n    // For each k, check total hours = sum(ceil(pile/k))\n    return 0;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Identify input/output from the signature\n// 2. Brute force: iterate and check/accumulate\n// 3. Optimise if needed: HashMap for O(1) lookup, sorting for ordered data\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "State the problem clearly: what is the input, what is the output?",
+        "Brute force first — even O(n²) is fine as a starting point",
+        "Ask: what data structure reduces the work? HashMap for O(1) lookup, Set to track seen values",
+        "Handle edge cases: empty array, single element, all same values, negative numbers",
+        "Trace through one example step by step with your chosen algorithm",
+        "State time complexity (O(n), O(n log n)) and space complexity (O(1), O(n))"
+      ]
     }
   ],
   "sqlPractice": [
@@ -351,9 +387,9 @@
     "Inheritance allows a child class to extend a parent class, inheriting all its non-private fields and methods and adding its own. Use the extends keyword. Employee extends Person, inheriting name and email while adding salary and department. A child object is also of the parent type (is-a relationship).",
     "In Spring Boot, BaseEntity (id, createdAt, updatedAt) is extended by all entity classes. A BaseService with common CRUD logic can be extended by specific services. In Angular, a BaseComponent with shared lifecycle logic can be extended by feature components.",
     "Deep inheritance hierarchies (more than 2-3 levels) make code hard to follow and change. Inheriting from a class when composition would be better violates good design. Not calling super() in the child constructor skips parent initialization. Overriding methods incorrectly breaks the Liskov Substitution Principle.",
-    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records — directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
     "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
-    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen — always communicate the state.",
     "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
     "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
     "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",

@@ -268,7 +268,16 @@
         "Edge case handled"
       ],
       "targetMinutes": 20,
-      "starterCode": "public class Salary {\n    private double amount;\n    public void setSalary(double newAmount) {\n        if (newAmount <= amount) throw new IllegalArgumentException(\"Salary can only increase\");\n        this.amount = newAmount;\n    }\n}"
+      "starterCode": "public class Salary {\n    private double amount;\n    public void setSalary(double newAmount) {\n        if (newAmount <= amount) throw new IllegalArgumentException(\"Salary can only increase\");\n        this.amount = newAmount;\n    }\n}",
+      "modelAnswer": "public class Salary {\n    private double amount;\n    public void setSalary(double newAmount) {\n        if (newAmount <= amount) throw new IllegalArgumentException(\"Salary can only increase\");\n        this.amount = newAmount;\n    }\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d17c2",
@@ -288,7 +297,16 @@
         "Edge case handled"
       ],
       "targetMinutes": 20,
-      "starterCode": "public final class Money {\n    private final double amount;\n    private final String currency;\n    public Money(double amount, String currency) {\n        if (amount < 0) throw new IllegalArgumentException();\n        // set fields\n    }\n    public Money add(Money other) { /* return new Money */ return null; }\n}"
+      "starterCode": "public final class Money {\n    private final double amount;\n    private final String currency;\n    public Money(double amount, String currency) {\n        if (amount < 0) throw new IllegalArgumentException();\n        // set fields\n    }\n    public Money add(Money other) { /* return new Money */ return null; }\n}",
+      "modelAnswer": "public final class Money {\n    private final double amount;\n    private final String currency;\n    public Money(double amount, String currency) {\n        if (amount < 0) throw new IllegalArgumentException();\n        // set fields\n    }\n    public Money add(Money other) { /* return new Money */ return null; }\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d17c3",
@@ -308,7 +326,16 @@
         "Edge case handled"
       ],
       "targetMinutes": 20,
-      "starterCode": "SELECT dept, COUNT(*) as emp_count, AVG(salary) as avg_sal\nFROM employees\nGROUP BY dept\nHAVING ..."
+      "starterCode": "SELECT dept, COUNT(*) as emp_count, AVG(salary) as avg_sal\nFROM employees\nGROUP BY dept\nHAVING ...",
+      "modelAnswer": "// ─── HOW TO SOLVE: group by with having ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: write sql to find departments with more than 3 employees and average salary above 70000.\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d17dsa",
@@ -331,7 +358,16 @@
         "s=abc -> false"
       ],
       "targetMinutes": 15,
-      "starterCode": "public boolean isPalindrome(String s) {\n    // Two pointers l=0, r=end\n    // Skip non-alphanumeric chars, compare lowercase chars\n    return false;\n}"
+      "starterCode": "public boolean isPalindrome(String s) {\n    // Two pointers l=0, r=end\n    // Skip non-alphanumeric chars, compare lowercase chars\n    return false;\n}",
+      "modelAnswer": "public boolean isPalindrome(String s) {\n    // Two pointers l=0, r=end\n    // Skip non-alphanumeric chars, compare lowercase chars\n    return false;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Identify input/output from the signature\n// 2. Brute force: iterate and check/accumulate\n// 3. Optimise if needed: HashMap for O(1) lookup, sorting for ordered data\n\n// Model implementation:\n// String clean = s.toLowerCase().replaceAll(\"[^a-z0-9]\", \"\");\n// int l = 0, r = clean.length() - 1;\n// while (l < r) {\n//     if (clean.charAt(l) != clean.charAt(r)) return false;\n//     l++; r--;\n// }\n// return true;\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "State the problem clearly: what is the input, what is the output?",
+        "Brute force first — even O(n²) is fine as a starting point",
+        "Ask: what data structure reduces the work? HashMap for O(1) lookup, Set to track seen values",
+        "Handle edge cases: empty array, single element, all same values, negative numbers",
+        "Trace through one example step by step with your chosen algorithm",
+        "State time complexity (O(n), O(n log n)) and space complexity (O(1), O(n))"
+      ]
     }
   ],
   "sqlPractice": [
@@ -352,9 +388,9 @@
     "Encapsulation protects an object's internal state by making fields private and exposing them only through public getter/setter methods. The class controls validation in setters (e.g., rejecting negative prices), hiding how data is stored internally. This is the 'information hiding' principle.",
     "In Spring Boot entities, fields are private and accessed via getters/setters (or Lombok's @Getter/@Setter). DTOs use private fields with controlled access. Encapsulation prevents external code from setting an Order's status directly to 'SHIPPED' without going through the business logic that validates the transition.",
     "Public fields allow any code to change state directly, bypassing validation and breaking invariants. Over-using setters on entities allows the database to be updated from anywhere in the codebase, making auditing changes difficult. Exposing mutable collections directly (via getters) allows callers to modify internal state.",
-    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records — directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
     "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
-    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen — always communicate the state.",
     "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
     "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
     "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",

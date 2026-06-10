@@ -268,7 +268,16 @@
         "Edge case handled"
       ],
       "targetMinutes": 20,
-      "starterCode": "Car car = new Car(\"Toyota\",\"Camry\",2023,28000.0);\ncar.display();\n// Toyota Camry 2023 $28000.0"
+      "starterCode": "Car car = new Car(\"Toyota\",\"Camry\",2023,28000.0);\ncar.display();\n// Toyota Camry 2023 $28000.0",
+      "modelAnswer": "// ─── HOW TO SOLVE: define a class with fields ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: create a car class with make (string), model (string), year (int), and priceusd (double). add a constructor, getters, and a display() method printing all fields.\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d11c2",
@@ -288,7 +297,16 @@
         "Edge case handled"
       ],
       "targetMinutes": 20,
-      "starterCode": "public Car(String make, String model, int year, double price) {\n    if (year < 1886) throw new IllegalArgumentException(\"Invalid year\");\n    // set fields\n}"
+      "starterCode": "public Car(String make, String model, int year, double price) {\n    if (year < 1886) throw new IllegalArgumentException(\"Invalid year\");\n    // set fields\n}",
+      "modelAnswer": "// ─── HOW TO SOLVE: class with validation in constructor ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: extend the car class: throw illegalargumentexception if year < 1886 or priceusd < 0.\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d11c3",
@@ -308,7 +326,16 @@
         "Edge case handled"
       ],
       "targetMinutes": 20,
-      "starterCode": "-- Write the SELECT query with aliases\nSELECT ..."
+      "starterCode": "-- Write the SELECT query with aliases\nSELECT ...",
+      "modelAnswer": "// ─── HOW TO SOLVE: basic select with alias ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: write a sql query to select customer_id, first_name, last_name, email from a customers table. alias first_name as given_name and last_name as family_name.\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d11dsa",
@@ -329,7 +356,16 @@
         "[1,3,5], target=3 -> 1"
       ],
       "targetMinutes": 15,
-      "starterCode": "public int search(int[] nums, int target) {\n    int lo = 0, hi = nums.length - 1;\n    while (lo <= hi) {\n        int mid = lo + (hi - lo) / 2;\n        // compare nums[mid] with target\n    }\n    return -1;\n}"
+      "starterCode": "public int search(int[] nums, int target) {\n    int lo = 0, hi = nums.length - 1;\n    while (lo <= hi) {\n        int mid = lo + (hi - lo) / 2;\n        // compare nums[mid] with target\n    }\n    return -1;\n}",
+      "modelAnswer": "public int search(int[] nums, int target) {\n    int lo = 0, hi = nums.length - 1;\n    while (lo <= hi) {\n        int mid = lo + (hi - lo) / 2;\n        // compare nums[mid] with target\n    }\n    return -1;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Identify input/output from the signature\n// 2. Brute force: iterate and check/accumulate\n// 3. Optimise if needed: HashMap for O(1) lookup, sorting for ordered data\n\n// Model implementation:\n// Arrays.sort(arr);         // O(n log n) — modifies in place\n// Collections.sort(list);   // for ArrayList\n// Arrays.sort(arr, (a,b) -> b - a);  // reverse order comparator\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "State the problem clearly: what is the input, what is the output?",
+        "Brute force first — even O(n²) is fine as a starting point",
+        "Ask: what data structure reduces the work? HashMap for O(1) lookup, Set to track seen values",
+        "Handle edge cases: empty array, single element, all same values, negative numbers",
+        "Trace through one example step by step with your chosen algorithm",
+        "State time complexity (O(n), O(n log n)) and space complexity (O(1), O(n))"
+      ]
     }
   ],
   "sqlPractice": [
@@ -349,10 +385,10 @@
   "writtenModelAnswers": [
     "A class is a blueprint that defines the structure (fields) and behavior (methods) of objects. It groups related data and logic together. You define it with the class keyword, and all objects created from that class share the same structure but have their own field values.",
     "In Spring Boot, every @Entity is a class mapping to a database table, every @Service is a class with business logic, and every DTO is a class defining the API contract. Poorly designed classes (too large, too many responsibilities) make the codebase hard to maintain and test.",
-    "Classes with too many responsibilities (violating Single Responsibility Principle) become hard to change \u2014 fixing one thing breaks another. Public fields instead of private + getter/setter remove encapsulation. Static state in a class causes bugs in multithreaded Spring Boot applications.",
-    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "Classes with too many responsibilities (violating Single Responsibility Principle) become hard to change — fixing one thing breaks another. Public fields instead of private + getter/setter remove encapsulation. Static state in a class causes bugs in multithreaded Spring Boot applications.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records — directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
     "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
-    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen — always communicate the state.",
     "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
     "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
     "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",

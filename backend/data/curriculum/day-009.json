@@ -269,7 +269,16 @@
         "[[0,50.0]] -> 0.0"
       ],
       "targetMinutes": 15,
-      "starterCode": "public double calculateTotal(List<double[]> items) {\n    if (items == null || items.isEmpty()) return 0.0;\n    // sum up quantity * unitPrice for each item\n    return 0.0;\n}"
+      "starterCode": "public double calculateTotal(List<double[]> items) {\n    if (items == null || items.isEmpty()) return 0.0;\n    // sum up quantity * unitPrice for each item\n    return 0.0;\n}",
+      "modelAnswer": "public double calculateTotal(List<double[]> items) {\n    if (items == null || items.isEmpty()) return 0.0;\n    // sum up quantity * unitPrice for each item\n    return 0.0;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d09c2",
@@ -289,7 +298,16 @@
         "'a a a' -> {a=3}"
       ],
       "targetMinutes": 20,
-      "starterCode": "public Map<String, Integer> wordFrequency(String text) {\n    Map<String, Integer> freq = new LinkedHashMap<>();\n    if (text == null || text.isBlank()) return freq;\n    // split, clean each word, count\n    return freq;\n}"
+      "starterCode": "public Map<String, Integer> wordFrequency(String text) {\n    Map<String, Integer> freq = new LinkedHashMap<>();\n    if (text == null || text.isBlank()) return freq;\n    // split, clean each word, count\n    return freq;\n}",
+      "modelAnswer": "// ─── HOW TO SOLVE: string word frequency counter ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: write wordfrequency(string text) returning a map<string,integer> of word frequencies. split by spaces, case-insensitive, ignore punctuation (strip non-alphanumeric from each word).\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d09c3",
@@ -308,7 +326,16 @@
         "push(1),push(2),push(3),pop() -> 3"
       ],
       "targetMinutes": 25,
-      "starterCode": "class MyStack {\n    Queue<Integer> q1 = new LinkedList<>(), q2 = new LinkedList<>();\n    public void push(int val) { }\n    public int pop() { return 0; }\n    public int peek() { return 0; }\n    public boolean isEmpty() { return true; }\n}"
+      "starterCode": "class MyStack {\n    Queue<Integer> q1 = new LinkedList<>(), q2 = new LinkedList<>();\n    public void push(int val) { }\n    public int pop() { return 0; }\n    public int peek() { return 0; }\n    public boolean isEmpty() { return true; }\n}",
+      "modelAnswer": "class MyStack {\n    Queue<Integer> q1 = new LinkedList<>(), q2 = new LinkedList<>();\n    public void push(int val) { }\n    public int pop() { return 0; }\n    public int peek() { return 0; }\n    public boolean isEmpty() { return true; }\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d09dsa",
@@ -330,7 +357,16 @@
         "[-2,0,1,1,2] -> [[-2,0,2],[-2,1,1]]"
       ],
       "targetMinutes": 30,
-      "starterCode": "public List<List<Integer>> threeSum(int[] nums) {\n    // Sort array. For each i, use two pointers l=i+1, r=end\n    // Skip duplicates for i, l, r\n    return new ArrayList<>();\n}"
+      "starterCode": "public List<List<Integer>> threeSum(int[] nums) {\n    // Sort array. For each i, use two pointers l=i+1, r=end\n    // Skip duplicates for i, l, r\n    return new ArrayList<>();\n}",
+      "modelAnswer": "public List<List<Integer>> threeSum(int[] nums) {\n    // Sort array. For each i, use two pointers l=i+1, r=end\n    // Skip duplicates for i, l, r\n    return new ArrayList<>();\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Identify input/output from the signature\n// 2. Brute force: iterate and check/accumulate\n// 3. Optimise if needed: HashMap for O(1) lookup, sorting for ordered data\n\n// Model implementation:\n// int sum = 0;\n// for (int num : nums) sum += num;\n// return sum;\n// Edge case: empty array → returns 0 (correct — sum of nothing is 0)\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "State the problem clearly: what is the input, what is the output?",
+        "Brute force first — even O(n²) is fine as a starting point",
+        "Ask: what data structure reduces the work? HashMap for O(1) lookup, Set to track seen values",
+        "Handle edge cases: empty array, single element, all same values, negative numbers",
+        "Trace through one example step by step with your chosen algorithm",
+        "State time complexity (O(n), O(n log n)) and space complexity (O(1), O(n))"
+      ]
     }
   ],
   "sqlPractice": [
@@ -349,11 +385,11 @@
   ],
   "writtenModelAnswers": [
     "Mini project thinking means taking a business requirement and designing a small working application from scratch. You identify entities, define their relationships, plan the data flow, and connect frontend, backend, and database in a simple but complete feature. The goal is to practice turning a requirement into working code.",
-    "In a real project, this mindset applies to every feature: you sketch the Angular component \u2192 API endpoint \u2192 service method \u2192 repository query \u2192 database table flow. It prevents building pieces in isolation that don't connect at the end.",
+    "In a real project, this mindset applies to every feature: you sketch the Angular component → API endpoint → service method → repository query → database table flow. It prevents building pieces in isolation that don't connect at the end.",
     "Building each layer in isolation without testing the connection leads to integration bugs discovered late. Not defining the API contract (request/response structure) early causes frontend and backend to be incompatible. Skipping validation means invalid data reaches the database.",
-    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records — directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
     "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
-    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen — always communicate the state.",
     "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
     "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
     "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",

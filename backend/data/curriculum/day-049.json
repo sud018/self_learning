@@ -269,7 +269,16 @@
         "Invalid request returns 400 with error message"
       ],
       "targetMinutes": 25,
-      "starterCode": "// Spring Boot: Logging\n@RestController\n@RequestMapping(\"/api/orders\")\npublic class OrderController {\n    // Inject service, write endpoint\n}"
+      "starterCode": "// Spring Boot: Logging\n@RestController\n@RequestMapping(\"/api/orders\")\npublic class OrderController {\n    // Inject service, write endpoint\n}",
+      "modelAnswer": "// ─── HOW TO SOLVE: implement logging in spring boot ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: write the spring boot code for logging. show the key annotation, class structure, and a sample method with proper request/response handling.\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d49c2",
@@ -291,7 +300,16 @@
         "valid input -> OrderResponse with correct fields"
       ],
       "targetMinutes": 30,
-      "starterCode": "@Service\npublic class OrderService {\n    public OrderResponse createOrder(CreateOrderRequest req) {\n        // 1. validate\n        // 2. build entity\n        // 3. save\n        // 4. map to response DTO\n        return null;\n    }\n}"
+      "starterCode": "@Service\npublic class OrderService {\n    public OrderResponse createOrder(CreateOrderRequest req) {\n        // 1. validate\n        // 2. build entity\n        // 3. save\n        // 4. map to response DTO\n        return null;\n    }\n}",
+      "modelAnswer": "@Service\npublic class OrderService {\n    public OrderResponse createOrder(CreateOrderRequest req) {\n        // 1. validate\n        // 2. build entity\n        // 3. save\n        // 4. map to response DTO\n        return null;\n    }\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d49c3",
@@ -311,7 +329,16 @@
         "Results ordered by year, month"
       ],
       "targetMinutes": 25,
-      "starterCode": "-- Monthly sales report\nSELECT \n    YEAR(order_date) as year,\n    MONTH(order_date) as month,\n    COUNT(*) as order_count,\n    SUM(total_amount) as total_sales,\n    AVG(total_amount) as avg_order\nFROM orders\nGROUP BY YEAR(order_date), MONTH(order_date)\nHAVING COUNT(*) > 10\nORDER BY year, month;"
+      "starterCode": "-- Monthly sales report\nSELECT \n    YEAR(order_date) as year,\n    MONTH(order_date) as month,\n    COUNT(*) as order_count,\n    SUM(total_amount) as total_sales,\n    AVG(total_amount) as avg_order\nFROM orders\nGROUP BY YEAR(order_date), MONTH(order_date)\nHAVING COUNT(*) > 10\nORDER BY year, month;",
+      "modelAnswer": "// ─── HOW TO SOLVE: complex sql for business reporting ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: write a sql query to generate a monthly sales report: sum of total_amount by month and year, number of orders, and average order value. show only months with more than 10 orders.\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d49dsa",
@@ -333,7 +360,16 @@
         "[1,null,2] -> [[1],[2]]"
       ],
       "targetMinutes": 20,
-      "starterCode": "public List<List<Integer>> levelOrder(TreeNode root) {\n    // BFS with a Queue\n    // For each level: poll all current level nodes, add their children\n    return new ArrayList<>();\n}"
+      "starterCode": "public List<List<Integer>> levelOrder(TreeNode root) {\n    // BFS with a Queue\n    // For each level: poll all current level nodes, add their children\n    return new ArrayList<>();\n}",
+      "modelAnswer": "public List<List<Integer>> levelOrder(TreeNode root) {\n    // BFS with a Queue\n    // For each level: poll all current level nodes, add their children\n    return new ArrayList<>();\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Identify input/output from the signature\n// 2. Brute force: iterate and check/accumulate\n// 3. Optimise if needed: HashMap for O(1) lookup, sorting for ordered data\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "State the problem clearly: what is the input, what is the output?",
+        "Brute force first — even O(n²) is fine as a starting point",
+        "Ask: what data structure reduces the work? HashMap for O(1) lookup, Set to track seen values",
+        "Handle edge cases: empty array, single element, all same values, negative numbers",
+        "Trace through one example step by step with your chosen algorithm",
+        "State time complexity (O(n), O(n log n)) and space complexity (O(1), O(n))"
+      ]
     }
   ],
   "sqlPractice": [
@@ -354,16 +390,16 @@
     "Logging in Spring Boot uses SLF4J as the abstraction layer with Logback as the default implementation. Inject a logger with private static final Logger log = LoggerFactory.getLogger(YourClass.class). Log levels: TRACE, DEBUG, INFO, WARN, ERROR. Use structured logging (include userId, orderId) to make log messages searchable in production.",
     "Logging is the primary debugging tool in production Spring Boot applications. Log at INFO for normal business events (order created, payment processed), WARN for recoverable issues (retry attempted), and ERROR for unexpected failures with the exception object for stack trace. Never log passwords, tokens, or PII.",
     "Logging too little means production bugs are invisible and undebuggable. Logging too much (DEBUG in production) floods the log storage and hides important messages. Logging sensitive data (passwords, credit card numbers) violates security and compliance rules. Using System.out.println instead of a logger loses log level, timestamp, and correlation ID.",
-    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records — directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
     "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
-    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen — always communicate the state.",
     "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
     "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
     "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
     "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
   ],
   "businessModelAnswers": [
-    "Ask: What events in this flow are important to trace in production? What context (user ID, order ID, request ID) should be included in each log statement? What log level is appropriate \u2014 INFO for normal flow, WARN for degraded, ERROR for failures? Will this be sent to a centralized log aggregator (ELK, Splunk)? Is sensitive data accidentally included?",
+    "Ask: What events in this flow are important to trace in production? What context (user ID, order ID, request ID) should be included in each log statement? What log level is appropriate — INFO for normal flow, WARN for degraded, ERROR for failures? Will this be sent to a centralized log aggregator (ELK, Splunk)? Is sensitive data accidentally included?",
     "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
     "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]

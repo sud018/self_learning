@@ -268,7 +268,16 @@
         "Edge case handled"
       ],
       "targetMinutes": 20,
-      "starterCode": "public abstract class ReportGenerator {\n    public String generateReport() {\n        return formatHeader() + \"\\n\" + getData() + \"\\nEnd of Report\";\n    }\n    protected abstract String formatHeader();\n    protected abstract String getData();\n}"
+      "starterCode": "public abstract class ReportGenerator {\n    public String generateReport() {\n        return formatHeader() + \"\\n\" + getData() + \"\\nEnd of Report\";\n    }\n    protected abstract String formatHeader();\n    protected abstract String getData();\n}",
+      "modelAnswer": "public abstract class ReportGenerator {\n    public String generateReport() {\n        return formatHeader() + \"\\n\" + getData() + \"\\nEnd of Report\";\n    }\n    protected abstract String formatHeader();\n    protected abstract String getData();\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d16c2",
@@ -288,7 +297,16 @@
         "Edge case handled"
       ],
       "targetMinutes": 20,
-      "starterCode": "public interface Printable { void print(); }\npublic interface Saveable { void save(String path); }\npublic class Document implements Printable, Saveable { ... }"
+      "starterCode": "public interface Printable { void print(); }\npublic interface Saveable { void save(String path); }\npublic class Document implements Printable, Saveable { ... }",
+      "modelAnswer": "// ─── HOW TO SOLVE: interface for abstraction ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: define printable interface with print(). define saveable with save(string path). create document implementing both. show how accepting printable in a method hides implementation details.\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d16c3",
@@ -308,7 +326,16 @@
         "Edge case handled"
       ],
       "targetMinutes": 20,
-      "starterCode": "-- Distinct departments\nSELECT DISTINCT dept FROM employees ORDER BY dept;\n-- Count per department\nSELECT ..."
+      "starterCode": "-- Distinct departments\nSELECT DISTINCT dept FROM employees ORDER BY dept;\n-- Count per department\nSELECT ...",
+      "modelAnswer": "// ─── HOW TO SOLVE: select with distinct and order ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: write sql to get distinct departments from employees, ordered alphabetically. also write a query to count employees per department.\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d16dsa",
@@ -330,7 +357,16 @@
         "s=aa, t=ab -> false"
       ],
       "targetMinutes": 15,
-      "starterCode": "public boolean isAnagram(String s, String t) {\n    // Option 1: sort both strings, compare\n    // Option 2: int[26] freq array for s, subtract for t\n    return false;\n}"
+      "starterCode": "public boolean isAnagram(String s, String t) {\n    // Option 1: sort both strings, compare\n    // Option 2: int[26] freq array for s, subtract for t\n    return false;\n}",
+      "modelAnswer": "public boolean isAnagram(String s, String t) {\n    // Option 1: sort both strings, compare\n    // Option 2: int[26] freq array for s, subtract for t\n    return false;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Identify input/output from the signature\n// 2. Brute force: iterate and check/accumulate\n// 3. Optimise if needed: HashMap for O(1) lookup, sorting for ordered data\n\n// Pattern for boolean methods:\n// - Start with the false / guard conditions\n// - if (condition_that_makes_it_false) return false;\n// - All other paths return true\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "State the problem clearly: what is the input, what is the output?",
+        "Brute force first — even O(n²) is fine as a starting point",
+        "Ask: what data structure reduces the work? HashMap for O(1) lookup, Set to track seen values",
+        "Handle edge cases: empty array, single element, all same values, negative numbers",
+        "Trace through one example step by step with your chosen algorithm",
+        "State time complexity (O(n), O(n log n)) and space complexity (O(1), O(n))"
+      ]
     }
   ],
   "sqlPractice": [
@@ -351,16 +387,16 @@
     "Abstraction hides complexity by exposing only what the caller needs to know. In Java, abstract classes provide partial implementation; interfaces provide pure contracts. A caller uses a PaymentService interface without knowing whether it calls Stripe, PayPal, or a mock. Abstraction reduces coupling between components.",
     "In Spring Boot, service interfaces abstract business logic from controllers. Repository interfaces (JpaRepository) abstract database queries. Angular services abstract HTTP calls from components. This lets you swap implementations (e.g., mock in tests, real in production) without changing calling code.",
     "Too much abstraction (over-engineering) makes code harder to understand without benefit. Exposing implementation details through a public interface (leaky abstraction) defeats the purpose. Not abstracting I/O and external services makes unit testing impossible.",
-    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records — directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
     "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
-    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen — always communicate the state.",
     "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
     "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
     "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
     "Five-point summary: (1) define the concept clearly, (2) explain why Java or the framework needs it, (3) describe how it works internally step by step, (4) give a real full-stack project usage example, (5) name the most common mistake and how to avoid it."
   ],
   "businessModelAnswers": [
-    "Ask: What does the caller need to know, and what should be hidden? Can I define a clean interface that won't need to change even if the implementation changes? How will I test this \u2014 do I need a mock or fake? Are there multiple current or future implementations that justify an interface?",
+    "Ask: What does the caller need to know, and what should be hidden? Can I define a clean interface that won't need to change even if the implementation changes? How will I test this — do I need a mock or fake? Are there multiple current or future implementations that justify an interface?",
     "Check the server logs first to find which request triggered the wrong data. Then query the database directly to compare expected vs actual values. Add structured logging to the relevant service method (log inputs, outputs, and any validation failures) so future issues can be diagnosed in minutes, not hours.",
     "The API response would be: { \"metric\": \"active_orders\", \"value\": 142, \"period\": \"2024-06-09\" }. The service runs: SELECT COUNT(*) FROM orders WHERE status='active' AND DATE(created_at)=CURDATE(). This gives the manager a daily health indicator without needing database access."
   ]

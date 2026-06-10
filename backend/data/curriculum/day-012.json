@@ -268,7 +268,16 @@
         "Edge case handled"
       ],
       "targetMinutes": 20,
-      "starterCode": "public Order copyOrder(Order src) {\n    // new ArrayList<>(src.items) for deep copy\n    return null;\n}"
+      "starterCode": "public Order copyOrder(Order src) {\n    // new ArrayList<>(src.items) for deep copy\n    return null;\n}",
+      "modelAnswer": "public Order copyOrder(Order src) {\n    // new ArrayList<>(src.items) for deep copy\n    return null;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d12c2",
@@ -288,7 +297,16 @@
         "Edge case handled"
       ],
       "targetMinutes": 20,
-      "starterCode": "@Override\npublic boolean equals(Object o) {\n    if (this == o) return true;\n    if (!(o instanceof Order)) return false;\n    Order other = (Order) o;\n    return Objects.equals(this.orderId, other.orderId);\n}"
+      "starterCode": "@Override\npublic boolean equals(Object o) {\n    if (this == o) return true;\n    if (!(o instanceof Order)) return false;\n    Order other = (Order) o;\n    return Objects.equals(this.orderId, other.orderId);\n}",
+      "modelAnswer": "@Override\npublic boolean equals(Object o) {\n    if (this == o) return true;\n    if (!(o instanceof Order)) return false;\n    Order other = (Order) o;\n    return Objects.equals(this.orderId, other.orderId);\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// Pattern for boolean methods:\n// - Start with the false / guard conditions\n// - if (condition_that_makes_it_false) return false;\n// - All other paths return true\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d12c3",
@@ -308,7 +326,16 @@
         "Edge case handled"
       ],
       "targetMinutes": 20,
-      "starterCode": "-- Select pending orders over 100, newest first\nSELECT ..."
+      "starterCode": "-- Select pending orders over 100, newest first\nSELECT ...",
+      "modelAnswer": "// ─── HOW TO SOLVE: where with multiple conditions ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: write sql to find all orders where status='pending' and total_amount > 100. sort by order_date descending.\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d12dsa",
@@ -330,7 +357,16 @@
         "[[1]], target=2 -> false"
       ],
       "targetMinutes": 20,
-      "starterCode": "public boolean searchMatrix(int[][] matrix, int target) {\n    // Treat 2D as 1D: mid = m*n/2\n    // row = mid/n, col = mid%n\n    return false;\n}"
+      "starterCode": "public boolean searchMatrix(int[][] matrix, int target) {\n    // Treat 2D as 1D: mid = m*n/2\n    // row = mid/n, col = mid%n\n    return false;\n}",
+      "modelAnswer": "public boolean searchMatrix(int[][] matrix, int target) {\n    // Treat 2D as 1D: mid = m*n/2\n    // row = mid/n, col = mid%n\n    return false;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Identify input/output from the signature\n// 2. Brute force: iterate and check/accumulate\n// 3. Optimise if needed: HashMap for O(1) lookup, sorting for ordered data\n\n// Model implementation:\n// Arrays.sort(arr);         // O(n log n) — modifies in place\n// Collections.sort(list);   // for ArrayList\n// Arrays.sort(arr, (a,b) -> b - a);  // reverse order comparator\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "State the problem clearly: what is the input, what is the output?",
+        "Brute force first — even O(n²) is fine as a starting point",
+        "Ask: what data structure reduces the work? HashMap for O(1) lookup, Set to track seen values",
+        "Handle edge cases: empty array, single element, all same values, negative numbers",
+        "Trace through one example step by step with your chosen algorithm",
+        "State time complexity (O(n), O(n log n)) and space complexity (O(1), O(n))"
+      ]
     }
   ],
   "sqlPractice": [
@@ -351,9 +387,9 @@
     "An object is a specific instance of a class created with the new keyword. Each object has its own copy of instance fields and can call the methods defined in its class. Objects live on the heap, are referenced by variables, and are automatically garbage-collected when no longer reachable.",
     "In Spring Boot, the IoC container creates and manages bean objects (services, repositories, controllers) automatically. JPA creates entity objects mapped to database rows. Understanding object lifecycle helps you understand bean scope and when to use @Transient vs persistent fields.",
     "Modifying a shared object reference passed to a method changes the original object unexpectedly (pass-by-reference behavior). Returning null instead of an Optional or empty object causes NullPointerException in the caller. Creating too many large objects in a tight loop causes GC pressure and performance degradation.",
-    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records — directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
     "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
-    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen — always communicate the state.",
     "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
     "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
     "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",

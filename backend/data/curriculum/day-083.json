@@ -268,7 +268,16 @@
         "Implementation is correct"
       ],
       "targetMinutes": 30,
-      "starterCode": "/*\n * 1. What: ...\n * 2. Why: ...\n * 3. How internally: ...\n */\npublic void implementExample() {\n    // Your implementation\n}"
+      "starterCode": "/*\n * 1. What: ...\n * 2. Why: ...\n * 3. How internally: ...\n */\npublic void implementExample() {\n    // Your implementation\n}",
+      "modelAnswer": "/*\n * 1. What: ...\n * 2. Why: ...\n * 3. How internally: ...\n */\npublic void implementExample() {\n    // Your implementation\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d83c2",
@@ -291,7 +300,16 @@
         "Non-existent resource returns 404"
       ],
       "targetMinutes": 35,
-      "starterCode": "@RestController @RequestMapping(\"/api/resource\")\npublic class ResourceController {\n    @GetMapping public ResponseEntity<List<ResourceResponse>> getAll() { return null; }\n    @PostMapping public ResponseEntity<ResourceResponse> create(@Valid @RequestBody CreateResourceRequest req) { return null; }\n}"
+      "starterCode": "@RestController @RequestMapping(\"/api/resource\")\npublic class ResourceController {\n    @GetMapping public ResponseEntity<List<ResourceResponse>> getAll() { return null; }\n    @PostMapping public ResponseEntity<ResourceResponse> create(@Valid @RequestBody CreateResourceRequest req) { return null; }\n}",
+      "modelAnswer": "@RestController @RequestMapping(\"/api/resource\")\npublic class ResourceController {\n    @GetMapping public ResponseEntity<List<ResourceResponse>> getAll() { return null; }\n    @PostMapping public ResponseEntity<ResourceResponse> create(@Valid @RequestBody CreateResourceRequest req) { return null; }\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Read the return type — that's your target\n// 2. Think about edge cases: null, empty, zero, out-of-range\n// 3. Write the happy path first, then add edge-case guards\n\n// General pattern:\n// 1. Handle edge/null cases at the top\n// 2. Write the main logic\n// 3. Return the correct type\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d83c3",
@@ -312,7 +330,16 @@
         "Results in descending order"
       ],
       "targetMinutes": 25,
-      "starterCode": "-- Top 5 customers by order count this year\nSELECT \n    c.customer_id,\n    c.first_name,\n    COUNT(o.order_id) as order_count\nFROM customers c\nJOIN orders o ON c.customer_id = o.customer_id\nWHERE YEAR(o.order_date) = 2024\nGROUP BY c.customer_id, c.first_name\nHAVING COUNT(o.order_id) >= 1\nORDER BY order_count DESC\nLIMIT 5;"
+      "starterCode": "-- Top 5 customers by order count this year\nSELECT \n    c.customer_id,\n    c.first_name,\n    COUNT(o.order_id) as order_count\nFROM customers c\nJOIN orders o ON c.customer_id = o.customer_id\nWHERE YEAR(o.order_date) = 2024\nGROUP BY c.customer_id, c.first_name\nHAVING COUNT(o.order_id) >= 1\nORDER BY order_count DESC\nLIMIT 5;",
+      "modelAnswer": "// ─── HOW TO SOLVE: sql: complex reporting query ───\n//\n// Step 1: Read the return type carefully — that is your goal\n// Step 2: Walk through the example manually before writing code\n// Step 3: Handle edge cases first (empty, null, zero, single element)\n// Step 4: Write the simplest correct logic — don't over-engineer\n// Step 5: Test against each provided test case\n//\n// Hint from statement: write a sql query that uses at least: one join, one aggregate function (sum/count/avg), group by, having, and order by. the query should answer a realistic business question like 'top 5 customers by o\n//\n// Time complexity goal: O(n) single pass\n// Space complexity goal: O(1) if modifying in place\n",
+      "approach": [
+        "Read input/output types from the method signature before writing a single line",
+        "Walk through the example by hand — trace each step manually",
+        "Write the simplest correct solution first (brute force is fine to start)",
+        "Handle edge cases: empty array/string, null, zero, negative numbers, single element",
+        "Verify your return type matches the signature (int vs long vs String vs int[])",
+        "Run through the test cases mentally before submitting"
+      ]
     },
     {
       "id": "d83dsa",
@@ -334,7 +361,16 @@
         "[2,1,1] -> 1"
       ],
       "targetMinutes": 25,
-      "starterCode": "public int jump(int[] nums) {\n    // Greedy: track current window [l, r]\n    // Expand to farthest reachable from [l,r]\n    // Increment jumps, move l=r+1, r=farthest\n    return 0;\n}"
+      "starterCode": "public int jump(int[] nums) {\n    // Greedy: track current window [l, r]\n    // Expand to farthest reachable from [l,r]\n    // Increment jumps, move l=r+1, r=farthest\n    return 0;\n}",
+      "modelAnswer": "public int jump(int[] nums) {\n    // Greedy: track current window [l, r]\n    // Expand to farthest reachable from [l,r]\n    // Increment jumps, move l=r+1, r=farthest\n    return 0;\n}\n\n// ─── HOW TO THINK ABOUT THIS ───\n// 1. Identify input/output from the signature\n// 2. Brute force: iterate and check/accumulate\n// 3. Optimise if needed: HashMap for O(1) lookup, sorting for ordered data\n\n// Model implementation:\n// int sum = 0;\n// for (int num : nums) sum += num;\n// return sum;\n// Edge case: empty array → returns 0 (correct — sum of nothing is 0)\n\n// Time complexity: O(n) typical for single-pass problems\n// Space complexity: O(1) if in-place, O(n) if extra storage needed",
+      "approach": [
+        "State the problem clearly: what is the input, what is the output?",
+        "Brute force first — even O(n²) is fine as a starting point",
+        "Ask: what data structure reduces the work? HashMap for O(1) lookup, Set to track seen values",
+        "Handle edge cases: empty array, single element, all same values, negative numbers",
+        "Trace through one example step by step with your chosen algorithm",
+        "State time complexity (O(n), O(n log n)) and space complexity (O(1), O(n))"
+      ]
     }
   ],
   "sqlPractice": [
@@ -355,9 +391,9 @@
     "Angular Mock Interviews test: Component lifecycle (ngOnInit, ngOnDestroy), change detection (Default vs OnPush), data binding (@Input, @Output, two-way), services and DI, routing (params, guards), reactive forms, HTTP client, RxJS (switchMap, combineLatest, BehaviorSubject), lazy loading, and testing with TestBed.",
     "Angular interview questions verify that you can build and maintain complex SPAs. 'How does Angular change detection work?' tests framework internals. 'When would you use switchMap vs mergeMap?' tests RxJS understanding. 'How do you prevent memory leaks in Angular?' tests lifecycle management. Connecting answers to real app architecture is key.",
     "Not being able to explain the Angular change detection cycle (zones, OnPush) suggests a gap in understanding. Confusing template-driven and reactive forms without knowing when to use each is a common weakness. Not understanding the difference between Subject, BehaviorSubject, and ReplaySubject causes incorrect RxJS usage in interviews.",
-    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records \u2014 directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
+    "In an order or customer workflow, misusing this concept can cause incorrect totals, wrong status updates, or missing customer records — directly harming business trust. Understanding it correctly ensures data integrity and reliable workflows that users depend on.",
     "Spring Boot relies on Java as its foundation, so this concept appears in service beans, entity classes, and utility methods. Knowing it well prevents subtle bugs in backend logic that are hard to debug when an API returns wrong data.",
-    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen \u2014 always communicate the state.",
+    "Angular should show a spinner or disabled button while the request is in progress, display the data clearly on success, and show a user-friendly message with a retry option on error. Never leave the user staring at a blank screen — always communicate the state.",
     "A useful SQL pattern for this day is: SELECT customer_id, COUNT(*) as total FROM orders WHERE status = 'active' GROUP BY customer_id ORDER BY total DESC. This shows which customers have the most active orders, helping the business prioritize support and retention.",
     "Always test null/empty input, a single-element collection or string, boundary values (min and max), duplicate values, negative numbers where applicable, and large inputs near the constraint limit. Edge cases are where most production bugs hide.",
     "In an interview I would say: state the data structure or algorithm, explain why it is the best fit for this problem, walk through one example manually before coding, write clean code with meaningful names, and state time and space complexity at the end.",
