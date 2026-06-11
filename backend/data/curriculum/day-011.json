@@ -1,190 +1,142 @@
 {
   "id": "day-11-classes",
   "topic": "Day 11: Classes",
-  "notes": "Phase: PHASE 2: CORE JAVA\n\nDay 11 Detailed Notes: Classes\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is Classes. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn Classes, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Core Java OOP: Classes. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Spring Bean and Service Design. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Angular Component Thinking. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Filtering and Basic Joins. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Arrays and Strings. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for Classes: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of Classes as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Core Java OOP: Classes, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Spring Bean and Service Design, ask which object owns the logic and which dependency is injected. When working with Angular Component Thinking, ask what state the component owns and what comes from the backend. When working with Filtering and Basic Joins, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Collections Framework: List, Set, Map, and Iteration\n\n## The Collections Hierarchy\n```\nIterable\n  └── Collection\n        ├── List       → ArrayList, LinkedList, Vector\n        ├── Set        → HashSet, LinkedHashSet, TreeSet\n        └── Queue      → LinkedList, PriorityQueue\nMap (not a Collection)  → HashMap, LinkedHashMap, TreeMap\n```\n\n## List — Ordered, Allows Duplicates\n```java\nList<String> names = new ArrayList<>();   // Fast random access O(1), slow insert/delete in middle O(n)\nList<String> names = new LinkedList<>();  // Fast insert/delete anywhere O(1), slow random access O(n)\n\nnames.add(\"Alice\");\nnames.add(0, \"Bob\");        // insert at index 0 — shifts others right\nnames.get(1);               // \"Alice\" — O(1) for ArrayList, O(n) for LinkedList\nnames.remove(\"Alice\");      // remove by value — uses equals()\nnames.remove(0);            // remove by index\nnames.contains(\"Bob\");      // true — O(n) linear scan\nnames.size();               // 2\nnames.indexOf(\"Bob\");       // 0\nCollections.sort(names);    // in-place alphabetical sort\nCollections.reverse(names); // in-place reverse\n```\n`List.of(\"a\",\"b\",\"c\")` — immutable list (Java 9+). Cannot add/remove. Ideal for constants.\n\n## Set — No Duplicates, Unordered (Usually)\n```java\nSet<String> set = new HashSet<>();    // O(1) add/contains/remove, NO order\nSet<String> set = new LinkedHashSet<>(); // O(1) operations, preserves insertion order\nSet<String> set = new TreeSet<>();    // O(log n), sorted alphabetically\n\nset.add(\"Alice\");\nset.add(\"Alice\"); // ignored — already exists\nset.contains(\"Alice\"); // true — O(1) for HashSet\nset.remove(\"Alice\");\nset.size(); // 0\n```\nUse a Set when you need fast deduplication or membership testing.\n\n## Map — Key-Value Pairs\n```java\nMap<String, Integer> inventory = new HashMap<>();   // O(1) avg, no order\nMap<String, Integer> inventory = new LinkedHashMap<>(); // O(1), insertion order\nMap<String, Integer> inventory = new TreeMap<>();   // O(log n), sorted by key\n\ninventory.put(\"apple\", 10);\ninventory.put(\"apple\", 20);   // replaces: apple → 20\ninventory.get(\"apple\");       // 20\ninventory.getOrDefault(\"banana\", 0);  // 0 — safe null avoidance\ninventory.containsKey(\"apple\"); // true — O(1)\ninventory.containsValue(20);    // true — O(n) scan\ninventory.remove(\"apple\");\ninventory.size();\n\n// Iteration\nfor (Map.Entry<String, Integer> entry : inventory.entrySet()) {\n    System.out.println(entry.getKey() + \" → \" + entry.getValue());\n}\n// Java 8+\ninventory.forEach((key, val) -> System.out.println(key + \" → \" + val));\n\n// Compute helpers (very useful)\ninventory.merge(\"apple\", 5, Integer::sum); // add 5 to current value, or set 5 if absent\ninventory.computeIfAbsent(\"orange\", k -> 0); // add entry only if key is missing\n```\n\n## Choosing the Right Collection\n| Need | Best Choice |\n|---|---|\n| Ordered list with fast random access | `ArrayList` |\n| Frequent insert/delete at head | `LinkedList` |\n| Fast membership test, dedup | `HashSet` |\n| Sorted unique elements | `TreeSet` |\n| Fast key-value lookup | `HashMap` |\n| Key-value in insertion order | `LinkedHashMap` |\n| Key-value sorted by key | `TreeMap` |\n| Immutable list/set/map | `List.of()`, `Set.of()`, `Map.of()` |\n\n## Complexity Reference\n| Operation | ArrayList | LinkedList | HashSet | HashMap |\n|---|---|---|---|---|\n| get(index) | O(1) | O(n) | N/A | N/A |\n| add(end) | O(1) amort | O(1) | N/A | N/A |\n| add(middle) | O(n) | O(1) | N/A | N/A |\n| contains | O(n) | O(n) | O(1) | O(1) |\n| remove | O(n) | O(1) | O(1) | O(1) |\n\n## Connection to Spring Boot and JPA\nJPA relationships use collections:\n```java\n@OneToMany(mappedBy = \"order\", cascade = CascadeType.ALL)\nprivate List<OrderItem> items = new ArrayList<>(); // List preserves insertion order\n\n@ManyToMany\nprivate Set<Role> roles = new HashSet<>(); // Set prevents duplicate roles\n```\nSpring's `@RequestParam List<String> tags` auto-maps comma-separated query params to a List.\n\n## Common Mistakes\n1. **HashMap not thread-safe:** use `ConcurrentHashMap` in multi-threaded code.\n2. **`equals()`/`hashCode()` not overridden:** objects with the same data treated as different keys in HashMap/HashSet.\n3. **Modifying list during for-each:** throws `ConcurrentModificationException`. Use `removeIf()` or Iterator.\n4. **`get(key)` returning null:** could mean key maps to null, or key doesn't exist. Use `containsKey()` or `getOrDefault()`.\n",
   "conceptualQuestions": [
     {
       "id": "d11q1",
-      "prompt": "What is the main focus of Day 11?",
+      "prompt": "What is the time complexity of `HashMap.get(key)` for a well-distributed hash?",
       "options": [
-        "Classes",
-        "Only CSS styling",
-        "Only deployment"
+        "O(n)",
+        "O(log n)",
+        "O(1)",
+        "O(n²)"
       ],
-      "correctAnswer": "Classes",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "O(1)",
+      "explanation": "HashMap uses a hash of the key to locate a bucket directly. For a well-distributed hash with no collisions, this is a constant-time array index lookup. In worst case (all keys hash to same bucket), it degrades to O(n)."
     },
     {
       "id": "d11q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "Which Collection preserves insertion order AND has O(1) contains()?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "ArrayList",
+        "HashSet",
+        "LinkedHashSet",
+        "TreeSet"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "LinkedHashSet",
+      "explanation": "LinkedHashSet uses a doubly-linked list to maintain insertion order, plus a hash table for O(1) contains/add/remove. TreeSet is sorted but O(log n). HashSet is O(1) but unordered. ArrayList is ordered but O(n) contains."
     },
     {
       "id": "d11q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What does `map.getOrDefault(\"key\", 0)` do when the key doesn't exist?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "Throws NullPointerException",
+        "Returns null",
+        "Returns 0",
+        "Adds key with value 0"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "Returns 0",
+      "explanation": "getOrDefault(key, defaultValue) returns the mapped value if the key exists, or defaultValue if it does not. It does NOT add the key to the map. Use computeIfAbsent() if you want to add it."
     },
     {
       "id": "d11q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "A HashMap is being used in a multi-threaded Spring Boot service with concurrent reads and writes. What is the risk?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "No risk — HashMap is synchronized",
+        "ConcurrentModificationException or data corruption — HashMap is not thread-safe",
+        "HashMap throws IllegalStateException under concurrent access",
+        "Deadlock in the HashMap"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "ConcurrentModificationException or data corruption — HashMap is not thread-safe",
+      "explanation": "HashMap's resize/rehash operations are not synchronized. Concurrent writes can corrupt the internal structure. Use ConcurrentHashMap for concurrent access, or synchronize access externally."
     },
     {
       "id": "d11q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "You need to store user role assignments ensuring no duplicate roles. Which collection?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "ArrayList",
+        "LinkedList",
+        "HashSet",
+        "TreeMap"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "HashSet",
+      "explanation": "HashSet guarantees uniqueness (no duplicates) with O(1) add/contains. For this use case, order doesn't matter and we need fast membership checking. In JPA, @ManyToMany with Set<Role> prevents duplicate role assignments."
     },
     {
       "id": "d11q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "What is the difference between `ArrayList.remove(int index)` and `ArrayList.remove(Object o)`?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "Identical",
+        "remove(int) removes by index; remove(Object) removes by value using equals()",
+        "remove(Object) is faster",
+        "remove(int) works only for Integer lists"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "remove(int) removes by index; remove(Object) removes by value using equals()",
+      "explanation": "remove(2) removes the element at index 2. remove(Integer.valueOf(2)) or remove((Object)2) removes the first element equal to 2. This distinction causes a classic bug: removing an Integer from a List<Integer>."
     },
     {
       "id": "d11q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "When is `TreeMap` preferred over `HashMap`?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "When you need O(1) lookup",
+        "When you need keys sorted in natural or custom order",
+        "When you need insertion-order iteration",
+        "When the map will have many null values"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "When you need keys sorted in natural or custom order",
+      "explanation": "TreeMap maintains keys in sorted order (natural or Comparator-defined). Use it for leaderboards, sorted report keys, or when you need firstKey()/lastKey()/subMap() operations. O(log n) instead of O(1)."
     },
     {
       "id": "d11q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "What does `map.merge(key, 1, Integer::sum)` do?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "Replaces the value with 1",
+        "Adds 1 to the existing value, or puts 1 if key is absent",
+        "Removes the key if value is 1",
+        "Throws if key exists"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "Adds 1 to the existing value, or puts 1 if key is absent",
+      "explanation": "merge(key, value, remappingFunction) adds value if key is absent, or applies the function to (existingValue, value) if key exists. Perfect for frequency counting: merge(word, 1, Integer::sum)."
     },
     {
       "id": "d11q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "Which statement correctly iterates a Map's key-value pairs?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "for (String key : map)",
+        "for (Map.Entry<String,Integer> e : map.entrySet())",
+        "for (Map.Entry e : map.values())",
+        "map.iterate((k,v) -> ...)"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "for (Map.Entry<String,Integer> e : map.entrySet())",
+      "explanation": "entrySet() returns a Set<Map.Entry<K,V>>. Each Entry has getKey() and getValue(). Alternatively use map.forEach((k,v) -> ...) in Java 8+."
     },
     {
       "id": "d11q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "List.of() and Arrays.asList() both create lists. What is the key difference?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "Arrays.asList returns null",
+        "List.of is completely immutable (no add/set/remove); Arrays.asList allows set() but not add/remove",
+        "Arrays.asList is faster",
+        "List.of preserves order; Arrays.asList does not"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d11q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d11q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d11q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d11q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d11q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "List.of is completely immutable (no add/set/remove); Arrays.asList allows set() but not add/remove",
+      "explanation": "List.of() throws UnsupportedOperationException for any structural or non-structural change. Arrays.asList() creates a fixed-size list backed by the array — you can set() but not add/remove."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain Classes in your own words with a beginner-friendly example.",
-    "Where would Classes appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands Classes?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 11 without looking at the notes."
+    "Explain the internal structure of a HashMap: how does put() work, what is a collision, and what happens during resize?",
+    "When would you choose LinkedList over ArrayList? Give a real scenario and explain the Big-O difference.",
+    "What is the difference between HashSet, LinkedHashSet, and TreeSet? Give a use case for each.",
+    "Describe `map.merge()` and `map.computeIfAbsent()`. Write a word frequency counter using merge().",
+    "Why must you override both equals() and hashCode() for objects used as HashMap keys? What breaks if you only override equals()?",
+    "What happens when you modify a List while iterating with a for-each? What are the three safe alternatives?",
+    "A Spring Boot JPA entity has `@OneToMany private List<OrderItem> items`. Why is List chosen over Set here, and when would Set be preferable?"
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to Classes. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "A recommendation engine counts how many times each product was viewed. It uses `List<String> viewedProducts` and counts with a loop. With 10 million events/day, it's too slow. Redesign using the appropriate Map method for frequency counting.",
+    "A user authentication service stores active session tokens in a HashMap. Under load (200 concurrent logins), the HashMap occasionally gets corrupted. Diagnose and fix.",
+    "An order service returns getItems() which directly exposes the internal ArrayList. A bug in the discount service calls getItems().clear(), wiping the order. Fix the API and explain the principle violated."
   ],
   "dsaPractice": [
     {

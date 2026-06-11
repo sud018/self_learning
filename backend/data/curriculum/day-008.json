@@ -1,190 +1,142 @@
 {
   "id": "day-08-basic-object-thinking",
   "topic": "Day 8: Basic Object Thinking",
-  "notes": "Phase: PHASE 1: FOUNDATIONS\n\nDay 8 Detailed Notes: Basic Object Thinking\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is Basic Object Thinking. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn Basic Object Thinking, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Simple Classes and Fields Preview. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Validation Overview. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Conditional Rendering. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: MIN, MAX, AVG. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Two Pointer Introduction. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for Basic Object Thinking: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of Basic Object Thinking as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Simple Classes and Fields Preview, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Validation Overview, ask which object owns the logic and which dependency is injected. When working with Conditional Rendering, ask what state the component owns and what comes from the backend. When working with MIN, MAX, AVG, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Object-Oriented Programming Foundations: Classes, Objects, Encapsulation\n\n## What Is a Class?\nA class is a blueprint. It defines the *state* (fields) and *behavior* (methods) that every object of that type will have. An object is one instance of a class — a specific set of field values allocated on the Heap.\n\n```java\npublic class BankAccount {\n    // State\n    private String accountNumber;\n    private String ownerName;\n    private BigDecimal balance;\n\n    // Behavior\n    public void deposit(BigDecimal amount) {\n        if (amount.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException(\"Amount must be positive\");\n        this.balance = this.balance.add(amount);\n    }\n\n    public BigDecimal getBalance() { return balance; }\n}\n\n// Creating objects\nBankAccount acc1 = new BankAccount(); // new allocates Heap memory, calls constructor\nBankAccount acc2 = new BankAccount(); // completely separate object, independent state\n```\n\n## Encapsulation — The Core OOP Principle\nEncapsulation means bundling state and behavior together AND controlling access to the state. Fields should be `private`; access goes through `public` methods (getters/setters or meaningful action methods).\n\n**Why?**\n1. You can change the internal implementation without breaking callers.\n2. You can validate all writes (e.g., no negative balance).\n3. You can make fields read-only (getter but no setter).\n\n```java\n// BAD — public fields: no control, anyone can corrupt state\npublic class Temperature {\n    public double celsius; // anyone can set celsius = -999\n}\n\n// GOOD — encapsulated\npublic class Temperature {\n    private double celsius;\n    public void setCelsius(double celsius) {\n        if (celsius < -273.15) throw new IllegalArgumentException(\"Below absolute zero\");\n        this.celsius = celsius;\n    }\n    public double getCelsius() { return celsius; }\n    public double getFahrenheit() { return celsius * 9.0 / 5.0 + 32; }\n}\n```\n\n## Constructors — Guaranteed Initialization\nA constructor has the same name as the class, no return type, and runs when `new` is called. Its job is to ensure the object starts in a valid state.\n```java\npublic class Product {\n    private final String id;\n    private String name;\n    private BigDecimal price;\n\n    public Product(String id, String name, BigDecimal price) {\n        if (id == null || id.isBlank()) throw new IllegalArgumentException(\"id required\");\n        this.id = id;\n        this.name = name;\n        this.price = price;\n    }\n    // No-arg constructor is NOT auto-generated when you define any constructor\n}\n```\n**Default constructor:** if you write no constructors, Java provides a `public NoArgClass() {}`. As soon as you write one constructor, the default is gone.\n\n## `this` Keyword\n`this` refers to the current object. Used to:\n- Distinguish field from parameter with same name: `this.name = name;`\n- Call another constructor: `this(id, name, BigDecimal.ZERO);` — must be first statement\n- Pass the current object as an argument: `otherObject.setOwner(this);`\n\n## Getters and Setters — When to Use Each\nWrite a getter (accessor) for every field you want to expose. Write a setter (mutator) only when the field should be modifiable after construction. For immutable objects (like `LocalDate`), there are no setters.\n\nIn Spring Boot, JPA entities need a no-arg constructor and getters/setters (Hibernate uses reflection to populate fields). Lombok's `@Getter` and `@Setter` generate these automatically.\n\n## Value Objects (Records) — Java 16+\nWhen a class is purely data with no mutable state:\n```java\npublic record Money(BigDecimal amount, String currency) {}\n// Automatically gets: constructor, getters (amount(), currency()), equals(), hashCode(), toString()\n// Immutable by design — no setters\nMoney price = new Money(new BigDecimal(\"29.99\"), \"USD\");\nprice.amount(); // 29.99\n```\nRecords are ideal for DTOs in Spring Boot APIs.\n\n## Common Mistakes\n1. **Public fields:** exposes internals, impossible to add validation later without breaking callers.\n2. **Returning mutable collection fields directly:** `return this.items;` lets callers modify internal state. Return `Collections.unmodifiableList(items)` or a new copy.\n3. **No validation in constructor/setter:** object can be created in an invalid state and crash later.\n4. **`new` in a tight loop without reuse:** every `new` allocates Heap memory. For value-equal objects, consider the Flyweight pattern or factory methods.\n",
   "conceptualQuestions": [
     {
       "id": "d08q1",
-      "prompt": "What is the main focus of Day 8?",
+      "prompt": "What is the primary purpose of encapsulation?",
       "options": [
-        "Basic Object Thinking",
-        "Only CSS styling",
-        "Only deployment"
+        "To make code run faster",
+        "To restrict access to fields so that state can only be changed in controlled ways",
+        "To allow multiple classes to share code",
+        "To eliminate the need for constructors"
       ],
-      "correctAnswer": "Basic Object Thinking",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "To restrict access to fields so that state can only be changed in controlled ways",
+      "explanation": "Encapsulation bundles state and behavior and controls access through methods. This allows validation, read-only fields, and internal implementation changes without breaking callers."
     },
     {
       "id": "d08q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "When is the default no-argument constructor removed in Java?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "When the class has static methods",
+        "When the class is abstract",
+        "When you define any constructor yourself",
+        "When the class implements an interface"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "When you define any constructor yourself",
+      "explanation": "Java provides a default no-arg constructor only if you write NO constructors. As soon as you add any constructor (e.g., one that takes parameters), the default is not generated."
     },
     {
       "id": "d08q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What does `this.name = name;` do in a constructor?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "Creates a copy of the name string",
+        "Assigns the constructor parameter 'name' to the instance field 'name'",
+        "Calls a setter method",
+        "Throws NPE if name is null"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "Assigns the constructor parameter 'name' to the instance field 'name'",
+      "explanation": "When the parameter name shadows the field name, 'this.name' refers to the instance field and 'name' refers to the parameter. Without 'this', both sides refer to the parameter and the field is never set."
     },
     {
       "id": "d08q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "Why should you return `Collections.unmodifiableList(items)` from a getter instead of `return items;`?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "To save memory",
+        "To prevent callers from modifying the internal list through the returned reference",
+        "To sort the list before returning",
+        "Unmodifiable lists are faster"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "To prevent callers from modifying the internal list through the returned reference",
+      "explanation": "Returning the internal list directly exposes it. Callers can call add(), remove(), clear() on it, corrupting the object's internal state. A defensive copy or unmodifiable view prevents this."
     },
     {
       "id": "d08q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "Which statement about Java records (Java 16+) is correct?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "Records can have setters",
+        "Records are mutable by default",
+        "Records auto-generate constructor, getters, equals(), hashCode(), and toString()",
+        "Records replace abstract classes"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "Records auto-generate constructor, getters, equals(), hashCode(), and toString()",
+      "explanation": "Records are immutable data carriers. The compiler generates a canonical constructor, accessor methods (not getters — called by the field name), and standard Object methods. No setters because records are immutable."
     },
     {
       "id": "d08q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "In a Spring Boot JPA entity, why does Hibernate require a no-arg constructor?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "Spring Boot convention",
+        "Hibernate uses reflection to create an empty instance, then uses setters to populate fields",
+        "JPA spec requires it for caching",
+        "No-arg constructor is faster than parameterised constructor"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "Hibernate uses reflection to create an empty instance, then uses setters to populate fields",
+      "explanation": "Hibernate maps database rows to objects by creating an empty object with the no-arg constructor, then calling setters (or field access) for each column. Without a no-arg constructor, instantiation fails."
     },
     {
       "id": "d08q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "What is the `this()` constructor call and what restriction applies to it?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "Calls the parent constructor",
+        "Calls another constructor in the same class; must be the first statement in the constructor body",
+        "Calls a static factory method",
+        "No restriction"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "Calls another constructor in the same class; must be the first statement in the constructor body",
+      "explanation": "this(args) is constructor chaining — it delegates to another constructor. Java enforces it as the first statement to ensure proper initialization order."
     },
     {
       "id": "d08q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "A BankAccount has `public BigDecimal balance;`. What is the key risk?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "BigDecimal is immutable so this is safe",
+        "Any code anywhere can set balance to a negative value, bypassing business rules",
+        "Public fields run slower than private fields",
+        "Compile error"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "Any code anywhere can set balance to a negative value, bypassing business rules",
+      "explanation": "With a public field, there is no way to enforce that balance cannot go negative. Any caller can do account.balance = new BigDecimal(\"-1000000\"). Encapsulation forces all changes through methods that validate the operation."
     },
     {
       "id": "d08q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "What is the difference between a class and an object?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "Classes are in RAM, objects are in bytecode",
+        "A class is the blueprint; an object is a specific instance allocated on the Heap",
+        "Objects are faster than classes",
+        "There is no difference"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "A class is the blueprint; an object is a specific instance allocated on the Heap",
+      "explanation": "The class definition lives in the Method Area (loaded once). Each `new ClassName()` creates a separate object on the Heap with its own copy of instance fields."
     },
     {
       "id": "d08q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "Lombok's `@Data` annotation generates which set of methods?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "Only toString()",
+        "getters, setters, toString(), equals(), hashCode(), and required-args constructor",
+        "Only getters and setters",
+        "Only equals() and hashCode()"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d08q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d08q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d08q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d08q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d08q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "getters, setters, toString(), equals(), hashCode(), and required-args constructor",
+      "explanation": "@Data is a shorthand for @Getter + @Setter + @ToString + @EqualsAndHashCode + @RequiredArgsConstructor. In Spring Boot entities, this eliminates hundreds of lines of boilerplate."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain Basic Object Thinking in your own words with a beginner-friendly example.",
-    "Where would Basic Object Thinking appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands Basic Object Thinking?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 8 without looking at the notes."
+    "Explain encapsulation: what it means, why it matters, and how you implement it in a BankAccount class that must never allow a negative balance.",
+    "What is the difference between a constructor and a method? When is the constructor called and what guarantee does it provide?",
+    "Describe what happens in memory when you execute `Product p = new Product(\"P1\", \"Laptop\", new BigDecimal(\"999\"));`. Trace the Stack and Heap.",
+    "What is the `this` keyword? Describe three different uses with code examples.",
+    "When would you choose a Java record over a regular class? What does the record auto-generate and what does it NOT generate?",
+    "Explain the risk of returning a mutable internal collection directly from a getter. Show the vulnerability and two ways to fix it.",
+    "In a Spring Boot REST API, how would you design a `User` class: what fields are private, which get getters vs setters, and why would you use a separate DTO instead of exposing the entity directly?"
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to Basic Object Thinking. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "A payment service's Transaction class has public BigDecimal amount and public String status fields. A bug allowed status to be set to APPROVED without going through the approval workflow. Redesign the class with proper encapsulation to prevent this.",
+    "A team is building a Product catalog. The Product class is used both as a JPA entity (needs no-arg constructor and setters) and as an API response (should be immutable). How do you design this — one class or two?",
+    "A developer returns `return this.orderItems;` from a getItems() method. A caller calls getItems().clear() and loses all order data. Fix the getter and explain the principle it violates."
   ],
   "dsaPractice": [
     {

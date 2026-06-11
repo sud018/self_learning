@@ -1,190 +1,142 @@
 {
   "id": "day-09-foundation-mini-project-thinking",
   "topic": "Day 9: Foundation Mini Project Thinking",
-  "notes": "Phase: PHASE 1: FOUNDATIONS\n\nDay 9 Detailed Notes: Foundation Mini Project Thinking\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is Foundation Mini Project Thinking. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn Foundation Mini Project Thinking, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Combine Java Basics in a Small Flow. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Layered Backend Flow. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Simple Angular Page Flow. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Simple Reporting Query. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Array Pattern Review. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for Foundation Mini Project Thinking: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of Foundation Mini Project Thinking as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Combine Java Basics in a Small Flow, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Layered Backend Flow, ask which object owns the logic and which dependency is injected. When working with Simple Angular Page Flow, ask what state the component owns and what comes from the backend. When working with Simple Reporting Query, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Inheritance, Polymorphism, and Method Overriding\n\n## Inheritance — Reusing and Extending Behavior\nInheritance lets a child class (subclass) extend a parent class (superclass), inheriting all non-private fields and methods. In Java, a class can extend exactly one class (single inheritance).\n\n```java\npublic class Animal {\n    protected String name;\n    protected int age;\n\n    public Animal(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n\n    public String speak() { return \"...\"; }\n    public String describe() { return name + \" is \" + age + \" years old\"; }\n}\n\npublic class Dog extends Animal {\n    private String breed;\n\n    public Dog(String name, int age, String breed) {\n        super(name, age); // MUST be first statement; calls Animal's constructor\n        this.breed = breed;\n    }\n\n    @Override\n    public String speak() { return \"Woof!\"; } // overrides Animal.speak()\n}\n\nDog d = new Dog(\"Rex\", 3, \"Labrador\");\nd.speak();    // \"Woof!\" — Dog's version\nd.describe(); // \"Rex is 3 years old\" — inherited from Animal, not overridden\n```\n\n## `super` Keyword\n- `super(args)` — calls the parent constructor; must be first line in child constructor.\n- `super.methodName()` — calls the parent version of an overridden method.\nWithout `super()`, Java automatically inserts a no-arg `super()` call, which fails if the parent has no no-arg constructor.\n\n## Method Overriding — Runtime Polymorphism\nOverride a method to provide a specific implementation in the subclass:\n```java\n@Override // optional annotation but ALWAYS use it — compiler catches typos\npublic String speak() { return \"Woof!\"; }\n```\nRules for overriding:\n- Same method name, same parameter types (otherwise it's overloading, not overriding).\n- Return type must be the same or a subtype (covariant return).\n- Cannot reduce access visibility (`public` method cannot be overridden as `private`).\n- Cannot override `final` methods or methods in `final` classes.\n\n## Polymorphism — One Variable, Many Forms\n```java\nAnimal animal = new Dog(\"Rex\", 3, \"Lab\"); // Dog object stored in Animal reference\nanimal.speak(); // \"Woof!\" — the DOG's speak() is called, not Animal's\n// This is dynamic dispatch (runtime polymorphism)\n\n// This enables writing code that works for any Animal:\nList<Animal> animals = List.of(new Dog(\"Rex\",3,\"Lab\"), new Cat(\"Whiskers\",5));\nfor (Animal a : animals) {\n    System.out.println(a.speak()); // calls the right speak() for each type\n}\n```\nPolymorphism is the key to the Open/Closed Principle: add new animal types without modifying the loop.\n\n## `instanceof` and Pattern Matching (Java 16+)\n```java\nif (animal instanceof Dog dog) {\n    System.out.println(dog.getBreed()); // dog is cast automatically\n}\n// Old way (verbose):\nif (animal instanceof Dog) {\n    Dog dog = (Dog) animal;\n    System.out.println(dog.getBreed());\n}\n```\n\n## Object Class Methods — Every Class Inherits These\nEvery class implicitly extends `Object`. The three most important methods to override:\n```java\n@Override\npublic boolean equals(Object o) {\n    if (this == o) return true;\n    if (!(o instanceof Product p)) return false;\n    return Objects.equals(id, p.id); // use id as the identity key\n}\n\n@Override\npublic int hashCode() {\n    return Objects.hash(id); // MUST be consistent with equals\n}\n\n@Override\npublic String toString() {\n    return \"Product{id=\" + id + \", name=\" + name + \"}\";\n}\n```\n**Rule:** if you override `equals()`, you MUST override `hashCode()`. Violating this breaks `HashMap`, `HashSet`, and any hash-based collection.\n\n## Inheritance vs Composition\nInheritance models IS-A: a Dog IS-A Animal.\nComposition models HAS-A: an Order HAS-A PaymentMethod.\n**Prefer composition over inheritance** for code reuse. Use inheritance only when a true IS-A relationship exists. Composition is more flexible and avoids the fragile base class problem.\n\n## Connection to Spring Boot\nSpring's entire exception hierarchy uses inheritance: `RuntimeException → HttpClientErrorException → HttpClientErrorException.NotFound`. Your custom exceptions extend `RuntimeException` and Spring's `@ExceptionHandler` catches them polymorphically.\n\n## Common Mistakes\n1. **Forgetting `@Override`:** `public String speeek()` is a new method (overload), not an override. The compiler catches this with `@Override`.\n2. **Forgetting `super()` when parent has no no-arg constructor:** compile error \"no suitable constructor found\".\n3. **Overriding `equals` but not `hashCode`:** objects that are logically equal have different hash codes → inconsistent HashMap behavior.\n4. **Casting without `instanceof` check:** `(Dog) someAnimal` throws `ClassCastException` if the animal is not a Dog.\n",
   "conceptualQuestions": [
     {
       "id": "d09q1",
-      "prompt": "What is the main focus of Day 9?",
+      "prompt": "What does `@Override` annotation do?",
       "options": [
-        "Foundation Mini Project Thinking",
-        "Only CSS styling",
-        "Only deployment"
+        "Makes the method run faster",
+        "Forces the compiler to verify this method actually overrides a parent method",
+        "Marks the method as final",
+        "Generates the method implementation automatically"
       ],
-      "correctAnswer": "Foundation Mini Project Thinking",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "Forces the compiler to verify this method actually overrides a parent method",
+      "explanation": "@Override is a compile-time check. If the method name/signature doesn't match any parent method (e.g., due to a typo), the compiler reports an error instead of silently creating a new method."
     },
     {
       "id": "d09q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "What is dynamic dispatch (runtime polymorphism)?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "Choosing the method to call based on the reference type at compile time",
+        "Choosing the method to call based on the actual object type at runtime",
+        "Dispatching method calls to multiple threads",
+        "Using reflection to call methods"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "Choosing the method to call based on the actual object type at runtime",
+      "explanation": "When you call speak() on an Animal reference that holds a Dog object, the JVM looks at the actual object's class (Dog) at runtime and calls Dog.speak(), not Animal.speak()."
     },
     {
       "id": "d09q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "If you override `equals()` but not `hashCode()`, what happens when you put objects in a HashSet?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "It works correctly",
+        "Compile error",
+        "Objects that are logically equal may appear as duplicates in the HashSet",
+        "HashSet throws NullPointerException"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "Objects that are logically equal may appear as duplicates in the HashSet",
+      "explanation": "HashSet uses hashCode() first to find the bucket, then equals() to confirm. If two equal objects have different hash codes (because hashCode wasn't overridden), they land in different buckets and the set treats them as different."
     },
     {
       "id": "d09q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "A parent class has only a constructor `Parent(String name)`. What happens if a child class doesn't call `super(name)`?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "Java calls the parent constructor automatically with null",
+        "Compile error: no default constructor in Parent",
+        "The child constructor runs without initialising parent fields",
+        "Runtime NullPointerException"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "Compile error: no default constructor in Parent",
+      "explanation": "If you don't explicitly call super(...), Java tries to insert super() (no-arg). If the parent has no no-arg constructor, the compiler fails with an error."
     },
     {
       "id": "d09q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "What is the difference between method overloading and method overriding?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "No difference",
+        "Overloading is compile-time resolution with different parameter signatures; overriding is runtime resolution in a subclass with the same signature",
+        "Overriding changes the return type; overloading changes the name",
+        "Overloading requires @Override; overriding does not"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "Overloading is compile-time resolution with different parameter signatures; overriding is runtime resolution in a subclass with the same signature",
+      "explanation": "Overloading: same class, same name, different parameters — resolved at compile time. Overriding: subclass provides new implementation of parent's method with same signature — resolved at runtime."
     },
     {
       "id": "d09q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "Which scenario correctly uses the `super` keyword?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "super = new Animal();",
+        "super.speak() calls the current class's speak()",
+        "super.speak() in a subclass calls the parent class's speak() implementation",
+        "super() can be called anywhere in the constructor body"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "super.speak() in a subclass calls the parent class's speak() implementation",
+      "explanation": "super.methodName() explicitly calls the parent's version of the method. Useful when you want to extend (not completely replace) the parent behavior: call super.validate() then add extra validation."
     },
     {
       "id": "d09q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "What does Java 16+ pattern matching `if (animal instanceof Dog dog)` do compared to the old approach?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "Same as old approach",
+        "Combines the instanceof check and cast in one expression, eliminating the explicit cast",
+        "Checks all subclasses of Dog automatically",
+        "Makes the code run at compile time"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "Combines the instanceof check and cast in one expression, eliminating the explicit cast",
+      "explanation": "Pattern matching instanceof declares the cast variable in the same expression. If the check passes, dog is automatically cast and in scope. Eliminates the classic if(instanceof) + explicit cast pattern."
     },
     {
       "id": "d09q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "Prefer composition over inheritance means:",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "Never use inheritance",
+        "For code reuse, inject collaborating objects rather than extending them; use inheritance only for genuine IS-A relationships",
+        "Use interfaces instead of classes",
+        "Always use abstract classes"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "For code reuse, inject collaborating objects rather than extending them; use inheritance only for genuine IS-A relationships",
+      "explanation": "Composition (HAS-A) is more flexible: you can swap implementations at runtime, test with mocks, and change behavior without touching the class hierarchy. Inheritance creates tight coupling to the parent class."
     },
     {
       "id": "d09q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "A `Rectangle` class extends `Shape`. Shape has `calculateArea()`. What must Rectangle provide?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "Nothing — it inherits the parent's implementation",
+        "A new calculateArea() only if Shape has it as abstract",
+        "Always a calculateArea() override",
+        "A Rectangle() constructor only"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "A new calculateArea() only if Shape has it as abstract",
+      "explanation": "If Shape.calculateArea() is concrete (has an implementation), Rectangle inherits it. If Shape.calculateArea() is abstract, Rectangle must override it or Rectangle itself must be abstract."
     },
     {
       "id": "d09q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "In Spring Boot, your custom exception `class ProductNotFoundException extends RuntimeException` is thrown in a service. How does Spring handle it?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "It crashes the JVM",
+        "Spring's DispatcherServlet catches it and returns 500 unless you define @ExceptionHandler",
+        "You must declare it in the method signature",
+        "Checked exceptions don't work in Spring Boot"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d09q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d09q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d09q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d09q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d09q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "Spring's DispatcherServlet catches it and returns 500 unless you define @ExceptionHandler",
+      "explanation": "Spring Boot's DispatcherServlet catches all unchecked exceptions. By default, RuntimeExceptions return 500. Add @ExceptionHandler(ProductNotFoundException.class) in a @ControllerAdvice to map it to 404."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain Foundation Mini Project Thinking in your own words with a beginner-friendly example.",
-    "Where would Foundation Mini Project Thinking appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands Foundation Mini Project Thinking?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 9 without looking at the notes."
+    "Explain the difference between method overloading and method overriding. Give an example of each and describe when the dispatch decision is made for each.",
+    "What is polymorphism and why is it valuable for writing extensible code? Show a List<Animal> example demonstrating dynamic dispatch.",
+    "Why must you override `hashCode()` whenever you override `equals()`? Give an example showing what breaks if you don't.",
+    "Describe the `super` keyword: when to use `super()` vs `super.method()`, and what compile error occurs without it.",
+    "Explain 'prefer composition over inheritance' with a real-world example from a Spring Boot service.",
+    "What is Java 16+ pattern matching for instanceof? Show before and after code to illustrate the improvement.",
+    "Design a Spring Boot exception hierarchy: base RuntimeException, NotFoundException (404), ValidationException (400), and ConflictException (409). Show the class declarations and an @ExceptionHandler for each."
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to Foundation Mini Project Thinking. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "A notification service has a sendEmail() method in a base class. SMS and Push notification subclasses override it. A new WhatsApp notification is needed. Show how polymorphism lets you add it without modifying existing code.",
+    "An Order has a getTotal() method that is overridden in DiscountedOrder and TaxableOrder. You discover a bug: two equal Order objects put in a HashSet appear twice. Identify the missing override and fix it.",
+    "A developer builds OrderProcessor, which extends DatabaseConnection to reuse the getConnection() method. Explain why this is wrong (IS-A vs HAS-A), and redesign it using composition."
   ],
   "dsaPractice": [
     {
