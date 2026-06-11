@@ -974,3 +974,18 @@ p { color: var(--muted); line-height: 1.6; }
   flex-shrink: 0;
   margin-top: 2px;
 }
+
+/* ─── Back to result button inside Solution tab ─── */
+.lc-back-to-result {
+  background: transparent;
+  border: 1px solid #2d4050;
+  color: #6a8fa0;
+  border-radius: 6px;
+  padding: 7px 14px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background .14s, color .14s;
+  width: 100%;
+  text-align: left;
+}
+.lc-back-to-result:hover { background: #1c2e38; color: #9abecf; }

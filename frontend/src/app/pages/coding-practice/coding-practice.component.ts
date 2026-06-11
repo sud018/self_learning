@@ -291,6 +291,15 @@ import { MonacoEditorComponent } from '../../shared/monaco-editor/monaco-editor.
                     </div>
                   }
 
+                  <!-- Back to test results -->
+                  @if (result) {
+                    <div class="lc-sol-section">
+                      <button type="button" class="lc-back-to-result" (click)="consoleTab = 'result'">
+                        ← View test results / compiler output
+                      </button>
+                    </div>
+                  }
+
                 </div>
               }
             }
@@ -507,6 +516,7 @@ export class CodingPracticeComponent implements OnInit, OnDestroy {
           this.solutionVisible = true;
           if (res.passed && !this.solvedIds.includes(this.selected.id)) this.solvedIds = [...this.solvedIds, this.selected.id];
           this.running = false;
+          this.consoleTab = 'solution';  // always show model answer after submit
           this.cd.detectChanges();
         },
         error: err => { this.result = this.errResult(err); this.running = false; this.cd.detectChanges(); }
@@ -597,78 +607,172 @@ export class CodingPracticeComponent implements OnInit, OnDestroy {
   }
 
   // ─────────────────────────────────────────────────────────────────────────
-  // localCheck — meaningful evaluation for non-runnable categories
+  // localCheck — real structural validation for Spring Boot / Angular / SQL
+  // Boilerplate code NEVER passes. All required elements must be present.
   // ─────────────────────────────────────────────────────────────────────────
   private localCheck(isSubmit: boolean) {
     const code = this.codeEditors[this.selected.id] || '';
     const starter = this.selected.starterCode || '';
+    const cat = this.selected.category;
 
-    // Check if user actually wrote something beyond the boilerplate
-    const stripComments = (s: string) => s.replace(/\/\/[^\n]*/g, '').replace(/\/\*[\s\S]*?\*\//g, '').replace(/--[^\n]*/g, '');
-    const meaningful = stripComments(code).replace(/\s/g, '');
-    const starterMeaningful = stripComments(starter).replace(/\s/g, '');
+    const strip = (s: string) => s
+      .replace(/\/\/[^\n]*/g, '')
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/--[^\n]*/g, '');
 
-    if (meaningful === starterMeaningful || meaningful.length < starterMeaningful.length + 15) {
+    // Gate 1: user must have written something beyond the starter template
+    const net = strip(code).replace(/\s/g, '');
+    const starterNet = strip(starter).replace(/\s/g, '');
+    if (net.length <= starterNet.length + 10) {
       return {
         passed: false, results: [],
-        message: 'Your code is the same as the starter template — write your own implementation first, then submit to compare with the model answer.'
+        message: '📝 Your code is the same as the starter template. Write your own solution — even an imperfect attempt — before submitting.'
       };
     }
 
-    // On Submit: always accept the attempt and show solution
-    if (isSubmit) {
+    // Gate 2: per-category structural checks
+    const checks = this.structuralChecks(cat, code);
+    const results = checks.map(c => ({
+      input: c.label,
+      expectedOutput: '✓ Required',
+      userOutput: c.pass ? '✓ Present' : '✗ Missing',
+      passed: c.pass
+    }));
+
+    const allPass = checks.length === 0 || checks.every(c => c.pass);
+
+    if (!allPass) {
+      const missing = checks.filter(c => !c.pass).length;
       return {
-        passed: true, results: [],
-        message: 'Attempt recorded. The Solution tab now shows the model answer and step-by-step explanation — compare your code to see what you got right.'
+        passed: false,
+        results,
+        message: `${missing} required element(s) missing — see the checklist above. Fix them, then resubmit.`
       };
     }
 
-    // On Run: give targeted structural feedback (not keyword matching)
-    const codeLower = code.toLowerCase();
-    const cat = this.selected.category;
-    const tips: string[] = [];
+    return {
+      passed: true,
+      results,
+      message: isSubmit
+        ? '✓ All requirements met! The Solution tab below shows the model answer — compare your logic.'
+        : 'All checks pass. Hit Submit to record and unlock the full model answer.'
+    };
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // Structural checks: returns one entry per requirement.
+  // All entries must pass for the code to be accepted.
+  // Boilerplate code FAILS every check except possibly the first Spring Boot one.
+  // ─────────────────────────────────────────────────────────────────────────
+  private structuralChecks(cat: string, code: string): Array<{label: string, pass: boolean}> {
+    // Work on a comment-stripped copy for accurate detection
+    const nc = code
+      .replace(/\/\/[^\n]*/g, '')
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/--[^\n]*/g, '');
 
     if (cat === 'Spring Boot') {
-      if (!/@restcontroller|@controller/.test(codeLower))
-        tips.push('Add @RestController to your controller class');
-      if (!/@service/.test(codeLower))
-        tips.push('Create a separate @Service class for business logic (keep the controller thin)');
-      if (!/record\s+\w+request|class\s+\w+request|record\s+\w+response|class\s+\w+response/i.test(code))
-        tips.push('Define Request and Response DTOs (do not return JPA entities directly)');
-      if (!/@valid|@notblank|@notnull|@min|@max|@size/i.test(code))
-        tips.push('Add bean validation: @Valid on the parameter, @NotBlank / @Min / @Max on DTO fields');
-      if (!/@transactional/i.test(code))
-        tips.push('Mark the service method with @Transactional');
-    } else if (cat === 'Angular') {
-      if (!/interface\s+\w+|type\s+\w+\s*=/.test(code))
-        tips.push('Define a TypeScript interface for the data shape — never use "any"');
-      if (!/@injectable/i.test(code))
-        tips.push('Create an @Injectable service that wraps all HttpClient calls');
-      if (!/loading|isloading/i.test(code))
-        tips.push('Add a loading = false property to the component');
-      if (!/error|catch/i.test(code))
-        tips.push('Handle the error case — add an error = "" property and catchError in the pipe');
-      if (!/ngondestroy|unsubscribe/i.test(code))
-        tips.push('Add ngOnDestroy() and unsubscribe to prevent memory leaks');
-    } else if (cat === 'SQL') {
-      const noBlockComment = code.replace(/\/\*[\s\S]*?\*\//g, '');
-      if (!/select\s/i.test(noBlockComment))
-        tips.push('Start with SELECT <specific columns> — not SELECT *');
-      else if (/select\s*\*/i.test(noBlockComment))
-        tips.push('Avoid SELECT * — list the specific columns your query needs');
-      if (!/from\s/i.test(noBlockComment))
-        tips.push('Add FROM <table_name> (use a realistic table name)');
-      if (/join/i.test(noBlockComment) && !/(inner|left|right|full)\s+join/i.test(noBlockComment))
-        tips.push('Specify the JOIN type: INNER JOIN (only matching rows) or LEFT JOIN (all from left table)');
+      return [
+        {
+          label: '@RestController on the controller class',
+          pass: /@RestController/i.test(code)
+        },
+        {
+          // Boilerplate has ONLY @RequestMapping, no method-level mapping → fails
+          label: 'HTTP method mapping: @GetMapping / @PostMapping / @PutMapping / @DeleteMapping',
+          pass: /@(Get|Post|Put|Delete|Patch)Mapping/i.test(code)
+        },
+        {
+          // Boilerplate has no @Service at all → fails
+          label: '@Service class (controller must delegate to a service — no business logic in controller)',
+          pass: /@Service\b/i.test(code)
+        },
+        {
+          // Boilerplate has no DTO class → fails
+          label: 'Request or Response DTO (class/record whose name contains Request, Response, or Dto)',
+          pass: /(?:record|class)\s+\w*(?:Request|Response|Dto|DTO)\s*[(<{]/i.test(code)
+        },
+        {
+          // Boilerplate has no validation → fails
+          label: 'Bean validation: @Valid on the parameter and @NotBlank / @NotNull / @Min / @Max on DTO fields',
+          pass: /@(Valid|NotBlank|NotNull|NotEmpty|Min|Max|Size|Positive|Email)\b/i.test(code)
+        }
+      ];
     }
 
-    if (tips.length === 0) {
-      return { passed: true, results: [], message: 'Structure looks good! Hit Submit to record your attempt and unlock the model answer.' };
+    if (cat === 'Angular') {
+      return [
+        {
+          // Boilerplate has `interface ApiResponse { id: string; }` — only ONE field
+          // Require at least 2 typed fields in the interface
+          label: 'TypeScript interface with at least 2 typed properties (e.g., id: number; name: string;)',
+          pass: (() => {
+            const m = code.match(/interface\s+\w+\s*\{([^}]+)\}/);
+            if (!m) return false;
+            const props = (m[1].match(/\w+\s*\??\s*:\s*\w+/g) || []);
+            return props.length >= 2;
+          })()
+        },
+        {
+          // Boilerplate has no @Injectable → fails
+          label: '@Injectable service class (HttpClient calls must live in the service, not the component)',
+          pass: /@Injectable/i.test(code)
+        },
+        {
+          // Boilerplate has no .subscribe( → fails
+          label: 'Observable subscription: .subscribe({ next: ..., error: ... })',
+          pass: /\.subscribe\s*\(/i.test(code)
+        },
+        {
+          // Boilerplate HAS loading and error BUT with no real handling — still passes this check
+          // so we check for subscribe as the real gate above
+          label: 'Both loading and error state properties (to handle all 4 UI states)',
+          pass: /\bloading\s*[:=]/i.test(code) && /\berror\s*[:=]/i.test(code)
+        },
+        {
+          // Boilerplate has no ngOnDestroy → fails
+          label: 'ngOnDestroy + unsubscribe() to prevent memory leaks',
+          pass: /ngOnDestroy/i.test(code) || /\.unsubscribe\s*\(\s*\)/i.test(code)
+        }
+      ];
     }
-    return {
-      passed: false, results: [],
-      message: `Keep going — here are some things to add:\n• ${tips.join('\n• ')}`
-    };
+
+    if (cat === 'SQL') {
+      // For SQL, check the comment-stripped version
+      const sqlKeywords = new Set(['where','join','group','order','having','limit','union','select','from','on','inner','left','right','full']);
+
+      // Check 1: SELECT has actual column names (not just whitespace before FROM)
+      const selectBlock = nc.match(/SELECT\b([\s\S]*?)\bFROM\b/i);
+      const hasColumns = !!(selectBlock && /\w/.test(selectBlock[1])) && !/SELECT\s*\*/i.test(nc);
+
+      // Check 2: FROM is followed by a real table name (not another SQL keyword)
+      const fromMatch = nc.match(/\bFROM\b\s+(\w+)/i);
+      const hasRealTable = !!(fromMatch && !sqlKeywords.has(fromMatch[1].toLowerCase()));
+
+      // Check 3: WHERE / JOIN / GROUP BY / ORDER BY with actual content following
+      const hasClause =
+        /\bWHERE\b\s+\w/i.test(nc) ||
+        /\b(INNER|LEFT|RIGHT|FULL|CROSS)\s+JOIN\b\s+\w/i.test(nc) ||
+        /\bGROUP\s+BY\b\s+\w/i.test(nc) ||
+        /\bORDER\s+BY\b\s+\w/i.test(nc);
+
+      return [
+        {
+          label: 'SELECT with specific column names — not SELECT * and not empty',
+          pass: hasColumns
+        },
+        {
+          label: 'FROM with a real table name (e.g., FROM customers c)',
+          pass: hasRealTable
+        },
+        {
+          label: 'At least one clause with content: WHERE <condition> / JOIN <table> / GROUP BY <col> / ORDER BY <col>',
+          pass: hasClause
+        }
+      ];
+    }
+
+    return [];
   }
 
   private errResult(err: any) {
