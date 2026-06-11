@@ -1,190 +1,142 @@
 {
   "id": "day-35-functional-interfaces",
   "topic": "Day 35: Functional Interfaces",
-  "notes": "Phase: PHASE 4: JAVA ADVANCED\n\nDay 35 Detailed Notes: Functional Interfaces\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is Functional Interfaces. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn Functional Interfaces, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Advanced Java: Functional Interfaces. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Exception and Validation Flow. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Typed Frontend Models. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Advanced Filtering. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Sorting and Searching. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for Functional Interfaces: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of Functional Interfaces as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Advanced Java: Functional Interfaces, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Exception and Validation Flow, ask which object owns the logic and which dependency is injected. When working with Typed Frontend Models, ask what state the component owns and what comes from the backend. When working with Advanced Filtering, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Functional Interfaces: Built-in Types, Specialised Variants, and Composition\n\n## The Four Core Functional Interfaces\n```java\n// Predicate<T> — T → boolean (filtering, testing)\nPredicate<String> isValidEmail = s -> s != null && s.contains(\"@\") && s.contains(\".\");\nPredicate<Order> isLarge = o -> o.getTotal().compareTo(new BigDecimal(\"1000\")) > 0;\n\n// Function<T, R> — T → R (transformation/mapping)\nFunction<Order, OrderDto> toDto = order -> new OrderDto(order.getId(), order.getTotal());\nFunction<String, Integer> strLen = String::length;\n\n// Consumer<T> — T → void (side effects)\nConsumer<Order> saveToDb = orderRepo::save;\nConsumer<String> logInfo = message -> log.info(\"Processing: {}\", message);\n\n// Supplier<T> — () → T (lazy computation, factory)\nSupplier<List<Order>> emptyList = ArrayList::new;\nSupplier<LocalDateTime> now = LocalDateTime::now;\n```\n\n## Specialised Primitive Functional Interfaces\nAvoid boxing overhead for primitives with specialised interfaces:\n```java\n// Without specialisation (boxes int to Integer):\nFunction<Integer, Integer> doubleIt = n -> n * 2; // Integer boxing every call\n\n// Specialised (no boxing):\nIntUnaryOperator doubleIt = n -> n * 2;  // int → int, zero boxing\nIntFunction<String> intToStr = n -> \"Value: \" + n; // int → String\nToIntFunction<String> strToLen = String::length;    // String → int\nIntPredicate isEven = n -> n % 2 == 0;             // int → boolean\nIntConsumer printInt = System.out::println;         // int → void\nIntSupplier random = () -> ThreadLocalRandom.current().nextInt(100);\n\n// Available for int, long, double:\nLongUnaryOperator, LongBinaryOperator, DoublePredicate, etc.\n```\n\n## BiFunction, BiPredicate, BiConsumer\nFor functions taking two arguments:\n```java\nBiFunction<String, Integer, String> repeat = (s, n) -> s.repeat(n);\nrepeat.apply(\"ab\", 3); // \"ababab\"\n\nBiPredicate<String, Integer> longerThan = (s, n) -> s.length() > n;\nlongerThan.test(\"hello\", 3); // true\n\nBiConsumer<String, Integer> printNTimes = (s, n) -> {\n    for (int i = 0; i < n; i++) System.out.println(s);\n};\n\n// BinaryOperator<T> = BiFunction<T,T,T>\nBinaryOperator<Integer> add = Integer::sum;\nBinaryOperator<String> concat = String::concat;\n\n// UnaryOperator<T> = Function<T,T>\nUnaryOperator<String> trim = String::trim;\n```\n\n## Custom Functional Interfaces\n```java\n@FunctionalInterface\npublic interface Transformer<I, O, C> {\n    O transform(I input, C context) throws TransformationException;\n    // Can have default and static methods\n    static <I, O, C> Transformer<I, O, C> noOp() {\n        return (input, ctx) -> (O) input;\n    }\n}\n\n// Usage with checked exception\nTransformer<Order, OrderDto, String> mapper = (order, locale) -> {\n    try { return buildDto(order, locale); }\n    catch (ParseException e) { throw new TransformationException(e); }\n};\n```\n\n## Functional Interface in Spring Events and Validation\n```java\n// Spring @EventListener as functional interface\n@EventListener\npublic Consumer<OrderCreatedEvent> onOrderCreated() {\n    return event -> notificationService.notify(event.getOrder());\n}\n\n// Bean Validation custom constraint using functional interface\n@FunctionalInterface\npublic interface Validator<T> {\n    ValidationResult validate(T value);\n\n    default Validator<T> and(Validator<T> other) {\n        return value -> {\n            ValidationResult r = this.validate(value);\n            return r.isValid() ? other.validate(value) : r;\n        };\n    }\n}\n\n// Usage\nValidator<Order> notEmpty = o -> o.getItems().isEmpty()\n    ? ValidationResult.error(\"Items required\") : ValidationResult.ok();\nValidator<Order> validTotal = o -> o.getTotal().signum() > 0\n    ? ValidationResult.ok() : ValidationResult.error(\"Total must be positive\");\nValidator<Order> fullValidation = notEmpty.and(validTotal);\n```\n\n## Common Mistakes\n1. **Choosing Function over Predicate for boolean tests:** use `Predicate<T>` for `T → boolean`, not `Function<T, Boolean>`. Predicate supports and/or/negate composition.\n2. **Ignoring primitive specialisations in tight loops:** boxing 10 million ints in `Function<Integer, Integer>` creates 10 million heap allocations. Use `IntUnaryOperator`.\n3. **Checked exceptions in functional interfaces:** standard functional interfaces don't declare checked exceptions. Wrap them or create a custom interface.\n4. **Stateful lambdas in parallel streams:** lambdas passed to stream operations should be stateless. `n -> list.add(n)` mutates shared state and is thread-unsafe in parallel.\n",
   "conceptualQuestions": [
     {
       "id": "d35q1",
-      "prompt": "What is the main focus of Day 35?",
+      "prompt": "What is the signature of `BiFunction<String, Integer, String>`?",
       "options": [
-        "Functional Interfaces",
-        "Only CSS styling",
-        "Only deployment"
+        "(String) → Integer → String",
+        "(String, Integer) → String",
+        "(String, Integer) → void",
+        "(Integer, String) → String"
       ],
-      "correctAnswer": "Functional Interfaces",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "(String, Integer) → String",
+      "explanation": "BiFunction<T, U, R> has apply(T t, U u) returning R. BiFunction<String, Integer, String> takes a String and Integer and returns a String. Example: (s, n) -> s.repeat(n)."
     },
     {
       "id": "d35q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "Why use `IntUnaryOperator` instead of `Function<Integer, Integer>`?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "IntUnaryOperator has more methods",
+        "IntUnaryOperator avoids autoboxing/unboxing of int — no heap allocation for each operation",
+        "Function<Integer, Integer> doesn't work with streams",
+        "IntUnaryOperator is faster due to JIT optimization only"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "IntUnaryOperator avoids autoboxing/unboxing of int — no heap allocation for each operation",
+      "explanation": "Function<Integer, Integer> boxes every int to Integer (heap object) and unboxes the result. IntUnaryOperator int → int operates on primitives directly. For 10 million calls in a tight loop, this saves 20 million allocations."
     },
     {
       "id": "d35q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What does `@FunctionalInterface` annotation do?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "Makes all methods default",
+        "Generates the implementation at compile time",
+        "Instructs the compiler to verify the interface has exactly one abstract method — compile error if not",
+        "Marks the interface as thread-safe"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "Instructs the compiler to verify the interface has exactly one abstract method — compile error if not",
+      "explanation": "@FunctionalInterface is a verification annotation. It fails to compile if the interface has 0 or 2+ abstract methods. It doesn't change runtime behaviour — an interface with one abstract method IS functional regardless of the annotation."
     },
     {
       "id": "d35q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "What is the difference between `Consumer<T>` and `Function<T, Void>`?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "Identical",
+        "Consumer.accept() returns void; Function<T,Void>.apply() must return null (Void) — Consumer is preferred for side effects because you can't accidentally return a value",
+        "Consumer is slower",
+        "Function<T,Void> doesn't compile"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "Consumer.accept() returns void; Function<T,Void>.apply() must return null (Void) — Consumer is preferred for side effects because you can't accidentally return a value",
+      "explanation": "Consumer<T> has void accept(T t). Using Function<T,Void> is legal but awkward — you must explicitly return null. Consumer composes with andThen(); it's the correct abstraction for side-effectful operations."
     },
     {
       "id": "d35q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "What does `Predicate<T>.negate()` return?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "null for all inputs",
+        "A new Predicate that returns !original.test(t) for every input",
+        "Removes the predicate from a chain",
+        "A Predicate that always returns false"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "A new Predicate that returns !original.test(t) for every input",
+      "explanation": "negate() returns a new Predicate that inverts the result. isActive.negate() is equivalent to t -> !isActive.test(t). Combined with and/or for readable Boolean logic: isValid.and(isActive.negate()) = 'valid but not active'."
     },
     {
       "id": "d35q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "Why should lambdas passed to `parallelStream()` be stateless?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "parallelStream() doesn't support stateful lambdas",
+        "Stateful lambdas accessing shared mutable state from multiple threads create data races — results are unpredictable",
+        "Stateful lambdas are slower",
+        "parallelStream() copies lambda state per thread"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "Stateful lambdas accessing shared mutable state from multiple threads create data races — results are unpredictable",
+      "explanation": "parallelStream distributes elements across ForkJoinPool threads. If a lambda mutates shared state (e.g., a counter, a list), multiple threads modify it concurrently without synchronisation. Use collect() for accumulation, which handles thread safety via Collector's combiner."
     },
     {
       "id": "d35q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "What is `BinaryOperator<T>` equivalent to?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "BiFunction<T, T, Boolean>",
+        "BiFunction<T, T, T> — both inputs and the output are the same type",
+        "UnaryOperator<T> applied twice",
+        "Predicate<T> for two inputs"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "BiFunction<T, T, T> — both inputs and the output are the same type",
+      "explanation": "BinaryOperator<T> extends BiFunction<T,T,T>: T apply(T t1, T t2). Examples: Integer::sum (BinaryOperator<Integer>), String::concat (BinaryOperator<String>). Used in Stream.reduce() as the accumulator."
     },
     {
       "id": "d35q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "A Transformer functional interface declares `O transform(I input) throws ParseException`. Can it be used as a lambda target?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "Yes — any functional interface works",
+        "No — only @FunctionalInterface interfaces work with lambdas",
+        "Yes, but the lambda must catch or declare ParseException",
+        "Checked exceptions prevent lambda usage entirely"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "Yes, but the lambda must catch or declare ParseException",
+      "explanation": "A custom functional interface CAN declare checked exceptions. Lambdas implementing it must handle those exceptions (catch or the lambda's functional method must declare throws — not possible in lambda syntax, so catch inside the lambda). Standard Java FI (Function, Consumer) don't declare checked exceptions."
     },
     {
       "id": "d35q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "What is the composable Validator pattern (Validator.and() default method)?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "A Spring annotation",
+        "A custom functional interface with a default and() method that chains validators left-to-right, short-circuiting on first failure",
+        "A JPA validation mechanism",
+        "Hibernate Validator extension"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "A custom functional interface with a default and() method that chains validators left-to-right, short-circuiting on first failure",
+      "explanation": "Defining a default and() on a Validator interface: notEmpty.and(validTotal).and(inStock) creates a chain where each validator runs only if previous passed. This gives composable business rules without inheritance or complex frameworks."
     },
     {
       "id": "d35q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "What is `Supplier<T>` used for in lazy evaluation?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "Supplying database connections",
+        "Deferring expensive computation until the result is actually needed — the computation is wrapped in a Supplier and called only when .get() is invoked",
+        "Providing default values for null fields",
+        "Creating singletons"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d35q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d35q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d35q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d35q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d35q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "Deferring expensive computation until the result is actually needed — the computation is wrapped in a Supplier and called only when .get() is invoked",
+      "explanation": "Optional.orElseGet(Supplier<T>) vs orElse(T): orElse always evaluates the default value even if the Optional is present. orElseGet(supplier) calls supplier.get() only if the Optional is empty. This matters when the default is expensive to compute."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain Functional Interfaces in your own words with a beginner-friendly example.",
-    "Where would Functional Interfaces appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands Functional Interfaces?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 35 without looking at the notes."
+    "Explain all four core functional interfaces (Predicate, Function, Consumer, Supplier) with their signatures, use cases, and composition methods.",
+    "When should you use primitive specialised functional interfaces (IntPredicate, LongFunction, etc.)? Show a benchmark scenario explaining the boxing overhead.",
+    "Write a custom @FunctionalInterface Transformer<I, O> that declares a checked TransformationException. Show how to use it as a lambda.",
+    "Explain Predicate composition: and(), or(), negate(). Show building a complex product filter: in stock AND price < 100 AND NOT discontinued.",
+    "Compare Consumer.andThen() with Function.andThen(). What is the difference and when do you use each?",
+    "What is BinaryOperator<T>? Show its use in Stream.reduce() to sum a list of BigDecimal values.",
+    "Explain the difference between orElse(defaultValue) and orElseGet(supplier) in Optional. When does the performance difference matter?"
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to Functional Interfaces. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "A validation service has 12 separate if-statement validators for Order objects, all returning boolean. Refactor using Predicate composition where each validator is a Predicate<Order> and the full validation is a composed AND chain.",
+    "A data pipeline processes 50 million integers, applying Function<Integer, Integer> transformations. Profiling shows 40% of time is spent in GC from Integer boxing. Migrate to IntUnaryOperator and show the before/after.",
+    "A pricing engine needs to apply different combinations of discount rules (bulk discount AND holiday AND loyalty) that vary per customer segment. Design using composable Predicate<Order> and Function<Order, BigDecimal> that can be assembled at runtime."
   ],
   "dsaPractice": [
     {

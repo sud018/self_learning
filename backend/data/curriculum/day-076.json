@@ -1,190 +1,142 @@
 {
   "id": "day-76-authentication",
   "topic": "Day 76: Authentication",
-  "notes": "Phase: PHASE 8: ANGULAR ADVANCED\n\nDay 76 Detailed Notes: Authentication\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is Authentication. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn Authentication, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Java Integration: Authentication. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Secure Backend APIs. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Angular Advanced. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Performance-Oriented SQL. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Optimization Patterns. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for Authentication: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of Authentication as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Java Integration: Authentication, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Secure Backend APIs, ask which object owns the logic and which dependency is injected. When working with Angular Advanced, ask what state the component owns and what comes from the backend. When working with Performance-Oriented SQL, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Angular Authentication: JWT Integration, Auth Service, and Route Protection\n\n## Authentication Flow\n```\nUser submits login form\n  → POST /api/auth/login { username, password }\n  → Server returns { accessToken, refreshToken, user }\n  → Store tokens (memory + secure cookie or localStorage)\n  → Set user state in AuthService (BehaviorSubject)\n  → Redirect to intended route\n  → Every request: interceptor adds Authorization: Bearer <accessToken>\n  → On 401: interceptor refreshes token transparently\n  → On logout: clear tokens, clear user state, redirect to login\n```\n\n## Auth Service Implementation\n```typescript\n@Injectable({ providedIn: 'root' })\nexport class AuthService {\n  private readonly TOKEN_KEY   = 'access_token';\n  private readonly REFRESH_KEY = 'refresh_token';\n  private http   = inject(HttpClient);\n  private router = inject(Router);\n\n  // BehaviorSubject — all components react to auth state changes\n  private currentUser = new BehaviorSubject<UserDto | null>(this.getUserFromToken());\n  readonly currentUser$  = this.currentUser.asObservable();\n  readonly isLoggedIn$   = this.currentUser$.pipe(map(u => u !== null));\n\n  login(credentials: LoginRequest): Observable<void> {\n    return this.http.post<AuthResponse>('/api/auth/login', credentials).pipe(\n      tap(response => {\n        localStorage.setItem(this.TOKEN_KEY, response.accessToken);\n        localStorage.setItem(this.REFRESH_KEY, response.refreshToken);\n        this.currentUser.next(response.user);\n      }),\n      map(() => void 0)\n    );\n  }\n\n  logout() {\n    this.http.post('/api/auth/logout', {}).subscribe();  // invalidate server-side\n    localStorage.removeItem(this.TOKEN_KEY);\n    localStorage.removeItem(this.REFRESH_KEY);\n    this.currentUser.next(null);\n    this.router.navigate(['/login']);\n  }\n\n  refreshToken(): Observable<string> {\n    const refresh = localStorage.getItem(this.REFRESH_KEY);\n    return this.http.post<{ accessToken: string }>('/api/auth/refresh', { refreshToken: refresh })\n      .pipe(\n        tap(res => localStorage.setItem(this.TOKEN_KEY, res.accessToken)),\n        map(res => res.accessToken)\n      );\n  }\n\n  getToken(): string | null { return localStorage.getItem(this.TOKEN_KEY); }\n\n  hasRole(role: string): boolean {\n    const user = this.currentUser.getValue();\n    return user?.roles?.includes(role) ?? false;\n  }\n\n  isAuthenticated(): boolean { return !!this.getToken() && !this.isTokenExpired(); }\n\n  private isTokenExpired(): boolean {\n    const token = this.getToken();\n    if (!token) return true;\n    const payload = JSON.parse(atob(token.split('.')[1]));\n    return payload.exp * 1000 < Date.now();\n  }\n\n  private getUserFromToken(): UserDto | null {\n    const token = this.getToken();\n    if (!token) return null;\n    try {\n      const payload = JSON.parse(atob(token.split('.')[1]));\n      return payload.user ?? null;\n    } catch { return null; }\n  }\n}\n```\n\n## Login Component\n```typescript\n@Component({\n  standalone: true,\n  imports: [ReactiveFormsModule, RouterLink],\n  template: `\n    <form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\n      <input formControlName=\"username\" placeholder=\"Username\" />\n      <input formControlName=\"password\" type=\"password\" placeholder=\"Password\" />\n      <div *ngIf=\"errorMessage\" class=\"error\">{{ errorMessage }}</div>\n      <button [disabled]=\"form.invalid || isLoading\">\n        {{ isLoading ? 'Logging in...' : 'Login' }}\n      </button>\n    </form>\n  `\n})\nexport class LoginComponent {\n  private auth   = inject(AuthService);\n  private router = inject(Router);\n  private route  = inject(ActivatedRoute);\n\n  form = inject(FormBuilder).group({\n    username: ['', Validators.required],\n    password: ['', [Validators.required, Validators.minLength(8)]]\n  });\n  isLoading  = false;\n  errorMessage = '';\n\n  onSubmit() {\n    if (this.form.invalid) return;\n    this.isLoading = true;\n    this.errorMessage = '';\n\n    this.auth.login(this.form.value as LoginRequest).subscribe({\n      next: () => {\n        const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '/dashboard';\n        this.router.navigateByUrl(returnUrl);\n      },\n      error: (err) => {\n        this.isLoading = false;\n        this.errorMessage = err.status === 401 ? 'Invalid credentials' : 'Login failed';\n      }\n    });\n  }\n}\n```\n\n## JWT Security Considerations\n```typescript\n// Token storage security:\n// localStorage: XSS vulnerable (accessible by any script)\n// sessionStorage: cleared on tab close\n// httpOnly cookies: XSS-safe (server sets, JS can't read) — recommended for production\n// Memory (signal/variable): lost on page refresh\n\n// JWT payload decoding (NOT verification — done server-side)\nfunction decodeJwtPayload(token: string): JwtPayload {\n  const base64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');\n  return JSON.parse(atob(base64));\n}\n\n// Never trust JWT claims for authorization in client — only for UX\n// Real authorization: always server-side\n```\n\n## Auth Guard with Return URL\n```typescript\nexport const authGuard: CanActivateFn = (route, state) => {\n  const auth = inject(AuthService);\n  const router = inject(Router);\n\n  if (auth.isAuthenticated()) return true;\n\n  return router.createUrlTree(['/login'], {\n    queryParams: { returnUrl: state.url }\n  });\n};\n```\n\n## Common Mistakes\n1. **Trusting JWT payload for authorization:** client can manipulate base64 decoded payload. Authorization must be server-side.\n2. **Storing tokens in localStorage in high-security apps:** XSS can steal tokens. Use httpOnly cookies for sensitive data.\n3. **Not initializing auth state on app startup:** `getUserFromToken()` in BehaviorSubject init restores state after page refresh.\n",
   "conceptualQuestions": [
     {
       "id": "d76q1",
-      "prompt": "What is the main focus of Day 76?",
+      "prompt": "Why must JWT authorization always be verified server-side, not just client-side?",
       "options": [
-        "Authentication",
-        "Only CSS styling",
-        "Only deployment"
+        "Server is faster",
+        "The client can manipulate the JWT payload (it's just base64, not encrypted). Client-side claims are for UX only. Real access control: server validates signature and checks permissions",
+        "JWTs are encrypted",
+        "Angular guards are sufficient"
       ],
-      "correctAnswer": "Authentication",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "The client can manipulate the JWT payload (it's just base64, not encrypted). Client-side claims are for UX only. Real access control: server validates signature and checks permissions",
+      "explanation": "JWT.decode(token): just base64 decode, no signature verification. Anyone can change payload.roles = ['ADMIN']. Server-side: verifies HMAC/RSA signature — if payload is tampered, signature mismatch → 403. Angular guards are UX, not security."
     },
     {
       "id": "d76q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "Why is token storage in httpOnly cookies more secure than localStorage?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "Cookies are faster",
+        "httpOnly cookies are inaccessible to JavaScript — XSS attacks can't steal them. localStorage is readable by any script on the page — a single XSS vulnerability exposes all tokens",
+        "localStorage requires HTTPS",
+        "Cookies are encrypted"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "httpOnly cookies are inaccessible to JavaScript — XSS attacks can't steal them. localStorage is readable by any script on the page — a single XSS vulnerability exposes any stored tokens",
+      "explanation": "XSS: malicious script injected via user input/CDN/third-party. document.cookie: httpOnly cookies not accessible. localStorage.getItem('access_token'): accessible. httpOnly + Secure + SameSite=Strict: CSRF and XSS resistant."
     },
     {
       "id": "d76q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "How does Angular auth state persist across page refreshes?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "Angular remembers state",
+        "By initializing the BehaviorSubject with the result of parsing the stored JWT on service construction — getUserFromToken() reads localStorage on startup and populates initial auth state",
+        "Angular state is ephemeral",
+        "Use sessionStorage"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "By initializing the BehaviorSubject with the result of parsing the stored JWT on service construction — getUserFromToken() reads localStorage on startup and populates initial auth state",
+      "explanation": "new BehaviorSubject<User|null>(this.getUserFromToken()): on app start, reads JWT from storage, decodes user payload, sets as initial value. All components subscribing to currentUser$ see the logged-in user immediately."
     },
     {
       "id": "d76q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "What does the login component store as a `returnUrl` query parameter?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "The previous URL",
+        "The URL the user was trying to access before being redirected to login — after successful login, the user is sent to returnUrl instead of the default dashboard",
+        "returnUrl is the login URL",
+        "returnUrl is optional in all cases"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "The URL the user was trying to access before being redirected to login — after successful login, the user is sent to returnUrl instead of the default dashboard",
+      "explanation": "Guard: router.createUrlTree(['/login'], { queryParams: { returnUrl: state.url } }). Login component: this.route.snapshot.queryParamMap.get('returnUrl'). After login success: router.navigateByUrl(returnUrl ?? '/dashboard'). UX: seamless continuation."
     },
     {
       "id": "d76q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "What does `isTokenExpired()` check by parsing the JWT?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "Token length",
+        "The `exp` (expiration) claim in the JWT payload — exp is a Unix timestamp in seconds. If exp * 1000 < Date.now(): token expired. Prevents making API calls with a known-expired token",
+        "Token signature validity",
+        "exp is not in the JWT"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "The `exp` (expiration) claim in the JWT payload — exp is a Unix timestamp in seconds. If exp * 1000 < Date.now(): token expired. Prevents making API calls with a known-expired token",
+      "explanation": "JWT payload: { sub: 'user-id', exp: 1712345678, roles: ['USER'] }. Decode: JSON.parse(atob(token.split('.')[1])). exp * 1000: milliseconds. < Date.now(): expired. Pre-emptive expiry check: refresh before the request fails."
     },
     {
       "id": "d76q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "What should the Angular logout function do?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "Only remove the token",
+        "1) Call server logout endpoint (invalidate server-side session), 2) Remove tokens from storage, 3) Clear user BehaviorSubject to null, 4) Navigate to login page",
+        "Only navigate to login",
+        "Clear only localStorage"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "1) Call server logout endpoint (invalidate server-side session), 2) Remove tokens from storage, 3) Clear user BehaviorSubject to null, 4) Navigate to login page",
+      "explanation": "Server logout: invalidates refresh token in DB (prevents token reuse after logout). Storage clear: removes local tokens. BehaviorSubject null: all subscribing components update immediately. Navigate: redirect to login. Without server call, stolen refresh token still works until expiry."
     },
     {
       "id": "d76q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "Why should BehaviorSubject<User|null> be private in AuthService?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "TypeScript requirement",
+        "Prevents external code from calling .next() and setting arbitrary user state — only AuthService's login/logout methods should control auth state. Expose as asObservable()",
+        "BehaviorSubject can't be public",
+        "Performance optimization"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "Prevents external code from calling .next() and setting arbitrary user state — only AuthService's login/logout methods should control auth state. Expose as asObservable()",
+      "explanation": "If public: any component can call authService.currentUser.next({ roles: ['ADMIN'] }) → privilege escalation. Private + asObservable(): read-only for consumers. Only AuthService can emit new user states through its controlled methods."
     },
     {
       "id": "d76q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "What does the `hasRole()` method in AuthService do?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "Checks server permissions",
+        "Returns a boolean based on the CURRENT user's roles from the BehaviorSubject — used for conditional UI rendering (show/hide admin buttons). NOT for security — server must also check",
+        "hasRole() makes an API call",
+        "Roles are in the JWT only"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "Returns a boolean based on the CURRENT user's roles from the BehaviorSubject — used for conditional UI rendering (show/hide admin buttons). NOT for security — server must also check",
+      "explanation": "this.currentUser.getValue()?.roles?.includes(role): synchronous. Used in templates: *ngIf='authService.hasRole(\"ADMIN\")'. This controls visibility, not access. API endpoint still validates roles server-side."
     },
     {
       "id": "d76q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "What does `map(() => void 0)` do at the end of the login pipe?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "Returns undefined",
+        "Transforms the Observable<AuthResponse> to Observable<void> — callers don't need the response body, and void type prevents accidental dependency on the response structure",
+        "void 0 is a JavaScript constant",
+        "Prevents the login from completing"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "Transforms the Observable<AuthResponse> to Observable<void> — callers don't need the response body, and void type prevents accidental dependency on the response structure",
+      "explanation": "login(): Observable<void> — clean public API. Internal: stores tokens via tap (side effect). External: caller just knows 'login succeeded' without coupling to the response structure. If AuthResponse changes, callers are unaffected."
     },
     {
       "id": "d76q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "What is the security risk of not calling the server logout endpoint?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "No risk",
+        "The refresh token remains valid on the server until its natural expiry — if stolen before logout, an attacker can use it to get new access tokens even after the user has logged out",
+        "Server logout is optional",
+        "Logout always invalidates all tokens"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d76q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d76q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d76q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d76q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d76q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "The refresh token remains valid on the server until its natural expiry — if stolen before logout, an attacker can use it to get new access tokens even after the user has logged out",
+      "explanation": "Refresh token stolen: attacker can request new access tokens indefinitely. Server-side logout: deletes/invalidates the refresh token in the DB. Subsequent refresh attempt: 401 (token not found). Client-only logout: attackers with the old refresh token stay authenticated."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain Authentication in your own words with a beginner-friendly example.",
-    "Where would Authentication appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands Authentication?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 76 without looking at the notes."
+    "Implement a complete AuthService with login, logout, refreshToken, isAuthenticated, hasRole, and BehaviorSubject state.",
+    "Show the login component flow: form submit → API call → token storage → redirect to returnUrl.",
+    "Explain JWT token security: localStorage vs httpOnly cookies vs memory. What are XSS implications?",
+    "Show how to restore auth state after page refresh by initializing BehaviorSubject from stored JWT.",
+    "What is isTokenExpired()? Show decoding the JWT payload to read the exp claim.",
+    "Show the complete authentication flow: guard → login → returnUrl → dashboard.",
+    "What security vulnerability exists if you trust Angular route guards alone for authorization?"
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to Authentication. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "Users lose their session data when they manually refresh the browser. Fix by initializing AuthService BehaviorSubject from the stored JWT on startup.",
+    "After clicking 'Logout', users can still access admin pages if they directly navigate to the URL. Implement both client-side guards and server-side token revocation.",
+    "The app stores JWT in localStorage. A third-party analytics script could steal it via XSS. Migrate to httpOnly cookie authentication with CSRF protection."
   ],
   "dsaPractice": [
     {

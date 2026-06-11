@@ -1,190 +1,142 @@
 {
   "id": "day-42-beans",
   "topic": "Day 42: Beans",
-  "notes": "Phase: PHASE 5: SPRING BOOT CORE\n\nDay 42 Detailed Notes: Beans\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is Beans. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn Beans, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Backend Java Design: Beans. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Spring Boot Core. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: HTTP Integration. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: CRUD SQL. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: API Data Transformations. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for Beans: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of Beans as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Backend Java Design: Beans, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Spring Boot Core, ask which object owns the logic and which dependency is injected. When working with HTTP Integration, ask what state the component owns and what comes from the backend. When working with CRUD SQL, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Spring Beans: @Bean, Stereotypes, Scopes, and Lifecycle\n\n## Bean Stereotypes — @Component and its Specialisations\n```java\n@Component   // generic Spring-managed component\n@Service     // business logic layer — semantic annotation, same as @Component\n@Repository  // data access layer — adds persistence exception translation\n@Controller  // Spring MVC web layer\n@RestController // @Controller + @ResponseBody\n\n// These are all @Component specialisations — scanned via @ComponentScan\n// Difference: @Repository wraps persistence exceptions in Spring's DataAccessException hierarchy\n@Repository\npublic class OrderRepositoryImpl implements OrderRepository {\n    // DataAccessException translation: SQL/JPA exceptions → Spring's unchecked hierarchy\n    public Order save(Order order) { ... }\n}\n```\n\n## @Bean — Manual Bean Definition\n```java\n@Configuration\npublic class AppConfig {\n\n    // Method name becomes bean name (default)\n    @Bean\n    public PasswordEncoder passwordEncoder() {\n        return new BCryptPasswordEncoder(12);\n    }\n\n    // Custom name + destroy method\n    @Bean(name = \"asyncExecutor\", destroyMethod = \"shutdown\")\n    public ExecutorService executorService() {\n        return Executors.newFixedThreadPool(10);\n    }\n\n    // @Bean with dependency injection via parameters\n    @Bean\n    public OrderMapper orderMapper(ModelMapper modelMapper) {\n        return new OrderMapper(modelMapper); // Spring injects modelMapper @Bean\n    }\n}\n```\n\n## Bean Scopes\n```java\n// @Scope values:\n@Scope(\"singleton\")   // DEFAULT — one instance per ApplicationContext, shared\n@Scope(\"prototype\")   // new instance every time the bean is requested\n@Scope(\"request\")     // one instance per HTTP request (web apps)\n@Scope(\"session\")     // one instance per HTTP session (web apps)\n@Scope(\"application\") // one instance per ServletContext\n\n// Prototype example — stateful beans, commands, DTOs built by Spring\n@Component\n@Scope(\"prototype\")\npublic class OrderProcessor {\n    private final List<String> processingLog = new ArrayList<>(); // per-instance state\n    public void process(Order order) { processingLog.add(\"Processing: \" + order.getId()); }\n}\n\n// Injecting prototype into singleton — use ObjectProvider to get new instance each time\n@Service\npublic class BatchService {\n    @Autowired\n    private ObjectProvider<OrderProcessor> processorProvider;\n\n    public void processBatch(List<Order> orders) {\n        OrderProcessor processor = processorProvider.getObject(); // NEW instance each call\n        orders.forEach(processor::process);\n    }\n}\n```\n\n## Bean Lifecycle\n```java\n@Component\npublic class DataSourceConnectionPool implements InitializingBean, DisposableBean {\n\n    // Lifecycle hook options:\n    // 1. @PostConstruct — JSR-250, runs after injection, before bean is used\n    @PostConstruct\n    public void init() {\n        log.info(\"Initialising connection pool with {} connections\", poolSize);\n        // set up connections, validate config\n    }\n\n    // 2. @PreDestroy — runs before bean is destroyed (context closes)\n    @PreDestroy\n    public void cleanup() {\n        log.info(\"Shutting down connection pool\");\n        // release resources, close connections\n    }\n\n    // 3. InitializingBean.afterPropertiesSet() — Spring-specific interface\n    @Override\n    public void afterPropertiesSet() { /* alternative to @PostConstruct */ }\n\n    // 4. DisposableBean.destroy() — Spring-specific interface\n    @Override\n    public void destroy() { /* alternative to @PreDestroy */ }\n}\n// Order: constructor → @Autowired → @PostConstruct → [use] → @PreDestroy\n```\n\n## Conditional Beans — @Profile, @Conditional\n```java\n@Bean\n@Profile(\"dev\")       // only created when spring.profiles.active=dev\npublic DataSource devDataSource() { return new EmbeddedDatabaseBuilder()...build(); }\n\n@Bean\n@Profile(\"prod\")\npublic DataSource prodDataSource() { return new HikariDataSource(prodConfig); }\n\n// @ConditionalOnProperty — create bean only if property is set/true\n@Bean\n@ConditionalOnProperty(name = \"app.cache.enabled\", havingValue = \"true\")\npublic CacheManager cacheManager() { return new ConcurrentMapCacheManager(); }\n\n// @ConditionalOnMissingBean — provide default, let users override\n@Bean\n@ConditionalOnMissingBean(PasswordEncoder.class) // create only if no PasswordEncoder exists\npublic PasswordEncoder defaultEncoder() { return new BCryptPasswordEncoder(); }\n```\n\n## Common Mistakes\n1. **Non-singleton @Bean method in non-@Configuration class:** If `AppConfig` is `@Component` instead of `@Configuration`, `@Bean` methods are not proxied — each call creates a new instance instead of returning the singleton.\n2. **Using `@Scope(\"prototype\")` on a service injected into a singleton:** The prototype is injected once at startup — you always get the same instance. Use `ObjectProvider` or `ApplicationContext.getBean()`.\n3. **Logic in @PostConstruct that depends on another bean's @PostConstruct:** Initialization order between beans isn't guaranteed. Use `@DependsOn(\"otherBean\")` or redesign.\n",
   "conceptualQuestions": [
     {
       "id": "d42q1",
-      "prompt": "What is the main focus of Day 42?",
+      "prompt": "What is the difference between @Service and @Component?",
       "options": [
-        "Beans",
-        "Only CSS styling",
-        "Only deployment"
+        "@Service is for web controllers",
+        "They are functionally identical as component stereotypes — @Service communicates developer intent (business logic layer) and may receive additional AOP-based features in frameworks",
+        "@Service is required for @Transactional to work",
+        "@Component creates a prototype scope bean"
       ],
-      "correctAnswer": "Beans",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "They are functionally identical as component stereotypes — @Service communicates developer intent (business logic layer) and may receive additional AOP-based features in frameworks",
+      "explanation": "@Service, @Repository, @Controller, @RestController are all specialisations of @Component — all detected by @ComponentScan. @Repository adds exception translation. @Service is semantic: 'this is business logic.' Use appropriate stereotypes for code readability and potential AOP targeting."
     },
     {
       "id": "d42q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "What is the default bean scope in Spring Boot?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "prototype — new instance per request",
+        "singleton — one instance per ApplicationContext, shared across all injection points",
+        "request — one per HTTP request",
+        "session — one per user session"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "singleton — one instance per ApplicationContext, shared across all injection points",
+      "explanation": "Spring beans are singletons by default. One instance is created at startup and shared everywhere. This is why service beans must be stateless — any instance variable is shared across all threads handling requests simultaneously."
     },
     {
       "id": "d42q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What does @PostConstruct do?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "Creates the bean post-constructor",
+        "Runs a method after all dependencies are injected but before the bean is used — for initialization logic that requires injected dependencies",
+        "Marks a method as a factory method",
+        "Post-processes the bean after the context is fully started"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "Runs a method after all dependencies are injected but before the bean is used — for initialization logic that requires injected dependencies",
+      "explanation": "The constructor runs before injection. @PostConstruct runs after injection — when injected fields are available. Use for: opening connections, validating config, warming caches. Order: constructor → dependency injection → @PostConstruct."
     },
     {
       "id": "d42q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "Why is `@Bean` in a `@Component` class (not `@Configuration`) a potential bug?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "@Bean only works in @Configuration",
+        "Without @Configuration's CGLIB proxy, @Bean methods are called as plain Java methods — each call creates a new instance instead of returning the Spring singleton",
+        "@Component beans can't use @Bean",
+        "@Bean is ignored in @Component classes"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "Without @Configuration's CGLIB proxy, @Bean methods are called as plain Java methods — each call creates a new instance instead of returning the Spring singleton",
+      "explanation": "@Configuration wraps the class in a CGLIB subclass that intercepts @Bean method calls and returns the existing singleton from the context. In a plain @Component, @Bean methods are not intercepted — calling them directly creates new instances, breaking singleton behaviour and cross-@Bean dependencies."
     },
     {
       "id": "d42q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "How do you get a new prototype-scoped bean instance every time you need one from a singleton service?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "Use @Scope('prototype') on the singleton",
+        "Inject ObjectProvider<PrototypeBean> and call .getObject() to get a fresh instance each time",
+        "Prototype injection into singletons always creates a new instance",
+        "Use @Autowired with @Qualifier('prototype')"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "Inject ObjectProvider<PrototypeBean> and call .getObject() to get a fresh instance each time",
+      "explanation": "Direct @Autowired of a prototype into a singleton: Spring injects once at startup — same instance forever. ObjectProvider.getObject() asks the context for a fresh prototype instance each call. Alternatively: ApplicationContext.getBean(PrototypeBean.class) or @Lookup method injection."
     },
     {
       "id": "d42q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "What does `@Profile('prod')` on a @Bean method do?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "Marks the bean as production-ready",
+        "Creates the bean ONLY when spring.profiles.active=prod — different beans for different environments without code changes",
+        "Optimizes the bean for production performance",
+        "Disables the bean in test profiles"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "Creates the bean ONLY when spring.profiles.active=prod — different beans for different environments without code changes",
+      "explanation": "@Profile allows environment-specific bean creation. dev profile → H2 in-memory DB. prod profile → HikariCP PostgreSQL connection. test profile → mocked beans. Set active profile: spring.profiles.active=prod in application.properties or -Dspring.profiles.active=prod at runtime."
     },
     {
       "id": "d42q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "What is `@ConditionalOnMissingBean`?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "Creates a bean only when its type is missing",
+        "Creates a bean only when no other bean of the specified type exists — used by auto-configuration to provide defaults that users can override by declaring their own",
+        "Prevents bean creation in test contexts",
+        "Checks for missing optional dependencies"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "Creates a bean only when no other bean of the specified type exists — used by auto-configuration to provide defaults that users can override by declaring their own",
+      "explanation": "Spring Boot auto-configuration uses @ConditionalOnMissingBean extensively: if you declare a PasswordEncoder @Bean yourself, Spring Boot's default PasswordEncoder is NOT created. Your custom bean takes priority. This is how Spring Boot's convention-over-configuration works."
     },
     {
       "id": "d42q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "In what order does Spring execute bean lifecycle callbacks?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "@PostConstruct → constructor → @Autowired → @PreDestroy",
+        "constructor → @Autowired/dependency injection → @PostConstruct → [application runs] → @PreDestroy",
+        "@PreDestroy → @PostConstruct → constructor",
+        "constructor → @PostConstruct → @Autowired"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "constructor → @Autowired/dependency injection → @PostConstruct → [application runs] → @PreDestroy",
+      "explanation": "Lifecycle order: 1) Constructor (bean created), 2) @Autowired dependencies injected, 3) @PostConstruct (initialization with injected deps available), 4) Application uses the bean, 5) Context closes → @PreDestroy (cleanup). If you access @Autowired fields in the constructor, they are null."
     },
     {
       "id": "d42q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "What does `@Bean(destroyMethod = 'shutdown')` do?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "Kills the JVM when the bean shuts down",
+        "Calls the bean's shutdown() method when the ApplicationContext is closed — for resource cleanup of externally managed objects",
+        "Marks the bean as disposable",
+        "@Bean doesn't support destroyMethod"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "Calls the bean's shutdown() method when the ApplicationContext is closed — for resource cleanup of externally managed objects",
+      "explanation": "For beans not managed by Spring's lifecycle interfaces (@PreDestroy), destroyMethod specifies which method to call on context close. Common for ExecutorService.shutdown(), HikariDataSource.close(), or other third-party resources that need explicit cleanup."
     },
     {
       "id": "d42q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "What is @Repository's additional feature vs @Component?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "Automatically creates CRUD methods",
+        "Translates persistence-specific exceptions (JDBC SQLException, JPA PersistenceException) into Spring's DataAccessException hierarchy",
+        "Creates an in-memory repository for testing",
+        "@Repository enables lazy loading"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d42q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d42q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d42q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d42q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d42q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "Translates persistence-specific exceptions (JDBC SQLException, JPA PersistenceException) into Spring's DataAccessException hierarchy",
+      "explanation": "@Repository enables Spring's PersistenceExceptionTranslationPostProcessor which wraps persistence exceptions in Spring's unchecked DataAccessException hierarchy. This means service code doesn't need to catch JDBC or JPA specific exceptions — it catches DataAccessException, abstracting the persistence technology."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain Beans in your own words with a beginner-friendly example.",
-    "Where would Beans appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands Beans?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 42 without looking at the notes."
+    "Explain the four Spring stereotype annotations (@Component, @Service, @Repository, @Controller) and what distinguishes them beyond semantics.",
+    "What is the difference between @Component-detected beans and @Bean-defined beans? When would you use @Bean instead of @Component?",
+    "Explain all four bean scopes: singleton, prototype, request, session. Show a case where prototype scope is necessary and how to inject it into a singleton correctly.",
+    "Show the complete bean lifecycle: constructor, @Autowired, @PostConstruct, [use], @PreDestroy. Show a connection pool that opens on @PostConstruct and closes on @PreDestroy.",
+    "What is @ConditionalOnProperty? Show a feature flag that enables a caching bean only when app.cache.enabled=true.",
+    "Explain the @Configuration CGLIB proxy and why @Bean in @Component is different. Show the bug and how to fix it.",
+    "What does @Profile allow? Show a DataSource bean configured for three profiles: dev (H2), test (testcontainers), prod (HikariCP PostgreSQL)."
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to Beans. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "A Spring Boot app's connection pool is not cleaned up when the application shuts down — DBCP connections stay open. Add @PreDestroy (or destroyMethod) to ensure the pool closes on context shutdown.",
+    "A feature flag system: send emails via real SMTP in prod, log-only in dev, mock in tests. Design using @Profile on three EmailService beans without if-statements in the service.",
+    "A new MessageQueue integration should activate only when app.messaging.enabled=true. Use @ConditionalOnProperty so the bean isn't created in environments without the queue configured, avoiding startup errors."
   ],
   "dsaPractice": [
     {

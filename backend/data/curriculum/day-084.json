@@ -1,190 +1,142 @@
 {
   "id": "day-84-sql-mock-interviews",
   "topic": "Day 84: SQL Mock Interviews",
-  "notes": "Phase: PHASE 9: INTERVIEW PREPARATION\n\nDay 84 Detailed Notes: SQL Mock Interviews\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is SQL Mock Interviews. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn SQL Mock Interviews, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Interview Java: SQL Mock Interviews. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Interview Spring Boot. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Interview Angular. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Interview SQL. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Interview DSA. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for SQL Mock Interviews: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of SQL Mock Interviews as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Interview Java: SQL Mock Interviews, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Interview Spring Boot, ask which object owns the logic and which dependency is injected. When working with Interview Angular, ask what state the component owns and what comes from the backend. When working with Interview SQL, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# SQL Mock Interview Preparation: Advanced Queries and Optimization\n\n## Window Functions — Essential for Interviews\n```sql\n-- ROW_NUMBER — unique rank per row\nSELECT\n    customer_id,\n    order_id,\n    order_date,\n    total,\n    ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date DESC) AS rn\nFROM orders;\n-- rn=1 for each customer's most recent order\n\n-- Get most recent order per customer (classic interview problem)\nSELECT customer_id, order_id, total\nFROM (\n    SELECT *, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date DESC) AS rn\n    FROM orders\n) ranked\nWHERE rn = 1;\n\n-- RANK vs DENSE_RANK vs ROW_NUMBER\n-- 1,1,3 (RANK — skips 2), 1,1,2 (DENSE_RANK — no skip), 1,2,3 (ROW_NUMBER — always unique)\n\n-- Running total\nSELECT\n    order_date,\n    total,\n    SUM(total) OVER (ORDER BY order_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS running_total\nFROM orders;\n\n-- LAG / LEAD — compare with previous/next row\nSELECT\n    order_date,\n    total,\n    LAG(total) OVER (ORDER BY order_date)  AS prev_total,\n    total - LAG(total) OVER (ORDER BY order_date) AS change\nFROM daily_sales;\n```\n\n## Indexes — Query Optimization\n```sql\n-- Composite index — column order matters\nCREATE INDEX idx_orders_customer_date ON orders (customer_id, order_date);\n-- Covers: WHERE customer_id = ? AND order_date > ?\n-- Covers: WHERE customer_id = ?\n-- Does NOT efficiently cover: WHERE order_date > ? (without customer_id filter)\n-- Rule: most selective/frequently filtered column first\n\n-- EXPLAIN ANALYZE — understand query plan\nEXPLAIN ANALYZE\nSELECT * FROM orders WHERE customer_id = 'C-001' AND status = 'PENDING';\n-- Look for: Seq Scan (bad) vs Index Scan (good), rows, actual time\n\n-- Covering index — includes all queried columns, avoids table lookup\nCREATE INDEX idx_orders_covering ON orders (customer_id, status) INCLUDE (order_id, total);\n-- Query can be satisfied entirely from index — no heap access\n```\n\n## CTEs and Recursive Queries\n```sql\n-- CTE — readable, reusable within query\nWITH monthly_revenue AS (\n    SELECT\n        DATE_TRUNC('month', order_date) AS month,\n        SUM(total) AS revenue\n    FROM orders\n    WHERE status = 'COMPLETED'\n    GROUP BY 1\n),\nranked_months AS (\n    SELECT *,\n        RANK() OVER (ORDER BY revenue DESC) AS revenue_rank\n    FROM monthly_revenue\n)\nSELECT month, revenue, revenue_rank\nFROM ranked_months\nWHERE revenue_rank <= 3;\n\n-- Recursive CTE — hierarchical data (org chart, categories)\nWITH RECURSIVE category_tree AS (\n    SELECT id, name, parent_id, 0 AS depth\n    FROM categories\n    WHERE parent_id IS NULL     -- root categories\n    UNION ALL\n    SELECT c.id, c.name, c.parent_id, ct.depth + 1\n    FROM categories c\n    JOIN category_tree ct ON c.parent_id = ct.id\n)\nSELECT id, LPAD('', depth * 2, ' ') || name AS indented_name, depth\nFROM category_tree\nORDER BY depth, name;\n```\n\n## DSA Topic: Meeting Rooms II (Min-Heap)\n```java\n// Problem: minimum number of conference rooms required\n// LeetCode 253\npublic int minMeetingRooms(int[][] intervals) {\n    if (intervals.length == 0) return 0;\n\n    Arrays.sort(intervals, (a, b) -> a[0] - b[0]);  // sort by start time\n    PriorityQueue<Integer> heap = new PriorityQueue<>();  // min-heap of end times\n\n    for (int[] meeting : intervals) {\n        // If earliest-ending meeting ends before this one starts → reuse the room\n        if (!heap.isEmpty() && heap.peek() <= meeting[0]) {\n            heap.poll();  // free the room\n        }\n        heap.offer(meeting[1]);  // assign this meeting's end time\n    }\n    return heap.size();  // rooms in use = heap size\n}\n// Time: O(n log n), Space: O(n)\n```\n\n## SQL Interview Q&A\n```sql\n-- Q: Difference between WHERE and HAVING?\nSELECT customer_id, COUNT(*) AS order_count\nFROM orders\nWHERE status = 'COMPLETED'        -- filter rows BEFORE grouping\nGROUP BY customer_id\nHAVING COUNT(*) > 5;              -- filter groups AFTER aggregation\n\n-- Q: Find customers who ordered every product\nSELECT customer_id\nFROM order_items oi\nJOIN products p ON oi.product_id = p.id\nGROUP BY customer_id\nHAVING COUNT(DISTINCT oi.product_id) = (SELECT COUNT(*) FROM products);\n\n-- Q: Second highest salary\nSELECT MAX(salary) FROM employees WHERE salary < (SELECT MAX(salary) FROM employees);\n-- Or with DENSE_RANK:\nSELECT salary FROM (\n    SELECT salary, DENSE_RANK() OVER (ORDER BY salary DESC) AS dr FROM employees\n) WHERE dr = 2;\n```\n\n## Common Mistakes\n1. **Using `!=` with NULL:** `NULL != 'value'` is NULL (not TRUE). Use `IS NOT NULL`.\n2. **Index not used due to function on column:** `WHERE LOWER(email) = ?` prevents index use. Fix: functional index or stored lowercase.\n3. **N+1 in SQL:** selecting from a table in a subquery that runs per-row. Rewrite as JOIN.\n",
   "conceptualQuestions": [
     {
       "id": "d84q1",
-      "prompt": "What is the main focus of Day 84?",
+      "prompt": "What is the difference between RANK(), DENSE_RANK(), and ROW_NUMBER()?",
       "options": [
-        "SQL Mock Interviews",
-        "Only CSS styling",
-        "Only deployment"
+        "Identical functions",
+        "ROW_NUMBER: always unique sequential (1,2,3). RANK: skips after ties (1,1,3 — no 2). DENSE_RANK: no skipping after ties (1,1,2). Use DENSE_RANK for top-N per group without gaps",
+        "DENSE_RANK requires unique values",
+        "ROW_NUMBER is for sorting only"
       ],
-      "correctAnswer": "SQL Mock Interviews",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "ROW_NUMBER: always unique sequential (1,2,3). RANK: skips after ties (1,1,3 — no 2). DENSE_RANK: no skipping after ties (1,1,2). Use DENSE_RANK for top-N per group without gaps",
+      "explanation": "Scores: 100, 100, 90. RANK: 1,1,3. DENSE_RANK: 1,1,2. ROW_NUMBER: 1,2,3 (arbitrary order for ties). Use case: top 3 products per category → DENSE_RANK ≤ 3 (includes all ties at 3rd position)."
     },
     {
       "id": "d84q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "What does PARTITION BY do in a window function?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "Splits the table",
+        "Divides rows into independent groups — the window function resets for each partition. ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY date): row numbers restart at 1 for each customer",
+        "PARTITION BY is like GROUP BY",
+        "Requires an index"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "Divides rows into independent groups — the window function resets for each partition. ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY date): row numbers restart at 1 for each customer",
+      "explanation": "Without PARTITION BY: ROW_NUMBER() over all rows. With PARTITION BY customer_id: row numbers reset per customer — customer A has 1,2,3 and customer B also has 1,2,3. Equivalent to GROUP BY but without collapsing rows."
     },
     {
       "id": "d84q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What is a covering index?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "An index on all columns",
+        "An index that contains ALL columns needed by a query — query can be answered entirely from the index without accessing the table heap. Fastest possible index. CREATE INDEX ... INCLUDE (col1, col2) adds non-key columns",
+        "Covering indexes require InnoDB",
+        "Only for SELECT *"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "An index that contains ALL columns needed by a query — query can be answered entirely from the index without accessing the table heap. Fastest possible read. CREATE INDEX ... INCLUDE (col1, col2) adds non-key columns",
+      "explanation": "Query: SELECT order_id, total FROM orders WHERE customer_id = 'C-1'. Index on (customer_id) INCLUDE (order_id, total): full answer in index, no heap read (index-only scan). Without INCLUDE: index finds rows, then fetches each row from heap."
     },
     {
       "id": "d84q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "What is the difference between WHERE and HAVING?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "Both filter rows",
+        "WHERE filters individual rows BEFORE GROUP BY aggregation. HAVING filters groups AFTER aggregation. WHERE cannot use aggregate functions. HAVING cannot reference non-grouped columns",
+        "HAVING is deprecated",
+        "They run simultaneously"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "WHERE filters individual rows BEFORE GROUP BY aggregation. HAVING filters groups AFTER aggregation. WHERE cannot use aggregate functions. HAVING cannot reference non-grouped columns",
+      "explanation": "ORDER: FROM → WHERE (filter rows) → GROUP BY → HAVING (filter groups) → SELECT → ORDER BY. Use WHERE when possible — filters earlier, fewer rows to aggregate. HAVING needed for conditions on aggregated values (COUNT, SUM, AVG)."
     },
     {
       "id": "d84q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "What does a CTE (WITH clause) provide over subqueries?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "CTEs are always faster",
+        "Readability and reusability within the query — complex logic can be named and referenced multiple times. Recursive CTEs enable hierarchical queries (org charts, category trees) not possible with regular subqueries",
+        "CTEs replace all JOINs",
+        "CTEs require PostgreSQL"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "Readability and reusability within the query — complex logic can be named and referenced multiple times. Recursive CTEs enable hierarchical queries (org charts, category trees) not possible with regular subqueries",
+      "explanation": "CTE vs subquery: functionally equivalent for non-recursive. CTE: named, reusable in same query, reads top-to-bottom. Recursive CTE: UNION ALL references itself — only way to traverse tree structures without procedural code."
     },
     {
       "id": "d84q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "What is the Meeting Rooms II problem and what data structure solves it?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "Schedule meetings optimally",
+        "Find the minimum number of rooms for N meetings. Min-heap of end times: sort meetings by start, for each meeting check if any room is free (heap.peek() <= start). If yes, reuse room (poll). Always add end time. Heap size = rooms needed",
+        "Binary search approach",
+        "Use a stack"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "Find the minimum number of rooms for N meetings. Min-heap of end times: sort meetings by start, for each meeting check if any room is free (heap.peek() <= start). If yes, reuse room (poll). Always add end time. Heap size = rooms needed",
+      "explanation": "Sort by start: process in order. Min-heap: O(1) access to earliest-ending meeting. If it ends before current starts: reuse its room. Otherwise: new room needed. Final heap size = concurrent meetings peak = rooms needed."
     },
     {
       "id": "d84q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "Why does `WHERE LOWER(email) = ?` prevent index usage on the email column?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "LOWER is not a function",
+        "Applying a function to an indexed column prevents the index from being used — the index stores original values, not lowercased ones. Fix: store emails lowercase always, or create a functional index: CREATE INDEX ON users (LOWER(email))",
+        "WHERE clauses don't use indexes",
+        "LOWER requires full table scan always"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "Applying a function to an indexed column prevents the index from being used — the index stores original values, not lowercased ones. Fix: store emails lowercase always, or create a functional index: CREATE INDEX ON users (LOWER(email))",
+      "explanation": "Index on email: stored as 'User@Example.com'. LOWER(email) = 'user@example.com': index doesn't help — must compute LOWER for every row. Functional index on LOWER(email): stores lowercased values, query uses index."
     },
     {
       "id": "d84q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "What does LAG() window function do?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "Returns last row",
+        "Accesses a value from a PREVIOUS row within the partition without a self-join. LAG(total) OVER (ORDER BY date): returns the total from the previous row. LAG(total, 2): two rows back. Useful for period-over-period comparisons",
+        "LAG delays query execution",
+        "LAG is for time series only"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "Accesses a value from a PREVIOUS row within the partition without a self-join. LAG(total) OVER (ORDER BY date): returns the total from the previous row. LAG(total, 2): two rows back. Useful for period-over-period comparisons",
+      "explanation": "Month-over-month revenue change: SELECT month, revenue, revenue - LAG(revenue) OVER (ORDER BY month) AS change. Without window function: self-join on orders table — complex and slower."
     },
     {
       "id": "d84q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "Why does `NULL != 'value'` not return TRUE in SQL?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "SQL bug",
+        "NULL represents UNKNOWN — any comparison with NULL yields NULL (not TRUE or FALSE). Use IS NULL / IS NOT NULL. WHERE email != 'test@example.com': rows with email = NULL are excluded because NULL != 'test' is NULL (not TRUE)",
+        "NULL equals empty string",
+        "Only affects indexes"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "NULL represents UNKNOWN — any comparison with NULL yields NULL (not TRUE or FALSE). Use IS NULL / IS NOT NULL. WHERE email != 'test@example.com': rows with email = NULL are excluded because NULL != 'test' is NULL (not TRUE)",
+      "explanation": "Three-valued logic: TRUE, FALSE, NULL. NULL + anything = NULL. WHERE filters keep only TRUE — NULLs dropped. Fix: WHERE email != 'test@example.com' OR email IS NULL to include rows with null email."
     },
     {
       "id": "d84q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "What does EXPLAIN ANALYZE show and what should you look for?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "Shows table schema",
+        "The query execution plan with actual vs estimated row counts and timing. Look for: Seq Scan (full table scan — usually bad for large tables), Index Scan vs Index-Only Scan, rows estimate accuracy, nested loop vs hash join cost",
+        "EXPLAIN changes the query",
+        "Only works with PostgreSQL"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d84q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d84q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d84q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d84q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d84q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "The query execution plan with actual vs estimated row counts and timing. Look for: Seq Scan (full table scan — usually bad for large tables), Index Scan vs Index-Only Scan, rows estimate accuracy, nested loop vs hash join cost",
+      "explanation": "Seq Scan on orders (1M rows) in WHERE clause: missing index. Index Scan: good. Rows=1 actual=10000: bad statistics, run ANALYZE. Hash Join vs Nested Loop: Hash better for large joins. Actual time: find slow nodes."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain SQL Mock Interviews in your own words with a beginner-friendly example.",
-    "Where would SQL Mock Interviews appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands SQL Mock Interviews?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 84 without looking at the notes."
+    "Show ROW_NUMBER, RANK, DENSE_RANK differences with a scores example. Show getting top N per group.",
+    "Write a query using a CTE and window functions to find the top 3 revenue months.",
+    "Explain composite index column ordering. Show index on (customer_id, order_date) and which queries use it.",
+    "Solve Meeting Rooms II with a min-heap. Trace the algorithm on [[0,30],[5,10],[15,20]].",
+    "Show LAG() for month-over-month sales comparison. What self-join would this replace?",
+    "What is a covering index? Show CREATE INDEX with INCLUDE and the resulting query plan change.",
+    "Show WHERE vs HAVING with an example filtering orders before and after aggregation."
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to SQL Mock Interviews. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "A monthly report needs the top 3 revenue customers per region. Write using DENSE_RANK() with PARTITION BY region.",
+    "A products API query takes 3 seconds on a table with 5M rows. Run EXPLAIN ANALYZE and identify the missing index.",
+    "An HR system stores organizational hierarchy. Write a recursive CTE to traverse all employees under a given manager."
   ],
   "dsaPractice": [
     {

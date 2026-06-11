@@ -1,190 +1,142 @@
 {
   "id": "day-68-reactive-forms",
   "topic": "Day 68: Reactive Forms",
-  "notes": "Phase: PHASE 7: ANGULAR CORE\n\nDay 68 Detailed Notes: Reactive Forms\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is Reactive Forms. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn Reactive Forms, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Java API Support: Reactive Forms. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Frontend API Support. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Angular Core. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Frontend-Driven Queries. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: UI Data Structures. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for Reactive Forms: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of Reactive Forms as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Java API Support: Reactive Forms, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Frontend API Support, ask which object owns the logic and which dependency is injected. When working with Angular Core, ask what state the component owns and what comes from the backend. When working with Frontend-Driven Queries, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Angular Reactive Forms: FormBuilder, Validation, and Dynamic Forms\n\n## What are Reactive Forms?\nReactive forms are model-driven: the form model lives in TypeScript (not HTML). They are explicit, immutable, and testable. Unlike template-driven forms, form state is always in sync with the TypeScript model.\n\n```typescript\n@Component({\n  standalone: true,\n  imports: [ReactiveFormsModule],\n})\nexport class OrderFormComponent {\n  private fb = inject(FormBuilder);\n\n  // FormGroup with FormControls and validators\n  orderForm = this.fb.group({\n    customerId:  ['', [Validators.required, Validators.minLength(3)]],\n    productId:   ['', Validators.required],\n    quantity:    [1, [Validators.required, Validators.min(1), Validators.max(1000)]],\n    note:        ['', Validators.maxLength(500)],\n    address: this.fb.group({\n      street: ['', Validators.required],\n      city:   ['', Validators.required],\n      zip:    ['', [Validators.required, Validators.pattern(/^\\d{5}$/)]]\n    })\n  });\n\n  onSubmit() {\n    if (this.orderForm.invalid) return;\n    const payload = this.orderForm.value; // typed FormValue\n  }\n}\n```\n\n## Typed Reactive Forms (Angular 14+)\n```typescript\n// FormGroup is now strongly typed\ninterface OrderForm {\n  customerId: FormControl<string>;\n  quantity:   FormControl<number>;\n}\n\nconst form = new FormGroup<OrderForm>({\n  customerId: new FormControl('', { nonNullable: true, validators: [Validators.required] }),\n  quantity:   new FormControl(1,  { nonNullable: true, validators: [Validators.min(1)] }),\n});\n\n// form.value is now typed: { customerId: string; quantity: number }\n// nonNullable: true — form.reset() resets to initial value, not null\n```\n\n## Accessing Controls and Validation\n```html\n<form [formGroup]=\"orderForm\" (ngSubmit)=\"onSubmit()\">\n\n  <input formControlName=\"customerId\" placeholder=\"Customer ID\" />\n  <div *ngIf=\"orderForm.get('customerId')?.invalid && orderForm.get('customerId')?.touched\">\n    <span *ngIf=\"orderForm.get('customerId')?.errors?.['required']\">Required</span>\n    <span *ngIf=\"orderForm.get('customerId')?.errors?.['minlength']\">Min 3 characters</span>\n  </div>\n\n  <!-- Shorthand with getter -->\n  <div *ngIf=\"quantity.invalid && quantity.dirty\">\n    <span *ngIf=\"quantity.errors?.['min']\">Minimum quantity is 1</span>\n  </div>\n\n  <button type=\"submit\" [disabled]=\"orderForm.invalid\">Place Order</button>\n</form>\n```\n```typescript\n// Getter for cleaner template access\nget quantity() { return this.orderForm.get('quantity')!; }\n```\n\n## FormArray — Dynamic List of Controls\n```typescript\norderForm = this.fb.group({\n  items: this.fb.array([this.createItem()])  // starts with one item\n});\n\nget items(): FormArray { return this.orderForm.get('items') as FormArray; }\n\ncreateItem(): FormGroup {\n  return this.fb.group({\n    productId: ['', Validators.required],\n    quantity:  [1, [Validators.min(1)]]\n  });\n}\n\naddItem() { this.items.push(this.createItem()); }\nremoveItem(index: number) { this.items.removeAt(index); }\n```\n```html\n<div formArrayName=\"items\">\n  @for (item of items.controls; track $index; let i = $index) {\n    <div [formGroupName]=\"i\">\n      <input formControlName=\"productId\" placeholder=\"Product ID\" />\n      <input formControlName=\"quantity\" type=\"number\" />\n      <button (click)=\"removeItem(i)\">Remove</button>\n    </div>\n  }\n  <button type=\"button\" (click)=\"addItem()\">Add Item</button>\n</div>\n```\n\n## Custom Validators\n```typescript\n// Synchronous validator\nexport function positiveEvenNumber(control: AbstractControl): ValidationErrors | null {\n  const v = control.value;\n  if (!v || v <= 0 || v % 2 !== 0) {\n    return { positiveEven: { value: v } };\n  }\n  return null;\n}\n\n// Cross-field validator (on FormGroup)\nexport function passwordMatch(group: AbstractControl): ValidationErrors | null {\n  const pass = group.get('password')?.value;\n  const confirm = group.get('confirmPassword')?.value;\n  return pass === confirm ? null : { mismatch: true };\n}\n\n// Async validator (e.g., check username availability)\nexport function usernameAvailable(userService: UserService): AsyncValidatorFn {\n  return (control: AbstractControl): Observable<ValidationErrors | null> =>\n    control.valueChanges.pipe(\n      debounceTime(300),\n      switchMap(v => userService.checkAvailability(v)),\n      map(available => available ? null : { usernameTaken: true }),\n      first()  // complete the observable after first emission\n    );\n}\n```\n\n## valueChanges and statusChanges\n```typescript\nngOnInit() {\n  // React to form value changes\n  this.orderForm.get('productId')!.valueChanges\n    .pipe(\n      debounceTime(300),\n      distinctUntilChanged(),\n      switchMap(id => this.productService.getProduct(id))\n    )\n    .subscribe(product => this.selectedProduct = product);\n\n  // Disable submit button for invalid or pending forms\n  this.orderForm.statusChanges.subscribe(status => {\n    console.log(status); // 'VALID' | 'INVALID' | 'PENDING' | 'DISABLED'\n  });\n}\n```\n\n## Common Mistakes\n1. **Using `form.value` when controls are disabled:** disabled controls are excluded from `form.value`. Use `form.getRawValue()` to include them.\n2. **Forgetting `first()` in async validators:** an async validator Observable that never completes leaves the form in PENDING forever.\n3. **Deep-nesting FormGroups without matching HTML structure:** `formGroupName` must match the TypeScript nesting.\n",
   "conceptualQuestions": [
     {
       "id": "d68q1",
-      "prompt": "What is the main focus of Day 68?",
+      "prompt": "What is the difference between Reactive Forms and Template-Driven Forms?",
       "options": [
-        "Reactive Forms",
-        "Only CSS styling",
-        "Only deployment"
+        "Only syntax differs",
+        "Reactive: form model defined in TypeScript (explicit, immutable, testable). Template-driven: model inferred from template directives (ngModel). Reactive is recommended for complex forms",
+        "Template forms are deprecated",
+        "Reactive forms require NgModule"
       ],
-      "correctAnswer": "Reactive Forms",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "Reactive: form model defined in TypeScript (explicit, immutable, testable). Template-driven: model inferred from template directives (ngModel). Reactive is recommended for complex forms",
+      "explanation": "Reactive: explicit FormGroup/FormControl in component class. Synchronous access to form state. Easier unit testing (no TestBed needed). Template-driven: model in HTML with ngModel. Asynchronous access to form state. Simpler for basic forms."
     },
     {
       "id": "d68q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "What does `nonNullable: true` do on a FormControl in Angular 14+?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "Makes the field required",
+        "When the form is reset with form.reset(), the control returns to its initial value instead of null. Removes null from the control's type — FormControl<string> instead of FormControl<string|null>",
+        "nonNullable forces a value",
+        "Sets a minimum validator"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "When the form is reset with form.reset(), the control returns to its initial value instead of null. Removes null from the control's type — FormControl<string> instead of FormControl<string|null>",
+      "explanation": "Default: new FormControl('hello').reset() → value becomes null (type: string|null). nonNullable: true: reset() → value returns to 'hello'. Cleaner types and prevents null-check boilerplate throughout the component."
     },
     {
       "id": "d68q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What does `FormArray` provide that a regular FormGroup doesn't?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "Multiple form groups",
+        "A dynamically-sized array of form controls or groups — controls can be added/removed at runtime with push(), removeAt(), clear(). Enables repeating form rows like order line items",
+        "FormArray is a type of FormGroup",
+        "Arrays handle validation automatically"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "A dynamically-sized array of form controls or groups — controls can be added/removed at runtime with push(), removeAt(), clear(). Enables repeating form rows like order line items",
+      "explanation": "FormGroup: fixed set of named controls. FormArray: indexed list of controls. addItem() pushes a new FormGroup. removeItem(i) removes it. .controls gives array of AbstractControls. .value gives array of values."
     },
     {
       "id": "d68q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "What should a custom validator return when validation passes?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "true",
+        "null — returning null means the control is valid. Returning a ValidationErrors object (e.g., { required: true }) means invalid",
+        "{ valid: true }",
+        "An empty object {}"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "null — returning null means the control is valid. Returning a ValidationErrors object (e.g., { required: true }) means invalid",
+      "explanation": "Validator function signature: (control: AbstractControl) => ValidationErrors | null. null = valid. { myError: true } = invalid with 'myError' key. Template: control.errors?.['myError'] to show the specific error message."
     },
     {
       "id": "d68q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "What does `form.getRawValue()` do vs `form.value`?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "Identical",
+        "getRawValue() includes disabled controls in the result; form.value excludes them. Use getRawValue() when you need all field values regardless of disabled state",
+        "getRawValue() skips validation",
+        "form.value returns raw strings"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "getRawValue() includes disabled controls in the result; form.value excludes them. Use getRawValue() when you need all field values regardless of disabled state",
+      "explanation": "form.get('customerId')?.disable() → form.value won't have customerId. form.getRawValue() → includes customerId. Common pattern: disable fields to prevent editing but still include their values in submission payload."
     },
     {
       "id": "d68q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "What is `statusChanges` on a FormGroup?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "Tracks HTTP request status",
+        "An Observable that emits 'VALID', 'INVALID', 'PENDING', or 'DISABLED' whenever the form's validation status changes — useful for async validation indicators",
+        "statusChanges is for debugging only",
+        "Emits only on form submit"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "An Observable that emits 'VALID', 'INVALID', 'PENDING', or 'DISABLED' whenever the form's validation status changes — useful for async validation indicators",
+      "explanation": "PENDING: one or more async validators are running. VALID: all validators pass. INVALID: at least one validator fails. DISABLED: form is disabled. Subscribe to show loading spinner while async validators check uniqueness."
     },
     {
       "id": "d68q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "Why must an async validator Observable complete (e.g., using `first()`)?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "For performance",
+        "Angular waits for the Observable to complete before resolving the status. If it never completes, the form stays in 'PENDING' state forever — never becomes VALID or INVALID",
+        "first() prevents multiple checks",
+        "Async validators must return Promises"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "Angular waits for the Observable to complete before resolving the status. If it never completes, the form stays in 'PENDING' state forever — never becomes VALID or INVALID",
+      "explanation": "Async validators: must return Observable<ValidationErrors|null> or Promise. Observable must complete. Use first() or take(1) to complete after first HTTP response. Without it: statusChanges emits PENDING and stays there."
     },
     {
       "id": "d68q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "What does `valueChanges.pipe(debounceTime(300), switchMap(...))` achieve in a form control?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "Caches form values",
+        "Waits 300ms after the last keystroke before making a search request, cancels previous in-flight requests if the user keeps typing — avoids a new API call on every keystroke",
+        "debounceTime blocks updates",
+        "switchMap adds a delay"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "Waits 300ms after the last keystroke before making a search request, cancels previous in-flight requests if the user keeps typing — avoids a new API call on every keystroke",
+      "explanation": "valueChanges: emits on every keystroke. debounceTime(300): suppress until 300ms quiet. switchMap: cancels previous Observable (previous HTTP request) when new value arrives. Combined: type 'abcd' quickly → only one request for 'abcd'."
     },
     {
       "id": "d68q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "What is a cross-field validator and how do you apply it?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "Validates multiple fields of the same type",
+        "A validator applied to a FormGroup (not a control) that can compare multiple controls — e.g., password and confirmPassword must match. Applied as the second argument to FormGroup: fb.group({...}, { validators: [passwordMatch] })",
+        "Cross-field validators use HTTP",
+        "Applied at component level"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "A validator applied to a FormGroup (not a control) that can compare multiple controls — e.g., password and confirmPassword must match. Applied as the second argument to FormGroup: fb.group({...}, { validators: [passwordMatch] })",
+      "explanation": "Cross-field: group.get('password')?.value vs group.get('confirmPassword')?.value. Applied to the FormGroup, not individual controls. Access error: form.errors?.['mismatch']. To show error near confirm field: form.hasError('mismatch')."
     },
     {
       "id": "d68q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "What does `formArrayName` directive do in the template?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "Names the HTML form",
+        "Binds a template section to a FormArray in the TypeScript model — required to iterate form array controls with formGroupName or formControlName inside",
+        "formArrayName is a CSS class",
+        "Required for all arrays"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d68q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d68q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d68q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d68q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d68q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "Binds a template section to a FormArray in the TypeScript model — required to iterate form array controls with formGroupName or formControlName inside",
+      "explanation": "<div formArrayName='items'>: binds to the 'items' FormArray. Inside: <div [formGroupName]='i'> binds to items.controls[i]. Without formArrayName, Angular doesn't know which array the child controls belong to."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain Reactive Forms in your own words with a beginner-friendly example.",
-    "Where would Reactive Forms appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands Reactive Forms?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 68 without looking at the notes."
+    "Build an order form with customerId, items (FormArray), and address nested group. Include required validators and show error messages.",
+    "Show typed reactive forms (Angular 14+) with nonNullable controls. How does form.value type differ from the default?",
+    "Write a custom async validator that checks username availability with 300ms debounce. Why is first() needed?",
+    "Show a cross-field passwordMatch validator applied to a FormGroup.",
+    "What is the difference between form.value and form.getRawValue()? Show with a disabled control.",
+    "Show how to implement dynamic line items in a shopping cart using FormArray with add/remove buttons.",
+    "Show valueChanges with debounceTime and switchMap for a product search autocomplete."
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to Reactive Forms. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "A checkout form has shipping and billing addresses with identical fields. Implement both as nested FormGroups with a 'same as shipping' checkbox that copies values using patchValue.",
+    "An invoice form needs N line items, each with product, quantity, and price. Build with FormArray supporting add/remove, and compute the total reactively using valueChanges.",
+    "A username registration field should check uniqueness in real-time. Add an async validator with debounce that calls UserService.checkUsername() and shows a loading indicator via statusChanges."
   ],
   "dsaPractice": [
     {

@@ -1,190 +1,142 @@
 {
   "id": "day-70-http-client",
   "topic": "Day 70: HTTP Client",
-  "notes": "Phase: PHASE 7: ANGULAR CORE\n\nDay 70 Detailed Notes: HTTP Client\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is HTTP Client. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn HTTP Client, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Java API Support: HTTP Client. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Frontend API Support. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Angular Core. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Frontend-Driven Queries. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: UI Data Structures. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for HTTP Client: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of HTTP Client as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Java API Support: HTTP Client, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Frontend API Support, ask which object owns the logic and which dependency is injected. When working with Angular Core, ask what state the component owns and what comes from the backend. When working with Frontend-Driven Queries, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Angular HTTP Client: Interceptors, Error Handling, and Advanced Patterns\n\n## provideHttpClient — Setup\n```typescript\n// app.config.ts (Angular 17+ standalone)\nexport const appConfig: ApplicationConfig = {\n  providers: [\n    provideHttpClient(\n      withInterceptors([authInterceptor, errorInterceptor, loggingInterceptor]),\n      withFetch()  // use browser fetch API instead of XMLHttpRequest\n    )\n  ]\n};\n```\n\n## Functional HTTP Interceptors (Angular 15+)\n```typescript\n// auth.interceptor.ts — adds Bearer token to every request\nexport const authInterceptor: HttpInterceptorFn = (req, next) => {\n  const token = inject(AuthService).getToken();\n\n  if (!token) return next(req);  // pass through unauthenticated requests\n\n  const authReq = req.clone({\n    setHeaders: { Authorization: `Bearer ${token}` }\n  });\n  return next(authReq);\n};\n\n// error.interceptor.ts — global error handling\nexport const errorInterceptor: HttpInterceptorFn = (req, next) => {\n  return next(req).pipe(\n    catchError((error: HttpErrorResponse) => {\n      switch (error.status) {\n        case 401:\n          inject(AuthService).logout();\n          inject(Router).navigate(['/login']);\n          break;\n        case 403:\n          inject(Router).navigate(['/forbidden']);\n          break;\n        case 0:\n          inject(SnackbarService).show('No internet connection');\n          break;\n        default:\n          inject(SnackbarService).show(`Error: ${error.message}`);\n      }\n      return throwError(() => error);  // re-throw so caller can also handle\n    })\n  );\n};\n\n// loading.interceptor.ts — global loading indicator\nexport const loadingInterceptor: HttpInterceptorFn = (req, next) => {\n  const loading = inject(LoadingService);\n  loading.increment();\n  return next(req).pipe(\n    finalize(() => loading.decrement())\n  );\n};\n```\n\n## HttpContext — Passing Metadata to Interceptors\n```typescript\n// Define a context token to skip auth on certain requests\nexport const SKIP_AUTH = new HttpContextToken<boolean>(() => false);\n\n// In interceptor: check the token\nexport const authInterceptor: HttpInterceptorFn = (req, next) => {\n  if (req.context.get(SKIP_AUTH)) return next(req);  // skip auth for public endpoints\n  // add auth header...\n};\n\n// In service: set context on specific requests\nthis.http.post('/api/auth/login', credentials, {\n  context: new HttpContext().set(SKIP_AUTH, true)  // don't add auth header to login\n});\n```\n\n## Retry and Timeout Patterns\n```typescript\n@Injectable({ providedIn: 'root' })\nexport class OrderService {\n  private http = inject(HttpClient);\n\n  getOrders(): Observable<OrderDto[]> {\n    return this.http.get<OrderDto[]>('/api/orders').pipe(\n      timeout(5000),                               // fail if no response in 5s\n      retry({ count: 3, delay: 1000 }),            // retry up to 3 times with 1s delay\n      catchError(err => {\n        if (err instanceof TimeoutError) {\n          return throwError(() => new Error('Request timed out'));\n        }\n        return throwError(() => err);\n      })\n    );\n  }\n}\n```\n\n## Typed HttpClient Responses\n```typescript\n// Generic response types\ninterface Page<T> {\n  content: T[];\n  totalElements: number;\n  totalPages: number;\n  number: number;\n  size: number;\n}\n\ngetOrders(page = 0, size = 20): Observable<Page<OrderDto>> {\n  return this.http.get<Page<OrderDto>>('/api/orders', {\n    params: { page, size }\n  });\n}\n\n// Upload with progress\nuploadFile(file: File): Observable<HttpEvent<any>> {\n  const formData = new FormData();\n  formData.append('file', file);\n\n  return this.http.post('/api/uploads', formData, {\n    reportProgress: true,\n    observe: 'events'\n  }).pipe(\n    filter(event => event.type === HttpEventType.UploadProgress),\n    map(event => ({\n      progress: Math.round(100 * (event as HttpUploadProgressEvent).loaded /\n                                  (event as HttpUploadProgressEvent).total!)\n    }))\n  );\n}\n```\n\n## Common Mistakes\n1. **Multiple interceptors in wrong order:** interceptors run in registration order for requests, reverse order for responses.\n2. **Forgetting `withInterceptors` in provideHttpClient:** functional interceptors require explicit opt-in.\n3. **Not re-throwing errors after handling:** if your interceptor catches and doesn't re-throw, the calling code can't detect failure.\n",
   "conceptualQuestions": [
     {
       "id": "d70q1",
-      "prompt": "What is the main focus of Day 70?",
+      "prompt": "What does an HTTP interceptor do?",
       "options": [
-        "HTTP Client",
-        "Only CSS styling",
-        "Only deployment"
+        "Caches HTTP responses",
+        "Intercepts every HTTP request and/or response — can add headers, log, handle errors, show loading state — without modifying individual service calls",
+        "Only intercepts 401 errors",
+        "Interceptors replace HttpClient"
       ],
-      "correctAnswer": "HTTP Client",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "Intercepts every HTTP request and/or response — can add headers, log, handle errors, show loading state — without modifying individual service calls",
+      "explanation": "Interceptors form a chain. Each receives (req, next): req is the outgoing request; next(req) passes it to the next interceptor or HttpClient. Modify request: req.clone({setHeaders:...}); handle response: next(req).pipe(catchError(...))"
     },
     {
       "id": "d70q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "Why must HTTP requests be cloned before modifying in an interceptor?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "HttpRequest is immutable — .clone() creates a new request with changes. Directly mutating the request would cause bugs since the same request object may be referenced elsewhere",
+        "Clone creates a new HTTP connection",
+        "Cloning is optional",
+        "Immutability is only for security"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "HttpRequest is immutable — .clone() creates a new request with changes. Directly mutating the request would cause bugs since the same request object may be referenced elsewhere",
+      "explanation": "req.clone({ setHeaders: { Authorization: 'Bearer ...' } }): returns a new HttpRequest with the header added. The original req is unchanged. All interceptors in the chain see the correctly modified request."
     },
     {
       "id": "d70q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What does `req.context.get(SKIP_AUTH)` do in an interceptor?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "Gets the request URL",
+        "Reads a typed metadata value attached to this specific request — HttpContextToken allows passing per-request configuration to interceptors without modifying the service API",
+        "context.get returns boolean only",
+        "SKIP_AUTH is a standard header"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "Reads a typed metadata value attached to this specific request — HttpContextToken allows passing per-request configuration to interceptors without modifying the service API",
+      "explanation": "HttpContext: per-request metadata bag. SKIP_AUTH token: defined with new HttpContextToken<boolean>(() => false). Service sets it: { context: new HttpContext().set(SKIP_AUTH, true) }. Interceptor reads it to decide behaviour."
     },
     {
       "id": "d70q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "What does `finalize(() => loading.decrement())` do in a loading interceptor?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "Handles final response",
+        "Runs the callback whether the Observable completes successfully or errors — ensures loading counter is always decremented even on HTTP errors",
+        "finalize is like tap",
+        "finalize delays the response"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "Runs the callback whether the Observable completes successfully or errors — ensures loading counter is always decremented even on HTTP errors",
+      "explanation": "finalize: the RxJS equivalent of finally. Without it: HTTP error → catchError doesn't call next → finalize still runs. Guarantees loading indicator is hidden even if the request fails. Essential for loading counters."
     },
     {
       "id": "d70q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "What does `retry({ count: 3, delay: 1000 })` do?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "Retries indefinitely",
+        "Retries a failed Observable up to 3 times with a 1000ms delay between attempts — if all retries fail, the error is propagated",
+        "retry overrides catchError",
+        "retry works on any Observable"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "Retries failed Observable up to 3 times with a 1000ms delay between attempts — if all retries fail, the error is propagated",
+      "explanation": "retry: subscribes again on error. count: max attempts. delay: ms between attempts. Can use: delay: (err, i) => timer(i * 1000) for exponential backoff. Network errors (status 0) are good candidates for retry; 4xx errors should not be retried."
     },
     {
       "id": "d70q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "In what order do Angular interceptors run?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "Alphabetical order",
+        "Requests: in registration order (first registered runs first). Responses: in reverse registration order (last registered handles response first)",
+        "Random order",
+        "All interceptors run simultaneously"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "Requests: in registration order (first registered runs first). Responses: in reverse registration order (last registered handles response first)",
+      "explanation": "withInterceptors([auth, error, logging]): request → auth → error → logging → server. Response → logging → error → auth. Like middleware stacks. Place auth first (header added before error checking). Place logging last to capture the full request/response."
     },
     {
       "id": "d70q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "What is `observe: 'events'` with `reportProgress: true` used for?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "Logs request events",
+        "Enables access to fine-grained upload/download progress events — HttpEventType.UploadProgress gives bytes uploaded/total for file upload progress bars",
+        "observe: 'events' is the default",
+        "Only works with WebSocket"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "Enables access to fine-grained upload/download progress events — HttpEventType.UploadProgress gives bytes uploaded/total for file upload progress bars",
+      "explanation": "Default observe:'body': just the response body. observe:'response': full HttpResponse (status, headers, body). observe:'events': all events (Sent, UploadProgress, DownloadProgress, Response). Filter by event.type for specific progress updates."
     },
     {
       "id": "d70q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "What does `withFetch()` do in `provideHttpClient(withFetch())`?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "Fetches from a local file",
+        "Switches Angular's HttpClient to use the browser's native Fetch API instead of XMLHttpRequest — enables streaming, better performance, and compatibility with the Request/Response APIs",
+        "withFetch adds caching",
+        "Required for all Angular 17 apps"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "Switches Angular's HttpClient to use the browser's native Fetch API instead of XMLHttpRequest — enables streaming, better performance, and compatibility with the Request/Response APIs",
+      "explanation": "XHR is the historical HTTP transport. Fetch is the modern API. withFetch(): opt-in to Fetch. Benefits: streaming support, uses Web Streams, lighter API. Currently optional; may become default in future Angular versions."
     },
     {
       "id": "d70q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "What happens when an interceptor calls `throwError(() => error)` after handling it?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "Throws a JavaScript exception",
+        "Re-propagates the error down the Observable chain — the calling service's catchError or subscribe error handler still receives it. Enables both interceptor-level handling (e.g., logout) and caller-level handling (e.g., show form error)",
+        "throwError retries the request",
+        "The next interceptor is skipped"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "Re-propagates the error down the Observable chain — the calling service's catchError or subscribe error handler still receives it. Enables both interceptor-level handling (e.g., logout) and caller-level handling (e.g., show form error)",
+      "explanation": "Error interceptor handles 401 (logout) then throwError(). The form component's subscribe error callback also receives the 401. If interceptor swallowed it (returned EMPTY): component doesn't know the request failed — can't show specific errors."
     },
     {
       "id": "d70q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "What is the HttpParams API used for?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "Custom HTTP headers",
+        "Building URL query parameters — HttpParams is immutable (each operation returns new instance): new HttpParams().set('page','0').set('size','20') → ?page=0&size=20",
+        "HttpParams are the request body",
+        "Required for POST requests"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d70q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d70q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d70q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d70q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d70q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "Building URL query parameters — HttpParams is immutable (each operation returns new instance): new HttpParams().set('page','0').set('size','20') → ?page=0&size=20",
+      "explanation": "this.http.get('/api/orders', { params: { page: 0, size: 20 } }): Angular converts the object to HttpParams. Or: new HttpParams({ fromObject: { status: 'PENDING' } }). HttpParams.set returns a NEW instance — always chain or reassign."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain HTTP Client in your own words with a beginner-friendly example.",
-    "Where would HTTP Client appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands HTTP Client?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 70 without looking at the notes."
+    "Write an authInterceptor that adds Bearer token from AuthService, and an errorInterceptor that handles 401/403/0 status codes.",
+    "Show HttpContextToken (SKIP_AUTH) usage: define, provide from a service, and read in interceptor.",
+    "Show a retry pattern with exponential backoff for a flaky API call.",
+    "How do interceptors compose? Show auth + loading + error interceptors and their execution order.",
+    "Show file upload with HttpEventType.UploadProgress for a progress bar.",
+    "What is the difference between observe:'body', observe:'response', and observe:'events'?",
+    "Show a full HttpParams construction for a paginated, filtered GET request."
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to HTTP Client. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "Every API call should show a global loading spinner. Implement a LoadingService counter and a loading interceptor using finalize().",
+    "When a 401 error occurs on any request, the user should be logged out and redirected to login. Add global 401 handling in errorInterceptor.",
+    "A file upload form needs a progress bar. Use HttpClient with reportProgress:true and observe:'events' to track upload percentage."
   ],
   "dsaPractice": [
     {

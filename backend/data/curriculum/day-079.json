@@ -1,190 +1,142 @@
 {
   "id": "day-79-lazy-loading",
   "topic": "Day 79: Lazy Loading",
-  "notes": "Phase: PHASE 8: ANGULAR ADVANCED\n\nDay 79 Detailed Notes: Lazy Loading\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is Lazy Loading. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn Lazy Loading, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Java Integration: Lazy Loading. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Secure Backend APIs. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Angular Advanced. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Performance-Oriented SQL. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Optimization Patterns. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for Lazy Loading: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of Lazy Loading as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Java Integration: Lazy Loading, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Secure Backend APIs, ask which object owns the logic and which dependency is injected. When working with Angular Advanced, ask what state the component owns and what comes from the backend. When working with Performance-Oriented SQL, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Angular Lazy Loading: Feature Routes, Preloading, and Bundle Strategies\n\n## Route-Based Lazy Loading\n```typescript\n// Without lazy loading: ALL components loaded at startup\nimport { AdminComponent } from './admin/admin.component';     // eager\nimport { ReportsComponent } from './reports/reports.component';  // eager\n\n// With lazy loading: components load only when navigated to\nexport const routes: Routes = [\n  // Eager routes (fast path — load immediately)\n  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },\n  { path: 'dashboard', component: DashboardComponent },\n\n  // Lazy routes (separate JS chunks — only downloaded on navigation)\n  {\n    path: 'orders',\n    loadComponent: () => import('./orders/orders.component').then(m => m.OrdersComponent),\n    canActivate: [authGuard]\n  },\n  {\n    path: 'admin',\n    loadChildren: () => import('./admin/admin.routes').then(r => r.adminRoutes),\n    canActivate: [authGuard, hasRole('ADMIN')]\n  },\n  {\n    path: 'reports',\n    loadChildren: () => import('./reports/reports.routes').then(r => r.reportsRoutes),\n    canActivate: [authGuard]\n  }\n];\n```\n\n## Feature Route Files\n```typescript\n// admin/admin.routes.ts\nexport const adminRoutes: Routes = [\n  { path: '', component: AdminDashboardComponent },\n  { path: 'users', component: UserManagementComponent },\n  { path: 'users/:id', component: UserDetailComponent },\n  {\n    path: 'settings',\n    loadComponent: () => import('./settings/settings.component').then(m => m.SettingsComponent)\n  }\n];\n```\n\n## Preloading Strategies\n```typescript\n// No preloading (default) — only load on navigation\nprovideRouter(routes)\n\n// Preload all lazy routes after startup (aggressive)\nprovideRouter(routes, withPreloading(PreloadAllModules))\n\n// Custom preloading — selective based on route data\nexport class SelectivePreloadingStrategy implements PreloadingStrategy {\n  preload(route: Route, load: () => Observable<any>): Observable<any> {\n    return route.data?.['preload'] === true ? load() : EMPTY;\n  }\n}\n\nprovideRouter(routes, withPreloading(SelectivePreloadingStrategy))\n\n// Mark routes for preloading:\n{ path: 'orders', loadChildren: () => import(...), data: { preload: true } }\n```\n\n## Webpack Bundle Analysis\n```bash\n# Build with bundle analysis\nng build --stats-json\nnpx webpack-bundle-analyzer dist/app/stats.json\n\n# Source map explorer\nnpm install -g source-map-explorer\nng build --source-map\nnpx source-map-explorer 'dist/app/*.js'\n```\n\n## Defer Blocks for Template-Level Lazy Loading (Angular 17+)\n```html\n<!-- Defer entire component until it scrolls into view -->\n@defer (on viewport) {\n  <app-product-reviews [productId]=\"product.id\" />\n} @loading (minimum 300ms) {\n  <div class=\"skeleton\" />\n} @error {\n  <p>Failed to load reviews</p>\n} @placeholder (minimum 200ms) {\n  <div style=\"height: 200px\" />\n}\n\n<!-- Trigger options -->\n@defer (on idle)           { ... }  <!-- browser idle -->\n@defer (on timer(3s))      { ... }  <!-- after 3 seconds -->\n@defer (on interaction)    { ... }  <!-- on user interaction -->\n@defer (when isLoggedIn()) { ... }  <!-- when signal becomes true -->\n\n<!-- Prefetch separately from rendering -->\n@defer (on viewport; prefetch on idle) {\n  <app-heavy-chart />\n}\n```\n\n## Module-Level Tree Shaking\n```typescript\n// BAD: importing entire library\nimport * as _ from 'lodash';                  // ~71KB\nimport { format } from 'date-fns';            // imports all of date-fns\n\n// GOOD: specific imports (tree-shaken)\nimport { debounce, throttle } from 'lodash-es';  // only debounce + throttle\nimport { format } from 'date-fns/format';         // only format\n\n// Angular Material: import only what you use\nimport { MatButtonModule } from '@angular/material/button';   // OK\nimport { MatInputModule }  from '@angular/material/input';    // OK\n// NOT: import { MaterialModule } from './material.module';   // imports everything\n```\n\n## Common Mistakes\n1. **Lazy loading but forgetting standalone imports:** standalone lazy-loaded components must import their dependencies in `imports: []`.\n2. **Not verifying code splitting:** use `ng build --stats-json` and webpack-bundle-analyzer to confirm chunks are separate.\n3. **Over-aggressive preloading:** PreloadAllModules defeats the purpose of lazy loading for admin routes.\n",
   "conceptualQuestions": [
     {
       "id": "d79q1",
-      "prompt": "What is the main focus of Day 79?",
+      "prompt": "What does `loadComponent: () => import('./admin.component').then(m => m.AdminComponent)` achieve?",
       "options": [
-        "Lazy Loading",
-        "Only CSS styling",
-        "Only deployment"
+        "Creates a component",
+        "Tells Angular to lazy-load AdminComponent — it's compiled into a separate JavaScript chunk that is only downloaded when the user navigates to this route, reducing the initial bundle size",
+        "Loads the component eagerly",
+        "Requires NgModule"
       ],
-      "correctAnswer": "Lazy Loading",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "Tells Angular to lazy-load AdminComponent — it's compiled into a separate JavaScript chunk that is only downloaded when the user navigates to this route, reducing the initial bundle size",
+      "explanation": "Dynamic import(): Webpack creates a separate chunk file. First navigation to the route: Angular downloads the chunk → creates component. Subsequent navigations: chunk is cached → instant. Network tab: you'll see admin-component-xxx.js appear on first visit."
     },
     {
       "id": "d79q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "What is the difference between `loadComponent` and `loadChildren`?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "loadComponent is faster",
+        "loadComponent: lazy-load a single standalone component. loadChildren: lazy-load a routes configuration file (can contain multiple components with their own children) — creates a separate chunk for the entire feature",
+        "loadChildren requires NgModule",
+        "Both produce identical bundles"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "loadComponent: lazy-load a single standalone component. loadChildren: lazy-load a routes configuration file (can contain multiple components with their own children) — creates a separate chunk for the entire feature",
+      "explanation": "loadComponent: one component, one chunk. loadChildren: one routes file that can import many components — all bundled in the feature chunk. Use loadChildren for features with multiple routes; loadComponent for single lazy pages."
     },
     {
       "id": "d79q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What does `PreloadAllModules` preloading strategy do?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "Loads all modules at once",
+        "After the app shell loads and becomes interactive, Angular downloads ALL lazy route chunks in the background — subsequent navigations feel instant even before the user visits them",
+        "Preloads only the current route",
+        "Replaces lazy loading"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "After the app shell loads and becomes interactive, Angular downloads ALL lazy route chunks in the background — subsequent navigations feel instant even before the user visits them",
+      "explanation": "Trade-off: faster subsequent navigation (chunks pre-downloaded) but wastes bandwidth for routes never visited. Better: selective preloading — only preload routes likely to be visited next (e.g., the next step in a workflow)."
     },
     {
       "id": "d79q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "What does `@defer (on viewport)` do in Angular 17?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "Renders after 1 second",
+        "The deferred content is NOT downloaded until the element's placeholder comes into the browser viewport. The component code is excluded from the initial bundle — reduces initial bundle size and improves LCP",
+        "on viewport is experimental",
+        "Requires the Intersection Observer API manually"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "The deferred content is NOT downloaded until the element's placeholder comes into the browser viewport. The component code is excluded from the initial bundle — reduces initial bundle size and improves LCP",
+      "explanation": "Product reviews below the fold: users scrolling eventually see them. Until scroll: only the @placeholder renders (no chunk downloaded). On scroll into view: Angular downloads the reviews chunk and renders it. Zero cost for users who don't scroll."
     },
     {
       "id": "d79q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "What is tree shaking and why does `import * as _ from 'lodash'` defeat it?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "Removing unused CSS",
+        "Tree shaking eliminates unused JavaScript from the bundle. `import * as _` pulls ALL of lodash into the bundle even if you only use one function. `import { debounce } from 'lodash-es'`: only debounce is bundled",
+        "Tree shaking is automatic for all imports",
+        "Only applies to Angular modules"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "Tree shaking eliminates unused JavaScript from the bundle. `import * as _` pulls ALL of lodash into the bundle even if you only use one function. `import { debounce } from 'lodash-es'`: only debounce is bundled",
+      "explanation": "Lodash: 71KB. You use only debounce. import * as _: entire 71KB included. import { debounce } from 'lodash-es': only debounce function included — maybe 2KB. Named imports from ES modules are tree-shakeable; default imports often aren't."
     },
     {
       "id": "d79q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "What does the `@defer (on idle)` trigger mean?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "Loads when browser crashes",
+        "Defers loading until the browser's main thread is idle (requestIdleCallback) — loads non-critical content without competing with user interactions and critical rendering",
+        "on idle is the default",
+        "Requires a service worker"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "Defers loading until the browser's main thread is idle (requestIdleCallback) — loads non-critical content without competing with user interactions and critical rendering",
+      "explanation": "Initial page load: critical content renders. Browser idle: Angular downloads deferred chunks (analytics, chat widget, non-critical widgets). Result: fast initial render, deferred content loads when CPU is free without blocking interactions."
     },
     {
       "id": "d79q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "What is a SelectivePreloadingStrategy and why is it better than PreloadAllModules?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "Random preloading",
+        "Only preloads routes marked with `data: { preload: true }` — you control which routes are worth preloading (likely next steps) vs routes rarely visited (admin). Balances performance vs bandwidth",
+        "Selective is default",
+        "PreloadAllModules is deprecated"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "Only preloads routes marked with `data: { preload: true }` — you control which routes are worth preloading (likely next steps) vs routes rarely visited (admin). Balances performance vs bandwidth",
+      "explanation": "E-commerce: preload /orders (everyone goes there) but not /admin (only 1% of users). PreloadAllModules: downloads admin chunk for all users. Selective: only downloads what's likely needed. Better for metered connections."
     },
     {
       "id": "d79q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "What does `--stats-json` with webpack-bundle-analyzer show?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "Test coverage",
+        "Visual treemap of every module in your bundle — shows which chunks exist, their sizes, and which packages take up the most space. Identifies large dependencies to optimize",
+        "Only shows total bundle size",
+        "Required for production builds"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "Visual treemap of every module in your bundle — shows which chunks exist, their sizes, and which packages take up the most space. Identifies large dependencies to optimize",
+      "explanation": "ng build --stats-json → dist/stats.json. webpack-bundle-analyzer dist/stats.json: browser opens with interactive treemap. See: rxjs (150KB), @angular/forms (80KB), lodash (71KB). Identify: why is this chunk 500KB? What can be removed or split?"
     },
     {
       "id": "d79q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "What is the `@loading` block in @defer and when is it shown?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "Shows during HTTP calls",
+        "Shows while the deferred content is being downloaded and initialized — appears after the trigger condition is met but before the content is ready. @placeholder shows BEFORE the trigger; @loading shows DURING download",
+        "Same as @placeholder",
+        "@loading requires async pipe"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "Shows while the deferred content is being downloaded and initialized — appears after the trigger condition is met but before the trigger; @loading shows DURING download",
+      "explanation": "@defer timeline: before trigger → @placeholder. Trigger fires (scroll, idle, etc.) → download starts → @loading shows. Download complete, component init → deferred content shows. If download fails → @error. minimum: shows loading for at least N ms even if fast."
     },
     {
       "id": "d79q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "Why must standalone lazy-loaded components include their imports?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "Standalone is a TypeScript requirement",
+        "Standalone components don't rely on NgModule for their dependencies — they declare their own imports. A lazy-loaded standalone component that uses CommonModule/RouterLink must import them in its @Component imports or it fails to compile",
+        "NgModule handles imports automatically",
+        "Only required for directives"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d79q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d79q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d79q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d79q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d79q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "Standalone components don't rely on NgModule for their dependencies — they declare their own imports. A lazy-loaded standalone component that uses CommonModule/RouterLink must import them in its @Component imports or it fails to compile",
+      "explanation": "Lazy component: @Component({ standalone: true, imports: [CommonModule, RouterLink, ReactiveFormsModule] }). Forgetting imports: template uses *ngIf but CommonModule not imported → compiler error. Each standalone component is self-contained."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain Lazy Loading in your own words with a beginner-friendly example.",
-    "Where would Lazy Loading appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands Lazy Loading?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 79 without looking at the notes."
+    "Show route configuration with eager routes (dashboard) and lazy routes (orders, admin) using loadComponent and loadChildren.",
+    "Implement a SelectivePreloadingStrategy that preloads routes with data: { preload: true }.",
+    "Show @defer with all trigger options: on viewport, on idle, on interaction, when signal. Include @loading and @error.",
+    "Show how to analyze bundle sizes with ng build --stats-json and webpack-bundle-analyzer.",
+    "Explain the difference between route-level lazy loading (@defer) and template-level defer blocks.",
+    "Show tree-shakeable imports from lodash-es and Angular Material.",
+    "Show feature routes file (admin.routes.ts) and the parent routes loading it with loadChildren."
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to Lazy Loading. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "The app has a 2MB initial bundle. Admin and reports are included even for non-admin users. Add lazy loading so admin and reports only download for users who navigate there.",
+    "A product page has customer reviews taking 400ms to render, blocking LCP. Use @defer (on viewport) for the reviews section.",
+    "Performance analysis shows date-fns is 80KB in the bundle but only 3 format functions are used. Fix with specific named imports."
   ],
   "dsaPractice": [
     {

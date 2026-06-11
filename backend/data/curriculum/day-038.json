@@ -1,190 +1,142 @@
 {
   "id": "day-38-date-api",
   "topic": "Day 38: Date API",
-  "notes": "Phase: PHASE 4: JAVA ADVANCED\n\nDay 38 Detailed Notes: Date API\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is Date API. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn Date API, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Advanced Java: Date API. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Exception and Validation Flow. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Typed Frontend Models. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Advanced Filtering. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Sorting and Searching. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for Date API: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of Date API as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Advanced Java: Date API, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Exception and Validation Flow, ask which object owns the logic and which dependency is injected. When working with Typed Frontend Models, ask what state the component owns and what comes from the backend. When working with Advanced Filtering, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Java Date/Time API (java.time): Complete Reference\n\n## Why the New API?\n`java.util.Date` and `Calendar` are mutable, confusing (month is 0-indexed), not thread-safe, and mix date/time/timezone concerns. `java.time` (JSR-310, Java 8) provides immutable, thread-safe types with clear naming.\n\n## Core Types and Their Roles\n```java\n// LocalDate — date without time, without timezone\nLocalDate today = LocalDate.now();\nLocalDate birthday = LocalDate.of(1990, Month.JUNE, 15); // Month enum, no 0-indexing\nLocalDate parsed = LocalDate.parse(\"2024-06-15\"); // ISO-8601 default format\n\n// LocalTime — time without date, without timezone\nLocalTime now = LocalTime.now();\nLocalTime meeting = LocalTime.of(14, 30, 0);  // 14:30:00\nLocalTime end = meeting.plusHours(1).plusMinutes(30); // 16:00:00 (immutable — new object)\n\n// LocalDateTime — date + time, without timezone\nLocalDateTime dt = LocalDateTime.of(today, meeting);    // combine LocalDate + LocalTime\nLocalDateTime fromStr = LocalDateTime.parse(\"2024-06-15T14:30:00\");\n\n// ZonedDateTime — date + time + timezone (use for user-facing times)\nZonedDateTime london = ZonedDateTime.now(ZoneId.of(\"Europe/London\"));\nZonedDateTime utc    = ZonedDateTime.now(ZoneId.of(\"UTC\"));\nZonedDateTime convertedToNY = london.withZoneSameInstant(ZoneId.of(\"America/New_York\"));\n\n// Instant — Unix timestamp (nanosecond precision, UTC-based machine time)\nInstant now2 = Instant.now();\nInstant fromEpoch = Instant.ofEpochSecond(1717344000L);\nlong epochMs = now2.toEpochMilli();\n// Use Instant for database storage (UTC), ZonedDateTime for display\n```\n\n## Period and Duration\n```java\n// Period — date-based (years, months, days)\nLocalDate start = LocalDate.of(2024, 1, 1);\nLocalDate end   = LocalDate.of(2025, 3, 15);\nPeriod period = Period.between(start, end);  // 1 year, 2 months, 14 days\nperiod.getYears();   // 1\nperiod.getMonths();  // 2\nperiod.getDays();    // 14\n\n// Duration — time-based (seconds, nanoseconds)\nInstant t1 = Instant.now();\n// ... operation ...\nInstant t2 = Instant.now();\nDuration elapsed = Duration.between(t1, t2);\nelapsed.toMillis();      // milliseconds\nelapsed.toSeconds();     // seconds\nelapsed.toMinutes();     // minutes\n\n// Useful factory methods\nDuration oneHour = Duration.ofHours(1);\nPeriod twoWeeks  = Period.ofWeeks(2);   // 14 days\n```\n\n## Date Arithmetic — Immutable Fluent API\n```java\nLocalDate d = LocalDate.of(2024, 6, 15);\nd.plusDays(10)             // 2024-06-25\n .plusMonths(1)            // 2024-07-25\n .minusYears(1)            // 2023-07-25\n .with(DayOfWeek.MONDAY)   // adjust to that week's Monday\n .withDayOfMonth(1)        // first of the month\n\n// TemporalAdjusters\nLocalDate nextMonday = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.MONDAY));\nLocalDate firstDayOfMonth = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());\nLocalDate lastDayOfYear   = LocalDate.now().with(TemporalAdjusters.lastDayOfYear());\n```\n\n## DateTimeFormatter — Formatting and Parsing\n```java\n// Predefined formatters\nDateTimeFormatter iso = DateTimeFormatter.ISO_LOCAL_DATE;        // \"2024-06-15\"\nDateTimeFormatter isoTime = DateTimeFormatter.ISO_LOCAL_DATE_TIME; // \"2024-06-15T14:30:00\"\n\n// Custom formatters — immutable, thread-safe (unlike SimpleDateFormat)\nDateTimeFormatter custom = DateTimeFormatter.ofPattern(\"dd/MM/yyyy HH:mm\");\nString formatted = LocalDateTime.now().format(custom); // \"15/06/2024 14:30\"\nLocalDateTime parsed = LocalDateTime.parse(\"15/06/2024 14:30\", custom);\n\n// Locale-sensitive\nDateTimeFormatter localeFormatter = DateTimeFormatter\n    .ofLocalizedDate(FormatStyle.FULL)\n    .withLocale(Locale.UK); // \"Saturday, 15 June 2024\"\n```\n\n## Java Time in Spring Boot / JPA\n```java\n// application.properties — configure Jackson to serialize java.time\nspring.jackson.serialization.write-dates-as-timestamps=false\n// Dependency: com.fasterxml.jackson.datatype:jackson-datatype-jsr310\n\n// JPA — map Instant to TIMESTAMP column\n@Column(name = \"created_at\")\nprivate Instant createdAt;\n\n@PrePersist\nvoid prePersist() { this.createdAt = Instant.now(); }\n\n// REST — Instant serializes as ISO-8601: \"2024-06-15T14:30:00Z\"\n```\n\n## Common Mistakes\n1. **Using LocalDateTime for timezone-sensitive code:** A meeting at 14:00 London needs `ZonedDateTime` — LocalDateTime has no timezone and daylight saving shifts can shift the wrong time.\n2. **Storing ZonedDateTime in DB:** Store `Instant` (UTC) in DB, convert to `ZonedDateTime` for display.\n3. **SimpleDateFormat in multithreaded code:** not thread-safe. Use `DateTimeFormatter` which is immutable and thread-safe.\n4. **Converting `Date` incorrectly:** `date.toInstant()` → `Instant` is correct. `new Date(localDate)` doesn't exist.\n",
   "conceptualQuestions": [
     {
       "id": "d38q1",
-      "prompt": "What is the main focus of Day 38?",
+      "prompt": "What is the difference between LocalDateTime and ZonedDateTime?",
       "options": [
-        "Date API",
-        "Only CSS styling",
-        "Only deployment"
+        "LocalDateTime has timezone; ZonedDateTime doesn't",
+        "LocalDateTime has no timezone — it cannot represent an unambiguous instant; ZonedDateTime includes timezone and can represent an exact instant",
+        "LocalDateTime is immutable; ZonedDateTime is mutable",
+        "They are identical in modern JVMs"
       ],
-      "correctAnswer": "Date API",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "LocalDateTime has no timezone — it cannot represent an unambiguous instant; ZonedDateTime includes timezone and can represent an exact instant",
+      "explanation": "'2024-06-15T14:30' in LocalDateTime is ambiguous — 14:30 where? ZonedDateTime adds ZoneId: '2024-06-15T14:30+01:00[Europe/London]' is unambiguous. For cross-timezone scheduling, always use ZonedDateTime."
     },
     {
       "id": "d38q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "What is `Instant` and when should you use it?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "A snapshot of the stack trace",
+        "A UTC-based timestamp with nanosecond precision — use for machine timestamps, DB storage, and event sourcing where timezone is irrelevant",
+        "A timezone-aware date",
+        "A replacement for System.currentTimeMillis()"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "A UTC-based timestamp with nanosecond precision — use for machine timestamps, DB storage, and event sourcing where timezone is irrelevant",
+      "explanation": "Instant represents a point on the UTC timeline. Use for: createdAt/updatedAt DB columns, event sourcing timestamps, measuring elapsed time. Not for user-facing times (use ZonedDateTime). Instant.now().toEpochMilli() replaces System.currentTimeMillis() in typed code."
     },
     {
       "id": "d38q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What is the difference between Period and Duration?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "Identical",
+        "Period is date-based (years, months, days) for calendar calculations; Duration is time-based (seconds, nanos) for elapsed time measurement",
+        "Period is deprecated",
+        "Duration only works with Instant"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "Period is date-based (years, months, days) for calendar calculations; Duration is time-based (seconds, nanos) for elapsed time measurement",
+      "explanation": "Period.between(date1, date2) gives 1 year, 2 months, 14 days — uses calendar semantics. Duration.between(instant1, instant2) gives exact nanoseconds/seconds. Period.ofMonths(3) adds calendar months (variable days); Duration.ofDays(90) adds exact 90*24*60*60 seconds."
     },
     {
       "id": "d38q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "Why is `DateTimeFormatter` preferred over `SimpleDateFormat`?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "DateTimeFormatter is faster",
+        "SimpleDateFormat is not thread-safe (shared instance causes data corruption in concurrent code); DateTimeFormatter is immutable and thread-safe",
+        "DateTimeFormatter supports more patterns",
+        "SimpleDateFormat doesn't support Java 8"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "SimpleDateFormat is not thread-safe (shared instance causes data corruption in concurrent code); DateTimeFormatter is immutable and thread-safe",
+      "explanation": "SimpleDateFormat keeps internal parse state as mutable fields — sharing one instance across threads causes wrong dates or exceptions. DateTimeFormatter is immutable — safe to share as a static final constant. Also: java.time types only work with DateTimeFormatter."
     },
     {
       "id": "d38q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "What does `LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.MONDAY))` return?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "Last Monday",
+        "Next Monday after today (or today if today is Monday?)",
+        "The nearest Monday",
+        "Monday of next month"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "Next Monday after today (or today if today is Monday?)",
+      "explanation": "TemporalAdjusters.next(MONDAY) returns the next Monday strictly after today. If today is Monday, it returns next week's Monday. Use nextOrSame(MONDAY) to include today if today is already Monday."
     },
     {
       "id": "d38q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "In JPA, should you store `ZonedDateTime` or `Instant` as a created_at column?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "ZonedDateTime to preserve timezone",
+        "Instant — stores as UTC timestamp; retrieve and convert to ZonedDateTime for display. Storing timezone in DB column is complex and often unnecessary",
+        "Either — they serialize identically",
+        "LocalDateTime — timezone is the application's concern"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "Instant — stores as UTC timestamp; retrieve and convert to ZonedDateTime for display. Storing timezone in DB column is complex and often unnecessary",
+      "explanation": "DB TIMESTAMP/UTC stores UTC epoch. Map to Instant in JPA. When displaying to users, convert: instant.atZone(user.getTimezone()). Storing ZonedDateTime adds timezone complexity to the DB schema. Exception: if you need to preserve the original timezone (e.g., log when user set an alarm in their local time)."
     },
     {
       "id": "d38q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "What Spring Boot property makes `Instant` serialize as '2024-06-15T14:30:00Z' instead of a number?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "spring.serialization.dates=iso",
+        "spring.jackson.serialization.write-dates-as-timestamps=false",
+        "spring.json.instant=iso8601",
+        "jackson.date-format=iso"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "spring.jackson.serialization.write-dates-as-timestamps=false",
+      "explanation": "By default, Jackson serializes Instant as a numeric epoch (1718460600.0). Setting write-dates-as-timestamps=false enables ISO-8601 string format. Also needs jackson-datatype-jsr310 on classpath (included with spring-boot-starter-web)."
     },
     {
       "id": "d38q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "What does `Duration.between(t1, t2).toMinutes()` return for a 90-second gap?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "90",
+        "1 — integer division truncates to whole minutes",
+        "1.5",
+        "90.0"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "1 — integer division truncates to whole minutes",
+      "explanation": "Duration.toMinutes() returns long (whole minutes, truncated). 90 seconds = 1 minute 30 seconds → toMinutes() = 1. Use toSeconds() for exact seconds, or compute manually: duration.toSeconds() / 60.0 for fractional minutes."
     },
     {
       "id": "d38q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "How do you convert a legacy `java.util.Date` to `java.time.Instant`?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "Instant.from(date)",
+        "date.toInstant()",
+        "LocalDate.from(date)",
+        "Instant.of(date.getTime())"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "date.toInstant()",
+      "explanation": "Date.toInstant() was added in Java 8 as a bridge. Then: instant.atZone(ZoneId.systemDefault()).toLocalDateTime() for LocalDateTime. For reverse: Date.from(instant)."
     },
     {
       "id": "d38q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "What is wrong with `LocalDateTime.of(2024, 3, 10, 2, 30)` in New York?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "Nothing",
+        "In New York, March 10 2024 at 02:30 does not exist — daylight saving time 'springs forward' from 02:00 to 03:00, creating a gap. ZonedDateTime handles this.",
+        "LocalDateTime doesn't accept integer months",
+        "2024-03-10 is a holiday"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d38q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d38q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d38q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d38q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d38q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "In New York, March 10 2024 at 02:30 does not exist — daylight saving time 'springs forward' from 02:00 to 03:00, creating a gap. ZonedDateTime handles this.",
+      "explanation": "DST gaps: clocks jump from 01:59 to 03:00. LocalDateTime.of(2024, 3, 10, 2, 30) represents a local time that never existed in America/New_York. ZonedDateTime.of(localDt, ZoneId.of('America/New_York')) adjusts to the nearest valid time."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain Date API in your own words with a beginner-friendly example.",
-    "Where would Date API appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands Date API?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 38 without looking at the notes."
+    "Explain the four main java.time types: LocalDate, LocalTime, LocalDateTime, ZonedDateTime, and Instant. When do you use each?",
+    "What is the difference between Period and Duration? Show a business example for each — calculating contract expiry vs measuring API response time.",
+    "Show a complete DateTimeFormatter example: parse from a custom pattern, format for display, and convert between timezones.",
+    "Why is SimpleDateFormat dangerous in a Spring Boot web application? Show the thread-safety bug and the DateTimeFormatter fix.",
+    "Explain how to store and retrieve dates in JPA: Instant for DB storage, ZonedDateTime for display. Show the @PrePersist pattern.",
+    "What are TemporalAdjusters? Show 3 practical examples: next business day, last day of month, first Monday of next month.",
+    "How do you convert between legacy java.util.Date and java.time types? Show the bridge methods in both directions."
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to Date API. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "A subscription service shows contract expiry dates to users in their local timezone, but stores dates in a MySQL UTC column. Show the complete data flow: Instant in DB, ZonedDateTime conversion, ISO-8601 JSON response.",
+    "A scheduler runs at 02:30 daily and fails twice a year in the US due to DST changes. Fix by using Instant-based scheduling and explain why LocalDateTime-based cron jobs have this problem.",
+    "A reporting API returns `createdAt` as 1717344000000 (epoch millis). Client teams report it's confusing. Change the serialization to ISO-8601 string without changing the DB schema or storage format."
   ],
   "dsaPractice": [
     {

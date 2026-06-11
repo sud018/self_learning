@@ -1,190 +1,142 @@
 {
   "id": "day-57-testing",
   "topic": "Day 57: Testing",
-  "notes": "Phase: PHASE 6: SPRING BOOT ADVANCED\n\nDay 57 Detailed Notes: Testing\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is Testing. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn Testing, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Enterprise Java: Testing. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Spring Boot Advanced. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Secure API Integration. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Relationships and Transactions. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Graphs and Queues Introduction. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for Testing: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of Testing as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Enterprise Java: Testing, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Spring Boot Advanced, ask which object owns the logic and which dependency is injected. When working with Secure API Integration, ask what state the component owns and what comes from the backend. When working with Relationships and Transactions, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Testing in Spring Boot: Unit Tests, @DataJpaTest, @SpringBootTest, and Test Slices\n\n## Test Pyramid — What to Test and How\n```\n        /\\\n       /E2E\\        (few — slow, expensive, brittle)\n      /------\\\n     /Integration\\  (some — @SpringBootTest, @DataJpaTest)\n    /------------\\\n   /  Unit Tests  \\ (many — fast, isolated, Mockito)\n  /----------------\\\n```\n\n## Unit Tests with Mockito\n```java\n@ExtendWith(MockitoExtension.class)\nclass OrderServiceTest {\n\n    @Mock private OrderRepository orderRepo;\n    @Mock private InventoryService inventoryService;\n    @Mock private OrderMapper mapper;\n    @InjectMocks private OrderService orderService;\n\n    @Test\n    void createOrder_savesOrderAndReturnsDto() {\n        // Arrange\n        CreateOrderRequest req = new CreateOrderRequest(\"cust-1\",\n            List.of(new CreateOrderItemRequest(\"prod-1\", 2)));\n        Order order = new Order(\"cust-1\");\n        OrderDto dto = new OrderDto(\"order-1\", \"PENDING\", BigDecimal.TEN);\n\n        when(orderRepo.save(any(Order.class))).thenReturn(order);\n        when(mapper.toDto(order)).thenReturn(dto);\n\n        // Act\n        OrderDto result = orderService.create(req);\n\n        // Assert\n        assertThat(result).isEqualTo(dto);\n        verify(orderRepo).save(any(Order.class));\n        verify(inventoryService).deductStock(req.items());\n    }\n\n    @Test\n    void createOrder_whenInventoryFails_rollsBackAndThrows() {\n        doThrow(new InsufficientStockException(\"prod-1\"))\n            .when(inventoryService).deductStock(any());\n\n        assertThatThrownBy(() -> orderService.create(new CreateOrderRequest(\"c1\", List.of())))\n            .isInstanceOf(InsufficientStockException.class);\n        verify(orderRepo, never()).save(any()); // should not save if inventory fails\n    }\n}\n```\n\n## @DataJpaTest — Repository Layer Testing\n```java\n@DataJpaTest  // loads only JPA/DB layer, uses H2 in-memory DB by default\n@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)\n// ^ remove to use actual DB (Testcontainers) instead of H2\nclass OrderRepositoryTest {\n\n    @Autowired private OrderRepository orderRepo;\n    @Autowired private TestEntityManager em;\n\n    @Test\n    void findByCustomerId_returnsOnlyCustomersOrders() {\n        // Arrange — persist test data\n        Order order1 = em.persistAndFlush(new Order(\"cust-1\"));\n        Order order2 = em.persistAndFlush(new Order(\"cust-2\"));\n\n        // Act\n        List<Order> results = orderRepo.findByCustomerId(\"cust-1\");\n\n        // Assert\n        assertThat(results).hasSize(1)\n            .extracting(Order::getCustomerId)\n            .containsOnly(\"cust-1\");\n    }\n\n    @Test\n    void countByStatus_returnsCorrectCount() {\n        em.persistAndFlush(new Order(\"c1\", OrderStatus.PENDING));\n        em.persistAndFlush(new Order(\"c2\", OrderStatus.PENDING));\n        em.persistAndFlush(new Order(\"c3\", OrderStatus.COMPLETED));\n\n        assertThat(orderRepo.countByStatus(OrderStatus.PENDING)).isEqualTo(2);\n    }\n}\n```\n\n## @SpringBootTest — Full Integration Test\n```java\n@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)\n@ActiveProfiles(\"test\")\nclass OrderIntegrationTest {\n\n    @Autowired private TestRestTemplate restTemplate;\n    @Autowired private OrderRepository orderRepo;\n\n    @Test\n    void createOrder_endToEnd() {\n        CreateOrderRequest req = new CreateOrderRequest(\"cust-1\",\n            List.of(new CreateOrderItemRequest(\"prod-1\", 1)));\n\n        ResponseEntity<OrderDto> response = restTemplate.postForEntity(\n            \"/api/orders\", req, OrderDto.class);\n\n        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);\n        assertThat(response.getBody().status()).isEqualTo(\"PENDING\");\n        assertThat(orderRepo.count()).isEqualTo(1);\n    }\n}\n```\n\n## Testcontainers — Real DB in Tests\n```java\n@DataJpaTest\n@AutoConfigureTestDatabase(replace = Replace.NONE)  // don't replace with H2\n@Testcontainers\nclass ProductRepositoryTest {\n\n    @Container\n    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(\"postgres:16\")\n        .withDatabaseName(\"testdb\")\n        .withUsername(\"test\")\n        .withPassword(\"test\");\n\n    @DynamicPropertySource\n    static void configureProperties(DynamicPropertyRegistry registry) {\n        registry.add(\"spring.datasource.url\", postgres::getJdbcUrl);\n        registry.add(\"spring.datasource.username\", postgres::getUsername);\n        registry.add(\"spring.datasource.password\", postgres::getPassword);\n    }\n\n    @Autowired private ProductRepository productRepo;\n\n    @Test\n    void save_persistsWithUUID() {\n        Product p = productRepo.save(new Product(\"Laptop\", new BigDecimal(\"999.99\")));\n        assertThat(p.getId()).isNotNull().hasSize(36); // UUID format\n    }\n}\n```\n\n## AssertJ — Fluent Assertions\n```java\n// AssertJ is much more readable than JUnit 5 assertions\nassertThat(result).isNotNull();\nassertThat(result.getId()).isEqualTo(\"order-1\");\nassertThat(result.getItems()).hasSize(3).extracting(OrderItem::getProductId)\n    .containsExactlyInAnyOrder(\"prod-1\", \"prod-2\", \"prod-3\");\nassertThat(result.getTotal()).isGreaterThan(BigDecimal.ZERO);\nassertThatThrownBy(() -> service.findById(\"non-existent\"))\n    .isInstanceOf(NotFoundException.class)\n    .hasMessageContaining(\"non-existent\");\n```\n\n## Common Mistakes\n1. **@SpringBootTest for every test:** slow (loads full context). Use @DataJpaTest or unit tests for isolated tests.\n2. **Using H2 for production DB tests:** H2 has different SQL dialect — use Testcontainers for real DB behaviour.\n3. **Not resetting state between tests:** @DirtiesContext reloads context (very slow). Use @Transactional on test class (rolls back after each test) or @BeforeEach cleanup.\n",
   "conceptualQuestions": [
     {
       "id": "d57q1",
-      "prompt": "What is the main focus of Day 57?",
+      "prompt": "What does `@DataJpaTest` load compared to `@SpringBootTest`?",
       "options": [
-        "Testing",
-        "Only CSS styling",
-        "Only deployment"
+        "They are identical",
+        "@DataJpaTest loads only JPA components (entities, repositories, Hibernate) — much faster. @SpringBootTest loads the full application context including controllers, services, security",
+        "@DataJpaTest skips Hibernate",
+        "@SpringBootTest is always required"
       ],
-      "correctAnswer": "Testing",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "@DataJpaTest loads only JPA components (entities, repositories, Hibernate) — much faster. @SpringBootTest loads the full application context including controllers, services, security",
+      "explanation": "Test slices: @DataJpaTest (JPA only), @WebMvcTest (MVC layer only), @JsonTest (JSON serialization only). Each loads a fraction of the context — much faster than @SpringBootTest. Use the right slice for what you're testing."
     },
     {
       "id": "d57q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "What does `@InjectMocks` do in a Mockito test?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "Injects the real Spring context",
+        "Creates an instance of the annotated class and injects all @Mock fields as constructor arguments (or setter/field injection) — the class under test is real, dependencies are mocked",
+        "Marks the class as injectable",
+        "@InjectMocks creates a spy on the class"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "Creates an instance of the annotated class and injects all @Mock fields as constructor arguments (or setter/field injection) — the class under test is real, dependencies are mocked",
+      "explanation": "@Mock creates mock implementations. @InjectMocks creates the real OrderService and injects the @Mock fields. The service code runs normally; only its dependencies are mocked. No Spring context needed — fast unit test."
     },
     {
       "id": "d57q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What is the purpose of `TestEntityManager` in @DataJpaTest?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "A mock for EntityManager",
+        "A test-specific wrapper around EntityManager that provides helpers like persistAndFlush() — inserts test data directly bypassing the repository layer",
+        "Replaces the repository in tests",
+        "TestEntityManager creates in-memory tables"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "A test-specific wrapper around EntityManager that provides helpers like persistAndFlush() — inserts test data directly bypassing the repository layer",
+      "explanation": "em.persistAndFlush(entity): persists and immediately flushes to the in-memory DB. Bypasses the repository (so you're testing the repository in isolation, not the data setup). em.find(Entity.class, id) retrieves directly for verification."
     },
     {
       "id": "d57q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "Why use Testcontainers instead of H2 for JPA tests?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "H2 is slower",
+        "H2 has a different SQL dialect — queries using PostgreSQL-specific syntax (JSONB, pg_trgm, ILIKE) fail on H2. Testcontainers runs a real PostgreSQL Docker container for authentic testing",
+        "Testcontainers is easier to set up",
+        "H2 doesn't support JPA"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "H2 has a different SQL dialect — queries using PostgreSQL-specific syntax (JSONB, pg_trgm, ILIKE) fail on H2. Testcontainers runs a real PostgreSQL Docker container for authentic testing",
+      "explanation": "H2 compatibility mode helps but isn't perfect. Native SQL queries, DB functions, and constraint behavior can differ. Testcontainers spins a real PostgreSQL container for tests — same DB as production. @DynamicPropertySource wires the container's URL into Spring properties."
     },
     {
       "id": "d57q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "What does `verify(orderRepo, never()).save(any())` assert?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "orderRepo.save() was called once",
+        "orderRepo.save() was NEVER called during the test — used to verify that a side effect did NOT happen when it shouldn't",
+        "save() returned null",
+        "orderRepo is null"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "orderRepo.save() was NEVER called during the test — used to verify that a side effect did NOT happen when it shouldn't",
+      "explanation": "verify(mock, never()): asserts zero interactions. verify(mock, times(2)): exactly twice. verify(mock): exactly once (default). In the exception test: verify that save() wasn't called because the service should abort before saving when inventory fails."
     },
     {
       "id": "d57q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "What does `@SpringBootTest(webEnvironment = RANDOM_PORT)` do differently from the default?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "Uses port 8080",
+        "Starts a real embedded web server on a random port — allows full HTTP integration tests with TestRestTemplate. Default MOCK doesn't start a real server",
+        "Uses a mock server",
+        "Requires no port configuration"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "Starts a real embedded web server on a random port — allows full HTTP integration tests with TestRestTemplate. Default MOCK doesn't start a real server",
+      "explanation": "RANDOM_PORT: real Tomcat starts, HTTP requests go through the full stack. MOCK: MockMvc-based (no real server). DEFINED_PORT: uses server.port. NONE: no web context. For end-to-end HTTP tests, use RANDOM_PORT with TestRestTemplate."
     },
     {
       "id": "d57q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "What does `assertThatThrownBy(() -> service.findById('x')).isInstanceOf(NotFoundException.class)` verify?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "The method returns null",
+        "The lambda throws an exception, and that exception is of type NotFoundException — AssertJ fluent exception assertion",
+        "The method completes without exception",
+        "NotFoundException is a Spring class"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "The lambda throws an exception, and that exception is of type NotFoundException — AssertJ fluent exception assertion",
+      "explanation": "assertThatThrownBy captures the exception thrown by the lambda. .isInstanceOf(NotFoundException.class) checks the type. Chain: .hasMessageContaining('x') checks the message. Much more readable than try-catch with assertThat in tests."
     },
     {
       "id": "d57q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "Why is adding `@Transactional` to a test class useful?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "Makes tests faster",
+        "Wraps each test in a transaction that is rolled back after the test — database is clean for the next test without manual cleanup",
+        "@Transactional is required for JPA tests",
+        "Tests run in parallel with @Transactional"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "Wraps each test in a transaction that is rolled back after the test — database is clean for the next test without manual cleanup",
+      "explanation": "Without @Transactional on the test: data inserted by test1 remains for test2, causing ordering dependencies and flaky tests. With @Transactional: Spring rolls back the transaction after each @Test method — clean state every time. Works for @DataJpaTest and @SpringBootTest with MOCK environment."
     },
     {
       "id": "d57q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "What is the test pyramid principle for Spring Boot applications?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "Write equal numbers of unit, integration, and E2E tests",
+        "Many fast unit tests (Mockito), some integration tests (@DataJpaTest/@WebMvcTest), few full E2E tests (@SpringBootTest RANDOM_PORT) — faster feedback, cheaper to run",
+        "Only write @SpringBootTest tests",
+        "Write only integration tests"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "Many fast unit tests (Mockito), some integration tests (@DataJpaTest/@WebMvcTest), few full E2E tests (@SpringBootTest RANDOM_PORT) — faster feedback, cheaper to run",
+      "explanation": "Unit tests: milliseconds each, 100s of them. @DataJpaTest: seconds each, test each repository. @WebMvcTest: seconds each, test each controller. @SpringBootTest: 10-30 seconds, run for critical user journeys only. The pyramid keeps total test time manageable."
     },
     {
       "id": "d57q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "What does `@DynamicPropertySource` do in Testcontainers tests?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "Sets test data dynamically",
+        "Wires Testcontainer's runtime properties (JDBC URL, username, password) into Spring's property system — Spring uses the container's connection instead of configured values",
+        "Creates dynamic test data",
+        "Registers test-specific beans"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d57q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d57q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d57q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d57q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d57q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "Wires Testcontainer's runtime properties (JDBC URL, username, password) into Spring's property system — Spring uses the container's connection instead of configured values",
+      "explanation": "The container starts on a random port. @DynamicPropertySource: registry.add('spring.datasource.url', postgres::getJdbcUrl) tells Spring to use the container's URL at runtime. This overrides application.properties datasource settings for the test."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain Testing in your own words with a beginner-friendly example.",
-    "Where would Testing appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands Testing?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 57 without looking at the notes."
+    "Show a complete Mockito unit test for OrderService.create(): arrange mocks, act, assert result, verify interactions, and test the exception path.",
+    "Write a @DataJpaTest for OrderRepository: setup test data with TestEntityManager, test findByCustomerId, countByStatus, and a custom @Query method.",
+    "Show a Testcontainers test with PostgreSQLContainer, @DynamicPropertySource, and @AutoConfigureTestDatabase(replace=NONE). When is this needed over H2?",
+    "What is the test pyramid? Show the distribution of test types for a Spring Boot application with 50 unit tests, 10 @DataJpaTest, and 3 @SpringBootTest.",
+    "Show assertThatThrownBy for testing exceptions, and extracting() with containsExactlyInAnyOrder for testing collections.",
+    "What is @ActiveProfiles('test') used for in integration tests? Show a test application-test.yml that uses H2 instead of PostgreSQL.",
+    "Why is @Transactional on test classes useful? Show the database isolation it provides between tests."
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to Testing. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "A CI pipeline takes 15 minutes because all tests use @SpringBootTest. Profile the test suite and migrate repository tests to @DataJpaTest (5s each) and service tests to Mockito unit tests (10ms each).",
+    "Tests pass on H2 but fail in production with PostgreSQL — a native query uses ILIKE which H2 doesn't support. Migrate to Testcontainers with a real PostgreSQL container.",
+    "Test data bleeds between tests — test B fails because test A left a record in the DB. Add @Transactional to the test class or add @BeforeEach cleanup to show both solutions."
   ],
   "dsaPractice": [
     {

@@ -1,190 +1,142 @@
 {
   "id": "day-56-jwt",
   "topic": "Day 56: JWT",
-  "notes": "Phase: PHASE 6: SPRING BOOT ADVANCED\n\nDay 56 Detailed Notes: JWT\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is JWT. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn JWT, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Enterprise Java: JWT. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Spring Boot Advanced. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Secure API Integration. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Relationships and Transactions. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Graphs and Queues Introduction. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for JWT: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of JWT as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Enterprise Java: JWT, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Spring Boot Advanced, ask which object owns the logic and which dependency is injected. When working with Secure API Integration, ask what state the component owns and what comes from the backend. When working with Relationships and Transactions, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# JWT in Spring Boot: Token Generation, Validation Filter, and Refresh Tokens\n\n## What is JWT?\nA JSON Web Token has three Base64URL-encoded parts separated by dots:\n```\nHeader.Payload.Signature\neyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzE3MzQ0MDAwLCJleHAiOjE3MTczNTEyMDB9.abc123...\n\nHeader:  { \"alg\": \"HS256\", \"typ\": \"JWT\" }\nPayload: { \"sub\": \"user@example.com\", \"role\": \"USER\", \"iat\": 1717344000, \"exp\": 1717351200 }\nSignature: HMACSHA256(base64(header) + \".\" + base64(payload), secretKey)\n```\nThe server verifies the signature without a DB lookup — stateless authentication.\n\n## JwtService — Token Generation and Validation\n```java\n@Service\npublic class JwtService {\n    @Value(\"${app.jwt.secret}\")           private String secret;\n    @Value(\"${app.jwt.expiration-ms:3600000}\") private long expirationMs; // 1 hour\n\n    // Generate token\n    public String generateToken(User user) {\n        return Jwts.builder()\n            .subject(user.getEmail())\n            .claim(\"role\", user.getRole().name())\n            .claim(\"userId\", user.getId())\n            .issuedAt(new Date())\n            .expiration(new Date(System.currentTimeMillis() + expirationMs))\n            .signWith(getSigningKey(), Jwts.SIG.HS256)\n            .compact();\n    }\n\n    // Extract claims\n    public String extractEmail(String token) {\n        return extractClaim(token, Claims::getSubject);\n    }\n\n    public boolean isTokenValid(String token, UserDetails userDetails) {\n        String email = extractEmail(token);\n        return email.equals(userDetails.getUsername()) && !isTokenExpired(token);\n    }\n\n    private boolean isTokenExpired(String token) {\n        return extractClaim(token, Claims::getExpiration).before(new Date());\n    }\n\n    private <T> T extractClaim(String token, Function<Claims, T> resolver) {\n        Claims claims = Jwts.parser()\n            .verifyWith(getSigningKey())\n            .build()\n            .parseSignedClaims(token)\n            .getPayload();\n        return resolver.apply(claims);\n    }\n\n    private SecretKey getSigningKey() {\n        byte[] keyBytes = Decoders.BASE64.decode(secret);\n        return Keys.hmacShaKeyFor(keyBytes);\n    }\n}\n```\n\n## JWT Authentication Filter\n```java\n@Component\n@RequiredArgsConstructor\npublic class JwtAuthFilter extends OncePerRequestFilter {\n    private final JwtService jwtService;\n    private final UserDetailsService userDetailsService;\n\n    @Override\n    protected void doFilterInternal(HttpServletRequest req,\n                                    HttpServletResponse res,\n                                    FilterChain chain)\n            throws ServletException, IOException {\n        String authHeader = req.getHeader(\"Authorization\");\n\n        if (authHeader == null || !authHeader.startsWith(\"Bearer \")) {\n            chain.doFilter(req, res);   // no token — let next filter handle (may return 401)\n            return;\n        }\n\n        String token = authHeader.substring(7); // strip \"Bearer \"\n        try {\n            String email = jwtService.extractEmail(token);\n\n            if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {\n                UserDetails userDetails = userDetailsService.loadUserByUsername(email);\n\n                if (jwtService.isTokenValid(token, userDetails)) {\n                    UsernamePasswordAuthenticationToken authToken =\n                        new UsernamePasswordAuthenticationToken(\n                            userDetails, null, userDetails.getAuthorities());\n                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(req));\n                    SecurityContextHolder.getContext().setAuthentication(authToken);\n                }\n            }\n        } catch (JwtException e) {\n            // Invalid/expired token — SecurityContext stays empty → 401 from filter chain\n            log.debug(\"Invalid JWT: {}\", e.getMessage());\n        }\n        chain.doFilter(req, res);\n    }\n}\n```\n\n## Auth Controller — Login and Registration\n```java\n@RestController\n@RequestMapping(\"/api/auth\")\npublic class AuthController {\n\n    @PostMapping(\"/register\")\n    @ResponseStatus(HttpStatus.CREATED)\n    public UserDto register(@RequestBody @Valid RegisterRequest req) {\n        return authService.register(req);\n    }\n\n    @PostMapping(\"/login\")\n    public AuthResponse login(@RequestBody @Valid LoginRequest req) {\n        return authService.login(req);\n    }\n\n    @PostMapping(\"/refresh\")\n    public AuthResponse refresh(@RequestBody RefreshRequest req) {\n        return authService.refreshToken(req.refreshToken());\n    }\n}\n\npublic record AuthResponse(String accessToken, String refreshToken, UserDto user) {}\n```\n\n## Refresh Token Pattern\n```java\n// Access token: short-lived (15-60 min), stored in memory\n// Refresh token: long-lived (7-30 days), stored in DB, used to get new access token\n@Entity\npublic class RefreshToken {\n    @Id private String id;\n    @Column(unique = true) private String token;\n    private String userEmail;\n    private Instant expiresAt;\n    private boolean revoked = false;\n}\n\n@Service\npublic class AuthService {\n    public AuthResponse refreshToken(String refreshToken) {\n        RefreshToken stored = refreshTokenRepo.findByToken(refreshToken)\n            .orElseThrow(() -> new UnauthorizedException(\"Invalid refresh token\"));\n        if (stored.isRevoked() || stored.getExpiresAt().isBefore(Instant.now())) {\n            throw new UnauthorizedException(\"Refresh token expired or revoked\");\n        }\n        User user = userRepo.findByEmail(stored.getUserEmail()).orElseThrow();\n        String newAccessToken = jwtService.generateToken(user);\n        return new AuthResponse(newAccessToken, refreshToken, mapper.toDto(user));\n    }\n}\n```\n\n## Security Configuration for JWT\n```properties\n# application.properties — JWT secret (use 256-bit Base64-encoded key)\napp.jwt.secret=404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970\napp.jwt.expiration-ms=3600000\n```\n\n## Common Mistakes\n1. **Storing JWT secret in code:** must be in environment variable, not committed to git.\n2. **Short secret keys:** HS256 requires at least 256 bits (32 bytes). Weak keys are brute-forceable.\n3. **No token expiration:** tokens without `exp` claim never expire — stolen tokens work forever.\n4. **Storing sensitive data in JWT payload:** payload is Base64-decoded, not encrypted. Never put passwords, PII, or secrets in claims.\n5. **Not validating token issuer (iss):** in multi-service setups, validate that the token was issued by your auth service.\n",
   "conceptualQuestions": [
     {
       "id": "d56q1",
-      "prompt": "What is the main focus of Day 56?",
+      "prompt": "What are the three parts of a JWT token?",
       "options": [
-        "JWT",
-        "Only CSS styling",
-        "Only deployment"
+        "Header, Body, Footer",
+        "Header (algorithm), Payload (claims), Signature — separated by dots, each Base64URL encoded",
+        "Token type, claims, expiry",
+        "Subject, issuer, audience"
       ],
-      "correctAnswer": "JWT",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "Header (algorithm), Payload (claims), Signature — separated by dots, each Base64URL encoded",
+      "explanation": "Header: {alg:'HS256', typ:'JWT'}. Payload: {sub:'user@example.com', exp:...}. Signature: HMAC-SHA256 of header.payload using the secret key. The server verifies by recomputing the signature — if it matches, the token is authentic and unmodified."
     },
     {
       "id": "d56q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "Why does JWT enable stateless authentication?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "JWTs are stored in a database",
+        "The server verifies the JWT signature locally without querying a session store — all needed claims are in the token itself",
+        "JWTs don't expire",
+        "Stateless means no security"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "The server verifies the JWT signature locally without querying a session store — all needed claims are in the token itself",
+      "explanation": "Traditional sessions: server stores session data, looks up session ID on each request (DB/Redis hit). JWT: server recomputes signature and checks expiry — no DB lookup. Token carries userId, role, email — everything needed for the request. Scales horizontally without session sharing."
     },
     {
       "id": "d56q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What does `OncePerRequestFilter` guarantee for the JWT filter?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "The filter runs once per JVM startup",
+        "The filter executes exactly once per request, even in filter chains with forwards/includes — prevents double-authentication",
+        "The filter is cached after first execution",
+        "Ensures JWT is validated once per session"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "The filter executes exactly once per request, even in filter chains with forwards/includes — prevents double-authentication",
+      "explanation": "Spring MVC can forward requests internally (error pages, etc.) which can trigger filters multiple times. OncePerRequestFilter stores a request attribute to skip re-execution on the same request. For JWT authentication, double-execution would be harmless but wasteful."
     },
     {
       "id": "d56q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "What happens when the JWT filter encounters an invalid/expired token?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "Returns 401 immediately from the filter",
+        "Catches the JwtException, leaves SecurityContext empty, and calls chain.doFilter() — the next filter (ExceptionTranslationFilter) generates the 401 response",
+        "Throws an exception to the controller",
+        "Redirects to the login page"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "Catches the JwtException, leaves SecurityContext empty, and calls chain.doFilter() — the next filter (ExceptionTranslationFilter) generates the 401 response",
+      "explanation": "The JWT filter is not responsible for sending the response. It either sets the Authentication in SecurityContext (valid token) or doesn't (invalid token). With no Authentication in context, Spring Security's ExceptionTranslationFilter generates a 401 Unauthorized when the request reaches a protected resource."
     },
     {
       "id": "d56q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "Why is the JWT payload NOT encrypted?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "Encryption is optional",
+        "The payload is Base64URL encoded (not encrypted) — anyone with the token can decode and read the claims. Only the signature prevents modification. Never put passwords, PII, or secrets in claims",
+        "JWT uses AES encryption by default",
+        "Only RS256 tokens are encrypted"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "The payload is Base64URL encoded (not encrypted) — anyone with the token can decode and read the claims. Only the signature prevents modification. Never put passwords, PII, and secrets in claims",
+      "explanation": "Base64 decode the payload in any browser console. Safe to put: userId, email, role, permissions. Never put: password hash, SSN, credit card numbers. If you need encrypted payloads, use JWE (JSON Web Encryption) — separate from JWT/JWS."
     },
     {
       "id": "d56q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "What is the refresh token pattern and why use short-lived access tokens?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "Refresh tokens are just another access token",
+        "Short access tokens (15-60min) limit exposure if stolen. Refresh tokens (7-30 days, stored in DB) can be revoked. Client uses refresh token to get a new access token without re-login",
+        "Refresh tokens replace passwords",
+        "Only used for OAuth2"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "Short access tokens (15-60min) limit exposure if stolen. Refresh tokens (7-30 days, stored in DB) can be revoked. Client uses refresh token to get a new access token without re-login",
+      "explanation": "Stolen access token: usable for only 15-60 minutes (limited damage window). Refresh tokens in DB can be revoked: logout invalidates the refresh token → attacker can't get new access tokens. Short-lived + revocable refresh tokens = better security than long-lived access tokens."
     },
     {
       "id": "d56q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "What minimum key size is required for HS256 JWT signing?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "64 bits",
+        "256 bits (32 bytes) — the same length as the hash output. Shorter keys are brute-forceable. Use a cryptographically random 256-bit key",
+        "128 bits",
+        "512 bits"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "256 bits (32 bytes) — the same length as the hash output. Shorter keys are brute-forceable. Use a cryptographically random 256-bit key",
+      "explanation": "HMAC-SHA256 security is bounded by the key length. A 128-bit key has 2^128 brute-force space but weakens the HMAC. RFC 7518 requires the key to be at least as long as the hash output (256 bits for HS256). Generate with: `openssl rand -base64 32`."
     },
     {
       "id": "d56q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "Why should the JWT secret be stored in an environment variable?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "Environment variables are faster",
+        "Committing secrets to git exposes them permanently (even after deletion, they exist in history). Environment variables are injected at runtime and not part of the codebase",
+        "Spring requires env vars for security config",
+        "Environment variables are encrypted automatically"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "Committing secrets to git exposes them permanently (even after deletion, they exist in history). Environment variables are injected at runtime and not part of the codebase",
+      "explanation": "If app.jwt.secret=... appears in application.properties committed to git: anyone with repo access has the key. Can forge any JWT. Even a private repo is a risk (supply chain attack, insider threat). Use: APP_JWT_SECRET env var → referenced as ${APP_JWT_SECRET} in properties."
     },
     {
       "id": "d56q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "What claim in a JWT controls token expiration?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "expiry",
+        "exp — a Unix timestamp (seconds since epoch). Jwts.parser().verifyWith(key) automatically validates exp and throws ExpiredJwtException if the token is past expiration",
+        "ttl",
+        "expiresIn"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "exp — a Unix timestamp (seconds since epoch). Jwts.parser().verifyWith(key) automatically validates exp and throws ExpiredJwtException if the token is past expiration",
+      "explanation": "Standard JWT claims: sub (subject/username), iat (issued at), exp (expiration), nbf (not before), iss (issuer), aud (audience). JJWT's parseSignedClaims() automatically checks exp and throws ExpiredJwtException — you don't need to check manually."
     },
     {
       "id": "d56q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "In the JWT filter, why check `SecurityContextHolder.getContext().getAuthentication() == null`?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "To prevent NullPointerException",
+        "To avoid re-authenticating a request that already has authentication set (e.g., by a previous filter) — only authenticate if not already authenticated",
+        "Authentication is null for all requests",
+        "Security context is always empty initially"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d56q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d56q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d56q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d56q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d56q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "To avoid re-authenticating a request that already has authentication set (e.g., by a previous filter) — only authenticate if not already authenticated",
+      "explanation": "If another filter (e.g., OAuth2) already set the authentication, the JWT filter should not overwrite it. Checking for null ensures JWT authentication only runs when no authentication exists. This also prevents processing the JWT twice."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain JWT in your own words with a beginner-friendly example.",
-    "Where would JWT appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands JWT?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 56 without looking at the notes."
+    "Show a complete JwtService: generateToken() with sub, role, userId claims and expiry; extractEmail(); isTokenValid(); using JJWT library.",
+    "Write a JwtAuthFilter extending OncePerRequestFilter: extract Bearer token, validate, set SecurityContext authentication.",
+    "Show the complete auth flow: POST /api/auth/login → validate credentials → generate JWT → return AuthResponse.",
+    "Explain the refresh token pattern. Show the RefreshToken entity and the refreshToken() service method.",
+    "What claims are safe to put in a JWT payload? What should never be there? Show a payload with appropriate claims.",
+    "How do you revoke a JWT? (JWTs are stateless — explain the limitations and the refresh token database approach.)",
+    "What is the difference between HS256 (symmetric) and RS256 (asymmetric) JWT signing? When do you use each?"
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to JWT. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "Users are forced to re-login every 15 minutes, causing complaints. Implement the refresh token pattern: 15-minute access tokens + 7-day refresh tokens stored in DB with revocation on logout.",
+    "A JWT secret 'mysecret' is hardcoded in application.properties and committed to GitHub. Immediate actions: rotate the secret (all existing tokens invalid), move to environment variable, scan git history.",
+    "An admin revokes a user's access but the user's JWT still works for 1 hour (token expiration). Design a token blacklist (Redis set of revoked JTI claims) that enables immediate revocation."
   ],
   "dsaPractice": [
     {

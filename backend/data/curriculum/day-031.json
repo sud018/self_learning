@@ -1,190 +1,142 @@
 {
   "id": "day-31-exception-handling",
   "topic": "Day 31: Exception Handling",
-  "notes": "Phase: PHASE 4: JAVA ADVANCED\n\nDay 31 Detailed Notes: Exception Handling\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is Exception Handling. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn Exception Handling, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Advanced Java: Exception Handling. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Exception and Validation Flow. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Typed Frontend Models. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Advanced Filtering. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Sorting and Searching. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for Exception Handling: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of Exception Handling as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Advanced Java: Exception Handling, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Exception and Validation Flow, ask which object owns the logic and which dependency is injected. When working with Typed Frontend Models, ask what state the component owns and what comes from the backend. When working with Advanced Filtering, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Exception Handling: Advanced Patterns, Hierarchy Design, and Spring Boot Integration\n\n## Exception Hierarchy Design\nWell-designed exception hierarchies communicate domain meaning and allow callers to choose the specificity they need:\n```java\n// Base domain exception — all business errors extend this\npublic class DomainException extends RuntimeException {\n    private final String errorCode;\n    public DomainException(String errorCode, String message) {\n        super(message); this.errorCode = errorCode;\n    }\n    public DomainException(String errorCode, String message, Throwable cause) {\n        super(message, cause); this.errorCode = errorCode;\n    }\n    public String getErrorCode() { return errorCode; }\n}\n\npublic class NotFoundException extends DomainException {\n    public NotFoundException(String entity, Object id) {\n        super(\"NOT_FOUND\", entity + \" not found: \" + id);\n    }\n}\npublic class ConflictException extends DomainException {\n    public ConflictException(String message) { super(\"CONFLICT\", message); }\n}\npublic class ValidationException extends DomainException {\n    private final Map<String, String> fieldErrors;\n    public ValidationException(Map<String, String> errors) {\n        super(\"VALIDATION_ERROR\", \"Validation failed\");\n        this.fieldErrors = errors;\n    }\n    public Map<String, String> getFieldErrors() { return fieldErrors; }\n}\n```\n\n## Re-Throwing vs Wrapping vs Swallowing\n```java\n// SWALLOWING — almost always wrong\ntry { risky(); } catch (IOException e) {} // bug hidden forever\n\n// RE-THROWING — when you can't handle, let it propagate\ntry { risky(); } catch (IOException e) { throw e; }\n\n// WRAPPING — translate to domain exception (preferred for service layers)\ntry {\n    jdbcTemplate.update(sql, params);\n} catch (DataAccessException e) {\n    throw new RepositoryException(\"Failed to save order\", e); // e = cause preserved\n}\n\n// TRANSLATING with context — best\ntry {\n    return userRepo.findById(id).orElseThrow();\n} catch (EmptyResultDataAccessException e) {\n    throw new NotFoundException(\"User\", id); // wrap with semantic context\n}\n```\n\n## try-with-resources Internals\n`AutoCloseable.close()` is called in reverse order of opening, even if body throws. If both body AND close throw, the close exception is suppressed (accessible via `getSuppressed()`):\n```java\ntry (\n    Connection conn = dataSource.getConnection();    // opened first, closed last\n    PreparedStatement ps = conn.prepareStatement(sql) // closed first\n) {\n    // use ps\n} // ps.close() then conn.close() — both called even if exception thrown\n// If ps.close() throws and body already threw, body exception is primary;\n// ps.close() exception is added as suppressed\n```\n\n## @RestControllerAdvice — Centralised HTTP Error Mapping\n```java\n@RestControllerAdvice\npublic class GlobalExceptionHandler {\n\n    @ExceptionHandler(NotFoundException.class)\n    @ResponseStatus(HttpStatus.NOT_FOUND)\n    public ErrorResponse handleNotFound(NotFoundException e) {\n        return new ErrorResponse(e.getErrorCode(), e.getMessage());\n    }\n\n    @ExceptionHandler(ValidationException.class)\n    @ResponseStatus(HttpStatus.BAD_REQUEST)\n    public ErrorResponse handleValidation(ValidationException e) {\n        return new ErrorResponse(e.getErrorCode(), e.getMessage(), e.getFieldErrors());\n    }\n\n    @ExceptionHandler(ConflictException.class)\n    @ResponseStatus(HttpStatus.CONFLICT)\n    public ErrorResponse handleConflict(ConflictException e) {\n        return new ErrorResponse(e.getErrorCode(), e.getMessage());\n    }\n\n    @ExceptionHandler(Exception.class)\n    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)\n    public ErrorResponse handleUnexpected(Exception e, HttpServletRequest req) {\n        log.error(\"Unexpected error at {}\", req.getRequestURI(), e);\n        return new ErrorResponse(\"INTERNAL_ERROR\", \"An unexpected error occurred\");\n    }\n}\n\npublic record ErrorResponse(String code, String message, Map<String, String> fieldErrors) {\n    public ErrorResponse(String code, String message) { this(code, message, null); }\n}\n```\n\n## Exception Handling in Async and Streams\n```java\n// Streams can't throw checked exceptions — wrap them\norders.stream()\n    .map(o -> {\n        try { return processOrder(o); }\n        catch (IOException e) { throw new UncheckedIOException(e); } // wrap checked as unchecked\n    })\n    .collect(toList());\n\n// CompletableFuture — handle() processes both result and exception\nCompletableFuture.supplyAsync(() -> paymentService.charge(order))\n    .handle((result, ex) -> {\n        if (ex != null) return PaymentResult.failed(ex.getMessage());\n        return result;\n    });\n```\n\n## Common Mistakes\n1. **Catching `Throwable` or `Error`:** catches OOM and SOE — prevents JVM from shutting down cleanly.\n2. **Exception message with null:** `throw new NotFoundException(\"Order\", null)` → message contains \"null\". Validate before constructing.\n3. **Logging AND re-throwing:** double-logs the same error. Log only at the top-level handler.\n4. **Empty catch in tests:** `@Test void test() { try { ... } catch (Exception e) {} }` — test always passes even when exception thrown.\n",
   "conceptualQuestions": [
     {
       "id": "d31q1",
-      "prompt": "What is the main focus of Day 31?",
+      "prompt": "What is the difference between exception wrapping and re-throwing?",
       "options": [
-        "Exception Handling",
-        "Only CSS styling",
-        "Only deployment"
+        "Identical",
+        "Wrapping creates a new exception with the original as cause (translates to domain exception); re-throwing propagates the same exception unchanged",
+        "Re-throwing loses the stack trace",
+        "Wrapping requires checked exceptions"
       ],
-      "correctAnswer": "Exception Handling",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "Wrapping creates a new exception with the original as cause (translates to domain exception); re-throwing propagates the same exception unchanged",
+      "explanation": "Wrapping: throw new DomainException('msg', originalException). The original is preserved as cause() for logging. Re-throwing: throw e or throw (catches and rethrows same instance). Wrapping translates between abstraction layers."
     },
     {
       "id": "d31q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "In try-with-resources with multiple resources, what is the closing order?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "Opening order",
+        "Reverse opening order — last opened is closed first",
+        "Random",
+        "All closed simultaneously"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "Reverse opening order — last opened is closed first",
+      "explanation": "Resources are closed in reverse declaration order. If Connection is first and PreparedStatement is second, PS closes first then Connection. This mirrors stack-based cleanup and ensures statements are closed before their connection."
     },
     {
       "id": "d31q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What happens to close() exceptions when the try block also throws?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "close() exception replaces the try block exception",
+        "close() exception is suppressed — attached to the primary exception via addSuppressed()",
+        "Both exceptions are thrown simultaneously",
+        "close() exception is lost entirely"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "close() exception is suppressed — attached to the primary exception via addSuppressed()",
+      "explanation": "try-with-resources: if body throws AND close() throws, the body exception is primary. The close exception is added as suppressed (retrievable via getSuppressed()). This preserves both exceptions without losing either."
     },
     {
       "id": "d31q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "Why should you NOT log AND re-throw the same exception?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "Logging is slow",
+        "It creates duplicate log entries for the same error — once at the catch site and again at the top-level handler",
+        "Re-throwing requires checked exceptions",
+        "Only one log level can be used per exception"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "It creates duplicate log entries for the same error — once at the catch site and again at the top-level handler",
+      "explanation": "Log once at the place where you handle it, or re-throw and let the top-level handler log it. Both logging and re-throwing creates 2+ log entries for one error, confusing support staff and filling logs with duplicates."
     },
     {
       "id": "d31q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "Which HTTP status code should `NotFoundException extends DomainException` map to in @ExceptionHandler?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "400 Bad Request",
+        "401 Unauthorized",
+        "404 Not Found",
+        "500 Internal Server Error"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "404 Not Found",
+      "explanation": "HTTP 404 means the requested resource does not exist on the server. NotFoundException maps to 404. ValidationException → 400, ConflictException → 409, AuthenticationException → 401, AuthorizationException → 403."
     },
     {
       "id": "d31q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "How do you throw a checked exception inside a Stream.map() operation?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "Declare throws in the lambda",
+        "Wrap the checked exception in an unchecked one (UncheckedIOException for IOException)",
+        "Use parallel streams",
+        "Checked exceptions cannot occur inside streams"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "Wrap the checked exception in an unchecked one (UncheckedIOException for IOException)",
+      "explanation": "Lambda functional interfaces (Function, Predicate) don't declare checked exceptions. Wrapping in RuntimeException or UncheckedIOException lets it propagate. Alternatively, wrap the lambda in a helper method that handles the checked exception."
     },
     {
       "id": "d31q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "What does `CompletableFuture.handle((result, ex) -> ...)` do differently from `.thenApply()`?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "handle() runs on a different thread",
+        "handle() receives both the result (if success) and the exception (if failed) — processes both cases; thenApply() only runs on success",
+        "thenApply() is faster",
+        "They are identical"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "handle() receives both the result (if success) and the exception (if failed) — processes both cases; thenApply() only runs on success",
+      "explanation": "handle() is the recovery mechanism for CompletableFuture. Both result and ex are provided (one will be null). It can convert a failure into a default result, translate the exception, or log it. thenApply() skips execution if the future completed exceptionally."
     },
     {
       "id": "d31q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "A service layer catches a DataAccessException and creates `throw new DomainException('msg')` without passing the original. What is lost?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "Nothing important",
+        "The original stack trace and root cause — support cannot diagnose the actual database error",
+        "The HTTP status code",
+        "The error code"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "The original stack trace and root cause — support cannot diagnose the actual database error",
+      "explanation": "Always pass the original exception as cause: throw new DomainException('msg', e). Without it, the full stack trace of the original DataAccessException is lost. Support sees 'Failed to save order' but not which SQL failed or why."
     },
     {
       "id": "d31q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "What is the purpose of a base DomainException class in an application?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "Required by Spring Boot",
+        "Allows @ExceptionHandler to catch all domain errors with one handler, provides a common errorCode field, and organises the hierarchy",
+        "Makes exceptions serializable",
+        "Provides automatic HTTP mapping"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "Allows @ExceptionHandler to catch all domain errors with one handler, provides a common errorCode field, and organises the hierarchy",
+      "explanation": "With a base DomainException, you can have one @ExceptionHandler(DomainException.class) that handles all domain errors, using the errorCode field to determine the response. More specific handlers for NotFoundException, ValidationException override this for custom behaviour."
     },
     {
       "id": "d31q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "An @ExceptionHandler(Exception.class) in @RestControllerAdvice catches all unhandled exceptions. What should it always do?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "Return 404",
+        "Return a stack trace in the response",
+        "Log the exception with ERROR level and return a generic 500 response without internal details",
+        "Throw a new exception"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d31q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d31q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d31q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d31q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d31q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "Log the exception with ERROR level and return a generic 500 response without internal details",
+      "explanation": "The catch-all handler: 1) logs the full exception for debugging (log.error('Unexpected', e)), 2) returns a generic 500 response that doesn't expose stack traces or internal details to clients (security risk). Internal error details should never appear in API responses."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain Exception Handling in your own words with a beginner-friendly example.",
-    "Where would Exception Handling appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands Exception Handling?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 31 without looking at the notes."
+    "Design a complete exception hierarchy for an order management system with a base DomainException, NotFoundException, ValidationException (with field errors map), and ConflictException.",
+    "Explain try-with-resources: what AutoCloseable is, the closing order for multiple resources, and how suppressed exceptions work.",
+    "What is the difference between swallowing, re-throwing, and wrapping exceptions? When is each appropriate in a Spring Boot service layer?",
+    "Show a complete @RestControllerAdvice that maps NotFoundException→404, ValidationException→400, ConflictException→409, and all other exceptions→500.",
+    "How do you handle checked exceptions inside Stream.map()? Show UncheckedIOException wrapping and a helper method approach.",
+    "Why is logging AND re-throwing the same exception wrong? Show the duplicate log problem and the correct pattern.",
+    "Explain CompletableFuture.handle() vs thenApply() for exception recovery. Show a payment service that returns a PaymentResult.failed() on exception."
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to Exception Handling. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "A production service shows duplicate error logs: the same exception appears 3 times in logs — once from the repository, once from the service, once from the controller. Fix the logging to appear exactly once.",
+    "An API returns full Java stack traces in its JSON error responses. Security team flags this as a vulnerability (exposes internal class names and library versions). Fix the @RestControllerAdvice to return only errorCode and message.",
+    "A bulk import service processes 10,000 records. Any IOException causes the stream to fail. Redesign so each record's errors are collected individually and the successful records are saved, returning a report of successes and failures."
   ],
   "dsaPractice": [
     {

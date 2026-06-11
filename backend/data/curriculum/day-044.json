@@ -1,190 +1,142 @@
 {
   "id": "day-44-rest-apis",
   "topic": "Day 44: REST APIs",
-  "notes": "Phase: PHASE 5: SPRING BOOT CORE\n\nDay 44 Detailed Notes: REST APIs\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is REST APIs. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn REST APIs, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Backend Java Design: REST APIs. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Spring Boot Core. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: HTTP Integration. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: CRUD SQL. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: API Data Transformations. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for REST APIs: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of REST APIs as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Backend Java Design: REST APIs, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Spring Boot Core, ask which object owns the logic and which dependency is injected. When working with HTTP Integration, ask what state the component owns and what comes from the backend. When working with CRUD SQL, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# REST APIs in Spring Boot: ResponseEntity, HTTP Methods, Status Codes, Content Negotiation\n\n## ResponseEntity — Full Control Over HTTP Responses\n```java\n@RestController\n@RequestMapping(\"/api/orders\")\npublic class OrderController {\n\n    // 200 OK with body\n    @GetMapping(\"/{id}\")\n    public ResponseEntity<OrderDto> getOrder(@PathVariable String id) {\n        return ResponseEntity.ok(orderService.findById(id));\n    }\n\n    // 201 Created with Location header\n    @PostMapping\n    public ResponseEntity<OrderDto> createOrder(@RequestBody @Valid CreateOrderRequest req) {\n        OrderDto created = orderService.create(req);\n        URI location = ServletUriComponentsBuilder\n            .fromCurrentRequest()\n            .path(\"/{id}\")\n            .buildAndExpand(created.id())\n            .toUri();\n        return ResponseEntity.created(location).body(created);\n    }\n\n    // 204 No Content for DELETE\n    @DeleteMapping(\"/{id}\")\n    public ResponseEntity<Void> deleteOrder(@PathVariable String id) {\n        orderService.delete(id);\n        return ResponseEntity.noContent().build();\n    }\n\n    // 404 conditionally\n    @GetMapping(\"/{id}/details\")\n    public ResponseEntity<OrderDetailsDto> getDetails(@PathVariable String id) {\n        return orderService.findDetails(id)\n            .map(ResponseEntity::ok)\n            .orElse(ResponseEntity.notFound().build());\n    }\n}\n```\n\n## HTTP Methods — Semantics and Idempotency\n| Method | Semantics | Idempotent | Safe | Body |\n|---|---|---|---|---|\n| GET | Read | ✅ | ✅ | No |\n| POST | Create | ❌ | ❌ | Yes |\n| PUT | Full Replace | ✅ | ❌ | Yes |\n| PATCH | Partial Update | ❌* | ❌ | Yes |\n| DELETE | Delete | ✅ | ❌ | No |\n| HEAD | Like GET, no body | ✅ | ✅ | No |\n| OPTIONS | List allowed methods | ✅ | ✅ | No |\n\n*PATCH can be made idempotent by design.\n\n```java\n// Idempotent PUT — calling twice has same result as calling once\n@PutMapping(\"/{id}\")\npublic ResponseEntity<OrderDto> fullUpdate(@PathVariable String id,\n                                           @RequestBody UpdateOrderRequest req) {\n    // replaces ALL fields — same body, same result on repeat\n    return ResponseEntity.ok(orderService.fullReplace(id, req));\n}\n\n// Non-idempotent PATCH — calling twice may have different results\n@PatchMapping(\"/{id}/items/add\")\npublic ResponseEntity<OrderDto> addItem(@PathVariable String id,\n                                        @RequestBody AddItemRequest req) {\n    // adds an item — calling twice adds the item twice\n    return ResponseEntity.ok(orderService.addItem(id, req));\n}\n```\n\n## HTTP Status Codes — Complete Reference\n```java\n// 2xx Success\n200 OK          // GET/PUT/PATCH success with body\n201 Created     // POST success — include Location header\n202 Accepted    // async processing started — result not yet available\n204 No Content  // DELETE/PUT success with no body\n\n// 3xx Redirect\n301 Moved Permanently  // permanent redirect\n302 Found              // temporary redirect\n\n// 4xx Client Error\n400 Bad Request        // malformed request, validation failure\n401 Unauthorized       // missing/invalid authentication\n403 Forbidden          // authenticated but lacks permission\n404 Not Found          // resource doesn't exist\n405 Method Not Allowed // e.g., POST to read-only endpoint\n409 Conflict           // duplicate key, concurrent modification\n422 Unprocessable Entity // valid JSON but business rule violation\n429 Too Many Requests  // rate limited\n\n// 5xx Server Error\n500 Internal Server Error // unexpected exception\n503 Service Unavailable   // maintenance, overload\n```\n\n## Content Negotiation — produces and consumes\n```java\n// produces — what response format this method produces\n@GetMapping(value = \"/{id}\", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})\npublic OrderDto getOrder(@PathVariable String id) { ... }\n// Client sends: Accept: application/xml → returns XML (needs Jackson XML dependency)\n// Client sends: Accept: application/json → returns JSON\n\n// consumes — what request format this method accepts\n@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)\npublic ResponseEntity<OrderDto> createOrder(@RequestBody CreateOrderRequest req) { ... }\n// Only accepts JSON body — 415 Unsupported Media Type for other content types\n\n// Multiple formats\n@PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},\n             produces = MediaType.APPLICATION_JSON_VALUE)\npublic ResponseEntity<OrderDto> create(@RequestBody CreateOrderRequest req) { ... }\n```\n\n## HATEOAS — Hypermedia Links in Responses\n```java\n// Basic link-enriched response (Spring HATEOAS)\n@GetMapping(\"/{id}\")\npublic EntityModel<OrderDto> getWithLinks(@PathVariable String id) {\n    OrderDto order = orderService.findById(id);\n    return EntityModel.of(order,\n        linkTo(methodOn(OrderController.class).getWithLinks(id)).withSelfRel(),\n        linkTo(methodOn(OrderController.class).deleteOrder(id)).withRel(\"delete\"),\n        linkTo(methodOn(OrderController.class).updateStatus(id, null)).withRel(\"update-status\")\n    );\n}\n// Response: { \"id\": \"123\", ..., \"_links\": { \"self\": {\"href\": \"/api/orders/123\"}, ... }}\n```\n\n## Common Mistakes\n1. **Using 200 for all successful responses:** use 201 for creation, 204 for no-content responses.\n2. **Not including Location header on 201:** per HTTP spec, 201 should include a Location header with the new resource URL.\n3. **Using GET for state changes:** GET must be safe (no side effects). Use POST/PUT/PATCH for mutations.\n4. **Returning 200 with error body:** `return ResponseEntity.ok(ErrorResponse(\"ERROR\", msg))` confuses clients — always return the appropriate 4xx/5xx status code.\n",
   "conceptualQuestions": [
     {
       "id": "d44q1",
-      "prompt": "What is the main focus of Day 44?",
+      "prompt": "What HTTP status code should a successful POST (create) return?",
       "options": [
-        "REST APIs",
-        "Only CSS styling",
-        "Only deployment"
+        "200 OK",
+        "201 Created — indicates a new resource was created, typically with Location header pointing to it",
+        "204 No Content",
+        "202 Accepted"
       ],
-      "correctAnswer": "REST APIs",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "201 Created — indicates a new resource was created, typically with Location header pointing to it",
+      "explanation": "POST for creation: 201 Created. Include Location header with the URL of the new resource. 200 OK is for GET/PUT/PATCH that return a body. 204 is for no-content responses. 202 is for async where processing hasn't completed yet."
     },
     {
       "id": "d44q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "What is idempotency in HTTP methods?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "The request never fails",
+        "Calling the same request multiple times produces the same result as calling it once — no additional side effects after the first call",
+        "All HTTP methods are idempotent",
+        "Only GET is idempotent"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "Calling the same request multiple times produces the same result as calling it once — no additional side effects after the first call",
+      "explanation": "Idempotent: GET, PUT, DELETE. PUT /orders/123 {status:SHIPPED} twice → same result as once (second call finds it already SHIPPED). POST is NOT idempotent: POST /orders twice creates two orders. Idempotency matters for retries after network failures."
     },
     {
       "id": "d44q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What HTTP status code means 'authenticated but not authorized'?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "401 Unauthorized",
+        "403 Forbidden — the client is authenticated (we know who you are) but lacks permission",
+        "404 Not Found",
+        "400 Bad Request"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "403 Forbidden — the client is authenticated (we know who you are) but lacks permission",
+      "explanation": "401 Unauthorized: not authenticated (no credentials or invalid credentials — should prompt login). 403 Forbidden: authenticated but insufficient permissions (logged in but accessing another user's data). The naming is historical — 401 means 'unauthenticated' in practice."
     },
     {
       "id": "d44q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "What does `ResponseEntity.created(location).body(dto)` do?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "Returns 200 with body",
+        "Returns 201 Created with the Location header set to location URI and the DTO as the response body",
+        "Returns 302 redirect to location",
+        "Returns 201 with empty body and location header only"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "Returns 201 Created with the Location header set to location URI and the DTO as the response body",
+      "explanation": "ResponseEntity.created(URI) sets status 201 and Location header. .body(dto) sets the response body. This is the RESTful standard for resource creation: client knows the resource was created (201) and where to find it (Location)."
     },
     {
       "id": "d44q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "What does `produces = MediaType.APPLICATION_JSON_VALUE` on a method do?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "Forces the client to send JSON",
+        "Declares that this method can produce JSON responses — the framework returns 406 Not Acceptable if the client's Accept header requests a format this method can't produce",
+        "Makes the response faster",
+        "Required for JSON responses to work"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "Declares that this method can produce JSON responses — the framework returns 406 Not Acceptable if the client's Accept header requests a format this method can't produce",
+      "explanation": "produces restricts content negotiation: only serve this method if the client accepts this media type. If client sends Accept: application/xml but the method only produces JSON, Spring returns 406 Not Acceptable. Omitting produces means the method handles any Accept type."
     },
     {
       "id": "d44q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "What is the correct response for `DELETE /api/orders/123` when successful?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "200 OK with deleted order",
+        "204 No Content — success but no body to return",
+        "404 Not Found",
+        "200 OK with empty JSON {}"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "204 No Content — success but no body to return",
+      "explanation": "204 No Content: operation succeeded but there's no content to return in the body. Appropriate for DELETE (resource is gone), and for PUT/PATCH when you don't return the updated resource. ResponseEntity.noContent().build() in Spring Boot."
     },
     {
       "id": "d44q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "What is 422 Unprocessable Entity vs 400 Bad Request?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "Identical",
+        "400 Bad Request: syntactically malformed request (can't parse); 422 Unprocessable Entity: syntactically valid but semantically invalid (business rule violation like 'order date cannot be in the past')",
+        "422 is for server errors",
+        "400 is for authentication failures"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "400 Bad Request: syntactically malformed request (can't parse); 422 Unprocessable Entity: syntactically valid but semantically invalid (business rule violation like 'order date cannot be in the past')",
+      "explanation": "400: JSON is malformed, required fields missing (validation failure at parsing/annotation level). 422: the request body parses correctly but the business logic rejects it (insufficient stock, date conflict). Some APIs use 400 for both — 422 is more precise."
     },
     {
       "id": "d44q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "What is HATEOAS in REST API design?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "A CSS framework for APIs",
+        "Hypermedia As The Engine Of Application State — including links in responses that describe what actions are available next, making the API self-discoverable",
+        "A security standard",
+        "Stands for HTTP API Transport Encoding and Schema"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "Hypermedia As The Engine Of Application State — including links in responses that describe what actions are available next, making the API self-discoverable",
+      "explanation": "HATEOAS adds _links to responses: {id:'123', status:'PENDING', _links:{self:{href:'/orders/123'}, cancel:{href:'/orders/123/cancel'}, pay:{href:'/orders/123/pay'}}}. Clients discover available actions from the response rather than hard-coding URLs. Spring HATEOAS library provides EntityModel, CollectionModel."
     },
     {
       "id": "d44q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "What does `return ResponseEntity.ok(ErrorResponse('ERROR', msg))` get wrong?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "ErrorResponse is not serializable",
+        "It returns HTTP 200 OK with an error message — clients that check status code before reading body will treat this as success",
+        "ok() doesn't accept ErrorResponse",
+        "The body should be a String"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "It returns HTTP 200 OK with an error message — clients that check status code before reading body will treat this as success",
+      "explanation": "HTTP clients, monitoring tools, and load balancers use status codes to determine success/failure. Returning 200 with an error body is misleading. Return the appropriate error status: ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse) or use @ResponseStatus in @ExceptionHandler."
     },
     {
       "id": "d44q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "What does `ServletUriComponentsBuilder.fromCurrentRequest().path('/{id}').buildAndExpand(id).toUri()` create?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "A redirect URL",
+        "The URI of the newly created resource based on the current request URL + id — used for the Location header in 201 Created responses",
+        "A URL to the current endpoint documentation",
+        "An absolute URL to an external service"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d44q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d44q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d44q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d44q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d44q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "The URI of the newly created resource based on the current request URL + id — used for the Location header in 201 Created responses",
+      "explanation": "If the request is POST /api/orders, fromCurrentRequest() captures /api/orders, .path('/{id}') appends /{id}, .buildAndExpand('order-123') fills in the id → /api/orders/order-123. This URI is set as the Location header in the 201 response so clients know where the new resource lives."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain REST APIs in your own words with a beginner-friendly example.",
-    "Where would REST APIs appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands REST APIs?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 44 without looking at the notes."
+    "Show a complete CRUD REST controller using ResponseEntity: GET (200), POST (201+Location), PUT (200), PATCH (200), DELETE (204).",
+    "Explain idempotency. Which HTTP methods are idempotent? Give a real scenario where idempotency matters (retry logic after network failure).",
+    "What are the HTTP status codes for: success with body, success without body, creation, async accepted, not found, invalid input, unauthorized, forbidden, conflict, rate limited?",
+    "Explain content negotiation (produces/consumes). Show a controller that returns JSON or XML based on Accept header.",
+    "What is HATEOAS? Show an order response with _links for self, cancel, and pay actions.",
+    "When is 422 Unprocessable Entity more appropriate than 400 Bad Request? Show a business rule violation (duplicate order reference) returning 422.",
+    "Show how to build the Location header using ServletUriComponentsBuilder in a POST endpoint that creates a new user."
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to REST APIs. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "A client reports that their monitoring shows 100% success rate even when orders fail to create. Investigation reveals the API returns 200 OK with {error: 'Insufficient stock'}. Fix to return 422 with proper error structure.",
+    "A mobile app retries failed requests. DELETE /api/orders/123 returns 404 on the retry (already deleted). The app crashes. Fix: make DELETE idempotent by returning 204 whether the order existed or was already deleted.",
+    "An API is being consumed by 3 clients. Client A needs JSON, Client B needs XML, Client C needs CSV. Design content negotiation using produces on the controller and Accept header on clients without duplicating business logic."
   ],
   "dsaPractice": [
     {

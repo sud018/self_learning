@@ -1,190 +1,142 @@
 {
   "id": "day-59-kafka-basics",
   "topic": "Day 59: Kafka Basics",
-  "notes": "Phase: PHASE 6: SPRING BOOT ADVANCED\n\nDay 59 Detailed Notes: Kafka Basics\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is Kafka Basics. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn Kafka Basics, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Enterprise Java: Kafka Basics. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Spring Boot Advanced. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Secure API Integration. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Relationships and Transactions. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Graphs and Queues Introduction. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for Kafka Basics: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of Kafka Basics as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Enterprise Java: Kafka Basics, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Spring Boot Advanced, ask which object owns the logic and which dependency is injected. When working with Secure API Integration, ask what state the component owns and what comes from the backend. When working with Relationships and Transactions, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Apache Kafka in Spring Boot: Topics, Producers, Consumers, and Consumer Groups\n\n## Why Kafka? Event-Driven Architecture\nKafka is a distributed event streaming platform. Instead of services calling each other synchronously, services publish events to topics and other services consume them asynchronously. This decouples producers from consumers.\n\n```\nOrderService → [order.created topic] → InventoryService (deducts stock)\n                                    → EmailService (sends confirmation)\n                                    → AnalyticsService (updates metrics)\n```\n\n## Core Concepts\n- **Topic**: named stream of records (like a queue with replay). Partitioned for parallelism.\n- **Partition**: ordered, immutable sequence of records. Each partition is consumed by one consumer per group.\n- **Consumer Group**: multiple consumers sharing the work of a topic. Each partition assigned to one consumer.\n- **Offset**: position of a message in a partition. Consumer commits offset to track progress.\n- **Producer**: writes records to topics.\n- **Broker**: Kafka server. Production = cluster of brokers.\n\n## Spring Kafka Setup\n```yaml\n# application.yml\nspring:\n  kafka:\n    bootstrap-servers: localhost:9092\n    producer:\n      key-serializer: org.apache.kafka.common.serialization.StringSerializer\n      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer\n      acks: all          # wait for all replicas to acknowledge (durability)\n      retries: 3\n    consumer:\n      group-id: order-service\n      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer\n      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer\n      auto-offset-reset: earliest   # start from beginning if no offset stored\n      properties:\n        spring.json.trusted.packages: com.example.events\n```\n\n## KafkaTemplate — Producing Events\n```java\n@Service\n@RequiredArgsConstructor\npublic class OrderEventPublisher {\n    private final KafkaTemplate<String, OrderCreatedEvent> kafkaTemplate;\n\n    public void publishOrderCreated(Order order) {\n        OrderCreatedEvent event = new OrderCreatedEvent(\n            order.getId(),\n            order.getCustomerId(),\n            order.getTotalAmount(),\n            Instant.now()\n        );\n\n        // key = orderId (ensures all events for the same order go to the same partition)\n        kafkaTemplate.send(\"order.created\", order.getId(), event)\n            .whenComplete((result, ex) -> {\n                if (ex != null) {\n                    log.error(\"Failed to publish order.created for {}\", order.getId(), ex);\n                } else {\n                    log.info(\"Published order.created: offset={}, partition={}\",\n                        result.getRecordMetadata().offset(),\n                        result.getRecordMetadata().partition());\n                }\n            });\n    }\n}\n\n// Event record — must be serializable\npublic record OrderCreatedEvent(\n    String orderId,\n    String customerId,\n    BigDecimal total,\n    Instant createdAt\n) {}\n```\n\n## @KafkaListener — Consuming Events\n```java\n@Component\n@Slf4j\npublic class InventoryEventListener {\n\n    @KafkaListener(\n        topics = \"order.created\",\n        groupId = \"inventory-service\",\n        containerFactory = \"kafkaListenerContainerFactory\"\n    )\n    public void onOrderCreated(\n            @Payload OrderCreatedEvent event,\n            @Header(KafkaHeaders.RECEIVED_PARTITION) int partition,\n            @Header(KafkaHeaders.OFFSET) long offset) {\n\n        log.info(\"Received order.created: orderId={}, partition={}, offset={}\",\n            event.orderId(), partition, offset);\n        try {\n            inventoryService.deductStock(event.orderId());\n        } catch (InsufficientStockException e) {\n            // publish compensating event\n            kafkaTemplate.send(\"order.stock-failed\", event.orderId(),\n                new StockFailedEvent(event.orderId(), e.getMessage()));\n        }\n    }\n}\n```\n\n## Consumer Groups — Parallel Processing\n```\nTopic: order.created (3 partitions)\n\nGroup: inventory-service (3 consumers)\n  Consumer-1 → Partition 0\n  Consumer-2 → Partition 1\n  Consumer-3 → Partition 2\n\nGroup: email-service (1 consumer)\n  Consumer-1 → Partition 0, 1, 2 (all partitions)\n\nMessages in each partition are processed in order within the partition.\n```\n\n## Dead Letter Topic — Handling Consumer Failures\n```java\n@Bean\npublic ConcurrentKafkaListenerContainerFactory<String, OrderCreatedEvent>\n        kafkaListenerContainerFactory(ConsumerFactory<String, OrderCreatedEvent> cf) {\n\n    ConcurrentKafkaListenerContainerFactory<String, OrderCreatedEvent> factory =\n        new ConcurrentKafkaListenerContainerFactory<>();\n    factory.setConsumerFactory(cf);\n\n    // Retry 3 times, then send to DLT (Dead Letter Topic)\n    factory.setCommonErrorHandler(new DefaultErrorHandler(\n        new DeadLetterPublishingRecoverer(kafkaTemplate,\n            (record, ex) -> new TopicPartition(\"order.created.DLT\", record.partition())),\n        new FixedBackOff(1000L, 3)  // 1 second delay, 3 retries\n    ));\n    return factory;\n}\n// Failed messages after 3 retries → order.created.DLT for manual inspection/replay\n```\n\n## Kafka vs REST — When to Use Each\n| | Kafka | REST |\n|---|---|---|\n| Coupling | Loose (producer doesn't know consumers) | Tight (caller knows endpoint) |\n| Failure handling | Consumer can retry, replay | Caller must handle immediately |\n| Use case | Events, notifications, analytics | Queries, commands with immediate response |\n| Order guarantee | Per-partition order | None |\n| Throughput | Millions/second | Thousands/second |\n\n## Common Mistakes\n1. **No key on producer:** all messages go to one partition — no parallelism. Use a domain key (orderId, customerId).\n2. **Auto-commit enabled (default):** offset committed even if processing fails — message is lost. Use manual ack or set `enable-auto-commit: false`.\n3. **Processing non-idempotent operations without deduplication:** if a message is redelivered (after crash), it may be processed twice — use idempotency keys.\n",
   "conceptualQuestions": [
     {
       "id": "d59q1",
-      "prompt": "What is the main focus of Day 59?",
+      "prompt": "What is a Kafka consumer group and why is it useful?",
       "options": [
-        "Kafka Basics",
-        "Only CSS styling",
-        "Only deployment"
+        "A group of Kafka brokers",
+        "Multiple consumer instances sharing the work of a topic — each partition is assigned to one consumer in the group, enabling horizontal scaling and parallel processing",
+        "A group of topics consumed together",
+        "Consumer groups are for ordering guarantees"
       ],
-      "correctAnswer": "Kafka Basics",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "Multiple consumer instances sharing the work of a topic — each partition is assigned to one consumer in the group, enabling horizontal scaling and parallel processing",
+      "explanation": "Consumer group: 3 consumers in 'inventory-service' group with 3 partitions → one partition per consumer (parallel processing). Add a 4th consumer → one consumer is idle (only 3 partitions). Different groups independently consume the same topic (inventory + email both get every message)."
     },
     {
       "id": "d59q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "Why use a message key (e.g., orderId) when producing to Kafka?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "Keys are required by Kafka",
+        "Keys route messages for the same entity to the same partition — ensures ordering for that entity. All events for order-123 are in partition 2 in sequence",
+        "Keys encrypt the message",
+        "Keys determine the consumer group"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "Keys route messages for the same entity to the same partition — ensures ordering for that entity. All events for order-123 are in partition 2 in sequence",
+      "explanation": "Kafka guarantees ordering within a partition, not across partitions. Using orderId as key: all events for order-123 (CREATED, UPDATED, SHIPPED) go to the same partition in order. Without a key, events are round-robin distributed — ordering lost."
     },
     {
       "id": "d59q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What does `auto-offset-reset: earliest` mean for a new consumer group?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "Start consuming from the latest messages only",
+        "Start from the beginning of the topic — process all historical messages from offset 0",
+        "Reset offsets daily",
+        "earliest is the default"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "Start from the beginning of the topic — process all historical messages from offset 0",
+      "explanation": "earliest: new consumer group starts from the oldest available message. latest: start from the newest (miss historical messages). Use earliest for new services that need to process past events. Use latest when historical events are irrelevant (e.g., real-time dashboard)."
     },
     {
       "id": "d59q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "What is a Dead Letter Topic (DLT) in Kafka?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "A topic for deleted messages",
+        "A topic where messages that failed processing after all retries are sent — allows manual inspection and replay without blocking the main topic",
+        "A Kafka admin feature",
+        "DLT stores compressed messages"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "A topic where messages that failed processing after all retries are sent — allows manual inspection and replay without blocking the main topic",
+      "explanation": "Without DLT: a poison pill message (always fails) blocks the partition — no subsequent messages processed. With DLT: after N retries, the failing message moves to order.created.DLT. The main topic continues. Operations team inspects DLT, fixes the issue, and replays messages."
     },
     {
       "id": "d59q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "What does `acks: all` mean in Kafka producer configuration?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "Send without waiting for acknowledgment",
+        "Wait for all in-sync replicas to write the message before acknowledging the producer — highest durability guarantee",
+        "acks: all is the default",
+        "Only the leader broker acknowledges"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "Wait for all in-sync replicas to write the message before acknowledging the producer — highest durability guarantee",
+      "explanation": "acks=0: fire and forget (fastest, can lose messages). acks=1: leader acknowledges (default for older clients). acks=all or -1: all in-sync replicas acknowledge (highest durability). If a broker fails, the message is safe on other replicas. Use acks=all for financial/critical data."
     },
     {
       "id": "d59q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "What is the risk of Kafka's default auto-commit offset behavior?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "Offsets aren't committed",
+        "Offsets are committed on a schedule regardless of processing success — if the consumer crashes after commit but before processing completes, the message is lost (at-most-once semantics)",
+        "Auto-commit is too slow",
+        "Auto-commit causes duplicate processing"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "Offsets are committed on a schedule regardless of processing success — if the consumer crashes after commit but before processing completes, the message is lost (at-most-once semantics)",
+      "explanation": "auto.commit.interval.ms=5000 (default): Kafka commits offsets every 5 seconds. If crash happens after commit but before processing: message was 'consumed' (offset committed) but never actually processed. Fix: manual acknowledgment after successful processing (at-least-once)."
     },
     {
       "id": "d59q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "What is at-least-once delivery in Kafka and what problem does it create?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "Each message delivered exactly once",
+        "Messages are delivered at least once but may be delivered multiple times on failure/retry — consumer must be idempotent (handle duplicate messages safely)",
+        "Messages may be lost",
+        "Only one consumer receives each message"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "Messages are delivered at least once but may be delivered multiple times on failure/retry — consumer must be idempotent (handle duplicate messages safely)",
+      "explanation": "At-least-once: commit offset AFTER processing. If crash after processing but before commit: message redelivered → processed twice. Solution: idempotent consumer (check if message was already processed using a unique messageId in DB). True exactly-once requires Kafka transactions."
     },
     {
       "id": "d59q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "How does @KafkaListener handle concurrent consumption?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "Single-threaded always",
+        "concurrency property: @KafkaListener(concurrency='3') creates 3 consumer threads, each assigned to a different partition",
+        "@KafkaListener is always multi-threaded",
+        "Concurrency is set by the consumer group"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "concurrency property: @KafkaListener(concurrency='3') creates 3 consumer threads, each assigned to a different partition",
+      "explanation": "@KafkaListener(concurrency='3'): three consumer thread instances, each consuming from one partition. For optimal parallelism, concurrency should equal the number of partitions. More threads than partitions: extra threads idle."
     },
     {
       "id": "d59q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "What is the difference between Kafka and a traditional message queue (RabbitMQ)?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "Kafka is faster only",
+        "Kafka retains messages for a configurable time (replay possible); queues delete messages after consumption. Kafka maintains offset per consumer group — multiple groups read independently. Queues: round-robin to one consumer",
+        "Kafka requires more memory",
+        "RabbitMQ supports more message types"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "Kafka retains messages for a configurable time (replay possible); queues delete messages after consumption. Kafka maintains offset per consumer group — multiple groups read independently. Queues: round-robin to one consumer",
+      "explanation": "Kafka log retention (default 7 days): replay past events by resetting offset. New service added: reads all historical events from the beginning. Traditional queue: message consumed → deleted. Kafka is append-only log; queues are point-to-point or pub/sub without replay."
     },
     {
       "id": "d59q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "What does the Kafka partition key determine?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "Message size limit",
+        "Which partition the message is routed to — same key always goes to the same partition (murmur2 hash of key % numPartitions), ensuring ordering for that key",
+        "The consumer group",
+        "Message priority"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d59q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d59q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d59q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d59q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d59q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "Which partition the message is routed to — same key always goes to the same partition (murmur2 hash of key % numPartitions), ensuring ordering for that key",
+      "explanation": "key=orderId → hash(orderId) % partitionCount = partition number. Same orderId always → same partition → ordered processing. Different orderIds → distributed across partitions → parallelism. No key → round-robin across partitions (no ordering guarantee, but balanced load)."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain Kafka Basics in your own words with a beginner-friendly example.",
-    "Where would Kafka Basics appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands Kafka Basics?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 59 without looking at the notes."
+    "Show a Kafka producer in Spring Boot: KafkaTemplate.send() with key, event object, and a whenComplete() callback for success/failure logging.",
+    "Show a @KafkaListener that consumes OrderCreatedEvent and deducts inventory. Show handling InsufficientStockException by publishing a compensating event.",
+    "Explain consumer groups with a diagram: topic with 3 partitions, 3 consumers in inventory-service group (one per partition), 1 consumer in email-service group (all partitions).",
+    "What is a Dead Letter Topic? Show the ConcurrentKafkaListenerContainerFactory with FixedBackOff(1000, 3) and DeadLetterPublishingRecoverer.",
+    "Explain at-least-once vs exactly-once delivery. How do you make a Kafka consumer idempotent?",
+    "What does acks=all mean? Show producer config for maximum durability.",
+    "When should you choose Kafka over REST for inter-service communication? Give 3 concrete scenarios."
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to Kafka Basics. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "Order creation synchronously calls 3 downstream services (inventory, email, analytics). If any one fails, the whole transaction fails. Redesign using Kafka: order service publishes order.created, each downstream service consumes independently.",
+    "A consumer crashes after committing the offset but before updating inventory. Orders are 'consumed' but inventory not deducted. Implement idempotent processing using a ProcessedEvent DB table with messageId uniqueness check.",
+    "A new analytics service needs to process all historical orders (6 months of data). Design the solution: auto-offset-reset=earliest for the new consumer group, topic retention set to 6 months, and replay mechanics."
   ],
   "dsaPractice": [
     {

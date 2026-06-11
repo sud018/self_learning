@@ -1,190 +1,142 @@
 {
   "id": "day-58-mockmvc",
   "topic": "Day 58: MockMvc",
-  "notes": "Phase: PHASE 6: SPRING BOOT ADVANCED\n\nDay 58 Detailed Notes: MockMvc\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is MockMvc. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn MockMvc, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Enterprise Java: MockMvc. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Spring Boot Advanced. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Secure API Integration. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Relationships and Transactions. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Graphs and Queues Introduction. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for MockMvc: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of MockMvc as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Enterprise Java: MockMvc, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Spring Boot Advanced, ask which object owns the logic and which dependency is injected. When working with Secure API Integration, ask what state the component owns and what comes from the backend. When working with Relationships and Transactions, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# MockMvc: Testing Spring MVC Controllers Without a Running Server\n\n## What is MockMvc?\nMockMvc allows you to test Spring MVC controllers by dispatching requests through the DispatcherServlet without starting a real HTTP server. It tests the full MVC stack: routing, filters, argument resolution, validation, and serialization.\n\n## @WebMvcTest — Controller Slice\n```java\n@WebMvcTest(OrderController.class)    // loads only MVC layer for OrderController\nclass OrderControllerTest {\n\n    @Autowired private MockMvc mockMvc;\n    @Autowired private ObjectMapper objectMapper;\n\n    @MockBean private OrderService orderService;   // mock the service dependency\n    @MockBean private JwtService jwtService;        // mock security dependencies\n    @MockBean private UserDetailsService userDetailsService;\n\n    @Test\n    @WithMockUser(roles = \"USER\")  // simulate authenticated user\n    void getOrder_whenExists_returns200WithDto() throws Exception {\n        OrderDto dto = new OrderDto(\"order-1\", \"PENDING\", new BigDecimal(\"99.99\"));\n        when(orderService.findById(\"order-1\")).thenReturn(dto);\n\n        mockMvc.perform(get(\"/api/orders/order-1\")\n                .header(\"Authorization\", \"Bearer fake-token\")\n                .contentType(MediaType.APPLICATION_JSON))\n            .andExpect(status().isOk())\n            .andExpect(jsonPath(\"$.id\").value(\"order-1\"))\n            .andExpect(jsonPath(\"$.status\").value(\"PENDING\"))\n            .andExpect(jsonPath(\"$.total\").value(99.99));\n    }\n}\n```\n\n## Testing POST with Request Body\n```java\n@Test\n@WithMockUser(roles = \"USER\")\nvoid createOrder_withValidBody_returns201() throws Exception {\n    CreateOrderRequest req = new CreateOrderRequest(\"cust-1\",\n        List.of(new CreateOrderItemRequest(\"prod-1\", 2)));\n    OrderDto created = new OrderDto(\"new-order\", \"PENDING\", new BigDecimal(\"39.98\"));\n\n    when(orderService.create(any())).thenReturn(created);\n\n    mockMvc.perform(post(\"/api/orders\")\n            .contentType(MediaType.APPLICATION_JSON)\n            .content(objectMapper.writeValueAsString(req)))   // serialize req to JSON\n        .andExpect(status().isCreated())\n        .andExpect(jsonPath(\"$.id\").value(\"new-order\"))\n        .andExpect(header().string(\"Location\", containsString(\"/api/orders/new-order\")));\n}\n\n@Test\n@WithMockUser\nvoid createOrder_withBlankCustomerId_returns400WithFieldError() throws Exception {\n    CreateOrderRequest invalidReq = new CreateOrderRequest(\"\", List.of());\n\n    mockMvc.perform(post(\"/api/orders\")\n            .contentType(MediaType.APPLICATION_JSON)\n            .content(objectMapper.writeValueAsString(invalidReq)))\n        .andExpect(status().isBadRequest())\n        .andExpect(jsonPath(\"$.fieldErrors.customerId\").exists())\n        .andExpect(jsonPath(\"$.code\").value(\"VALIDATION_ERROR\"));\n}\n```\n\n## Testing Error Responses\n```java\n@Test\n@WithMockUser\nvoid getOrder_whenNotFound_returns404() throws Exception {\n    when(orderService.findById(\"bad-id\"))\n        .thenThrow(new NotFoundException(\"Order\", \"bad-id\"));\n\n    mockMvc.perform(get(\"/api/orders/bad-id\"))\n        .andExpect(status().isNotFound())\n        .andExpect(jsonPath(\"$.code\").value(\"NOT_FOUND\"))\n        .andExpect(jsonPath(\"$.message\").value(containsString(\"bad-id\")));\n}\n```\n\n## MockMvc — Common Methods\n```java\n// Request builders\nmockMvc.perform(get(\"/api/orders\"))\nmockMvc.perform(post(\"/api/orders\").content(json).contentType(APPLICATION_JSON))\nmockMvc.perform(put(\"/api/orders/{id}\", \"order-1\").content(json).contentType(APPLICATION_JSON))\nmockMvc.perform(delete(\"/api/orders/{id}\", \"order-1\"))\nmockMvc.perform(patch(\"/api/orders/{id}/status\", \"order-1\"))\n\n// Request configuration\n.header(\"Authorization\", \"Bearer \" + token)\n.param(\"page\", \"0\").param(\"size\", \"10\")    // query parameters\n.accept(MediaType.APPLICATION_JSON)\n\n// Response assertions\n.andExpect(status().isOk())\n.andExpect(status().isCreated())\n.andExpect(status().isNotFound())\n.andExpect(status().isBadRequest())\n.andExpect(content().contentType(MediaType.APPLICATION_JSON))\n.andExpect(jsonPath(\"$.id\").value(\"order-1\"))\n.andExpect(jsonPath(\"$.items\").isArray())\n.andExpect(jsonPath(\"$.items.length()\").value(3))\n.andExpect(jsonPath(\"$.items[0].productId\").value(\"prod-1\"))\n.andExpect(header().exists(\"Location\"))\n.andDo(print()) // prints request and response to console (debug)\n```\n\n## Testing Security — @WithMockUser and @WithUserDetails\n```java\n// @WithMockUser — simple mock, no UserDetailsService needed\n@Test\n@WithMockUser(username = \"admin@example.com\", roles = {\"ADMIN\"})\nvoid adminEndpoint_withAdminRole_returns200() throws Exception { ... }\n\n// @WithMockUser without roles — default role is USER\n@Test\n@WithMockUser\nvoid userEndpoint_withUserRole_returns200() throws Exception { ... }\n\n// Test unauthenticated access\n@Test\nvoid protectedEndpoint_withoutToken_returns401() throws Exception {\n    mockMvc.perform(get(\"/api/orders\"))\n        .andExpect(status().isUnauthorized());\n}\n\n// Test forbidden access (authenticated but wrong role)\n@Test\n@WithMockUser(roles = \"USER\")\nvoid adminEndpoint_withUserRole_returns403() throws Exception {\n    mockMvc.perform(delete(\"/api/admin/users/1\"))\n        .andExpect(status().isForbidden());\n}\n```\n\n## Standalone MockMvc — Without Spring Context\n```java\n// Faster: no Spring context, just the controller\n@BeforeEach\nvoid setUp() {\n    mockMvc = MockMvcBuilders.standaloneSetup(new OrderController(orderService))\n        .setControllerAdvice(new GlobalExceptionHandler())\n        .build();\n}\n// Use when you don't need security or Spring boot context\n```\n\n## Common Mistakes\n1. **Forgetting `@MockBean` for service dependencies:** @WebMvcTest does not create @Service beans — must mock them with @MockBean.\n2. **Missing `contentType(APPLICATION_JSON)` on POST:** Spring returns 415 Unsupported Media Type without it.\n3. **`andExpect(jsonPath('$.field').value(99.99))` with BigDecimal:** Jackson may serialize as 99.99 or 99.990000 — use `isNumber()` or compare as string.\n",
   "conceptualQuestions": [
     {
       "id": "d58q1",
-      "prompt": "What is the main focus of Day 58?",
+      "prompt": "What is the main advantage of @WebMvcTest over @SpringBootTest for controller tests?",
       "options": [
-        "MockMvc",
-        "Only CSS styling",
-        "Only deployment"
+        "@WebMvcTest supports more HTTP methods",
+        "@WebMvcTest loads only the MVC layer (controller, filters, DispatcherServlet) — much faster since it skips JPA, services, security config beans not related to the controller under test",
+        "@SpringBootTest doesn't support MockMvc",
+        "@WebMvcTest tests run in parallel"
       ],
-      "correctAnswer": "MockMvc",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "@WebMvcTest loads only the MVC layer (controller, filters, DispatcherServlet) — much faster since it skips JPA, services, security config beans not related to the controller under test",
+      "explanation": "@SpringBootTest: full context load (10-30s). @WebMvcTest: only MVC beans for the specified controller (1-3s). @WebMvcTest doesn't create @Service or @Repository beans — use @MockBean for those. Much faster feedback for controller-specific tests."
     },
     {
       "id": "d58q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "What does `@MockBean` do in a @WebMvcTest test?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "Creates a real Spring bean",
+        "Creates a Mockito mock AND registers it in the Spring application context — replaces any existing bean of that type in the context",
+        "@MockBean is identical to @Mock",
+        "Creates a test database"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "Creates a Mockito mock AND registers it in the Spring application context — replaces any existing bean of that type in the context",
+      "explanation": "@Mock (Mockito): creates a mock, not in Spring context (for @InjectMocks unit tests). @MockBean (Spring): creates a mock AND registers it as the Spring bean. In @WebMvcTest, the controller is autowired by Spring — dependencies must be in the context, so @MockBean is required."
     },
     {
       "id": "d58q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What does `jsonPath('$.items[0].productId').value('prod-1')` verify?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "The items array has one element",
+        "The first element of the 'items' JSON array has a field 'productId' equal to 'prod-1'",
+        "items is not empty",
+        "productId is at index 1"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "The first element of the 'items' JSON array has a field 'productId' equal to 'prod-1'",
+      "explanation": "JsonPath: $ is root. $.items is the items array. $.items[0] is first element. $.items[0].productId is the productId field of the first item. .value('prod-1') asserts it equals that string. Use jsonPath('$.items.length()').value(3) to check array size."
     },
     {
       "id": "d58q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "What does `.andDo(print())` do in a MockMvc chain?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "Prints the test result to the screen",
+        "Prints the complete HTTP request and response (headers, status, body) to the console — essential for debugging failing tests",
+        "Required for JSON assertions",
+        "Prints only if the test fails"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "Prints the complete HTTP request and response (headers, status, body) to the console — essential for debugging failing tests",
+      "explanation": "print() outputs: MockHttpServletRequest (method, URL, headers, body), Handler (controller method), MockHttpServletResponse (status, headers, body). Add .andDo(print()) when a test fails mysteriously — see the actual response to understand what went wrong."
     },
     {
       "id": "d58q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "What does `@WithMockUser(roles = 'USER')` do?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "Creates a real user in the database",
+        "Populates the SecurityContext with a mock Authentication of a user with ROLE_USER — no actual authentication happens, no UserDetailsService called",
+        "Logs in via the login endpoint",
+        "Requires @SpringBootTest"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "Populates the SecurityContext with a mock Authentication of a user with ROLE_USER — no actual authentication happens, no UserDetailsService called",
+      "explanation": "@WithMockUser shortcuts the authentication process for testing authorization. The SecurityContext gets a pre-built authentication with the specified username/roles. Spring Security's authorization checks (hasRole, @PreAuthorize) see this user. No JWT filter, no UserDetailsService invoked."
     },
     {
       "id": "d58q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "What HTTP status does a controller return when @RequestBody JSON is malformed (missing closing brace)?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "500 Internal Server Error",
+        "400 Bad Request — Spring throws HttpMessageNotReadableException which maps to 400",
+        "404 Not Found",
+        "200 with null fields"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "400 Bad Request — Spring throws HttpMessageNotReadableException which maps to 400",
+      "explanation": "Jackson cannot parse the malformed JSON → HttpMessageNotReadableException. Handled by @ExceptionHandler → 400 Bad Request. Test this: .content('{invalid json}') → andExpect(status().isBadRequest()). Important to verify your error handler formats this correctly."
     },
     {
       "id": "d58q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "What must you add when posting JSON in a MockMvc test?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "Nothing extra needed",
+        "`.contentType(MediaType.APPLICATION_JSON)` — without it, Spring returns 415 Unsupported Media Type because the controller's @PostMapping expects JSON content",
+        "The Accept header",
+        "A session ID"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "`.contentType(MediaType.APPLICATION_JSON)` — without it, Spring returns 415 Unsupported Media Type because the controller's @PostMapping expects JSON content",
+      "explanation": "Content-Type header tells Spring what format the request body is. @PostMapping with @RequestBody expects Content-Type: application/json. Without it: 415 Unsupported Media Type. Also set Accept: application/json if the method uses produces."
     },
     {
       "id": "d58q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "What is the difference between standaloneSetup MockMvc and @WebMvcTest?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "Identical",
+        "standaloneSetup: creates MockMvc from controller directly, no Spring context — very fast, manual wiring. @WebMvcTest: Spring loads MVC context including security filters, auto-configuration — slower but more realistic",
+        "standaloneSetup requires a running server",
+        "@WebMvcTest doesn't support MockMvc"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "standaloneSetup: creates MockMvc from controller directly, no Spring context — very fast, manual wiring. @WebMvcTest: Spring loads MVC context including security filters, auto-configuration — slower but more realistic",
+      "explanation": "standaloneSetup: MockMvcBuilders.standaloneSetup(controller).setControllerAdvice(handler).build(). No security, no auto-configuration. Test pure controller logic. @WebMvcTest: full MVC stack with security — test authorization, filters, auto-configured Jackson settings."
     },
     {
       "id": "d58q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "How do you test that an endpoint returns a 403 Forbidden when accessed with insufficient role?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "Manually remove authentication",
+        "@WithMockUser(roles='USER') on a test for an admin endpoint — the controller's hasRole('ADMIN') check fails and Spring Security returns 403",
+        "Test 403 by not providing credentials",
+        "403 requires a real server"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "@WithMockUser(roles='USER') on a test for an admin endpoint — the controller's hasRole('ADMIN') check fails and Spring Security returns 403",
+      "explanation": "@WithMockUser(roles='USER') creates authentication with ROLE_USER. The admin endpoint requires ROLE_ADMIN. Spring Security evaluates the authorization rule and denies access → 403. andExpect(status().isForbidden()) verifies this. Separates 401 (unauthenticated) from 403 (unauthorized)."
     },
     {
       "id": "d58q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "What does `objectMapper.writeValueAsString(req)` do in a MockMvc POST test?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "Validates the request object",
+        "Serializes the Java object to a JSON string — used as the request body for .content(json). The ObjectMapper in tests uses the same Jackson configuration as the application",
+        "Encrypts the request",
+        "Converts the object to XML"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d58q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d58q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d58q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d58q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d58q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "Serializes the Java object to a JSON string — used as the request body for .content(json). The ObjectMapper in tests uses the same Jackson configuration as the application",
+      "explanation": "In @WebMvcTest, @Autowired ObjectMapper gives you the application's Jackson configuration (date format, null handling, etc.). Using it to serialize ensures the request body matches exactly what a real client would send."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain MockMvc in your own words with a beginner-friendly example.",
-    "Where would MockMvc appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands MockMvc?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 58 without looking at the notes."
+    "Show a complete @WebMvcTest for OrderController: test GET by ID (200), GET not found (404 with error body), POST valid (201 with Location), POST invalid (400 with field errors).",
+    "Explain @MockBean vs @Mock. When do you use each? Show why @Mock doesn't work in @WebMvcTest.",
+    "Show testing security with MockMvc: authenticated user (200), unauthenticated (401), wrong role (403). Use @WithMockUser.",
+    "What is jsonPath() and how do you test arrays? Show verifying an orders list with size, first element fields, and nested fields.",
+    "Show standaloneSetup MockMvc: build from controller + exception handler, no Spring context. When is this preferred over @WebMvcTest?",
+    "How do you test that a validation error returns the correct field error structure? Show POST with blank required field → 400 with {fieldErrors: {fieldName: message}}.",
+    "What does .andDo(print()) help with? Show how to use it to debug a failing test."
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to MockMvc. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "A controller test uses @SpringBootTest for all 30 controller tests, taking 8 minutes total. Migrate to @WebMvcTest slices — show the test class restructuring and explain the speedup.",
+    "A POST endpoint returns 415 Unsupported Media Type in tests. The developer forgot contentType(). Show the fix and explain what Content-Type header does.",
+    "An admin-only DELETE endpoint is accidentally accessible to regular users in production. Add MockMvc tests for 200 (admin), 403 (regular user), and 401 (no auth) to catch this regression."
   ],
   "dsaPractice": [
     {

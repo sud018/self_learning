@@ -1,190 +1,142 @@
 {
   "id": "day-80-testing",
   "topic": "Day 80: Testing",
-  "notes": "Phase: PHASE 8: ANGULAR ADVANCED\n\nDay 80 Detailed Notes: Testing\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is Testing. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn Testing, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Java Integration: Testing. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Secure Backend APIs. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Angular Advanced. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Performance-Oriented SQL. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Optimization Patterns. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for Testing: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of Testing as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Java Integration: Testing, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Secure Backend APIs, ask which object owns the logic and which dependency is injected. When working with Angular Advanced, ask what state the component owns and what comes from the backend. When working with Performance-Oriented SQL, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Angular Testing: TestBed, ComponentFixture, and Service Testing\n\n## Unit Testing Angular Components\n```typescript\ndescribe('ProductCardComponent', () => {\n  let component: ProductCardComponent;\n  let fixture: ComponentFixture<ProductCardComponent>;\n\n  beforeEach(async () => {\n    await TestBed.configureTestingModule({\n      imports: [ProductCardComponent],  // standalone component — import directly\n      providers: [\n        { provide: ProductService, useValue: mockProductService }\n      ]\n    }).compileComponents();\n\n    fixture = TestBed.createComponent(ProductCardComponent);\n    component = fixture.componentInstance;\n\n    // Set required @Input\n    component.product = { id: '1', name: 'Widget', price: 9.99, stock: 10 };\n    fixture.detectChanges();  // trigger ngOnInit and first render\n  });\n\n  it('should display product name', () => {\n    const nameEl = fixture.debugElement.query(By.css('.product-name'));\n    expect(nameEl.nativeElement.textContent).toContain('Widget');\n  });\n\n  it('should emit addToCart when button clicked', () => {\n    let emittedProduct: Product | undefined;\n    component.addToCart.subscribe(p => emittedProduct = p);\n\n    const btn = fixture.debugElement.query(By.css('[data-testid=\"add-to-cart\"]'));\n    btn.triggerEventHandler('click', null);\n\n    expect(emittedProduct).toEqual(component.product);\n  });\n\n  it('should disable Add to Cart button when out of stock', () => {\n    component.product = { ...component.product, stock: 0 };\n    fixture.detectChanges();\n\n    const btn = fixture.debugElement.query(By.css('button'));\n    expect(btn.nativeElement.disabled).toBeTrue();\n  });\n});\n```\n\n## Testing Services with HttpClientTesting\n```typescript\ndescribe('OrderService', () => {\n  let service: OrderService;\n  let httpMock: HttpTestingController;\n\n  beforeEach(() => {\n    TestBed.configureTestingModule({\n      providers: [\n        OrderService,\n        provideHttpClient(),\n        provideHttpClientTesting()\n      ]\n    });\n    service = TestBed.inject(OrderService);\n    httpMock = TestBed.inject(HttpTestingController);\n  });\n\n  afterEach(() => {\n    httpMock.verify();  // assert no unexpected HTTP requests remain\n  });\n\n  it('should fetch orders', () => {\n    const mockOrders: Order[] = [{ id: '1', status: 'PENDING' }];\n\n    service.getOrders().subscribe(orders => {\n      expect(orders.length).toBe(1);\n      expect(orders[0].status).toBe('PENDING');\n    });\n\n    const req = httpMock.expectOne('/api/orders');\n    expect(req.request.method).toBe('GET');\n    req.flush(mockOrders);  // provide the mock response\n  });\n\n  it('should handle 404 errors', () => {\n    service.getOrderById('999').subscribe({\n      next: () => fail('Expected error'),\n      error: err => expect(err.status).toBe(404)\n    });\n\n    httpMock.expectOne('/api/orders/999').flush('Not found', {\n      status: 404,\n      statusText: 'Not Found'\n    });\n  });\n});\n```\n\n## Testing with Signals\n```typescript\ndescribe('CartStateService', () => {\n  let service: CartStateService;\n\n  beforeEach(() => {\n    TestBed.configureTestingModule({ providers: [CartStateService] });\n    service = TestBed.inject(CartStateService);\n  });\n\n  it('should start with empty cart', () => {\n    expect(service.items().length).toBe(0);\n    expect(service.total()).toBe(0);\n  });\n\n  it('should add item to cart', () => {\n    service.addItem({ id: '1', name: 'Widget', price: 9.99, quantity: 1 });\n    expect(service.items().length).toBe(1);\n    expect(service.total()).toBe(9.99);\n  });\n});\n```\n\n## ComponentHarness — Angular Material Testing\n```typescript\nimport { MatButtonHarness } from '@angular/material/button/testing';\n\nit('should click submit button', async () => {\n  const loader = TestbedHarnessEnvironment.loader(fixture);\n  const button = await loader.getHarness(MatButtonHarness.with({ text: 'Submit' }));\n\n  expect(await button.isDisabled()).toBeFalse();\n  await button.click();\n  expect(component.submitted).toBeTrue();\n});\n```\n\n## Async Testing with fakeAsync and tick\n```typescript\nit('should debounce search', fakeAsync(() => {\n  component.searchTerm = 'prod';\n  component.onSearchChange('prod');\n\n  // Observable hasn't fired yet (debounce pending)\n  expect(mockService.search).not.toHaveBeenCalled();\n\n  tick(300);  // advance virtual time 300ms\n\n  expect(mockService.search).toHaveBeenCalledWith('prod');\n}));\n\nit('should load products on init', fakeAsync(() => {\n  const mockProducts = [{ id: '1', name: 'Widget' }];\n  mockProductService.getProducts.and.returnValue(of(mockProducts));\n\n  fixture.detectChanges();  // triggers ngOnInit\n  tick();                   // flush observables\n\n  expect(component.products.length).toBe(1);\n}));\n```\n\n## Common Mistakes\n1. **Not calling `fixture.detectChanges()` after input changes:** Angular won't re-render without it.\n2. **Using `fixture.nativeElement.querySelector()` instead of `By.css()`:** By.css returns DebugElement with access to Angular-specific methods.\n3. **Forgetting `httpMock.verify()`:** outstanding HTTP requests won't fail the test without it.\n",
   "conceptualQuestions": [
     {
       "id": "d80q1",
-      "prompt": "What is the main focus of Day 80?",
+      "prompt": "What does `fixture.detectChanges()` do in a component test?",
       "options": [
-        "Testing",
-        "Only CSS styling",
-        "Only deployment"
+        "Detects CSS changes",
+        "Triggers Angular change detection — runs ngOnInit (first call), updates template bindings, and processes @Input changes. Must be called after setting @Input values to see the effect in the template",
+        "detectChanges() is automatic",
+        "Required only for OnPush components"
       ],
-      "correctAnswer": "Testing",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "Triggers Angular change detection — runs ngOnInit (first call), updates template bindings, and processes @Input changes. Must be called after setting @Input values to see the effect in the template",
+      "explanation": "TestBed.createComponent: creates the component but doesn't call ngOnInit or update the template. First fixture.detectChanges(): runs ngOnInit + renders. After changing inputs: detectChanges() again to reflect new values. Without it, tests query stale DOM."
     },
     {
       "id": "d80q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "What does `httpMock.verify()` do in afterEach?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "Verifies test data",
+        "Asserts that there are no outstanding (unhandled) HTTP requests — prevents tests from silently making unrequested calls. Without it, unexpected HTTP calls in tested code go unnoticed",
+        "verify() resets the mock",
+        "Required before each test"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "Asserts that there are no outstanding (unhandled) HTTP requests — prevents tests from silently making unrequested calls. Without it, unexpected HTTP calls in tested code go unnoticed",
+      "explanation": "After httpMock.verify(): if your code made an HTTP request that wasn't matched by expectOne/match, the test fails. Ensures tests are exhaustive about all HTTP interactions. Always in afterEach."
     },
     {
       "id": "d80q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What does `By.css('.product-name')` return vs `nativeElement.querySelector`?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "Identical",
+        "By.css returns a DebugElement — Angular's testing wrapper with access to componentInstance, injector, triggerEventHandler. nativeElement.querySelector returns raw DOM HTMLElement — no Angular-specific methods",
+        "By.css is deprecated",
+        "querySelector is faster"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "By.css returns a DebugElement — Angular's testing wrapper with access to componentInstance, injector, triggerEventHandler. nativeElement.querySelector returns raw DOM HTMLElement — no Angular-specific methods",
+      "explanation": "debugElement.query(By.css('button')): DebugElement — .componentInstance, .triggerEventHandler('click', null), .injector.get(Service). .nativeElement: the underlying DOM element. Use DebugElement for Angular-aware queries."
     },
     {
       "id": "d80q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "What does `fakeAsync` and `tick(300)` allow in a test?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "Real time-based testing",
+        "Synchronously advance virtual time — test debounced operations, setTimeout, and interval without waiting real milliseconds. tick(300) advances the fake clock by 300ms, triggering pending timers",
+        "fakeAsync requires a spy",
+        "tick() only works for Promise"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "Synchronously advance virtual time — test debounced operations, setTimeout, and interval without waiting real milliseconds. tick(300) advances the fake clock by 300ms, triggering pending timers",
+      "explanation": "Without fakeAsync: testing 300ms debounce requires actually waiting 300ms. With fakeAsync: onSearchChange('prod'); tick(300) — synchronous, immediate. All timers, intervals, debounces execute in fakeAsync zone when you call tick()."
     },
     {
       "id": "d80q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "What is `req.flush(mockData)` in HttpTestingController?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "Flushes HTTP connections",
+        "Provides the response for a pending test HTTP request — the Observable in the service resolves with mockData as if the server responded",
+        "flush() makes a real HTTP call",
+        "Requires the server to run"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "Provides the response for a pending test HTTP request — the Observable in the service resolves with mockData as if the server responded",
+      "explanation": "service.getOrders().subscribe(orders => expect(orders).toEqual(mockOrders)). req.flush(mockOrders): the subscribe callback runs synchronously with mockOrders. No real HTTP. req.flush(null, { status: 404, statusText: 'Not Found' }): simulate error."
     },
     {
       "id": "d80q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "How do you test a standalone component in TestBed?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "Add to NgModule.declarations",
+        "Import the component directly in TestBed.configureTestingModule({ imports: [MyComponent] }) — standalone components are self-contained and imported like modules",
+        "Standalone components can't be tested",
+        "Use imports: [NgModule]"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "Import the component directly in TestBed.configureTestingModule({ imports: [MyComponent] }) — standalone components are self-contained and imported like modules",
+      "explanation": "Traditional component: TestBed.configureTestingModule({ declarations: [MyComponent] }). Standalone: imports: [MyComponent]. The component brings its own dependencies. Override specific ones in providers: [{ provide: Service, useValue: mock }]."
     },
     {
       "id": "d80q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "What does `DebugElement.triggerEventHandler('click', null)` do?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "Triggers a real browser click",
+        "Invokes Angular event handlers bound to the element via `(click)` or `@HostListener` — works without a real DOM event, useful for testing Angular-specific event bindings",
+        "triggerEventHandler simulates keyboard",
+        "Only works with native events"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "Invokes Angular event handlers bound to the element via `(click)` or `@HostListener` — works without a real DOM event, useful for testing Angular-specific event bindings",
+      "explanation": "btn.triggerEventHandler('click', { type: 'click' }): calls all handlers bound with (click)='handler($event)'. The $event is the second argument ({type:'click'}). More reliable than .nativeElement.click() which may not trigger Angular bindings in all environments."
     },
     {
       "id": "d80q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "What is the purpose of `data-testid` attributes in templates?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "CSS styling hooks",
+        "Stable selectors for tests — decoupled from CSS classes (which change for styling) and HTML structure. By.css('[data-testid=\"add-to-cart\"]') finds elements regardless of class renames",
+        "Required by TestBed",
+        "Only for accessibility"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "Stable selectors for tests — decoupled from CSS classes (which change for styling) and HTML structure. By.css('[data-testid=\"add-to-cart\"]') finds elements regardless of class renames",
+      "explanation": "CSS classes: .btn-primary → .btn — breaks tests. data-testid: never changed for styling — stable contract for tests. Convention: strip data-testid in production builds. Prevents the 'test breaks on UI refactor' problem."
     },
     {
       "id": "d80q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "What is a `Spy` in Jasmine and how is it used in Angular tests?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "Observes HTTP calls",
+        "A mock function that records calls and return values — `spyOn(service, 'getProducts').and.returnValue(of([]))` replaces the real method for the test duration, controls what it returns",
+        "Spies only work with services",
+        "jasmine.createSpy creates a component"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "A mock function that records calls and return values — `spyOn(service, 'getProducts').and.returnValue(of([]))` replaces the real method for the test duration, controls what it returns",
+      "explanation": "spyOn(service, 'getProducts').and.returnValue(of(mockProducts)): when component calls service.getProducts(), returns Observable of mockProducts instead of making HTTP. expect(service.getProducts).toHaveBeenCalled(): assert it was called. Isolates component from service."
     },
     {
       "id": "d80q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "When should you use `async/await` vs `fakeAsync/tick` in Angular tests?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "Identical",
+        "async/await (with `waitForAsync`): for Promise-based async or when using real timing. fakeAsync/tick: for Observable/timer-based async when you need to control virtual time — faster, synchronous-looking tests",
+        "async is deprecated",
+        "fakeAsync requires Zone.js"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d80q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d80q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d80q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d80q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d80q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "async/await (with `waitForAsync`): for Promise-based async or when using real timing. fakeAsync/tick: for Observable/timer-based async when you need to control virtual time — faster, synchronous-looking tests",
+      "explanation": "waitForAsync: wraps test in Zone, waits for all async operations. Good for: component initialization with Promises. fakeAsync: freezes real time, tick() advances virtual clock. Good for: debounce, interval, RxJS timers. fakeAsync: faster, synchronous syntax for timer-based code."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain Testing in your own words with a beginner-friendly example.",
-    "Where would Testing appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands Testing?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 80 without looking at the notes."
+    "Write a complete component test for ProductCardComponent: test DOM rendering, @Output emit, and disabled state.",
+    "Show OrderService test with HttpTestingController: test success, 404 error, and verify no extra requests.",
+    "Show testing a signal-based CartStateService: addItem, removeItem, computed total.",
+    "Show fakeAsync with tick() for testing a debounced search. Why is fakeAsync better than async here?",
+    "Show how to test an @Input binding: set the input, detectChanges, and query the DOM.",
+    "What are ComponentHarnesses? Show MatButtonHarness for testing a Material button.",
+    "Show spyOn usage to mock a service method and assert it was called with the correct arguments."
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to Testing. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "Developers are manually testing every button click scenario in the browser. Write a comprehensive test for OrderFormComponent covering valid submit, invalid form state, and API error handling.",
+    "OrderService tests are slow because they make real HTTP calls. Migrate to HttpTestingController-based tests.",
+    "A debounced search input test is flaky due to real timing. Rewrite using fakeAsync and tick(300)."
   ],
   "dsaPractice": [
     {

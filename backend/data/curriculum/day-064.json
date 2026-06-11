@@ -1,190 +1,142 @@
 {
   "id": "day-64-directives",
   "topic": "Day 64: Directives",
-  "notes": "Phase: PHASE 7: ANGULAR CORE\n\nDay 64 Detailed Notes: Directives\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is Directives. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn Directives, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Java API Support: Directives. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Frontend API Support. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Angular Core. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Frontend-Driven Queries. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: UI Data Structures. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for Directives: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of Directives as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Java API Support: Directives, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Frontend API Support, ask which object owns the logic and which dependency is injected. When working with Angular Core, ask what state the component owns and what comes from the backend. When working with Frontend-Driven Queries, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Angular Directives: Structural, Attribute, and Custom Directives\n\n## Types of Directives\n- **Component:** a directive with a template (most common)\n- **Structural directive:** changes DOM structure (`*ngIf`, `*ngFor`, `@if`, `@for`)\n- **Attribute directive:** changes appearance or behaviour of an existing element\n\n## Built-in Attribute Directives\n```html\n<!-- ngClass — conditional classes -->\n<div [ngClass]=\"{ 'btn-primary': isPrimary, 'btn-disabled': isDisabled }\">Button</div>\n\n<!-- ngStyle — inline styles -->\n<p [ngStyle]=\"{ 'font-size': size + 'px', 'color': textColor }\">Text</p>\n\n<!-- ngModel — two-way binding (requires FormsModule) -->\n<input [(ngModel)]=\"email\" name=\"email\" />\n```\n\n## Custom Attribute Directive\n```typescript\n@Directive({\n  selector: '[appHighlight]',\n  standalone: true\n})\nexport class HighlightDirective implements OnInit {\n  @Input() appHighlight = 'yellow';   // same name as selector = shorthand input\n  @Input() defaultColor = 'transparent';\n\n  constructor(private el: ElementRef, private renderer: Renderer2) {}\n\n  @HostListener('mouseenter')\n  onMouseEnter() {\n    this.renderer.setStyle(this.el.nativeElement, 'backgroundColor', this.appHighlight);\n  }\n\n  @HostListener('mouseleave')\n  onMouseLeave() {\n    this.renderer.setStyle(this.el.nativeElement, 'backgroundColor', this.defaultColor);\n  }\n}\n\n// Usage: <p appHighlight='lightblue' defaultColor='white'>Hover me</p>\n```\n\n## Custom Structural Directive\n```typescript\n// Replicates *ngIf with delay\n@Directive({\n  selector: '[appDelayedIf]',\n  standalone: true\n})\nexport class DelayedIfDirective implements OnInit, OnDestroy {\n  @Input() set appDelayedIf(condition: boolean) {\n    this.condition = condition;\n    this.updateView();\n  }\n  @Input() appDelayedIfDelay = 300;\n\n  private condition = false;\n  private hasView = false;\n\n  constructor(\n    private templateRef: TemplateRef<any>,\n    private viewContainer: ViewContainerRef\n  ) {}\n\n  private updateView() {\n    setTimeout(() => {\n      if (this.condition && !this.hasView) {\n        this.viewContainer.createEmbeddedView(this.templateRef);\n        this.hasView = true;\n      } else if (!this.condition && this.hasView) {\n        this.viewContainer.clear();\n        this.hasView = false;\n      }\n    }, this.appDelayedIfDelay);\n  }\n}\n// Usage: <div *appDelayedIf=\"showContent\" [appDelayedIfDelay]=\"500\">Content</div>\n```\n\n## Renderer2 — Safe DOM Manipulation\n```typescript\n// Direct DOM manipulation (avoid in Angular):\n// this.el.nativeElement.style.color = 'red'; // breaks SSR, security risk\n\n// Use Renderer2 (works in SSR, safe):\nconstructor(private renderer: Renderer2, private el: ElementRef) {}\n\nsetColor(color: string) {\n  this.renderer.setStyle(this.el.nativeElement, 'color', color);\n  this.renderer.addClass(this.el.nativeElement, 'highlighted');\n  this.renderer.setAttribute(this.el.nativeElement, 'aria-selected', 'true');\n  this.renderer.listen(this.el.nativeElement, 'click', () => this.onClick());\n}\n```\n\n## Directive Composition API (Angular 15+)\n```typescript\n// Apply multiple directives to a component via hostDirectives\n@Component({\n  selector: 'app-button',\n  hostDirectives: [\n    HighlightDirective,\n    { directive: TooltipDirective, inputs: ['tooltip: appTooltip'] }\n  ],\n  template: `<button><ng-content /></button>`\n})\nexport class ButtonComponent {}\n// ButtonComponent automatically gets highlight and tooltip behaviour\n```\n\n## Common Mistakes\n1. **Directly manipulating `nativeElement`:** works in browser but breaks server-side rendering and web workers. Use Renderer2.\n2. **Structural directive on same element as `*ngIf`:** can't have two structural directives on the same element. Use `<ng-container>` to nest them.\n3. **Forgetting standalone imports:** if a directive is standalone, it must be in the `imports` array of the component using it.\n",
   "conceptualQuestions": [
     {
       "id": "d64q1",
-      "prompt": "What is the main focus of Day 64?",
+      "prompt": "What is the difference between attribute and structural directives?",
       "options": [
-        "Directives",
-        "Only CSS styling",
-        "Only deployment"
+        "Only naming convention differs",
+        "Attribute directives modify appearance/behaviour of existing elements; structural directives change the DOM structure by adding/removing elements (*ngIf adds/removes the element)",
+        "Structural directives are faster",
+        "Attribute directives require NgModule"
       ],
-      "correctAnswer": "Directives",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "Attribute directives modify appearance/behaviour of existing elements; structural directives change the DOM structure by adding/removing elements (*ngIf adds/removes the element)",
+      "explanation": "Attribute: [appHighlight], [ngClass], [ngStyle] — modifies the element in place. Structural: *ngIf, *ngFor, *ngSwitch — prefixed with * which is syntactic sugar for <ng-template> wrapping. @if/@for are the new template-based equivalents."
     },
     {
       "id": "d64q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "Why should you use `Renderer2` instead of directly accessing `nativeElement`?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "Renderer2 is faster",
+        "nativeElement manipulation breaks Server-Side Rendering (Angular Universal) and web workers. Renderer2 abstracts DOM operations, working in all rendering environments",
+        "Renderer2 requires fewer imports",
+        "nativeElement is deprecated"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "nativeElement manipulation breaks Server-Side Rendering (Angular Universal) and web workers. Renderer2 abstracts DOM operations, working in all rendering environments",
+      "explanation": "document.body.appendChild, element.style.color — browser-only APIs. In Angular Universal (SSR), there's no browser DOM. Renderer2 provides platform-agnostic methods: setStyle, addClass, setAttribute, listen — work in browser, SSR, and web workers."
     },
     {
       "id": "d64q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What does `@Input() appHighlight = 'yellow'` mean when the selector is `[appHighlight]`?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "Conflicts with the selector",
+        "The input shares the same name as the directive selector — allows shorthand usage: `<p appHighlight='blue'>` passes 'blue' as the appHighlight input instead of needing a separate [inputName] binding",
+        "Creates a default value only",
+        "Selector and input name must differ"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "The input shares the same name as the directive selector — allows shorthand usage: `<p appHighlight='blue'>` passes 'blue' as the appHighlight input instead of needing a separate [inputName] binding",
+      "explanation": "Selector [appHighlight] + @Input() appHighlight: using appHighlight='blue' (attribute value) OR [appHighlight]='variable' both set the input. This is the standard Angular pattern for attribute directives with a primary input."
     },
     {
       "id": "d64q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "What do `TemplateRef` and `ViewContainerRef` provide to a structural directive?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "Template caching and DOM container",
+        "TemplateRef: reference to the <ng-template> content (what to render). ViewContainerRef: the location in the DOM where to insert/remove the view — together they enable showing/hiding DOM sections",
+        "TemplateRef is for components only",
+        "ViewContainerRef stores component instances"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "TemplateRef: reference to the <ng-template> content (what to render). ViewContainerRef: the location in the DOM where to insert/remove the view — together they enable showing/hiding DOM sections",
+      "explanation": "vcr.createEmbeddedView(templateRef): renders the template content at this location. vcr.clear(): removes all rendered views. The * prefix in *ngIf='condition' expands to <ng-template [ngIf]='condition'> — the template is the wrapped content."
     },
     {
       "id": "d64q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "Why can't you put two structural directives on the same element?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "JavaScript limitation",
+        "Angular allows only one structural directive per element — *ngIf and *ngFor on the same element cause a compile error. Use <ng-container> to layer them: <ng-container *ngIf='show'><div *ngFor='...'></ng-container>",
+        "Structural directives are singletons",
+        "Both would apply but only the last wins"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "Angular allows only one structural directive per element — *ngIf and *ngFor on the same element cause a compile error. Use <ng-container> to layer them: <ng-container *ngIf='show'><div *ngFor='...'></ng-container>",
+      "explanation": "Both *ngIf and *ngFor want to control the element's DOM creation. Angular forbids this. Solution: wrap with <ng-container *ngIf='show'> (ng-container renders no DOM element) then put *ngFor on the inner element."
     },
     {
       "id": "d64q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "What is the Directive Composition API (`hostDirectives`)?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "Composing multiple templates",
+        "Applying directives to a component's host element declaratively in the @Component metadata — the component automatically has the behaviour of all listed directives without any parent template changes",
+        "hostDirectives creates child components",
+        "Only works with structural directives"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "Applying directives to a component's host element declaratively in the @Component metadata — the component automatically has the behaviour of all listed directives without any parent template changes",
+      "explanation": "hostDirectives: [HighlightDirective, TooltipDirective] on ButtonComponent — every <app-button> automatically has hover highlight and tooltip behaviour. No need to add appHighlight and appTooltip to every usage. Angular 15+."
     },
     {
       "id": "d64q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "What does `@HostListener('mouseenter') onEnter() {}` do?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "Listens for child component events",
+        "Registers an event listener on the HOST element (the element the directive is applied to) — when mouseenter fires, onEnter() is called",
+        "HostListener is for services only",
+        "Requires EventEmitter"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "Registers an event listener on the HOST element (the element the directive is applied to) — when mouseenter fires, onEnter() is called",
+      "explanation": "@HostListener attaches event handlers to the host element without querying it. Clean alternative to renderer.listen(). Multiple @HostListeners can be stacked. Can also listen to window/document: @HostListener('window:resize', ['$event'])."
     },
     {
       "id": "d64q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "What is `ng-container` used for with structural directives?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "Creates a visible wrapper element",
+        "An invisible grouping element that renders no DOM output — lets you apply structural directives without adding extra DOM elements like <div> or <span>",
+        "ng-container requires NgModule",
+        "Only used with *ngFor"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "An invisible grouping element that renders no DOM output — lets you apply structural directives without adding extra DOM elements like <div> or <span>",
+      "explanation": "<ng-container *ngIf='loggedIn'>: the *ngIf applies but no wrapping div appears in the DOM. Useful when adding a wrapper element would break CSS layout (flex children, table rows). Also used to apply *ngFor without a wrapper."
     },
     {
       "id": "d64q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "When a standalone directive is created, what must the using component do?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "Add it to NgModule",
+        "Add it to the component's `imports: []` array in @Component decorator — standalone components import their dependencies directly",
+        "Add it to app.module.ts",
+        "Register it with a service"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "Add it to the component's `imports: []` array in @Component decorator — standalone components import their dependencies directly",
+      "explanation": "Standalone architecture: no NgModule. Each component declares its own imports. HighlightDirective standalone → add to @Component({ imports: [HighlightDirective] }). This makes dependencies explicit and enables better tree-shaking."
     },
     {
       "id": "d64q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "What problem does a custom structural directive solve over *ngIf?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "More performance than *ngIf",
+        "Adds custom logic around show/hide decisions — e.g., delayed rendering, permission-based visibility, animation trigger — behaviours *ngIf doesn't support",
+        "Custom directives run faster",
+        "They replace *ngFor"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d64q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d64q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d64q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d64q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d64q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "Adds custom logic around show/hide decisions — e.g., delayed rendering, permission-based visibility, animation trigger — behaviours *ngIf doesn't support",
+      "explanation": "*ngIf: simple boolean. Custom structural: *appHasPermission='ADMIN' can check the auth service and show/hide. *appDelayedIf can animate entrance. *appLetContext can provide context variables to the template. Any show/hide logic that goes beyond a simple boolean."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain Directives in your own words with a beginner-friendly example.",
-    "Where would Directives appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands Directives?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 64 without looking at the notes."
+    "Write a custom `appButtonLoading` attribute directive that disables a button and shows a spinner while a loading boolean @Input is true.",
+    "Show a custom `appHasRole` structural directive that shows content only if the current user has the required role. Inject AuthService.",
+    "Explain TemplateRef and ViewContainerRef. Show how they enable a structural directive to create/destroy a view.",
+    "When should you use Renderer2 vs direct nativeElement access? Show both approaches for setting a style.",
+    "What is the Directive Composition API? Show hostDirectives applying a tooltip and ripple directive to a ButtonComponent.",
+    "Show ng-container usage to nest *ngIf and @for without extra DOM elements.",
+    "Explain @HostBinding and @HostListener together in a drag-and-drop directive."
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to Directives. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "A role-based UI needs to hide admin buttons from regular users. Implement *appHasPermission='WRITE_ORDERS' structural directive that queries AuthService and removes elements for unauthorized users.",
+    "A table component renders badly because *ngIf adds wrapping divs inside table rows. Replace with ng-container to fix the HTML structure.",
+    "Multiple components all add nativeElement.style manipulations for hover effects, causing SSR failures. Extract to a Renderer2-based highlight directive."
   ],
   "dsaPractice": [
     {
