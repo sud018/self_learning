@@ -345,7 +345,7 @@ export class CodingPracticeComponent implements OnInit, OnDestroy {
   solutionVisible = false;
 
   listPaneWidth = 240;
-  descPaneWidth = 460;
+  editorPaneWidth = 500;
   dragPane: 'left' | 'right' | null = null;
 
   consoleHeight = 220;
@@ -364,7 +364,7 @@ export class CodingPracticeComponent implements OnInit, OnDestroy {
   ) {}
 
   get gridCols() {
-    return `${this.listPaneWidth}px 6px minmax(${this.descPaneWidth}px, 1fr) 6px minmax(460px, 1.4fr)`;
+    return `${this.listPaneWidth}px 6px minmax(280px, 1fr) 6px ${this.editorPaneWidth}px`;
   }
 
   get visibleProblems() {
@@ -551,7 +551,12 @@ export class CodingPracticeComponent implements OnInit, OnDestroy {
     if (this.dragPane === 'left') {
       this.listPaneWidth = this.clamp(x, 160, 380);
     } else {
-      this.descPaneWidth = this.clamp(x - this.listPaneWidth - 16, 280, 780);
+      const workspaceWidth = rect.width;
+      this.editorPaneWidth = this.clamp(
+        workspaceWidth - x,
+        300,
+        workspaceWidth - this.listPaneWidth - 280 - 12
+      );
     }
     this.cd.detectChanges();
   }
