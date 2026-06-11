@@ -1,190 +1,142 @@
 {
   "id": "day-20-oop-mock-interview",
   "topic": "Day 20: OOP Mock Interview",
-  "notes": "Phase: PHASE 2: CORE JAVA\n\nDay 20 Detailed Notes: OOP Mock Interview\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is OOP Mock Interview. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn OOP Mock Interview, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Core Java OOP: OOP Mock Interview. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Spring Bean and Service Design. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Angular Component Thinking. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Filtering and Basic Joins. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Arrays and Strings. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for OOP Mock Interview: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of OOP Mock Interview as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Core Java OOP: OOP Mock Interview, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Spring Bean and Service Design, ask which object owns the logic and which dependency is injected. When working with Angular Component Thinking, ask what state the component owns and what comes from the backend. When working with Filtering and Basic Joins, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# OOP Mock Interview Day: SOLID Principles and Common Design Questions\n\n## The SOLID Principles — The Interview Foundation\nSOLID is five principles that make object-oriented design maintainable and extensible.\n\n### S — Single Responsibility Principle\nA class should have one reason to change.\n```java\n// BAD: Order class has 3 reasons to change (business logic, PDF format, email format)\npublic class Order {\n    public BigDecimal calculateTotal() { ... }\n    public String generatePdfInvoice() { ... }\n    public void sendConfirmationEmail() { ... }\n}\n\n// GOOD: each class changes for one reason only\npublic class Order { public BigDecimal calculateTotal() { ... } }\npublic class InvoiceGenerator { public byte[] generatePdf(Order order) { ... } }\npublic class OrderNotificationService { public void sendConfirmation(Order order) { ... } }\n```\n\n### O — Open/Closed Principle\nOpen for extension, closed for modification. Add behavior by adding new classes, not changing existing ones.\n```java\n// Instead of modifying calculateDiscount() for each new discount type:\npublic interface DiscountStrategy { BigDecimal apply(Order order); }\npublic class PercentageDiscount implements DiscountStrategy { ... }\npublic class FixedDiscount implements DiscountStrategy { ... }\npublic class BuyOneGetOneDiscount implements DiscountStrategy { ... }\n// Add new discount types without touching existing code\n```\n\n### L — Liskov Substitution Principle\nA subclass must be usable everywhere the parent is used without breaking correctness.\n```java\n// VIOLATION: Square extends Rectangle but breaks the area invariant\nRectangle r = new Square();\nr.setWidth(5);\nr.setHeight(3);\nassert r.getArea() == 15; // FAILS: Square sets both dimensions to 3\n// Fix: don't model Square as a subtype of Rectangle — separate classes or common Shape interface\n```\nLSP test: if substituting a subclass for the parent class causes any calling code to behave unexpectedly, LSP is violated.\n\n### I — Interface Segregation Principle\nDon't force clients to implement methods they don't use.\n```java\n// BAD: fat interface\ninterface Worker { void work(); void eat(); void sleep(); }\n// RobotWorker must implement eat() and sleep() even though robots don't eat or sleep\n\n// GOOD: segregated\ninterface Workable { void work(); }\ninterface Feedable { void eat(); }\ninterface Restable { void sleep(); }\nclass HumanWorker implements Workable, Feedable, Restable { ... }\nclass RobotWorker implements Workable { ... }\n```\n\n### D — Dependency Inversion Principle\nHigh-level modules should not depend on low-level modules. Both should depend on abstractions.\n```java\n// BAD: high-level OrderService directly depends on low-level MySqlOrderRepository\npublic class OrderService {\n    private MySqlOrderRepository repo = new MySqlOrderRepository(); // tight coupling\n}\n\n// GOOD: both depend on abstraction\npublic class OrderService {\n    private final OrderRepository repo; // interface\n    public OrderService(OrderRepository repo) { this.repo = repo; } // injected\n}\n```\nSpring Boot's @Autowired and @Bean implement DIP automatically.\n\n## Common OOP Interview Questions — Model Answers\n\n**Q: \"Explain polymorphism with an example.\"**\nPolymorphism means the same method call behaves differently depending on the actual object type at runtime. When you call `animal.speak()` on a `List<Animal>` containing Dogs and Cats, each animal calls its own speak() method. The JVM resolves the method at runtime (dynamic dispatch) based on the actual object's class, not the reference type. This is the foundation of the Open/Closed Principle — you can add new Animal subclasses without changing the loop.\n\n**Q: \"What is the difference between composition and inheritance?\"**\nInheritance (IS-A): a Dog IS-A Animal. Subclass inherits all parent behaviour. Problem: tight coupling — changing the parent can break subclasses. Composition (HAS-A): an Order HAS-A PaymentMethod. The Order holds a reference to a PaymentMethod implementation. You can swap the implementation at runtime, test with mocks, and change one without touching the other. Prefer composition: more flexible, less coupled.\n\n**Q: \"Design a parking lot system.\"**\nKey classes: `ParkingLot`, `Level`, `ParkingSpot`, `Vehicle`. Design with abstraction: `ParkingSpot` is abstract (CompactSpot, LargeSpot, HandicappedSpot). `Vehicle` is abstract (Car, Truck, Motorcycle). ParkingLot has a `findSpot(Vehicle)` method that uses polymorphism — each spot type knows if a vehicle fits. Use Strategy for pricing (HourlyPricing, FlatRatePricing).\n\n## JVM/Garbage Collection — Interview Essentials\n```\nMinor GC (Young generation): frequent, fast — removes short-lived objects\nMajor GC (Old generation): infrequent, slower — removes long-lived objects\nFull GC: both generations, causes stop-the-world — avoid in production\n\nGC Algorithms:\n- G1GC (default Java 9+): parallel, predictable pause times\n- ZGC (Java 15+): sub-millisecond pauses, for latency-sensitive apps\n- Serial/Parallel GC: simpler, used in batch/batch apps\n```\n`-Xmx512m` sets max heap. `-Xms256m` sets initial heap. `-XX:+UseG1GC` enables G1.\n\n## Design Question Tips\n1. **Clarify requirements first** — ask: scale, features, constraints.\n2. **Start with the core domain objects** — nouns become classes.\n3. **Define relationships** — IS-A (inheritance) vs HAS-A (composition).\n4. **Apply SOLID** — SRP for splitting, OCP for extensibility, DIP for testability.\n5. **Name things after what they do**, not how they do it.\n",
   "conceptualQuestions": [
     {
       "id": "d20q1",
-      "prompt": "What is the main focus of Day 20?",
+      "prompt": "Which SOLID principle does 'a class should have one reason to change' describe?",
       "options": [
-        "OOP Mock Interview",
-        "Only CSS styling",
-        "Only deployment"
+        "Open/Closed",
+        "Liskov Substitution",
+        "Interface Segregation",
+        "Single Responsibility"
       ],
-      "correctAnswer": "OOP Mock Interview",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "Single Responsibility",
+      "explanation": "SRP: a class should have exactly one responsibility (one reason to change). Mixing PDF generation, email sending, and business logic in one class means any change to any of those domains could require modifying that class."
     },
     {
       "id": "d20q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "The Liskov Substitution Principle is violated when:",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "A subclass has more methods than the parent",
+        "Substituting a subclass for the parent class causes existing code to fail or produce wrong results",
+        "A class implements multiple interfaces",
+        "A method is overridden"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "Substituting a subclass for the parent class causes existing code to fail or produce wrong results",
+      "explanation": "LSP: a subclass must honour the parent's contract. Square extending Rectangle violates LSP because Rectangle callers assume independent width/height — setting one doesn't change the other. Square breaks this assumption."
     },
     {
       "id": "d20q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "The Dependency Inversion Principle states:",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "High-level classes should import low-level classes",
+        "High-level modules and low-level modules should both depend on abstractions, not on each other directly",
+        "Dependencies should be inverted using reflection",
+        "All dependencies should be injected via XML"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "High-level modules and low-level modules should both depend on abstractions, not on each other directly",
+      "explanation": "DIP: OrderService (high-level) should not directly depend on MySqlOrderRepository (low-level). Both should depend on OrderRepository (interface/abstraction). This enables swapping implementations and testing with mocks."
     },
     {
       "id": "d20q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "Which design pattern implements the Open/Closed Principle for discount calculation?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "Template Method",
+        "Strategy — each discount type is a class implementing DiscountStrategy; adding a new type adds a class, not modifies existing code",
+        "Factory",
+        "Singleton"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "Strategy — each discount type is a class implementing DiscountStrategy; adding a new type adds a class, not modifies existing code",
+      "explanation": "Strategy encapsulates each algorithm variant. Adding BuyOneGetOneDiscount means creating a new class — existing code (OrderService, other discount types) doesn't change. This is OCP: open for extension, closed for modification."
     },
     {
       "id": "d20q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "Composition vs inheritance: when should you prefer composition?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "Always — never use inheritance",
+        "When code reuse doesn't require an IS-A relationship, when behaviour should be swappable at runtime, or when avoiding tight coupling to a parent class",
+        "When performance matters",
+        "When the class hierarchy is more than 2 levels deep"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "When code reuse doesn't require an IS-A relationship, when behaviour should be swappable at runtime, or when avoiding tight coupling to a parent class",
+      "explanation": "Composition (HAS-A via injection) is more flexible. An Order that HAS-A ShippingCalculator can use ExpressShipping or FreeShipping at runtime. An Order that IS-A ShippingCalculator is inflexible and conceptually wrong."
     },
     {
       "id": "d20q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "What is dynamic dispatch and why does it matter for OOP design?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "Runtime selection of overloaded methods based on argument types",
+        "Runtime selection of the correct method implementation based on the actual object type, enabling polymorphism and OCP",
+        "Static analysis of method calls at compile time",
+        "Selection of methods using reflection"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "Runtime selection of the correct method implementation based on the actual object type, enabling polymorphism and OCP",
+      "explanation": "Dynamic dispatch is the JVM mechanism for polymorphism. When you call speak() on an Animal reference, the JVM checks the actual class at runtime and calls the right method. This allows code to work with new subtypes without modification — the foundation of OCP."
     },
     {
       "id": "d20q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "In the Interview 'design a parking lot', what does applying the Single Responsibility Principle mean?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "Use one class for everything",
+        "ParkingLot handles space management, PricingEngine handles billing, ParkingTicket handles entry/exit data — each class has one job",
+        "All parking logic must be in one method",
+        "Each method handles one vehicle type"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "ParkingLot handles space management, PricingEngine handles billing, ParkingTicket handles entry/exit data — each class has one job",
+      "explanation": "SRP decomposition: ParkingLot's responsibility is space allocation. PricingEngine's responsibility is rate calculation. ParkingTicket is a data object. Mixing billing into ParkingLot violates SRP — a billing change would require modifying the space management class."
     },
     {
       "id": "d20q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "What is a stop-the-world (STW) pause in garbage collection?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "The JVM stops accepting new requests",
+        "All application threads pause while GC identifies and collects garbage — causes latency spikes",
+        "The JVM crashes",
+        "Memory allocation fails"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "All application threads pause while GC identifies and collects garbage — causes latency spikes",
+      "explanation": "STW pauses freeze all user threads so GC can safely identify live objects (no thread can create/delete references during this). G1GC minimises STW duration. ZGC achieves sub-millisecond STW. Full GC with Serial GC can pause for seconds in large heaps."
     },
     {
       "id": "d20q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "Which JVM flag sets the maximum heap size to 512MB?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "-heap 512m",
+        "-Xmx512m",
+        "-maxmem=512",
+        "-JVM.heap.max=512m"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "-Xmx512m",
+      "explanation": "-Xmx sets the maximum heap size. -Xms sets the initial heap size. Common production setting: -Xms256m -Xmx512m for a microservice. Setting initial = max (-Xms512m -Xmx512m) avoids JVM resize pauses under load."
     },
     {
       "id": "d20q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "What is the main difference between G1GC and ZGC?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "G1 is faster; ZGC is slower",
+        "G1 provides predictable pause times in the low hundreds of milliseconds range; ZGC targets sub-millisecond pauses by doing most GC work concurrently with application threads",
+        "G1 is for batch jobs; ZGC is for web apps",
+        "ZGC only works with small heaps"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d20q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d20q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d20q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d20q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d20q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "G1 provides predictable pause times in the low hundreds of milliseconds range; ZGC targets sub-millisecond pauses by doing most GC work concurrently with application threads",
+      "explanation": "G1GC (Java 9+ default) is suitable for most web services. ZGC (Java 15+) is designed for latency-sensitive applications where even 100ms GC pauses are unacceptable (trading platforms, real-time APIs). ZGC achieves this by doing marking, relocation, and reference processing concurrently."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain OOP Mock Interview in your own words with a beginner-friendly example.",
-    "Where would OOP Mock Interview appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands OOP Mock Interview?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 20 without looking at the notes."
+    "Explain all five SOLID principles with a real Spring Boot example for each. For each principle, show a violation and the fix.",
+    "What is the Liskov Substitution Principle? Show the classic Square/Rectangle violation and explain why it's a violation. How do you redesign to avoid it?",
+    "Describe how you would design a notification system (email, SMS, push) that follows OCP. What can you add without modifying existing code?",
+    "Compare composition and inheritance in terms of coupling, testability, and runtime flexibility. Give a real example where you'd refactor from inheritance to composition.",
+    "Explain JVM garbage collection: what is a generation, what is a STW pause, and how do G1GC and ZGC differ in their approach?",
+    "How does Spring Boot's @Autowired implement the Dependency Inversion Principle? What happens at startup when Spring resolves dependencies?",
+    "Walk through how you would approach a system design interview question: 'Design a URL shortener'. Apply SOLID principles to the class design."
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to OOP Mock Interview. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "An order processing class is 800 lines long: it validates orders, calculates taxes, applies discounts, sends emails, generates PDFs, and updates inventory. Apply SRP to decompose it. Name each new class and describe its single responsibility.",
+    "A lead developer says 'we should never use inheritance, only composition'. Another says 'abstract classes are essential for code reuse'. Mediate the debate: give 3 real cases where each is the right tool.",
+    "A Spring Boot service test fails because the production database is unavailable. The service has `new MySqlUserRepository()` hardcoded. Apply DIP to fix the design so the test can use an in-memory repository."
   ],
   "dsaPractice": [
     {

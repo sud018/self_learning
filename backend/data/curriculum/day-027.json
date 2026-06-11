@@ -1,190 +1,142 @@
 {
   "id": "day-27-map",
   "topic": "Day 27: Map",
-  "notes": "Phase: PHASE 3: COLLECTIONS + SQL\n\nDay 27 Detailed Notes: Map\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is Map. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn Map, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Collections: Map. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Repository Patterns. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Rendering Lists. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Joins, Group By, Having, Subqueries, Indexes. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Hashing, Two Pointers, Sliding Window. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for Map: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of Map as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Collections: Map, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Repository Patterns, ask which object owns the logic and which dependency is injected. When working with Rendering Lists, ask what state the component owns and what comes from the backend. When working with Joins, Group By, Having, Subqueries, Indexes, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Map Interface Deep Dive: Entry Set, Compute Methods, and Advanced Patterns\n\n## Map Contract and Methods\n`Map<K,V>` is NOT a `Collection`. It maps each key to exactly one value. Keys are unique; values may repeat.\n\n```java\nMap<String, Integer> scores = new HashMap<>();\n\n// Basic operations\nscores.put(\"Alice\", 95);\nscores.put(\"Alice\", 98);    // replaces: Alice → 98\nscores.get(\"Alice\");         // 98\nscores.get(\"Bob\");           // null — key not present\nscores.getOrDefault(\"Bob\", 0); // 0 — safe null avoidance\nscores.containsKey(\"Alice\"); // true — O(1) for HashMap\nscores.containsValue(98);    // true — O(n) full scan (avoid in hot paths)\nscores.remove(\"Alice\");      // removes and returns 98\nscores.remove(\"Alice\", 98);  // removes only if current value is 98 — conditional remove\n\n// Size\nscores.isEmpty(); // true\nscores.size();    // 0\n```\n\n## Views: keySet(), values(), entrySet()\n```java\nMap<String, Integer> map = Map.of(\"a\",1,\"b\",2,\"c\",3);\n\n// Keys\nSet<String> keys = map.keySet(); // {a,b,c} — a live Set view\nfor (String key : map.keySet()) { ... }\n\n// Values\nCollection<Integer> vals = map.values(); // live Collection view\nvals.stream().mapToInt(Integer::intValue).sum(); // sum of all values\n\n// Entries — MOST USEFUL for iterating key+value together\nfor (Map.Entry<String, Integer> entry : map.entrySet()) {\n    System.out.println(entry.getKey() + \" → \" + entry.getValue());\n    entry.setValue(entry.getValue() * 2); // modify during iteration — safe via entrySet\n}\n\n// Java 8 forEach — cleanest\nmap.forEach((key, value) -> System.out.println(key + \": \" + value));\n```\n\n## Compute Methods — Idiomatic Map Updates\n```java\nMap<String, Integer> freq = new HashMap<>();\nList<String> words = List.of(\"apple\",\"banana\",\"apple\",\"cherry\",\"banana\",\"apple\");\n\n// Option 1: getOrDefault (verbose but clear)\nfor (String w : words) freq.put(w, freq.getOrDefault(w, 0) + 1);\n\n// Option 2: merge — most idiomatic for accumulation\nfor (String w : words) freq.merge(w, 1, Integer::sum);\n// merge(key, value, remappingFn): puts value if absent; applies fn(existing, value) if present\n\n// Option 3: compute — transform existing value (can set to null to remove)\nfreq.compute(\"apple\", (k, v) -> v == null ? 1 : v + 1);\n\n// Option 4: computeIfAbsent — lazy initialization\nMap<String, List<String>> groups = new HashMap<>();\ngroups.computeIfAbsent(\"fruits\", k -> new ArrayList<>()).add(\"apple\");\ngroups.computeIfAbsent(\"fruits\", k -> new ArrayList<>()).add(\"banana\");\n// groups: {fruits: [apple, banana]}\n// The lambda only runs if key is absent\n\n// Option 5: computeIfPresent — update only if key exists\nscores.computeIfPresent(\"Alice\", (k, v) -> v + 10); // adds 10 if Alice exists\n```\n\n## replaceAll() — Transform All Values\n```java\nMap<String, Integer> prices = new HashMap<>(Map.of(\"apple\",100,\"banana\",150));\nprices.replaceAll((key, value) -> value + (int)(value * 0.1)); // add 10% to all prices\n// prices: {apple=110, banana=165}\n```\n\n## Map.Entry — Building Sorted/Grouped Results\n```java\nMap<String, Long> ordersByStatus = orders.stream()\n    .collect(Collectors.groupingBy(Order::getStatus, Collectors.counting()));\n\n// Sort map by value (descending count)\nordersByStatus.entrySet().stream()\n    .sorted(Map.Entry.<String,Long>comparingByValue().reversed())\n    .forEach(e -> System.out.println(e.getKey() + \": \" + e.getValue()));\n\n// Convert to sorted list of entries\nList<Map.Entry<String,Long>> sorted = new ArrayList<>(ordersByStatus.entrySet());\nsorted.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));\n```\n\n## Map.of() and Map.copyOf() — Immutable Maps\n```java\nMap<String, Integer> config = Map.of(\"maxRetries\", 3, \"timeout\", 30);\n// No null keys or values, no add/put/remove, no duplicate keys, no order\n\nMap<String, Integer> safeCopy = Map.copyOf(mutableMap); // defensive copy\n```\n\n## Connection to Spring Boot\n```java\n// Application properties as Map\n@Value(\"#{${app.config}}\")\nprivate Map<String, String> appConfig;\n\n// Request/response with Map (flexible but untyped — prefer DTOs for APIs)\n@PostMapping(\"/metadata\")\npublic ResponseEntity<Map<String, Object>> getMetadata(@RequestBody Map<String, Object> request) {\n    Map<String, Object> response = new LinkedHashMap<>(); // preserve order in response\n    response.put(\"status\", \"ok\");\n    response.put(\"timestamp\", Instant.now());\n    return ResponseEntity.ok(response);\n}\n\n// Caching with computeIfAbsent\nprivate final Map<String, List<Category>> categoryCache = new ConcurrentHashMap<>();\npublic List<Category> getCategories(String locale) {\n    return categoryCache.computeIfAbsent(locale, this::loadFromDatabase);\n}\n```\n\n## Common Mistakes\n1. **`containsValue()` in a hot path:** O(n) — use a reverse index (second Map with value→key) if frequent value lookups are needed.\n2. **Modifying the keySet() or values() and expecting the map to update:** they are views — modifications propagate, but adding to keySet() throws UnsupportedOperationException.\n3. **`get()` returning null ambiguity:** does null mean the key is absent, or the value is explicitly null? Use `containsKey()` to distinguish, or avoid null values.\n4. **Not using computeIfAbsent for nested structures:** manual null-check-then-put is verbose and error-prone; computeIfAbsent is atomic and clean.\n",
   "conceptualQuestions": [
     {
       "id": "d27q1",
-      "prompt": "What is the main focus of Day 27?",
+      "prompt": "What does `map.getOrDefault(key, defaultValue)` do when the key has an explicit null value?",
       "options": [
-        "Map",
-        "Only CSS styling",
-        "Only deployment"
+        "Returns defaultValue",
+        "Returns null — because the mapped value is null, regardless of the key's presence",
+        "Throws NullPointerException",
+        "Returns the key itself"
       ],
-      "correctAnswer": "Map",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "Returns null — because the mapped value is null, regardless of the key's presence",
+      "explanation": "getOrDefault returns the mapped value if containsKey(key) is true, otherwise defaultValue. If the key is present with a null value, it returns null (the mapped value), not defaultValue. Use containsKey() if you need to distinguish null-value from absent-key."
     },
     {
       "id": "d27q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "What does `map.merge(word, 1, Integer::sum)` do when word is already in the map with value 5?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "Replaces 5 with 1",
+        "Returns false — key already exists",
+        "Applies Integer::sum(5, 1) = 6 and puts 6 as the new value",
+        "Throws DuplicateKeyException"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "Applies Integer::sum(5, 1) = 6 and puts 6 as the new value",
+      "explanation": "merge(key, value, fn): if absent, put value; if present, replace with fn(existingValue, value). Here fn=Integer::sum, so result = sum(5, 1) = 6. Perfect for frequency counting and accumulation."
     },
     {
       "id": "d27q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What is the most efficient way to iterate over both keys and values of a Map?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "Iterate keySet() then call get(key) inside the loop",
+        "Use map.entrySet() with Map.Entry<K,V>",
+        "Use map.values() and maintain a separate index",
+        "Call map.forEach() — equivalent to entrySet loop but more concise"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "Call map.forEach() — equivalent to entrySet loop but more concise",
+      "explanation": "map.forEach((k,v) -> ...) is the cleanest. entrySet() loop is also correct. NEVER iterate keySet() then call get(key) — that's two lookups per entry (one for the key in the loop, one for get). entrySet() gives key and value from a single Entry object."
     },
     {
       "id": "d27q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "What does `computeIfAbsent(key, mappingFunction)` do when the key is already present?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "Replaces the existing value",
+        "Throws IllegalStateException",
+        "Returns the existing value without calling the mapping function",
+        "Deletes the key and re-computes"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "Returns the existing value without calling the mapping function",
+      "explanation": "computeIfAbsent only invokes the mapping function if the key is absent. If the key is already present, the existing value is returned immediately. This makes it ideal for lazy initialization — the expensive computation only runs once."
     },
     {
       "id": "d27q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "How do you sort a Map by its values (descending)?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "map.sort(Comparator.reverseOrder())",
+        "map.entrySet().stream().sorted(Map.Entry.<K,V>comparingByValue().reversed()).forEach(...)",
+        "Collections.sort(map)",
+        "TreeMap sorts by value automatically"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "map.entrySet().stream().sorted(Map.Entry.<K,V>comparingByValue().reversed()).forEach(...)",
+      "explanation": "Maps don't have a sort() method. Stream the entrySet, sort by value using Map.Entry.comparingByValue(), and collect or process. TreeMap sorts by KEY, not value."
     },
     {
       "id": "d27q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "What is the difference between `map.compute(key, fn)` and `map.computeIfAbsent(key, fn)`?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "Identical",
+        "compute calls fn regardless of whether key is present or absent (fn receives null for absent key); computeIfAbsent only calls fn if key is absent",
+        "computeIfAbsent is thread-safe; compute is not",
+        "compute only updates; computeIfAbsent only inserts"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "compute calls fn regardless of whether key is present or absent (fn receives null for absent key); computeIfAbsent only calls fn if key is absent",
+      "explanation": "compute(key, (k,v) -> ...) always calls the function with v=null if key is absent. The function can return null to remove the key. computeIfAbsent(key, k -> ...) only calls the function if key is absent — not suitable if you need to update existing values."
     },
     {
       "id": "d27q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "A service needs to group orders by customer, then by status, building a Map<String, Map<String, List<Order>>>. Which method initializes the inner map lazily?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "map.get(customerId).put(status, orders)",
+        "map.computeIfAbsent(customerId, k -> new HashMap<>()).computeIfAbsent(status, k -> new ArrayList<>()).add(order)",
+        "map.put(customerId, new HashMap<>())",
+        "map.getOrDefault(customerId, new HashMap<>()).put(status, orders)"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "map.computeIfAbsent(customerId, k -> new HashMap<>()).computeIfAbsent(status, k -> new ArrayList<>()).add(order)",
+      "explanation": "computeIfAbsent creates the inner map only on first access for that key, then returns it. Chaining two computeIfAbsent calls builds the nested structure. getOrDefault creates a new map but doesn't put it into the outer map — the put is lost."
     },
     {
       "id": "d27q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "What is the problem with `map.containsValue(targetValue)` in a hot path?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "It doesn't work for all value types",
+        "It is O(n) — must scan all entries; use a reverse index (Map<V,K>) for frequent value lookups",
+        "It requires values to implement Comparable",
+        "It modifies the map"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "It is O(n) — must scan all entries; use a reverse index (Map<V,K>) for frequent value lookups",
+      "explanation": "HashMap doesn't index values. containsValue() iterates every entry. For frequent value lookups, maintain a second reverse map: valueToKey = new HashMap<>(), updated on every put/remove. O(1) lookup at the cost of extra memory."
     },
     {
       "id": "d27q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "Why use `Map.copyOf(original)` instead of `Collections.unmodifiableMap(original)`?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "Map.copyOf is faster",
+        "Map.copyOf creates a new independent immutable map; unmodifiableMap creates a view — if the original is modified later, unmodifiableMap reflects the change",
+        "They are identical",
+        "unmodifiableMap allows puts; Map.copyOf does not"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "Map.copyOf creates a new independent immutable map; unmodifiableMap creates a view — if the original is modified later, unmodifiableMap reflects the change",
+      "explanation": "Collections.unmodifiableMap wraps the original. If someone with the original reference calls put(), the unmodifiable view also reflects it. Map.copyOf (Java 10) creates an independent snapshot — true immutability."
     },
     {
       "id": "d27q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "A Spring Boot service has `computeIfAbsent(locale, this::loadFromDatabase)` in a ConcurrentHashMap. Why is ConcurrentHashMap needed here instead of HashMap?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "ConcurrentHashMap is faster",
+        "Multiple threads may call this simultaneously — ConcurrentHashMap's computeIfAbsent is atomic; HashMap's is not, potentially calling loadFromDatabase multiple times or corrupting the map",
+        "HashMap doesn't support method references",
+        "computeIfAbsent requires ConcurrentHashMap"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d27q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d27q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d27q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d27q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d27q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "Multiple threads may call this simultaneously — ConcurrentHashMap's computeIfAbsent is atomic; HashMap's is not, potentially calling loadFromDatabase multiple times or corrupting the map",
+      "explanation": "ConcurrentHashMap's computeIfAbsent is atomic: only one thread will call the mapping function for a given key. With HashMap, two concurrent calls for the same absent key could both call loadFromDatabase and corrupt the map during concurrent put."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain Map in your own words with a beginner-friendly example.",
-    "Where would Map appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands Map?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 27 without looking at the notes."
+    "Explain all five Map compute methods: put(), getOrDefault(), merge(), computeIfAbsent(), computeIfPresent(). Give a real example for each.",
+    "What is the difference between keySet(), values(), and entrySet()? Which is correct to use for iterating key+value pairs and why?",
+    "Show how to build a word frequency Map using merge(). Then sort the entries by frequency (descending) and print the top 5.",
+    "Explain computeIfAbsent() for lazy initialization of nested data structures. Show building a Map<String, List<Order>> grouping orders by status.",
+    "What is the ambiguity with map.get(key) returning null? How do you distinguish 'key absent' from 'key maps to null'? Give a production example where this matters.",
+    "Describe Map.copyOf() vs Collections.unmodifiableMap(). Show a scenario where the difference matters (original is mutated after wrapping).",
+    "Show how a Spring Boot service uses ConcurrentHashMap.computeIfAbsent() for thread-safe lazy caching. What makes it thread-safe and what would break with HashMap?"
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to Map. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "A reporting service builds a Map<String, Map<String, Long>> showing order counts grouped by region then status. Write the complete implementation using streams with Collectors.groupingBy chained, and then using computeIfAbsent imperatively.",
+    "An API response builder collects key-value metadata and must return it in insertion order (not random). Which Map implementation is correct and why? Show the code.",
+    "A reverse-lookup service maps email→userId and must also answer 'does this userId have a registered email?' efficiently. Design using two Maps and show the put/get/remove operations that keep them in sync."
   ],
   "dsaPractice": [
     {

@@ -1,190 +1,142 @@
 {
   "id": "day-21-collections-framework",
   "topic": "Day 21: Collections Framework",
-  "notes": "Phase: PHASE 3: COLLECTIONS + SQL\n\nDay 21 Detailed Notes: Collections Framework\n\nUser level reminder: Java 3/10, Spring Boot 3/10, Angular 1/10, SQL beginner, and DSA beginner. These notes are written to build from basics to industry thinking. Read slowly, write your own summary, and connect every concept to a real backend or full-stack workflow.\n\n1. Big picture: Today's main topic is Collections Framework. In a real full-stack application, no topic lives alone. Java holds the language logic, Spring Boot exposes backend APIs, Angular gives the user a screen, SQL stores or reads business data, and DSA helps process data efficiently. When you learn Collections Framework, always ask how it affects correctness, maintainability, performance, and business trust.\n\n2. Java focus: Collections: Collections Framework. Start with what it means, then why it exists. If this is a foundation topic, trace a simple Java program from source file to execution. If this is an OOP topic, imagine business objects such as Customer, Order, Payment, Invoice, Employee, Ticket, or Product. If this is an advanced topic, ask how it reduces bugs or improves readability in production code.\n\n3. Internal Java working: Java source code is written in .java files. The compiler checks syntax and types, then produces bytecode in .class files. The JVM loads classes, verifies bytecode, manages memory, runs methods, and performs garbage collection. This is the base reason Java is portable. In interviews, mention compile time, runtime, bytecode, JVM execution, and memory when relevant.\n\n4. Spring Boot focus: Repository Patterns. Spring Boot helps Java teams build backend systems quickly with less setup. It creates and wires objects called beans, provides auto-configuration, starts an embedded server, and organizes APIs through controllers, services, repositories, DTOs, validation, and configuration. The business does not care about annotations directly; it cares that APIs are reliable, secure, understandable, and easy to change.\n\n5. Angular focus: Rendering Lists. Angular is the user-facing side of the full-stack system. Users click buttons, fill forms, filter records, and read results. Angular components control UI state. Templates display data. Services call backend APIs. TypeScript improves maintainability with types. When backend errors happen, Angular must show clear messages instead of leaving users confused.\n\n6. SQL focus: Joins, Group By, Having, Subqueries, Indexes. SQL is the language of business data. SELECT reads data. WHERE filters. JOIN connects tables. GROUP BY summarizes. Indexes help performance. Transactions protect consistency. Even when Spring Data JPA is used, SQL knowledge is essential because production bugs often come from wrong filters, bad joins, missing indexes, or misunderstood data relationships.\n\n7. DSA focus: Hashing, Two Pointers, Sliding Window. DSA is not separate from backend work. Arrays, strings, maps, stacks, queues, and trees are used when validating input, grouping records, detecting duplicates, calculating totals, or searching data. LeetCode-style practice trains you to reason with constraints, edge cases, and complexity. Always say the approach before coding.\n\n8. Business point of view: Imagine a customer order system. Angular collects order details. Spring Boot validates the request. Java service logic checks business rules. SQL stores orders and retrieves reports. DSA helps process item lists and detect duplicates. If one part is wrong, real people are affected: customers see wrong statuses, finance reports become incorrect, support cannot debug issues, and managers lose trust in dashboards.\n\n9. Backend responsibility: A professional backend is not only code that runs. It must validate inputs, protect data, return clear errors, log useful information, avoid duplicate side effects, and shape responses for the frontend. Business rules should usually be in the service/domain layer, not scattered across controllers or Angular screens. Controllers should be thin. Services should explain workflow. Repositories should handle persistence boundaries.\n\n10. Common beginner mistakes: memorizing definitions without examples, ignoring compiler errors, writing controllers with too much logic, returning database entities directly, using SELECT * for every query, not handling empty arrays, not thinking about duplicate data, ignoring loading/error states in Angular, and solving coding problems without considering constraints. Your goal is to build professional habits early.\n\n11. Interview perspective: For every topic, prepare a structured answer: definition, why it is needed, how it works internally, real project example, common mistake, and business impact. This makes you sound practical instead of memorized. If you do not know a deep detail, explain what you know clearly and reason from fundamentals.\n\n12. Diagram to remember:\nAngular UI -> HTTP Request -> Spring Boot Controller -> Service Business Logic -> Repository/SQL -> Response DTO -> Angular UI. Data moves through this path. Bugs can occur at any step. A full-stack developer learns to inspect each step calmly.\n\n13. Real-world example for Collections Framework: Suppose a business user wants to see active customers and their latest orders. Angular needs a table and filters. Spring Boot needs an endpoint. Java service code validates filter values and chooses what data to return. SQL reads customers and orders. DSA thinking may group orders by customer or scan arrays of results. This is how today's topic becomes part of a real feature.\n\n14. How to study today: First read notes completely. Second, write a 10-line summary. Third, solve MCQs without looking. Fourth, answer conceptual questions out loud. Fifth, solve Java coding exercises in the editor. Sixth, write SQL queries by hand. Seventh, solve DSA problems and open hints only when stuck. Finally, explain what you learned as if you are in an interview.\n\n15. Production checklist: Is input validated? Are null and empty values handled? Is the API response clear? Is sensitive data hidden? Is SQL efficient enough? Are duplicate records considered? Is the UI showing loading and error states? Can support debug this from logs? Does the solution protect business correctness?\n\n16. Self-test: What is today's topic? Why is it needed? How does it work internally? Where is it used in Java full-stack? What mistake should be avoided? What would an interviewer ask? What would a business user care about? If you cannot answer, reread the section and write your own explanation.\n\n17. Beginner explanation: Think of Collections Framework as one building block in your full-stack foundation. A beginner should not rush to advanced syntax. First understand the vocabulary. Then understand the flow. Then connect it to a real screen and API. This slow path builds confidence and reduces fear during interviews.\n\n18. Technical depth: When working with Collections: Collections Framework, ask what happens in memory, what the compiler checks, and what the JVM executes. When working with Repository Patterns, ask which object owns the logic and which dependency is injected. When working with Rendering Lists, ask what state the component owns and what comes from the backend. When working with Joins, Group By, Having, Subqueries, Indexes, ask what rows are read and whether filters are correct.\n\n19. Business depth: Businesses care about outcomes: correct orders, accurate payments, clear customer records, fast dashboards, secure access, and reliable reports. Technical choices support those outcomes. This is why a simple validation rule can matter as much as a complex algorithm. Bad data creates operational cost.\n\n20. Interview practice paragraph: I understand this topic as both a technical concept and a project concept. Technically, I can explain how it works and write code for it. In a project, I can explain where it belongs in Angular, Spring Boot, Java service logic, SQL, or DSA processing. I also think about errors, edge cases, and business impact.\n\n21. Revision: Before ending the day, write three examples from your own words. One Java example, one backend business example, and one SQL or DSA example. This converts reading into memory.\n\n22. Extended Beginner-Friendly Explanation\nThis section is intentionally repeated in every daily file as a study framework. When you learn a technical topic, do not only ask what the definition is. Ask what problem it solves, what confusion it removes, what bug it prevents, and how it appears in a real full-stack system. A beginner often studies Java, Spring Boot, Angular, SQL, and DSA as five separate worlds. Industry work connects them. A customer presses a button in Angular. Angular sends a typed request. Spring Boot receives the request in a controller. Java service code validates the request and applies business rules. SQL reads or writes the business data. The response goes back to Angular. If the data is a list, DSA thinking helps process it correctly and efficiently.\n\n23. How to Read Code Like an Engineer\nWhen you see code, read it in layers. First identify the input. Then identify the output. Then identify the transformation. Then identify the rule. Then identify the failure case. For example, a method may accept an order id and return order details. The happy path is easy: find order and return data. The professional path asks more: What if id is null? What if order does not exist? What if user is not allowed to view it? What if database is slow? What if the response exposes private fields? What should Angular show? What should logs contain? This thinking is what moves you toward industry level.\n\n24. Business Domain Practice\nUse one business domain while learning: order management. An order has customer, items, price, status, payment, shipping address, created date, and audit history. Almost every concept can be attached to this domain. Variables store values like total amount. Classes model Order and Customer. Constructors initialize objects. Encapsulation protects status changes. Collections hold order items. Exceptions represent invalid operations. Streams transform lists. Spring controllers expose order APIs. DTOs shape order responses. SQL queries fetch orders. Angular forms create orders. DSA problems help process item arrays and detect duplicate product ids.\n\n25. Internal Working Practice\nInternal working means you understand what the system is doing behind the visible syntax. Java does not execute source code directly; it compiles to bytecode. The JVM loads classes and runs methods. Spring Boot does not magically know your service; it scans components, creates beans, and injects dependencies. Angular does not magically update screens; component state changes and templates render those values. SQL does not magically find data; the database parses the query, decides a plan, scans or uses indexes, filters rows, and returns results. These internal models make debugging much easier.\n\n26. Interview Story Building\nFor every topic, prepare a short interview story. A good story has four parts: definition, real example, mistake, and business impact. Example: A DTO is an object used to transfer data in API requests and responses. In an order API, I may return OrderSummaryResponse instead of the full Order entity. A common mistake is exposing database entities directly, which can leak fields and tightly couple frontend to database structure. From business perspective, DTOs keep the API stable and protect sensitive information. Practice this structure daily.\n\n27. Common Mistakes In Real Projects\nNew developers often write code that works locally but fails under real usage. They forget null checks. They ignore empty arrays. They return too much data. They do not handle duplicate submit. They write unclear SQL. They put business rules in Angular only, which can be bypassed. They do not log enough context. They catch exceptions and hide the real problem. They make every method public without thinking. They name variables vaguely. They solve DSA with nested loops even when input can be large. Use each daily assignment to remove one of these habits.\n\n28. How To Practice MCQs\nDo not click MCQ answers randomly. Read the question, predict the answer before looking at options, then choose. If wrong, read the explanation and write why your thinking was wrong. MCQs are not only for scoring; they reveal weak vocabulary. If you miss questions about layers, DTOs, JVM, SQL filters, or complexity, go back to notes and strengthen that concept.\n\n29. How To Practice Conceptual Questions\nAnswer conceptual questions out loud. This trains interview communication. Start with simple words. Then add example. Then add project usage. Then mention mistake. For example, if asked about JVM, do not only say Java Virtual Machine. Say it runs bytecode, provides platform independence, manages memory, and matters in Spring Boot production because memory settings and garbage collection affect performance.\n\n30. How To Practice Coding\nBefore writing Java code, write the approach in plain English. Identify input type, output type, edge cases, and complexity. For array problems, check empty array, one element, duplicates, negative values, and large input. For string problems, check empty string, spaces, case sensitivity, and repeated characters. After coding, manually run through examples. This is how LeetCode-style practice becomes interview skill instead of typing practice.\n\n31. How To Practice SQL\nWrite SQL as if a business user asked a question. Do not only memorize syntax. Translate English to data: Which table? Which columns? Which filters? Which grouping? Which sorting? Which rows should be excluded? For SELECT, avoid SELECT * unless exploring. In real APIs, return only necessary columns or map results to DTOs. Think about indexes when filtering large tables.\n\n32. How To Practice Spring Boot\nFor every backend scenario, draw controller, service, repository, DTO, and exception flow. Ask what the controller receives, what the service validates, what repository query is needed, what response should be returned, and what error status is correct. This repeated structure will prepare you for REST API interview questions and real project tasks.\n\n33. How To Practice Angular\nFor Angular tasks, think from user experience first. What does the user see before data loads? What if the API fails? What if the result is empty? What if validation fails? What if the user clicks twice? Then think technically: component state, template binding, service method, HttpClient call, Observable handling, and error display.\n\n34. Daily Closure\nAt the end of the day, write a short journal: what I learned, what confused me, one Java example, one backend business example, one SQL query, one DSA pattern, and one interview answer. This turns passive reading into active memory. The goal of this course is not to finish screens quickly; it is to become comfortable explaining and building real Java full-stack systems.\n\n\n35. Final Deepening Section\nBefore marking the notes complete, connect today's topic to one complete feature. Use this example: an admin wants to view, filter, and update customer orders. The Angular screen needs fields, buttons, tables, loading state, validation messages, and error handling. The Spring Boot backend needs a controller endpoint, request DTO, response DTO, service method, repository query, validation, exception handling, logging, and configuration where needed. Java code needs clear variables, methods, classes, collections, and business rules. SQL needs correct SELECT columns, WHERE filters, JOINs when relationships are involved, and indexes when data becomes large. DSA thinking helps process arrays or lists of orders, count statuses, find duplicates, and avoid slow nested loops.\n\nThis feature view is important because real companies do not pay engineers only to know definitions. They pay engineers to convert business needs into reliable software. If a manager asks for order status counts, you should think about SQL grouping, service DTOs, and Angular dashboard cards. If support reports duplicate orders, you should think about backend validation, idempotency, logs, and database constraints. If a user sees a blank page, you should think across Angular, network, Spring Boot, Java logic, SQL, and data. Study every topic with this full-stack chain in mind.\n\nWhen you finish today's tasks, say one answer out loud in this format: The concept is ____. It is needed because ____. Internally it works by ____. In a Java full-stack project I would use it in ____. A common mistake is ____. The business impact is ____. This repeated speaking practice is what turns reading into interview readiness.\n",
+  "notes": "# Collections Framework: Architecture, Choosing the Right Collection, and Utility Methods\n\n## The Full Collections Architecture\n```\njava.lang.Iterable\n  └── java.util.Collection<E>\n        ├── List<E>        Ordered, indexed, allows duplicates\n        │     ├── ArrayList          — dynamic array, O(1) get by index\n        │     ├── LinkedList         — doubly-linked, O(1) add/remove at ends\n        │     └── Vector             — legacy, synchronized ArrayList (avoid)\n        ├── Set<E>         No duplicates\n        │     ├── HashSet            — O(1) ops, no order guarantee\n        │     ├── LinkedHashSet      — insertion order, O(1) ops\n        │     └── TreeSet            — sorted (natural/Comparator), O(log n)\n        └── Queue<E> / Deque<E>      First-in-first-out / double-ended\n              ├── LinkedList         — implements both List and Deque\n              ├── ArrayDeque         — fast stack/queue, prefer over Stack\n              └── PriorityQueue      — heap-backed, O(log n) poll/offer\n\njava.util.Map<K,V>          (NOT a Collection)\n      ├── HashMap            — O(1) avg, no order, null key OK\n      ├── LinkedHashMap      — insertion or access order, O(1)\n      ├── TreeMap            — sorted by key, O(log n), no null key\n      └── Hashtable          — legacy, synchronized (avoid)\n```\n\n## The Decision Framework — Which Collection?\n\n**Step 1:** Do you need key-value lookup? → Use a **Map**\n**Step 2:** Do you need unique elements? → Use a **Set**\n**Step 3:** Do you need order and index access? → Use a **List**\n**Step 4 (for each):** Do you need sorted order?\n- Sorted set → **TreeSet**\n- Sorted map → **TreeMap**\n- Sorted list → **ArrayList** + `Collections.sort()`\n\n**Step 5:** Do you need thread safety?\n- **ConcurrentHashMap** (replaces synchronized HashMap)\n- **CopyOnWriteArrayList** (replaces synchronized ArrayList for read-heavy lists)\n- **BlockingQueue** (producer-consumer patterns)\n\n## Collections Utility Class — Critical Methods\n```java\nList<Integer> nums = new ArrayList<>(Arrays.asList(3,1,4,1,5,9,2,6));\n\nCollections.sort(nums);               // [1,1,2,3,4,5,6,9]\nCollections.sort(nums, Comparator.reverseOrder()); // [9,6,5,4,3,2,1,1]\nCollections.reverse(nums);            // reverses in place\nCollections.shuffle(nums);            // random permutation (useful for tests)\nCollections.min(nums);                // 1 — O(n) linear scan\nCollections.max(nums);                // 9 — O(n) linear scan\nCollections.frequency(nums, 1);       // 2 — count occurrences\nCollections.disjoint(set1, set2);     // true if no common elements\nCollections.unmodifiableList(nums);   // read-only view\nCollections.synchronizedList(nums);   // thread-safe wrapper (prefer CopyOnWriteArrayList)\nCollections.nCopies(5, \"hello\");      // [hello, hello, hello, hello, hello]\nCollections.singleton(\"x\");          // immutable set with one element\nCollections.emptyList();              // immutable empty list — use instead of null\n```\n\n## Time Complexity Quick Reference\n| Operation | ArrayList | LinkedList | HashSet | TreeSet | HashMap | TreeMap |\n|---|---|---|---|---|---|---|\n| get(i) / get(key) | O(1) | O(n) | — | — | O(1) | O(log n) |\n| add/put | O(1)* | O(1) | O(1) | O(log n) | O(1) | O(log n) |\n| remove | O(n) | O(1) | O(1) | O(log n) | O(1) | O(log n) |\n| contains | O(n) | O(n) | O(1) | O(log n) | O(1) | O(log n) |\n| iterate | O(n) | O(n) | O(n) | O(n) | O(n) | O(n) sorted |\n*amortised (occasional resize is O(n))\n\n## Fail-Fast vs Fail-Safe Iterators\n**Fail-fast** (ArrayList, HashMap, HashSet): throw `ConcurrentModificationException` if the collection is structurally modified during iteration. Detects bugs early.\n**Fail-safe** (ConcurrentHashMap, CopyOnWriteArrayList): iterate over a snapshot; modifications during iteration don't cause exceptions but may not be visible to the current iterator.\n\n## Common Interview Questions\n```java\n// 1. Find duplicates in a list\nList<String> items = List.of(\"a\",\"b\",\"a\",\"c\",\"b\");\nSet<String> seen = new HashSet<>();\nSet<String> duplicates = items.stream()\n    .filter(x -> !seen.add(x)) // add() returns false if already present\n    .collect(Collectors.toSet()); // {\"a\", \"b\"}\n\n// 2. Count frequency of each element\nMap<String, Long> freq = items.stream()\n    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));\n// {a=2, b=2, c=1}\n\n// 3. Remove duplicates from list preserving order\nList<String> deduped = new ArrayList<>(new LinkedHashSet<>(items));\n```\n\n## Collections in Spring Boot\n```java\n// JPA relationships\n@OneToMany\nprivate List<OrderItem> items = new ArrayList<>();  // ordered by insertion\n\n@ManyToMany\nprivate Set<Role> roles = new HashSet<>();           // no duplicate roles\n\n// Service returning collections — never return null, return empty collection\npublic List<OrderDto> findByCustomer(String customerId) {\n    return orderRepository.findByCustomerId(customerId).stream()\n        .map(this::toDto)\n        .collect(toList()); // always a list, never null\n}\n```\n\n## Common Mistakes\n1. **Returning null instead of empty collection:** callers must null-check. Return `Collections.emptyList()` or `List.of()` instead.\n2. **Using Vector or Hashtable:** legacy, slower than modern concurrent alternatives.\n3. **Choosing ArrayList for contains() checks on large datasets:** O(n) per check. Use HashSet for O(1) membership testing.\n4. **Sorting a LinkedList by index:** O(n²) — convert to ArrayList, sort, convert back, or just use ArrayList.\n",
   "conceptualQuestions": [
     {
       "id": "d21q1",
-      "prompt": "What is the main focus of Day 21?",
+      "prompt": "What is the time complexity of `HashSet.contains(element)` for a well-distributed hash?",
       "options": [
-        "Collections Framework",
-        "Only CSS styling",
-        "Only deployment"
+        "O(n)",
+        "O(log n)",
+        "O(1)",
+        "O(n²)"
       ],
-      "correctAnswer": "Collections Framework",
-      "explanation": "The day title defines the main learning target."
+      "correctAnswer": "O(1)",
+      "explanation": "HashSet uses a HashMap internally. contains() computes the hash, locates the bucket, and checks equality — all constant time for a well-distributed hash. Use HashSet instead of ArrayList.contains() for large membership checks."
     },
     {
       "id": "d21q2",
-      "prompt": "Why should a backend developer understand business rules?",
+      "prompt": "Which collection would you use to maintain a list of the top 10 scores that always stays sorted?",
       "options": [
-        "They protect real workflows and data correctness",
-        "They replace Java syntax",
-        "They remove SQL"
+        "ArrayList with manual sort on each insert",
+        "LinkedList",
+        "TreeSet (note: handles duplicates differently) or PriorityQueue",
+        "HashMap"
       ],
-      "correctAnswer": "They protect real workflows and data correctness",
-      "explanation": "Business rules prevent invalid operations and bad data."
+      "correctAnswer": "TreeSet (note: handles duplicates differently) or PriorityQueue",
+      "explanation": "TreeSet maintains sorted order automatically, O(log n) insert. PriorityQueue is a min-heap, O(log n) insert and O(log n) poll. For a top-10 that needs to evict the lowest, PriorityQueue with size limit is efficient."
     },
     {
       "id": "d21q3",
-      "prompt": "Which layer should usually coordinate backend business logic?",
+      "prompt": "What does a fail-fast iterator do when the collection is modified during iteration?",
       "options": [
-        "Service layer",
-        "HTML template",
-        "Git folder"
+        "Silently ignores the modification",
+        "Throws ConcurrentModificationException",
+        "Blocks until modification is complete",
+        "Iterates over the modified collection"
       ],
-      "correctAnswer": "Service layer",
-      "explanation": "Services keep controllers thin and business logic testable."
+      "correctAnswer": "Throws ConcurrentModificationException",
+      "explanation": "ArrayList and HashMap iterators are fail-fast: they track a modCount. Any structural modification (add/remove) increments modCount. If the iterator detects a modCount change, it throws CME — a signal that a concurrent modification bug exists."
     },
     {
       "id": "d21q4",
-      "prompt": "What should Angular show during a save request?",
+      "prompt": "Why should you return `Collections.emptyList()` instead of `null` from a method that finds no results?",
       "options": [
-        "Loading or disabled state",
-        "Nothing",
-        "Random success"
+        "emptyList is faster",
+        "Returning null forces all callers to null-check before calling .size() or for-each — forgetting causes NPE; empty list works without special handling",
+        "null indicates no results more clearly",
+        "emptyList uses less memory"
       ],
-      "correctAnswer": "Loading or disabled state",
-      "explanation": "Loading prevents duplicate actions and reassures users."
+      "correctAnswer": "Returning null forces all callers to null-check before calling .size() or for-each — forgetting causes NPE; empty list works without special handling",
+      "explanation": "An empty list is always safe to iterate, call size() on, or stream. Returning null transfers the null-safety burden to every caller. Returning Collections.emptyList() or List.of() follows the Null Object pattern."
     },
     {
       "id": "d21q5",
-      "prompt": "What does SQL SELECT do?",
+      "prompt": "Which is the fastest way to remove duplicates from a List while preserving insertion order?",
       "options": [
-        "Reads selected data",
-        "Starts JVM",
-        "Creates TypeScript types"
+        "Sort then remove adjacent duplicates",
+        "Iterate with manual tracking",
+        "new ArrayList<>(new LinkedHashSet<>(originalList))",
+        "Stream with distinct()"
       ],
-      "correctAnswer": "Reads selected data",
-      "explanation": "SELECT retrieves rows and columns from tables."
+      "correctAnswer": "new ArrayList<>(new LinkedHashSet<>(originalList))",
+      "explanation": "LinkedHashSet maintains insertion order and rejects duplicates in O(1) per element. Converting to ArrayList wraps it in a standard list. O(n) total. Stream.distinct() also works but LinkedHashSet conversion is a common interview pattern."
     },
     {
       "id": "d21q6",
-      "prompt": "What should you mention after solving DSA?",
+      "prompt": "What is the difference between `ConcurrentHashMap` and `Collections.synchronizedMap(map)`?",
       "options": [
-        "Time and space complexity",
-        "Only final code",
-        "Your laptop model"
+        "No practical difference",
+        "ConcurrentHashMap uses segment/bucket locking, allowing multiple concurrent writes; synchronizedMap wraps the entire map with a single lock, blocking all access on any operation",
+        "synchronizedMap is faster",
+        "ConcurrentHashMap only works with String keys"
       ],
-      "correctAnswer": "Time and space complexity",
-      "explanation": "Complexity shows how solution scales."
+      "correctAnswer": "ConcurrentHashMap uses segment/bucket locking, allowing multiple concurrent writes; synchronizedMap wraps the entire map with a single lock, blocking all access on any operation",
+      "explanation": "ConcurrentHashMap achieves concurrency by locking only the affected bucket (or using CAS operations in Java 8+). Multiple threads can read/write different keys concurrently. synchronizedMap serialises all operations — significant throughput bottleneck."
     },
     {
       "id": "d21q7",
-      "prompt": "What is a strong interview answer style?",
+      "prompt": "What does `Collections.disjoint(setA, setB)` return?",
       "options": [
-        "Definition, example, internal working, project use",
-        "One memorized line",
-        "Silence"
+        "The intersection of the two sets",
+        "true if the two collections share no common elements",
+        "The union of the two sets",
+        "A merged list"
       ],
-      "correctAnswer": "Definition, example, internal working, project use",
-      "explanation": "Structured answers prove understanding."
+      "correctAnswer": "true if the two collections share no common elements",
+      "explanation": "disjoint returns true if no element from setA is in setB. Internally it iterates the smaller collection, checking if each element is in the larger. For HashSets, this is O(n) with O(1) per lookup."
     },
     {
       "id": "d21q8",
-      "prompt": "Why are DTOs useful?",
+      "prompt": "You need to count how many times each word appears in a document. What collection and what API?",
       "options": [
-        "They shape API contracts and hide internal data",
-        "They replace tests",
-        "They are CSS files"
+        "List with manual counting loop",
+        "Map<String, Integer> with getOrDefault, or map.merge(word, 1, Integer::sum)",
+        "Set to deduplicate words first",
+        "PriorityQueue sorted by frequency"
       ],
-      "correctAnswer": "They shape API contracts and hide internal data",
-      "explanation": "DTOs protect internal models and stabilize responses."
+      "correctAnswer": "Map<String, Integer> with getOrDefault, or map.merge(word, 1, Integer::sum)",
+      "explanation": "map.merge(key, 1, Integer::sum) is idiomatic: if key absent, put 1; if present, add 1 to current value. Alternatively: map.put(word, map.getOrDefault(word, 0) + 1). Stream approach: Collectors.groupingBy(identity(), counting())."
     },
     {
       "id": "d21q9",
-      "prompt": "What is a common beginner coding mistake?",
+      "prompt": "In JPA, why use `Set<Role>` for a many-to-many relationship instead of `List<Role>`?",
       "options": [
-        "Ignoring edge cases",
-        "Testing examples",
-        "Reading requirements"
+        "Set is serialized faster",
+        "Set prevents duplicate role assignments; equals()/hashCode() on Role ensures semantic uniqueness, not just reference equality",
+        "List cannot be used with @ManyToMany",
+        "Hibernate requires Set"
       ],
-      "correctAnswer": "Ignoring edge cases",
-      "explanation": "Edge cases often break production code."
+      "correctAnswer": "Set prevents duplicate role assignments; equals()/hashCode() on Role ensures semantic uniqueness, not just reference equality",
+      "explanation": "A user having the ADMIN role twice is a bug. Set.add() returns false and skips the duplicate. You must override equals() and hashCode() on Role based on the role name/id for this to work correctly."
     },
     {
       "id": "d21q10",
-      "prompt": "What does TypeScript add?",
+      "prompt": "Why should you avoid `Vector` and `Hashtable` in new code?",
       "options": [
-        "Types and tooling help",
-        "Database indexes",
-        "JVM bytecode"
+        "They have different APIs",
+        "They are fully synchronized on every method — they are slower than modern alternatives (ConcurrentHashMap, CopyOnWriteArrayList) and their synchronization model is too coarse for most use cases",
+        "They are deprecated and don't compile in Java 8+",
+        "They cannot store null values"
       ],
-      "correctAnswer": "Types and tooling help",
-      "explanation": "TypeScript helps catch frontend mistakes earlier."
-    },
-    {
-      "id": "d21q11",
-      "prompt": "What does WHERE do in SQL?",
-      "options": [
-        "Filters rows",
-        "Compiles Java",
-        "Creates components"
-      ],
-      "correctAnswer": "Filters rows",
-      "explanation": "WHERE narrows query results."
-    },
-    {
-      "id": "d21q12",
-      "prompt": "Why use meaningful Java names?",
-      "options": [
-        "Maintainability",
-        "Less memory always",
-        "No runtime needed"
-      ],
-      "correctAnswer": "Maintainability",
-      "explanation": "Teams maintain readable code faster."
-    },
-    {
-      "id": "d21q13",
-      "prompt": "What should you do before coding?",
-      "options": [
-        "Clarify input, output, examples, constraints",
-        "Type randomly",
-        "Ignore examples"
-      ],
-      "correctAnswer": "Clarify input, output, examples, constraints",
-      "explanation": "Problem understanding prevents wrong solutions."
-    },
-    {
-      "id": "d21q14",
-      "prompt": "What is an API response?",
-      "options": [
-        "A contract with the client",
-        "A private local note",
-        "A compiler option"
-      ],
-      "correctAnswer": "A contract with the client",
-      "explanation": "Frontend and backend depend on response shape."
-    },
-    {
-      "id": "d21q15",
-      "prompt": "Best study method?",
-      "options": [
-        "Read, summarize, answer, code, review",
-        "Skip notes",
-        "Only watch UI"
-      ],
-      "correctAnswer": "Read, summarize, answer, code, review",
-      "explanation": "Active recall plus coding builds durable skill."
+      "correctAnswer": "They are fully synchronized on every method — they are slower than modern alternatives (ConcurrentHashMap, CopyOnWriteArrayList) and their synchronization model is too coarse for most use cases",
+      "explanation": "Vector and Hashtable use synchronized on every method, causing thread contention even for reads. ConcurrentHashMap uses fine-grained locking. CopyOnWriteArrayList copies on write, allowing concurrent reads. Both modern options are faster and more scalable."
     }
   ],
   "writtenConceptQuestions": [
-    "Explain Collections Framework in your own words with a beginner-friendly example.",
-    "Where would Collections Framework appear in a real Java full-stack project?",
-    "What can go wrong in production if a developer misunderstands Collections Framework?",
-    "Explain the business impact using an order or customer workflow.",
-    "How does today's Java topic connect with Spring Boot APIs?",
-    "How would Angular display success, loading, and error states?",
-    "Which SQL query idea from today helps answer a business question?",
-    "What edge cases should you test for today's coding problems?",
-    "How would you explain today's DSA pattern to an interviewer?",
-    "Write a five-point summary of Day 21 without looking at the notes."
+    "Describe the full Java Collections hierarchy. For each major branch (List, Set, Queue, Map), name the primary implementations and their key trade-offs.",
+    "Write the decision framework for choosing between ArrayList, LinkedList, HashSet, TreeSet, HashMap, and TreeMap. Give a real use case for each.",
+    "Explain fail-fast vs fail-safe iterators. Show code that causes ConcurrentModificationException and two safe alternatives.",
+    "What is the time complexity of ArrayList.contains() vs HashSet.contains()? Write a membership check benchmark scenario showing where the difference matters in production.",
+    "How do you find duplicates in a List<String> using streams? How do you remove duplicates preserving insertion order? Show both as code.",
+    "Explain ConcurrentHashMap vs Collections.synchronizedMap(). When does each block threads and why is ConcurrentHashMap faster?",
+    "A Spring Boot API returns `null` when no orders are found. Show the NPE that a caller experiences, then fix the service method to return an empty list."
   ],
   "businessScenarios": [
-    "A product owner asks for a feature related to Collections Framework. What questions do you ask before coding?",
-    "A support user reports wrong customer/order data. How can backend validation, SQL, and logs help investigate?",
-    "A manager wants a dashboard metric based on today's SQL/DSA topic. Design the API response and explain why it helps the business."
+    "A product search endpoint does `productList.contains(searchId)` across 500,000 products. Response time is 2 seconds. Identify the data structure bug and redesign with a HashSet, quantifying the improvement.",
+    "A session management service stores active sessions in a HashMap. Under load, different threads corrupt the map during concurrent logins. Show the bug and three possible fixes (synchronized, ConcurrentHashMap, CopyOnWriteArrayList), explaining when each is appropriate.",
+    "An analytics service needs to track unique page views per URL (deduplication) and report the top 10 most-viewed URLs sorted by view count. Design the complete data structure solution using the appropriate collections."
   ],
   "dsaPractice": [
     {
